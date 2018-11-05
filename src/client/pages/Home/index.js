@@ -42,6 +42,7 @@ const Home = ({ routes, ...props }) => (
     )}
   </Container>
 );
+
 const actions = {};
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

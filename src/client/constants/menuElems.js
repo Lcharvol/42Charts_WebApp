@@ -1,17 +1,17 @@
 const menuElems = [
   {
     key: 0,
-    to: '/profile',
+    to: '/home/profile',
     label: 'My profile',
   },
   {
     key: 1,
-    to: '/',
+    to: '/home/allusers',
     label: 'All student',
   },
   {
     key: 2,
-    to: '/ranking',
+    to: '/home/ranking',
     label: 'Ranking',
   },
 ];

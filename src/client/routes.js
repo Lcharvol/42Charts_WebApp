@@ -5,11 +5,17 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import Profil from './pages/Profil';
 import Ranking from './pages/Ranking';
+import Login from './pages/Login';
 
 const routes = [
   {
+    key: 1,
+    path: '/login',
+    component: Login,
+  },
+  {
     key: 0,
-    path: '/',
+    path: '/home',
     component: Home,
     routes: [
       {

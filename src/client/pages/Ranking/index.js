@@ -20,7 +20,7 @@ const fakeUser = [
     lastName: 'Fuks',
     login: 'Yfuks',
     profilPicture: 'https://cdn.intra.42.fr/users/medium_yfuks.jpg',
-    lvl: 16.03,
+    lvl: 2,
   },
 ];
 
