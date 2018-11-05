@@ -1,12 +1,13 @@
-export const BACKGROUND_COLOR =
-  ' \
-    linear-gradient( \
-        to bottom, \
-        rgba(120,120,120,0.15) 0%, \
-        rgba(0,0,0,0.15) 100%\
-    ), \
-    radial-gradient(\
-        at top center,\
-        rgba(120,120,120,0.40) 0%,\
-        rgba(0,0,0,0.40) 220%\
-    ) rgba(15,15,15,1)';
+export const BACKGROUND_COLOR = 'rgb(35,35,35)';
+
+export const LIGHT_GREY = 'rgb(241,243,245)';
+
+export const SIDE_MENU_COLOR = 'rgb(255,255,255)';
+
+export const BORDER_COLOR = '#e1e4e8';
+
+export const DARK_TEXT_COLOR = 'rgb(50,50,50)';
+
+export const MAIN_COLOR = '#2ecc71';
+
+export const MAIN_RED = '#e74c3c';

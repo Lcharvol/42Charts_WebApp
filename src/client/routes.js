@@ -9,20 +9,33 @@ const routes = [
     key: 0,
     path: '/',
     component: Home,
-    exact: true,
+    routes: [
+      {
+        key: 0,
+        path: '/test',
+        component: <div />,
+      },
+    ],
   },
 ];
 
+const RouteWithSubRoutes = route => (
+  <Route
+    path={route.path}
+    render={props => <route.component {...props} routes={route.routes} />}
+  />
+);
+
 const Routes = () => (
-  <Switch>
+  <div>
     {map(
       route => (
-        <Route {...route} />
+        <RouteWithSubRoutes {...route} />
       ),
       routes,
     )}
-    <Redirect to="/" />
-  </Switch>
+    {/* <Redirect to="/" /> */}
+  </div>
 );
 
 export default Routes;
