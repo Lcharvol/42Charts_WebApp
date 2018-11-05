@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DARK_TEXT_COLOR } from '../../constants/colors';
+import { DARK_TEXT_COLOR, MAIN_COLOR } from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -14,8 +14,23 @@ export const Container = styled.div`
 `;
 
 export const Login = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-size: 0.3em;
   color: ${DARK_TEXT_COLOR};
   opacity: 0.7;
   margin-left: 25px;
+  width: 100px;
+`;
+
+export const Level = styled.div`
+  position:relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color:${MAIN_COLOR}
+  font-size: 0.4em;
+  width:100px;
 `;

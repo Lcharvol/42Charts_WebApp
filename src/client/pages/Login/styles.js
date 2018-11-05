@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BORDER_COLOR } from '../../constants/colors';
+import { BORDER_COLOR, MAIN_COLOR } from '../../constants/colors';
 import { Link } from 'react-router-dom';
 
 import LogoUI from '../../../../public/logo.svg';
@@ -44,11 +44,11 @@ export const LoginButton = styled(Link)`
   align-items: center;
   color: white;
   width: 80%;
-  background-color: rgb(35, 35, 35);
+  background-color: ${MAIN_COLOR};
   height: 55px;
   border-radius: 3px;
   &:hover {
-    opacity: 0.9;
+    opacity: 0.6;
   }
   cursor: pointer;
   font-size: 0.3em;

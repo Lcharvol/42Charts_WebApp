@@ -1,7 +1,7 @@
 import React from 'react';
 import { object } from 'prop-types';
 
-import { Container, Login } from './styles';
+import { Container, Login, Level } from './styles';
 import { UserAvatar } from '../UserAvatar';
 
 const propTypes = {
@@ -16,6 +16,7 @@ const UserPreview = ({ user }) => (
       height={'60px'}
     />
     <Login>{user.login}</Login>
+    <Level>{user.lvl}</Level>
   </Container>
 );
 
