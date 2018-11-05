@@ -46,7 +46,7 @@ const webpackConfig = {
         loaders: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
             loader: 'file-loader',
@@ -57,7 +57,7 @@ const webpackConfig = {
         ],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        test: /\.(eot|ttf|woff|woff2)$/,
         loader: 'file?name=public/[name].[ext]',
       },
     ],

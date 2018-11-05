@@ -28,7 +28,12 @@ const RouteWithSubRoutes = ({ route, user, rest }) => (
 
 const Home = ({ routes, ...props }) => (
   <Container>
-    <SideMenu user={fakeUser} routes={routes} />
+    {console.log(props)}
+    <SideMenu
+      user={fakeUser}
+      routes={routes}
+      hidden={props.location.pathname === '/login'}
+    />
     {map(
       route => (
         <RouteWithSubRoutes

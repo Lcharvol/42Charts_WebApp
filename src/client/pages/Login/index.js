@@ -1,10 +1,13 @@
 import React from 'react';
 
-import { Container, LoginContent } from './styles';
+import { Container, LoginContent, Logo, LoginButton } from './styles';
 
 const Login = () => (
   <Container>
-    <LoginContent />
+    <LoginContent>
+      <Logo />
+      <LoginButton to={'/'}>Login</LoginButton>
+    </LoginContent>
   </Container>
 );
 

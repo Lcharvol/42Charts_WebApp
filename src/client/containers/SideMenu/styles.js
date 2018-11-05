@@ -16,12 +16,13 @@ export const Container = styled.div`
   background-color: ${SIDE_MENU_COLOR};
   height: 100vh;
   top: 0;
-  left: 0;
+  left: ${({ hidden }) => (hidden ? -250 : 0)}px;
   padding-top: 50px;
   padding-right: 20px;
   padding-left: 20px;
   border-right: 1px ${BORDER_COLOR} solid;
   z-index: 10000;
+  transition: left 0.3s eas-n-out;
 `;
 
 export const SideMenuHeaderContainer = styled.div`

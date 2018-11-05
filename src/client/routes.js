@@ -9,22 +9,22 @@ import Login from './pages/Login';
 
 const routes = [
   {
-    key: 1,
-    path: '/login',
-    component: Login,
-  },
-  {
     key: 0,
-    path: '/home',
+    path: '/',
     component: Home,
     routes: [
       {
         key: 0,
+        path: '/login',
+        component: Login,
+      },
+      {
+        key: 1,
         path: '/profil',
         component: Profil,
       },
       {
-        key: 1,
+        key: 2,
         path: '/ranking',
         component: Ranking,
       },
