@@ -12,7 +12,7 @@ const routes = [
     routes: [
       {
         key: 0,
-        path: '/test',
+        path: '/profil',
         component: <div />,
       },
     ],

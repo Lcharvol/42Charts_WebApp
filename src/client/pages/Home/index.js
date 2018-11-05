@@ -13,7 +13,7 @@ const fakeUser = {
   firstName: 'Lucas',
   lastName: 'Charvolin',
   login: 'Lcharvol',
-  profilPicture: 'https://avatars2.githubusercontent.com/u/23408500?s=240&v=4',
+  profilPicture: 'https://cdn.intra.42.fr/users/medium_lcharvol.jpg',
   mycolors: [
     {
       pos: 0,
