@@ -4,16 +4,17 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import configureStore from './store';
-import Routes from './routes';
+import App from './pages/App';
+import Auth from './auth';
 
 const initialState = {};
 export const store = configureStore(initialState);
 
 const Root = () => (
   <Provider store={store}>
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+    <Auth>
+      <App />
+    </Auth>
   </Provider>
 );
 

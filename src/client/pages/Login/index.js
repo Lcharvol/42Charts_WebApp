@@ -1,12 +1,22 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 
 import { Container, LoginContent, Logo, LoginButton } from './styles';
+import { getLogin } from '../../requests';
 
-const Login = () => (
+const Login = ({ history }) => (
   <Container>
     <LoginContent>
       <Logo />
-      <LoginButton to={'/'}>Login</LoginButton>
+      <LoginButton
+        onClick={() => {
+          getLogin().then(redicrectUri =>
+            window.location.replace(redicrectUri),
+          );
+        }}
+      >
+        Login
+      </LoginButton>
     </LoginContent>
   </Container>
 );

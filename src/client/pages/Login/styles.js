@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { BORDER_COLOR, MAIN_COLOR } from '../../constants/colors';
-import { Link } from 'react-router-dom';
 
 import LogoUI from '../../../../public/logo.svg';
 
@@ -37,7 +36,7 @@ export const Logo = styled.div`
     top:-127px;
 `;
 
-export const LoginButton = styled(Link)`
+export const LoginButton = styled.div`
   position: relative;
   display: flex;
   justify-content: center;

@@ -1,7 +1,7 @@
 import * as Axios from 'axios';
 
 const axios = Axios.create({
-  baseURL: 'http://e3r6p16:3000/',
+  baseURL: 'http://localhost:3000/',
   headers: {},
 });
 
@@ -20,3 +20,23 @@ export const reqMe = () =>
   })
     .then(data => console.log('data: ', data``))
     .catch(err => console.log('err: ', err));
+
+export const getLogin = () =>
+  axios({
+    method: 'get',
+    url: 'oauth/login',
+  })
+    .then(ret => ret.data.redirect_uri)
+    .catch(err => console.log('err: ', err));
+
+export const postLogin = code =>
+  axios({
+    method: 'post',
+    url: 'oauth/login',
+    code,
+    redirect_uri: 'google.com',
+  })
+    .then(data => console.log('data: ', data``))
+    .catch(err => {
+      throw err;
+    });
