@@ -1,4 +1,4 @@
-export const BACKGROUND_COLOR = 'rgb(35,35,35)';
+export const BACKGROUND_COLOR = LIGHT_GREY;
 
 export const LIGHT_GREY = 'rgb(241,243,245)';
 

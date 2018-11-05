@@ -3,6 +3,8 @@ import { map } from 'ramda';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Home from './pages/Home';
+import Profil from './pages/Profil';
+import Ranking from './pages/Ranking';
 
 const routes = [
   {
@@ -13,7 +15,12 @@ const routes = [
       {
         key: 0,
         path: '/profil',
-        component: <div />,
+        component: Profil,
+      },
+      {
+        key: 1,
+        path: '/ranking',
+        component: Ranking,
       },
     ],
   },
