@@ -46,8 +46,10 @@ const enhance = compose(
       const { pathname } = window.location;
       const [route] = split('/', pathname.slice(1));
       if (route !== 'serverdown')
-        reqPing().catch(err => window.location.replace('serverdown'));
-      if (isEmpty(this.props.me)) {
+        reqPing()
+          .then(res => console.log(res))
+          .catch(err => window.location.replace('serverdown'));
+      else if (isEmpty(this.props.me)) {
         reqMe()
           .then(res => this.props.enhanceMe(res))
           .catch(err => console.log('err: ', err));

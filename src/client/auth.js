@@ -4,7 +4,7 @@ import { split, contains } from 'ramda';
 
 import { reqMe } from './requests';
 
-export const noAuthneeded = ['login'];
+export const noAuthneeded = ['login', 'serverdown'];
 
 const propTypes = {
   children: node,
