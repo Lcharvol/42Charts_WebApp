@@ -1,7 +1,7 @@
 import * as Axios from 'axios';
 
 const code =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyNDU2LCJpYXQiOjE1NDE1MDQ5MDAsImV4cCI6MTU0MTUxMjEwMH0.q1f2PCi8R1AvLakXHmFTHgRmz5heUtbYzY09zC7Z0SE';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyNDU2LCJpYXQiOjE1NDE1MTM2NzgsImV4cCI6MTU0MTUyMDg3OH0.5jQx7FXqoOHATmYDjY4JV_aaL10HYCdXLpU9O_KOjZQ';
 
 const axios = Axios.create({
   baseURL: 'http://e3r3p12:3000/',
@@ -14,7 +14,9 @@ export const reqPing = () =>
     url: 'ping',
   })
     .then(res => res.data)
-    .catch(err => console.log('err: ', err));
+    .catch(err => {
+      throw err;
+    });
 
 export const reqMe = () =>
   axios({

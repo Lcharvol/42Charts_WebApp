@@ -2,6 +2,7 @@ import Home from './pages/Home';
 import Profil from './pages/Profil';
 import Ranking from './pages/Ranking';
 import Login from './pages/Login';
+import ServerDown from './pages/ServerDown';
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     id: 3,
     path: '/ranking',
     component: Ranking,
+  },
+  {
+    id: 4,
+    path: '/serverdown',
+    component: ServerDown,
   },
 ];
 

@@ -10,14 +10,14 @@ import Separator from '../../components/Separator';
 import Menu from './Menu';
 import { enhanceMe } from '../../actions/me';
 import { getMe } from '../../selectors/me';
-import { reqMe } from '../../requests';
+import { reqMe, reqPing } from '../../requests';
 
 import { noAuthneeded } from '../../auth';
 
 const SideMenu = ({ me, routes, hidden }) => {
   const { pathname } = window.location;
   const [route] = split('/', pathname.slice(1));
-  if (contains(route, noAuthneeded)) return null;
+  if (contains(route, noAuthneeded) || route === 'serverdown') return null;
 
   return (
     <Container hidden={hidden}>
@@ -43,6 +43,10 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
+      const { pathname } = window.location;
+      const [route] = split('/', pathname.slice(1));
+      if (route !== 'serverdown')
+        reqPing().catch(err => window.location.replace('serverdown'));
       if (isEmpty(this.props.me)) {
         reqMe()
           .then(res => this.props.enhanceMe(res))
