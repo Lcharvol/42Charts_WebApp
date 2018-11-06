@@ -16,7 +16,7 @@ export const Container = styled.div`
 export const Login = styled.div`
   position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   font-size: 0.3em;
   color: ${DARK_TEXT_COLOR};
@@ -28,9 +28,31 @@ export const Login = styled.div`
 export const Level = styled.div`
   position:relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   color:${MAIN_COLOR}
   font-size: 0.4em;
   width:100px;
+`;
+
+export const Rank = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ color }) => color};
+  font-size: 0.4em;
+  width: 50px;
+`;
+
+export const CampusLabel = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.3em;
+  color: ${DARK_TEXT_COLOR};
+  opacity: 0.7;
+  margin-left: 25px;
+  width: 100px;
 `;

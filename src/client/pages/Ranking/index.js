@@ -4,6 +4,7 @@ import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VisibilitySensor from 'react-visibility-sensor';
+import { LOADING_OFFSET } from './constants';
 
 import {
   Container,
@@ -33,18 +34,15 @@ const Ranking = ({
       handleChangeSelectedPromo={handleChangeSelectedPromo}
     />
     <UsersPrewiewContainer>
-      {map(
-        user => (
-          <UserPreview key={user.id} user={user} />
-        ),
-        users,
-      )}
+      {users.map((user, id) => (
+        <UserPreview key={user.id} rank={id + 1} user={user} />
+      ))}
     </UsersPrewiewContainer>
     <VisibilitySensor
       onChange={() => {
         if (!isEmpty(users)) {
-          handleChangeStart(start + 25);
-          getUsersByPromo(selectedPromo, 25, start)
+          handleChangeStart(start + LOADING_OFFSET);
+          getUsersByPromo(selectedPromo, LOADING_OFFSET, start)
             .then(res => enhanceUsers(res))
             .catch(err => console.log('err: ', err));
         }
@@ -69,11 +67,7 @@ const enhance = compose(
     mapDispatchToProps,
   ),
   withStateHandlers(
-    ({
-      initialSelectedPromo = '2013',
-      initialUsers = [],
-      initialStart = 0,
-    }) => ({
+    ({ initialSelectedPromo = '', initialUsers = [], initialStart = 0 }) => ({
       selectedPromo: initialSelectedPromo,
       users: initialUsers,
       start: initialStart,
@@ -102,16 +96,21 @@ const enhance = compose(
           .then(res => this.props.loadPromos(res))
           .catch(err => console.log('err: ', err));
       }
+      this.props.handleChangeSelectedPromo('2013');
     },
     componentDidUpdate(prevProps) {
       if (
         prevProps.selectedPromo !== this.props.selectedPromo &&
         isEmpty(this.props.users)
       ) {
-        getUsersByPromo(this.props.selectedPromo, 25, this.props.start)
+        getUsersByPromo(
+          this.props.selectedPromo,
+          LOADING_OFFSET,
+          this.props.start,
+        )
           .then(res => {
             this.props.handleChangeUsers(res);
-            this.props.handleChangeStart(this.props.start + 25);
+            this.props.handleChangeStart(this.props.start + LOADING_OFFSET);
           })
           .catch(err => console.log('err: ', err));
       }
