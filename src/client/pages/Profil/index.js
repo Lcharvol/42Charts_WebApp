@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 
-import { Container, Header } from './styles';
+import { Container, Header, FullName } from './styles';
 import { getMe } from '../../selectors/me';
 import { enhanceMe } from '../../actions/me';
 import UserAvatar from '../../components/UserAvatar';
@@ -15,6 +15,7 @@ const Profil = ({ me }) => (
         width={'150px'}
         height={'150px'}
       />
+      <FullName>{me.displayname}</FullName>
     </Header>
   </Container>
 );

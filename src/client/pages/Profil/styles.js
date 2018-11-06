@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MAIN_COLOR } from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -7,12 +8,26 @@ export const Container = styled.div`
   width: calc(100vw - 260px);
   margin-left: 240px;
   min-height: 100vh;
-  padding-top: 100px;
 `;
 
 export const Header = styled.div`
   position: relative;
   display: flex;
-  width: 100%;
-  height: 150px;
+  background-color: rgb(25, 25, 25);
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: calc(100% - 25px);
+  height: 300px;
+  padding-left: 25px;
+  padding-bottom: 25px;
+`;
+
+export const FullName = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-left: 15px;
+  font-size: 0.6em;
+  color: white;
 `;

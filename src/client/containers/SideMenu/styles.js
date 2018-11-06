@@ -67,7 +67,19 @@ export const StyledLink = styled(Link)`
 
 export const Login = styled.div`
   display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   color: ${DARK_TEXT_COLOR};
   font-size: 0.4em;
   margin-bottom: 15px;
+`;
+
+export const FirstLetter = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  color: ${MAIN_COLOR};
+  font-size: 2em;
+  margin-bottom: -5px;
 `;
