@@ -10,11 +10,15 @@ import {
   Container,
   UsersPrewiewContainer,
   VisibilitySensorBox,
+  Title,
+  Header,
+  Content,
 } from './styles';
 import PromoFilter from './PromoFilter';
 import UserPreview from '../../components/UserPreview';
 import { getUsersByPromo } from '../../requests';
 import { getPromos } from '../../selectors/app';
+import { getMyLogin } from '../../selectors/me';
 import { reqGetPromo } from '../../requests';
 import { loadPromos } from '../../actions/app';
 
@@ -26,35 +30,47 @@ const Ranking = ({
   handleChangeStart,
   enhanceUsers,
   users,
+  myLogin,
 }) => (
   <Container>
-    <PromoFilter
-      promos={promos}
-      selectedPromo={selectedPromo}
-      handleChangeSelectedPromo={handleChangeSelectedPromo}
-    />
-    <UsersPrewiewContainer>
-      {users.map((user, id) => (
-        <UserPreview key={user.id} rank={id + 1} user={user} />
-      ))}
-    </UsersPrewiewContainer>
-    <VisibilitySensor
-      onChange={() => {
-        if (!isEmpty(users)) {
-          handleChangeStart(start + LOADING_OFFSET);
-          getUsersByPromo(selectedPromo, LOADING_OFFSET, start)
-            .then(res => enhanceUsers(res))
-            .catch(err => console.log('err: ', err));
-        }
-      }}
-    >
-      <VisibilitySensorBox />
-    </VisibilitySensor>
+    <Header>
+      <Title>Ranking</Title>
+      <PromoFilter
+        promos={promos}
+        selectedPromo={selectedPromo}
+        handleChangeSelectedPromo={handleChangeSelectedPromo}
+      />
+    </Header>
+    <Content>
+      <UsersPrewiewContainer>
+        {users.map((user, id) => (
+          <UserPreview
+            myLogin={myLogin}
+            key={user.id}
+            rank={id + 1}
+            user={user}
+          />
+        ))}
+      </UsersPrewiewContainer>
+      <VisibilitySensor
+        onChange={() => {
+          if (!isEmpty(users)) {
+            handleChangeStart(start + LOADING_OFFSET);
+            getUsersByPromo(selectedPromo, LOADING_OFFSET, start)
+              .then(res => enhanceUsers(res))
+              .catch(err => console.log('err: ', err));
+          }
+        }}
+      >
+        <VisibilitySensorBox />
+      </VisibilitySensor>
+    </Content>
   </Container>
 );
 
 const mapStateToProps = state => ({
   promos: getPromos(state),
+  myLogin: getMyLogin(state),
 });
 
 const actions = { loadPromos };
@@ -96,7 +112,7 @@ const enhance = compose(
           .then(res => this.props.loadPromos(res))
           .catch(err => console.log('err: ', err));
       }
-      this.props.handleChangeSelectedPromo('2013');
+      this.props.handleChangeSelectedPromo('2012');
     },
     componentDidUpdate(prevProps) {
       if (

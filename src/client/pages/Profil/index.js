@@ -1,27 +1,29 @@
 import React from 'react';
-import { compose, lifecycle } from 'recompose';
+import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import { Container } from './styles';
-import { reqMe } from '../../requests';
+import { Container, Header } from './styles';
+import { getMe } from '../../selectors/me';
+import { enhanceMe } from '../../actions/me';
+import UserAvatar from '../../components/UserAvatar';
 
-const Profil = () => <Container />;
-const actions = {};
-
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
-
-const enhance = compose(
-  connect(
-    null,
-    mapDispatchToProps,
-  ),
-  lifecycle({
-    componentDidMount() {
-      reqMe()
-        .then(res => console.log(res))
-        .catch(err => console.log('err: ', err));
-    },
-  }),
+const Profil = ({ me }) => (
+  <Container>
+    <Header>
+      <UserAvatar
+        profilPicture={me.imageUrl}
+        width={'150px'}
+        height={'150px'}
+      />
+    </Header>
+  </Container>
 );
+
+const actions = { enhanceMe };
+
+const mapStateToProps = state => ({
+  me: getMe(state),
+});
+
+const enhance = compose(connect(mapStateToProps));
 export default enhance(Profil);

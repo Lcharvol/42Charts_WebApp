@@ -4,7 +4,7 @@ const code =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyNDU2LCJpYXQiOjE1NDE1MDQ5MDAsImV4cCI6MTU0MTUxMjEwMH0.q1f2PCi8R1AvLakXHmFTHgRmz5heUtbYzY09zC7Z0SE';
 
 const axios = Axios.create({
-  baseURL: 'http://e1r3p16:3000/',
+  baseURL: 'http://e3r3p12:3000/',
   headers: { Authorization: 'Bearer ' + code },
 });
 
@@ -22,7 +22,7 @@ export const reqMe = () =>
     url: 'users/me',
     code,
   })
-    .then(data => console.log('data: ', data))
+    .then(res => res.data)
     .catch(err => console.log('err: ', err));
 
 export const getLogin = () =>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { findIndex } from 'ramda';
+import { isEmpty, findIndex } from 'ramda';
 import { array, string, func } from 'prop-types';
 
 import { Container, Label, SelectedBox, Content } from './styles';
@@ -23,11 +23,13 @@ const PromoFilter = ({ promos, selectedPromo, handleChangeSelectedPromo }) => (
           {promo}
         </Label>
       ))}
-      <SelectedBox
-        leftPosition={
-          findIndex(promo => promo === selectedPromo)(promos) * 80 + 7.5
-        }
-      />
+      {!isEmpty(promos) && (
+        <SelectedBox
+          leftPosition={
+            findIndex(promo => promo === selectedPromo)(promos) * 80 + 7.5
+          }
+        />
+      )}
     </Content>
     <Separator />
   </Container>

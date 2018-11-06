@@ -31,12 +31,13 @@ export const Label = styled.div`
     opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
     ${({ isSelected }) => isSelected && 'color:white'}
     z-index:50;
+    user-select:none;
 `;
 
 export const SelectedBox = styled.div`
   position: absolute;
   height: 30px;
-  width: 60px;
+  width: 65px;
   background-color: ${MAIN_COLOR};
   border-radius: 3px;
   z-index: 40;

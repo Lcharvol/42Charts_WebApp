@@ -11,6 +11,8 @@ export const Container = styled.div`
   margin-top: 5px;
   margin-bottom: 5px;
   padding-left: 5px;
+  background-color: ${({ color }) => color};
+  border-radius: 3px;
 `;
 
 export const Login = styled.div`
@@ -26,13 +28,13 @@ export const Login = styled.div`
 `;
 
 export const Level = styled.div`
-  position:relative;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  color:${MAIN_COLOR}
+  color: ${({ color }) => color};
   font-size: 0.4em;
-  width:100px;
+  width: 100px;
 `;
 
 export const Rank = styled.div`
