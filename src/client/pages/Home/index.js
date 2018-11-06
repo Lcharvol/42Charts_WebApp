@@ -2,26 +2,32 @@ import React from 'react';
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { isEmpty } from 'ramda';
 
 import { Container } from './styles';
 import { reqPing } from '../../requests';
-import SideMenu from '../../containers/SideMenu';
+import { getPromos } from '../../selectors/app';
+import { loadPromos } from '../../actions/app';
 
 const Home = ({ routes, ...props }) => <Container />;
 
-const actions = {};
+const actions = { loadPromos };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
+const mapStateToProps = state => ({
+  promos: getPromos(state),
+});
+
 const enhance = compose(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
   ),
   lifecycle({
     componentDidMount() {
       reqPing()
-        .then(res => console.log(res))
+        .then(res => console.log('ping: ', res))
         .catch(err => console.log('err: ', err));
     },
   }),

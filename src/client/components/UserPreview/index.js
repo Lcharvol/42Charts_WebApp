@@ -10,13 +10,9 @@ const propTypes = {
 
 const UserPreview = ({ user }) => (
   <Container>
-    <UserAvatar
-      profilPicture={user.profilPicture}
-      width={'60px'}
-      height={'60px'}
-    />
+    <UserAvatar profilPicture={user.imageUrl} width={'60px'} height={'60px'} />
     <Login>{user.login}</Login>
-    <Level>{user.lvl}</Level>
+    <Level>{user.cursusLevel}</Level>
   </Container>
 );
 

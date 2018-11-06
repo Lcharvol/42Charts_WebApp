@@ -12,7 +12,7 @@ const propTypes = {
 
 class Auth extends Component {
   state = {
-    isAuthorized: false,
+    isAuthorized: true,
     isRequested: false,
   };
 
