@@ -1,11 +1,15 @@
 import * as Axios from 'axios';
 
-const code =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyNDU2LCJpYXQiOjE1NDE1MTM2NzgsImV4cCI6MTU0MTUyMDg3OH0.5jQx7FXqoOHATmYDjY4JV_aaL10HYCdXLpU9O_KOjZQ';
+const chartsToken = localStorage.getItem('chartsToken');
+
+console.log('chartsToken: ', chartsToken);
 
 const axios = Axios.create({
   baseURL: 'http://e3r3p12:3000/',
-  headers: { Authorization: 'Bearer ' + code },
+  headers: {
+    Authorization: 'Bearer ' + chartsToken,
+    ContentType: 'application/json',
+  },
 });
 
 export const reqPing = () =>
@@ -22,10 +26,11 @@ export const reqMe = () =>
   axios({
     method: 'get',
     url: 'users/me',
-    code,
   })
     .then(res => res.data)
-    .catch(err => console.log('err: ', err));
+    .catch(err => {
+      throw err;
+    });
 
 export const getLogin = () =>
   axios({
@@ -35,12 +40,16 @@ export const getLogin = () =>
     .then(ret => ret.data.redirect_uri)
     .catch(err => console.log('err: ', err));
 
-export const postLogin = () =>
+export const postLogin = code =>
   axios({
     method: 'post',
     url: 'oauth/login',
+    data: {
+      code,
+      redirect_uri: 'http://localhost:8080/login',
+    },
   })
-    .then(data => console.log('data: ', data))
+    .then(res => res.data.jwt)
     .catch(err => {
       throw err;
     });

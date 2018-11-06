@@ -116,7 +116,7 @@ const enhance = compose(
           .then(res => this.props.loadPromos(res))
           .catch(err => console.log('err: ', err));
       }
-      this.props.handleChangeSelectedPromo('2012');
+      this.props.handleChangeSelectedPromo('all');
     },
     componentDidUpdate(prevProps) {
       if (

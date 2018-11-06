@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { node } from 'prop-types';
 import { split, contains } from 'ramda';
 
-import { postLogin } from './requests';
+import { reqMe } from './requests';
 
 export const noAuthneeded = ['login'];
 
@@ -12,13 +12,13 @@ const propTypes = {
 
 class Auth extends Component {
   state = {
-    isAuthorized: true,
+    isAuthorized: false,
     isRequested: false,
   };
 
   async componentWillMount() {
     try {
-      await postLogin();
+      await reqMe();
       this.setState({ isAuthorized: true, isRequested: true });
     } catch (err) {
       this.setState({ isRequested: true });
