@@ -56,7 +56,11 @@ const Ranking = ({
         onChange={() => {
           if (!isEmpty(users)) {
             handleChangeStart(start + LOADING_OFFSET);
-            getUsersByPromo(selectedPromo, LOADING_OFFSET, start)
+            getUsersByPromo(
+              selectedPromo !== 'all' ? selectedPromo : '',
+              LOADING_OFFSET,
+              start,
+            )
               .then(res => enhanceUsers(res))
               .catch(err => console.log('err: ', err));
           }
@@ -120,7 +124,7 @@ const enhance = compose(
         isEmpty(this.props.users)
       ) {
         getUsersByPromo(
-          this.props.selectedPromo,
+          this.props.selectedPromo !== 'all' ? this.props.selectedPromo : '',
           LOADING_OFFSET,
           this.props.start,
         )
