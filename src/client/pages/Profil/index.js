@@ -1,12 +1,14 @@
 import React from 'react';
-import { compose, withStateHandlers } from 'recompose';
+import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { object, number, func } from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { map, find, propEq, isNil, isEmpty } from 'ramda';
 
 import { Container, Header, LeftSide, RightSide, Content } from './styles';
-import { getMe, getMarks } from '../../selectors/me';
+import { getMe, getMarks, getMyLogs } from '../../selectors/me';
 import { enhanceMe } from '../../actions/me';
+import { reqGetMyLogs } from '../../requests';
 import UserAvatar from '../../components/UserAvatar';
 import LevelBar from '../../components/LevelBar';
 import Mark from '../../components/Mark';
@@ -44,11 +46,11 @@ const Profil = ({ me, selectedCursus, handleChangeSelectedCursus, marks }) => (
     <Content>
       <Box
         label={'Marks'}
-        width={'300px'}
+        width={'400px'}
         height={'400px'}
         content={map(
           mark => (
-            <Mark key={mark.id} />
+            <Mark key={mark.id} mark={mark} />
           ),
           marks,
         )}
@@ -61,13 +63,19 @@ Profil.propTypes = proptypes;
 
 const actions = { enhanceMe };
 
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
 const mapStateToProps = state => ({
   me: getMe(state),
   marks: getMarks(state),
+  myLogs: getMyLogs(state),
 });
 
 const enhance = compose(
-  connect(mapStateToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
   withStateHandlers(
     ({ initialSelectedCursus = 1 }) => ({
       selectedCursus: initialSelectedCursus,
@@ -78,6 +86,15 @@ const enhance = compose(
       }),
     },
   ),
+  lifecycle({
+    componentDidMount() {
+      if (isEmpty(this.props.marks)) {
+        reqGetMyLogs()
+          .then(logs => this.props.enhanceMe({ logs }))
+          .catch(err => err);
+      }
+    },
+  }),
 );
 
 export default enhance(Profil);

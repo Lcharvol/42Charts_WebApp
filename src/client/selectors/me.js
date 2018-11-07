@@ -8,3 +8,5 @@ export const getMyCursus = state => state.me.cursus;
 
 export const getMarks = state =>
   filter(project => project.status === 'finished', state.me.projects || []);
+
+export const getMyLogs = state => state.me.logs;

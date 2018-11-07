@@ -74,3 +74,13 @@ export const reqGetPromo = () =>
     .catch(err => {
       throw err;
     });
+
+export const reqGetMyLogs = () =>
+  axios({
+    method: 'get',
+    url: 'users/me/logs',
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });

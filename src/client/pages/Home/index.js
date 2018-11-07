@@ -1,8 +1,7 @@
 import React from 'react';
-import { compose, lifecycle } from 'recompose';
+import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { isEmpty } from 'ramda';
 
 import { Container } from './styles';
 import { getPromos } from '../../selectors/app';

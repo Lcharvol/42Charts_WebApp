@@ -8,16 +8,20 @@ export const Container = styled.div`
   border: solid 1px ${BORDER_COLOR};
   background-color: white;
   width: ${({ width }) => width};
+  min-width: 405px;
   height: ${({ height }) => height};
   border-radius: 3px;
   margin: 25px;
   overflow: hidden;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const Header = styled.div`
   position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 30px;
@@ -27,8 +31,8 @@ export const Header = styled.div`
 export const Label = styled.div`
   position: relative;
   display: flex;
+  width: 90%;
   font-size: 0.3em;
-  margin-left: 10px;
   color: ${MAIN_COLOR};
 `;
 

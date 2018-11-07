@@ -57,8 +57,8 @@ export const RightSide = styled.div`
   padding-left: 0px;
   @media (max-width: 1000px) {
     width: calc(100% - 50px);
-    max-width: calc(100% - 30px);
-    padding-left: 15px;
+    max-width: calc(100%);
+    padding-left: 25px;
     padding-top: 0px;
   }
 `;

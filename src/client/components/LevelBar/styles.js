@@ -10,7 +10,6 @@ export const Container = styled.div`
   background-color: rgb(15, 15, 15);
   border-radius: 3px;
   margin: 5px;
-  margin-right: 15px;
   overflow: hidden;
 `;
 
