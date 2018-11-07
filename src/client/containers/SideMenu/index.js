@@ -11,6 +11,7 @@ import Menu from './Menu';
 import { enhanceMe } from '../../actions/me';
 import { getMe } from '../../selectors/me';
 import { reqMe, reqPing } from '../../requests';
+import LogoutButton from '../../components/LogoutButton';
 
 import { noAuthneeded } from '../../auth';
 
@@ -24,6 +25,7 @@ const SideMenu = ({ me, routes, hidden }) => {
       <SideMenuHeader me={me} />
       <Separator width={'85%'} />
       <Menu routes={routes} />
+      <LogoutButton />
     </Container>
   );
 };
