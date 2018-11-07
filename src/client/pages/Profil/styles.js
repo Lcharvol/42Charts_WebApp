@@ -17,13 +17,21 @@ export const Header = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   width: 100%;
-  min-width: 450px;
+  min-width: 460px;
   min-height: 200px;
+  padding-top: 35px;
   @media (max-width: 1000px) {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
   }
+`;
+
+export const Content = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex: 1;
 `;
 
 export const LeftSide = styled.div`
@@ -32,9 +40,9 @@ export const LeftSide = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   height: 100%;
-  padding: 15px;
+  padding: 25px;
   @media (max-width: 1000px) {
-    width: 100%;
+    width: calc(100% - 50px);
   }
 `;
 
@@ -44,11 +52,11 @@ export const RightSide = styled.div`
   height: 100%;
   flex: 1;
   margin-right: 10px;
-  padding: 15px;
+  padding: 25px;
   max-width: 500px;
   padding-left: 0px;
   @media (max-width: 1000px) {
-    width: calc(100% - 30px);
+    width: calc(100% - 50px);
     max-width: calc(100% - 30px);
     padding-left: 15px;
     padding-top: 0px;

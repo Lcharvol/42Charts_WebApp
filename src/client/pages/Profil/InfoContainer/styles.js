@@ -23,9 +23,11 @@ export const FullName = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-start;
+  font-family: sans-serif;
+  font-weight: bold;
   align-items: flex-end;
   font-size: 0.4em;
-  color: ${BORDER_COLOR};
+  color: white;
   margin-bottom: 5px;
 `;
 
@@ -42,6 +44,8 @@ export const Label = styled.div`
   font-size: 0.3em;
   margin-right: 10px;
   user-select: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 0;
 `;
 
 export const Value = styled.div`
@@ -50,6 +54,8 @@ export const Value = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
   color: ${BORDER_COLOR};
+  font-family: sans-serif;
+  font-weight: 70;
   font-size: 0.3em;
   width: 100%;
 `;

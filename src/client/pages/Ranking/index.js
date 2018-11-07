@@ -114,7 +114,7 @@ const enhance = compose(
       if (isEmpty(this.props.promos)) {
         reqGetPromo()
           .then(res => this.props.loadPromos(res))
-          .catch(err => console.log('err: ', err));
+          .catch(err => err);
       }
       this.props.handleChangeSelectedPromo('all');
     },
@@ -132,7 +132,7 @@ const enhance = compose(
             this.props.handleChangeUsers(res);
             this.props.handleChangeStart(this.props.start + LOADING_OFFSET);
           })
-          .catch(err => console.log('err: ', err));
+          .catch(err => err);
       }
     },
   }),

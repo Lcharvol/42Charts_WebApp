@@ -2,9 +2,8 @@ import * as Axios from 'axios';
 
 const chartsToken = localStorage.getItem('chartsToken');
 
-console.log('chartsToken: ', chartsToken);
-
 const axios = Axios.create({
+  // baseURL: 'http://e3r11p23:3000/',
   baseURL: 'http://localhost:3000/',
   headers: {
     Authorization: 'Bearer ' + chartsToken,
@@ -38,7 +37,9 @@ export const getLogin = () =>
     url: 'oauth/login',
   })
     .then(ret => ret.data.redirect_uri)
-    .catch(err => console.log('err: ', err));
+    .catch(err => {
+      throw err;
+    });
 
 export const postLogin = code =>
   axios({

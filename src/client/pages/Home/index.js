@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { isEmpty } from 'ramda';
 
 import { Container } from './styles';
-import { reqPing } from '../../requests';
 import { getPromos } from '../../selectors/app';
 import { loadPromos } from '../../actions/app';
 
@@ -24,12 +23,5 @@ const enhance = compose(
     mapStateToProps,
     mapDispatchToProps,
   ),
-  lifecycle({
-    componentDidMount() {
-      reqPing()
-        .then(res => console.log('ping: ', res))
-        .catch(err => console.log('err: ', err));
-    },
-  }),
 );
 export default enhance(Home);

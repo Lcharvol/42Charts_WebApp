@@ -17,12 +17,9 @@ class Auth extends Component {
   };
 
   async componentWillMount() {
-    try {
-      await reqMe();
-      this.setState({ isAuthorized: true, isRequested: true });
-    } catch (err) {
-      this.setState({ isRequested: true });
-    }
+    reqMe()
+      .then(() => this.setState({ isAuthorized: true, isRequested: true }))
+      .catch(err => this.setState({ isRequested: true }));
   }
 
   render() {

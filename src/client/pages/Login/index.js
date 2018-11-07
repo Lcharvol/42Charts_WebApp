@@ -16,7 +16,7 @@ const Login = ({ history, ...props }) => {
         localStorage.setItem('chartsToken', jwt);
         window.location.replace('/');
       })
-      .catch(err => console.log(err));
+      .catch(err => err);
   return (
     <Container>
       <LoginContent>

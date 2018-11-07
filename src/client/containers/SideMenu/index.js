@@ -47,14 +47,15 @@ const enhance = compose(
     componentDidMount() {
       const { pathname } = window.location;
       const [route] = split('/', pathname.slice(1));
-      if (route !== 'serverdown')
+      if (route !== 'serverdown') {
         reqPing()
-          .then(res => console.log(res))
+          .then(res => res)
           .catch(err => window.location.replace('serverdown'));
-      if (isEmpty(this.props.me)) {
-        reqMe()
-          .then(res => this.props.enhanceMe(res))
-          .catch(err => console.log('err: ', err));
+        if (isEmpty(this.props.me)) {
+          reqMe()
+            .then(res => this.props.enhanceMe(res))
+            .catch(err => err);
+        }
       }
     },
   }),
