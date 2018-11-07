@@ -15,6 +15,7 @@ import LevelBar from '../../components/LevelBar';
 import Mark from '../../components/Mark';
 import InfoContainer from './InfoContainer';
 import Box from '../../containers/Box';
+import Logs from '../../components/Logs';
 
 const proptypes = {
   me: object,
@@ -55,6 +56,7 @@ const Profil = ({
   selectedCursus,
   handleChangeSelectedCursus,
   marks,
+  myLogs,
   currentTime,
 }) => (
   <Container>
@@ -74,7 +76,7 @@ const Profil = ({
     <Content>
       <Box
         label={'Marks'}
-        width={'400px'}
+        width={'45%'}
         height={'400px'}
         content={map(
           mark => (
@@ -86,6 +88,12 @@ const Profil = ({
           ),
           marks,
         )}
+      />
+      <Box
+        label={'My Log'}
+        width={'45%'}
+        height={'400px'}
+        content={<Logs logs={myLogs} />}
       />
     </Content>
   </Container>

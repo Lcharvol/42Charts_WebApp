@@ -13,7 +13,7 @@ export const Container = styled.div`
   border-radius: 3px;
   margin: 25px;
   overflow: hidden;
-  @media (max-width: 1000px) {
+  @media (max-width: 1280px) {
     width: 100%;
   }
 `;

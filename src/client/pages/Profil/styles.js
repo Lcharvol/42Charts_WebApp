@@ -30,6 +30,7 @@ export const Header = styled.div`
 export const Content = styled.div`
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   flex: 1;
 `;

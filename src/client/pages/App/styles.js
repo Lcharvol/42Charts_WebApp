@@ -8,4 +8,5 @@ export const AppContainer = styled.div`
   color: rgb(35, 35, 35);
   font-weight: 0;
   font-size: 3em;
+  overflow-x: hidden;
 `;
