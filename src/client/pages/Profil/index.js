@@ -33,7 +33,7 @@ const Profil = ({ me, selectedCursus, handleChangeSelectedCursus }) => (
           width={'150px'}
           height={'150px'}
         />
-        <InfoContainer me={me} />
+        <InfoContainer selectedCursus={selectedCursus} me={me} />
       </LeftSide>
       <RightSide>
         <LevelBar level={getLevelFromCursus(selectedCursus, me.cursus || [])} />

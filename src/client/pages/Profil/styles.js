@@ -17,6 +17,7 @@ export const Header = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   width: 100%;
+  min-width: 450px;
   min-height: 200px;
   @media (max-width: 1000px) {
     flex-direction: column;
@@ -32,6 +33,9 @@ export const LeftSide = styled.div`
   align-items: flex-end;
   height: 100%;
   padding: 15px;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const RightSide = styled.div`
@@ -41,4 +45,12 @@ export const RightSide = styled.div`
   flex: 1;
   margin-right: 10px;
   padding: 15px;
+  max-width: 500px;
+  padding-left: 0px;
+  @media (max-width: 1000px) {
+    width: calc(100% - 30px);
+    max-width: calc(100% - 30px);
+    padding-left: 15px;
+    padding-top: 0px;
+  }
 `;
