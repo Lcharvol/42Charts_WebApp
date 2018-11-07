@@ -16,8 +16,29 @@ export const Header = styled.div`
   background-color: rgb(25, 25, 25);
   justify-content: flex-start;
   align-items: flex-end;
-  width: calc(100% - 25px);
+  width: 100%;
   min-height: 200px;
-  padding-left: 25px;
-  padding-bottom: 25px;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+`;
+
+export const LeftSide = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 100%;
+  padding: 15px;
+`;
+
+export const RightSide = styled.div`
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex: 1;
+  margin-right: 10px;
+  padding: 15px;
 `;

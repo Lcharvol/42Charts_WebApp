@@ -9,8 +9,10 @@ export const Container = styled.div`
   align-items: flex-start;
   background-color: rgb(15, 15, 15);
   border-radius: 3px;
-  height: 150px;
-  width: 230px;
+  min-height: 150px;
+  min-width: 230px;
+  max-height: 150px;
+  max-width: 230px;
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 5px;

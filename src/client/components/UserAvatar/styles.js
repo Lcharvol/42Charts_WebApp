@@ -6,8 +6,8 @@ export const Container = styled.div`
     margin:${({ margin }) => margin};
     display:flex;
     border-radius:3px;
-    width:${({ width }) => width};
-    height:${({ height }) => height};
+    min-width:${({ width }) => width};
+    min-height:${({ height }) => height};
     background-color:${BACKGROUND_COLOR};
     background-image:url('${({ profilPicture }) => profilPicture}');
     background-position: center;

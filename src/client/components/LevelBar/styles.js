@@ -4,11 +4,14 @@ import { MAIN_COLOR } from '../../constants/colors';
 export const Container = styled.div`
   position: relative;
   display: flex;
-  width: 500px;
+  width: 100%;
+  min-width: 250px;
+  max-width: 500px;
   height: 40px;
   background-color: rgb(15, 15, 15);
   border-radius: 3px;
   margin: 5px;
+  margin-right: 15px;
   overflow: hidden;
 `;
 

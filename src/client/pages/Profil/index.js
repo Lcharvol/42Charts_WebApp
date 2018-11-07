@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { object, number, func } from 'prop-types';
 import { find, propEq, isNil, isEmpty } from 'ramda';
 
-import { Container, Header, FullName } from './styles';
+import { Container, Header, LeftSide, RightSide } from './styles';
 import { getMe } from '../../selectors/me';
 import { enhanceMe } from '../../actions/me';
 import UserAvatar from '../../components/UserAvatar';
@@ -27,13 +27,17 @@ const getLevelFromCursus = (cursusId, cursus) => {
 const Profil = ({ me, selectedCursus, handleChangeSelectedCursus }) => (
   <Container>
     <Header>
-      <UserAvatar
-        profilPicture={me.imageUrl}
-        width={'150px'}
-        height={'150px'}
-      />
-      <InfoContainer me={me} />
-      <LevelBar level={getLevelFromCursus(selectedCursus, me.cursus || [])} />
+      <LeftSide>
+        <UserAvatar
+          profilPicture={me.imageUrl}
+          width={'150px'}
+          height={'150px'}
+        />
+        <InfoContainer me={me} />
+      </LeftSide>
+      <RightSide>
+        <LevelBar level={getLevelFromCursus(selectedCursus, me.cursus || [])} />
+      </RightSide>
     </Header>
   </Container>
 );
