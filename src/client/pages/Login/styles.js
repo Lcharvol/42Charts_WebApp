@@ -20,7 +20,7 @@ export const LoginContent = styled.div`
   justify-content: center;
   align-items: center;
   width: 400px;
-  height: 300px;
+  height: 250px;
   background-color: white;
   border: 1px ${BORDER_COLOR} solid;
   border-radius: 3px;
@@ -53,4 +53,5 @@ export const LoginButton = styled.div`
   font-size: 0.3em;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
+  top: 40px;
 `;

@@ -72,4 +72,5 @@ export const Login = styled.div`
   color: ${DARK_TEXT_COLOR};
   font-size: 0.4em;
   margin-bottom: 15px;
+  opacity: 0.9;
 `;

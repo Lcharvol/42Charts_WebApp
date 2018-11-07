@@ -4,6 +4,7 @@ import { length, split, takeLast, isNil } from 'ramda';
 
 import { Container, LoginContent, Logo, LoginButton } from './styles';
 import { getLogin, postLogin } from '../../requests';
+import Spinner from '../../components/Spinner';
 
 const getCodeFromUrlParams = urlParams => takeLast(1, split('=', urlParams))[0];
 
@@ -20,15 +21,19 @@ const Login = ({ history, ...props }) => {
     <Container>
       <LoginContent>
         <Logo />
-        <LoginButton
-          onClick={() => {
-            getLogin().then(redicrectUri =>
-              window.location.replace(redicrectUri),
-            );
-          }}
-        >
-          Login
-        </LoginButton>
+        {length(code) === 0 ? (
+          <LoginButton
+            onClick={() => {
+              getLogin().then(redicrectUri =>
+                window.location.replace(redicrectUri),
+              );
+            }}
+          >
+            Login
+          </LoginButton>
+        ) : (
+          <Spinner />
+        )}
       </LoginContent>
     </Container>
   );
