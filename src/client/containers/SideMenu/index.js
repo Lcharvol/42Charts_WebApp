@@ -9,6 +9,7 @@ import SideMenuHeader from './SideMenuHeader';
 import Separator from '../../components/Separator';
 import Menu from './Menu';
 import { enhanceMe } from '../../actions/me';
+import { enhanceTime } from '../../actions/time';
 import { getMe } from '../../selectors/me';
 import { reqMe, reqPing } from '../../requests';
 import LogoutButton from '../../components/LogoutButton';
@@ -30,7 +31,7 @@ const SideMenu = ({ me, routes, hidden }) => {
   );
 };
 
-const actions = { enhanceMe };
+const actions = { enhanceMe, enhanceTime };
 
 const mapStateToProps = state => ({
   me: getMe(state),
@@ -47,6 +48,11 @@ const enhance = compose(
     componentDidMount() {
       const { pathname } = window.location;
       const [route] = split('/', pathname.slice(1));
+      const currentdate = new Date();
+      const currentYear = currentdate.getFullYear();
+      const currentMonth = currentdate.getMonth() + 1;
+      const currentDay = currentdate.getDate();
+
       if (route !== 'serverdown') {
         reqPing()
           .then(res => res)
@@ -57,6 +63,7 @@ const enhance = compose(
             .catch(err => err);
         }
       }
+      this.props.enhanceTime({ currentYear, currentMonth, currentDay });
     },
   }),
 );

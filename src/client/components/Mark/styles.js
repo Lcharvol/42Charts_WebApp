@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { BORDER_COLOR, DARK_TEXT_COLOR } from '../../constants/colors';
+import {
+  BORDER_COLOR,
+  DARK_TEXT_COLOR,
+  LIGHT_GREY,
+} from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -17,6 +21,17 @@ export const Name = styled.div`
   color: ${DARK_TEXT_COLOR};
   opacity: 0.9;
   font-size: 0.3em;
+`;
+
+export const Since = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: ${DARK_TEXT_COLOR};
+  opacity: 0.5;
+  font-size: 0.3em;
+  margin-left: 10px;
 `;
 
 export const FinalMark = styled.div`

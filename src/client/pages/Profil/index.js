@@ -3,10 +3,11 @@ import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { object, number, func } from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { map, find, propEq, isNil, isEmpty } from 'ramda';
+import { map, find, propEq, isNil, isEmpty, split, take } from 'ramda';
 
 import { Container, Header, LeftSide, RightSide, Content } from './styles';
 import { getMe, getMarks, getMyLogs } from '../../selectors/me';
+import { getCurrentTime } from '../../selectors/time';
 import { enhanceMe } from '../../actions/me';
 import { reqGetMyLogs } from '../../requests';
 import UserAvatar from '../../components/UserAvatar';
@@ -19,6 +20,7 @@ const proptypes = {
   me: object,
   selectedCursus: number.isRequired,
   handleChangeSelectedCursus: func.isRequired,
+  currentTime: object,
 };
 
 const getLevelFromCursus = (cursusId, cursus) => {
@@ -28,7 +30,33 @@ const getLevelFromCursus = (cursusId, cursus) => {
   return 0;
 };
 
-const Profil = ({ me, selectedCursus, handleChangeSelectedCursus, marks }) => (
+export const getSince = (markedAt, currentTime) => {
+  if (isNil(markedAt)) return '';
+  const { currentYear, currentMonth, currentDay } = currentTime;
+  const splittedDate = split('-', markedAt);
+  const markedYear = parseInt(splittedDate[0]);
+  const markedMonth = parseInt(splittedDate[1]);
+  const markedDay = parseInt(take(2, splittedDate[2]));
+  if (currentYear === markedYear && currentMonth === markedMonth)
+    return `${currentDay - markedDay === 1 ? 'a' : currentDay - markedDay} day${
+      currentDay - markedDay > 1 ? 's' : ''
+    } ago`;
+  else if (currentYear === markedYear)
+    return `${
+      currentMonth - markedMonth === 1 ? 'a' : currentMonth - markedMonth
+    } month${currentMonth - markedMonth > 1 ? 's' : ''} ago`;
+  return `${
+    currentYear - markedYear === 1 ? 'a' : currentYear - markedYear
+  } year${currentYear - markedYear > 1 ? 's' : ''} ago`;
+};
+
+const Profil = ({
+  me,
+  selectedCursus,
+  handleChangeSelectedCursus,
+  marks,
+  currentTime,
+}) => (
   <Container>
     <Header>
       <LeftSide>
@@ -50,7 +78,11 @@ const Profil = ({ me, selectedCursus, handleChangeSelectedCursus, marks }) => (
         height={'400px'}
         content={map(
           mark => (
-            <Mark key={mark.id} mark={mark} />
+            <Mark
+              key={mark.id}
+              mark={mark}
+              since={getSince(mark.markedAt, currentTime)}
+            />
           ),
           marks,
         )}
@@ -69,6 +101,7 @@ const mapStateToProps = state => ({
   me: getMe(state),
   marks: getMarks(state),
   myLogs: getMyLogs(state),
+  currentTime: getCurrentTime(state),
 });
 
 const enhance = compose(
