@@ -1,8 +1,8 @@
 const menuElems = [
   {
     key: 0,
-    to: '/profil',
-    label: 'My profil',
+    to: '/',
+    label: 'Home',
   },
   {
     key: 1,

@@ -5,7 +5,7 @@ const chartsToken = localStorage.getItem('chartsToken');
 console.log('chartsToken: ', chartsToken);
 
 const axios = Axios.create({
-  baseURL: 'http://e3r3p12:3000/',
+  baseURL: 'http://localhost:3000/',
   headers: {
     Authorization: 'Bearer ' + chartsToken,
     ContentType: 'application/json',

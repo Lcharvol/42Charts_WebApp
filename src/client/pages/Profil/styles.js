@@ -17,17 +17,7 @@ export const Header = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   width: calc(100% - 25px);
-  height: 300px;
+  min-height: 200px;
   padding-left: 25px;
   padding-bottom: 25px;
-`;
-
-export const FullName = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin-left: 15px;
-  font-size: 0.6em;
-  color: white;
 `;

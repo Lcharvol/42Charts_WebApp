@@ -8,18 +8,13 @@ const routes = [
   {
     path: '/',
     exact: true,
-    component: Home,
+    component: Profil,
     id: 0,
   },
   {
     id: 1,
     path: '/login',
     component: Login,
-  },
-  {
-    id: 2,
-    path: '/profil',
-    component: Profil,
   },
   {
     id: 3,
