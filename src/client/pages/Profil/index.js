@@ -15,7 +15,7 @@ import LevelBar from '../../components/LevelBar';
 import Marks from '../../containers/Marks';
 import InfoContainer from './InfoContainer';
 import Box from '../../containers/Box';
-import Logs from '../../components/Logs';
+import Logs from '../../containers/Logs';
 import SelectButton from '../../components/SelectButton';
 import { FILTER_MARK_BUTTON_VALUES } from '../../constants/selectButtonValues';
 
@@ -82,7 +82,7 @@ const Profil = ({
         label={'My Log'}
         width={'45%'}
         height={'400px'}
-        content={<Logs logs={myLogs} />}
+        content={<Logs logs={myLogs} currentTime={currentTime} />}
       />
     </Content>
   </Container>
