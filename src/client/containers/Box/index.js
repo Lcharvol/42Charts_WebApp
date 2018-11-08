@@ -1,13 +1,20 @@
 import React from 'react';
 import { isNil } from 'ramda';
 
-import { Container, Header, Label, Content } from './styles';
+import {
+  Container,
+  Header,
+  HeaderLabel,
+  Content,
+  HeaderLeftSide,
+} from './styles';
 
-const Box = ({ width, height, label, content }) => (
+const Box = ({ width, height, label, content, headerLeft }) => (
   <Container width={width} height={height}>
     {!isNil(label) && (
       <Header>
-        <Label>{label}</Label>
+        <HeaderLabel>{label}</HeaderLabel>
+        <HeaderLeftSide>{headerLeft}</HeaderLeftSide>
       </Header>
     )}
     <Content>{content}</Content>

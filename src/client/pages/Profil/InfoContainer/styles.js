@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: rgb(15, 15, 15);
+  background-color: rgba(15, 15, 15, 0.7);
   border-radius: 3px;
   min-height: 120px;
   min-width: 200px;

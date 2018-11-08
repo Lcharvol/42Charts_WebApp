@@ -9,7 +9,7 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   width: 90%;
-  min-height: 35px;
+  min-height: 40px;
   border-bottom: solid 1px ${BORDER_COLOR};
 `;
 

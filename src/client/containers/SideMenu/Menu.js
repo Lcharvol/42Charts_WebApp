@@ -1,6 +1,6 @@
 import React from 'react';
 import { map } from 'ramda';
-import { MenuContainer, MenuElemContainer, StyledLink } from './styles';
+import { MenuContainer, MenuElemContainer, StyledLink, Logout } from './styles';
 import menuElems from '../../constants/menuElems';
 
 const MenuElem = ({ to, label }) => (
@@ -17,6 +17,16 @@ const Menu = () => (
       ),
       menuElems,
     )}
+    <MenuElemContainer>
+      <Logout
+        onClick={() => {
+          localStorage.setItem('chartsToken', '');
+          window.location.replace('/login');
+        }}
+      >
+        Logout
+      </Logout>
+    </MenuElemContainer>
   </MenuContainer>
 );
 

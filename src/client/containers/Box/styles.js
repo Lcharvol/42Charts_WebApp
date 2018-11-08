@@ -24,16 +24,29 @@ export const Header = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 40px;
+  height: 50px;
   background-color: ${LIGHT_GREY};
+  border-bottom: solid 1px ${BORDER_COLOR};
 `;
 
-export const Label = styled.div`
+export const HeaderLeftSide = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 2;
+  height: 100%;
+  padding-right: 15px;
+`;
+
+export const HeaderLabel = styled.div`
   position: relative;
   display: flex;
   width: 90%;
+  flex: 1;
   font-size: 0.3em;
   color: ${MAIN_COLOR};
+  padding-left: 25px;
 `;
 
 export const Content = styled.div`
@@ -44,4 +57,6 @@ export const Content = styled.div`
   align-items: center;
   height: 100%;
   overflow-y: scroll;
+  padding-top: 10px;
+  padding-bottom: 25px;
 `;

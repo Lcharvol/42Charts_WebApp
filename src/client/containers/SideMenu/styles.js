@@ -6,6 +6,7 @@ import {
   BORDER_COLOR,
   DARK_TEXT_COLOR,
   MAIN_COLOR,
+  DARK_MAIN_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -73,4 +74,18 @@ export const Login = styled.div`
   font-size: 0.4em;
   margin-bottom: 15px;
   opacity: 0.9;
+`;
+
+export const Logout = styled.div`
+  position: relative;
+  font-size: 0.3em;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  transition: color 0.1s ease-in;
+  color: ${DARK_MAIN_COLOR};
+  &:hover {
+    color: ${MAIN_COLOR};
+  }
+  cursor: pointer;
 `;

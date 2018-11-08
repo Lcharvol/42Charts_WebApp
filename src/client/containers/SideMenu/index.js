@@ -12,7 +12,6 @@ import { enhanceMe } from '../../actions/me';
 import { enhanceTime } from '../../actions/time';
 import { getMe } from '../../selectors/me';
 import { reqMe, reqPing } from '../../requests';
-import LogoutButton from '../../components/LogoutButton';
 
 import { noAuthneeded } from '../../auth';
 
@@ -20,13 +19,11 @@ const SideMenu = ({ me, routes, hidden }) => {
   const { pathname } = window.location;
   const [route] = split('/', pathname.slice(1));
   if (contains(route, noAuthneeded) || route === 'serverdown') return null;
-
   return (
     <Container hidden={hidden}>
       <SideMenuHeader me={me} />
       <Separator width={'85%'} />
       <Menu routes={routes} />
-      <LogoutButton />
     </Container>
   );
 };

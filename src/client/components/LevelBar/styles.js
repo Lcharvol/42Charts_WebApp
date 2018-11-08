@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
   min-width: 250px;
   height: 40px;
-  background-color: rgb(15, 15, 15);
+  background-color: rgba(15, 15, 15, 0.7);
   border-radius: 3px;
   margin: 5px;
   overflow: hidden;

@@ -12,16 +12,20 @@ import { enhanceMe } from '../../actions/me';
 import { reqGetMyLogs } from '../../requests';
 import UserAvatar from '../../components/UserAvatar';
 import LevelBar from '../../components/LevelBar';
-import Mark from '../../components/Mark';
+import Marks from '../../containers/Marks';
 import InfoContainer from './InfoContainer';
 import Box from '../../containers/Box';
 import Logs from '../../components/Logs';
+import SelectButton from '../../components/SelectButton';
+import { FILTER_MARK_BUTTON_VALUES } from '../../constants/selectButtonValues';
 
 const proptypes = {
   me: object,
   selectedCursus: number.isRequired,
   handleChangeSelectedCursus: func.isRequired,
   currentTime: object,
+  marksSortBy: number.isRequired,
+  handleChangeMarkSortBy: func.isRequired,
 };
 
 const getLevelFromCursus = (cursusId, cursus) => {
@@ -31,26 +35,6 @@ const getLevelFromCursus = (cursusId, cursus) => {
   return 0;
 };
 
-export const getSince = (markedAt, currentTime) => {
-  if (isNil(markedAt)) return '';
-  const { currentYear, currentMonth, currentDay } = currentTime;
-  const splittedDate = split('-', markedAt);
-  const markedYear = parseInt(splittedDate[0]);
-  const markedMonth = parseInt(splittedDate[1]);
-  const markedDay = parseInt(take(2, splittedDate[2]));
-  if (currentYear === markedYear && currentMonth === markedMonth)
-    return `${currentDay - markedDay === 1 ? 'a' : currentDay - markedDay} day${
-      currentDay - markedDay > 1 ? 's' : ''
-    } ago`;
-  else if (currentYear === markedYear)
-    return `${
-      currentMonth - markedMonth === 1 ? 'a' : currentMonth - markedMonth
-    } month${currentMonth - markedMonth > 1 ? 's' : ''} ago`;
-  return `${
-    currentYear - markedYear === 1 ? 'a' : currentYear - markedYear
-  } year${currentYear - markedYear > 1 ? 's' : ''} ago`;
-};
-
 const Profil = ({
   me,
   selectedCursus,
@@ -58,6 +42,8 @@ const Profil = ({
   marks,
   myLogs,
   currentTime,
+  marksSortBy,
+  handleChangeMarkSortBy,
 }) => (
   <Container>
     <Header>
@@ -78,16 +64,19 @@ const Profil = ({
         label={'Marks'}
         width={'45%'}
         height={'400px'}
-        content={map(
-          mark => (
-            <Mark
-              key={mark.id}
-              mark={mark}
-              since={getSince(mark.markedAt, currentTime)}
-            />
-          ),
-          marks,
-        )}
+        content={
+          <Marks
+            marks={marks || []}
+            currentTime={currentTime}
+            sortBy={marksSortBy}
+          />
+        }
+        headerLeft={
+          <SelectButton
+            values={FILTER_MARK_BUTTON_VALUES}
+            handler={handleChangeMarkSortBy}
+          />
+        }
       />
       <Box
         label={'My Log'}
@@ -118,12 +107,16 @@ const enhance = compose(
     mapDispatchToProps,
   ),
   withStateHandlers(
-    ({ initialSelectedCursus = 1 }) => ({
+    ({ initialSelectedCursus = 1, initialMarksSortBy = 0 }) => ({
       selectedCursus: initialSelectedCursus,
+      marksSortBy: initialMarksSortBy,
     }),
     {
       handleChangeSelectedCursus: () => cursusId => ({
         selectedCursus: cursusId,
+      }),
+      handleChangeMarkSortBy: () => newSortBy => ({
+        marksSortBy: newSortBy,
       }),
     },
   ),

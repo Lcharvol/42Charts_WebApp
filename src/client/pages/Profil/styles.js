@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { MAIN_COLOR } from '../../constants/colors';
 
+import PolyBackground from '../../../../public/poly_background.jpg';
+
 export const Container = styled.div`
   position: relative;
   display: flex;
@@ -25,6 +27,11 @@ export const Header = styled.div`
     justify-content: flex-end;
     align-items: flex-start;
   }
+  background-image:url('${PolyBackground}');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.2);
 `;
 
 export const Content = styled.div`
