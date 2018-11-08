@@ -1,5 +1,7 @@
 import { split, take } from 'ramda';
 
+import { getDayLog, getMonthLog } from '../containers/Logs';
+
 export const FILTER_MARK_BUTTON_VALUES = [
   {
     id: 0,
@@ -37,5 +39,20 @@ export const FILTER_MARK_BUTTON_VALUES = [
     id: 3,
     label: 'By retries',
     sort: (a, b) => b.retries - a.retries,
+  },
+];
+
+export const LOGS_FILTER_VALUES = [
+  {
+    id: 0,
+    label: 'By Month',
+    nbValue: 30,
+    getUnitLog: getDayLog,
+  },
+  {
+    id: 1,
+    label: 'By Year',
+    nbValue: 12,
+    getUnitLog: getMonthLog,
   },
 ];

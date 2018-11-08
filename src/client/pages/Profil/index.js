@@ -17,7 +17,10 @@ import InfoContainer from './InfoContainer';
 import Box from '../../containers/Box';
 import Logs from '../../containers/Logs';
 import SelectButton from '../../components/SelectButton';
-import { FILTER_MARK_BUTTON_VALUES } from '../../constants/selectButtonValues';
+import {
+  FILTER_MARK_BUTTON_VALUES,
+  LOGS_FILTER_VALUES,
+} from '../../constants/selectButtonValues';
 
 const proptypes = {
   me: object,
@@ -25,7 +28,9 @@ const proptypes = {
   handleChangeSelectedCursus: func.isRequired,
   currentTime: object,
   marksSortBy: number.isRequired,
+  logsFilter: number.isRequired,
   handleChangeMarkSortBy: func.isRequired,
+  handleChangeLogsFilter: func.isRequired,
 };
 
 const getLevelFromCursus = (cursusId, cursus) => {
@@ -38,11 +43,13 @@ const getLevelFromCursus = (cursusId, cursus) => {
 const Profil = ({
   me,
   selectedCursus,
-  handleChangeSelectedCursus,
   marks,
   myLogs,
   currentTime,
   marksSortBy,
+  logsFilter,
+  handleChangeLogsFilter,
+  vhandleChangeSelectedCursus,
   handleChangeMarkSortBy,
 }) => (
   <Container>
@@ -82,7 +89,19 @@ const Profil = ({
         label={'My Log'}
         width={'45%'}
         height={'400px'}
-        content={<Logs logs={myLogs} currentTime={currentTime} />}
+        content={
+          <Logs
+            logs={myLogs}
+            currentTime={currentTime}
+            logsFilter={logsFilter}
+          />
+        }
+        headerLeft={
+          <SelectButton
+            values={LOGS_FILTER_VALUES}
+            handler={handleChangeLogsFilter}
+          />
+        }
       />
     </Content>
   </Container>
@@ -107,9 +126,14 @@ const enhance = compose(
     mapDispatchToProps,
   ),
   withStateHandlers(
-    ({ initialSelectedCursus = 1, initialMarksSortBy = 0 }) => ({
+    ({
+      initialSelectedCursus = 1,
+      initialMarksSortBy = 0,
+      initialLogsFilter = 0,
+    }) => ({
       selectedCursus: initialSelectedCursus,
       marksSortBy: initialMarksSortBy,
+      logsFilter: initialLogsFilter,
     }),
     {
       handleChangeSelectedCursus: () => cursusId => ({
@@ -117,6 +141,9 @@ const enhance = compose(
       }),
       handleChangeMarkSortBy: () => newSortBy => ({
         marksSortBy: newSortBy,
+      }),
+      handleChangeLogsFilter: () => newFilterId => ({
+        logsFilter: newFilterId,
       }),
     },
   ),

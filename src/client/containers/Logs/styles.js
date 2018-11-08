@@ -25,14 +25,12 @@ export const BottomSide = styled.div`
   height: 30px;
 `;
 
-export const Month = styled.div``;
-
-export const Day = styled.div`
+export const Unit = styled.div`
   position: relative;
   display: flex;
-  width: 2%;
+  width: ${({ width }) => width}%;
   height: ${({ value }) => value}%;
   background-color: ${MAIN_COLOR};
-  margin-left: 5px;
   opacity: ${({ value }) => value / 100 + 0.1};
+  transition: all 0.4s ease-in-out;
 `;
