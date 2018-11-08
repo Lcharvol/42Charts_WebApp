@@ -10,13 +10,14 @@ import {
   find,
   propEq,
 } from 'ramda';
+import { compose, withStateHandlers, lifecycle } from 'recompose';
 
-import { Container, TopSide, BottomSide, Unit } from './styles';
+import { Container, TopSide, BottomSide, Unit, TimeInfo } from './styles';
 import Separator from '../../components/Separator';
 import { LOGS_FILTER_VALUES } from '../../constants/selectButtonValues';
+import { getMonthLabel } from './utlis';
 
-export const getDayLog = (dayId, logs, currentTime) => {
-  const { currentDay, currentMonth, currentYear } = currentTime;
+export const getDayLog = (dayId, logs, selectedYear, selectedMonth) => {
   if (length(logs) === 0 || isNil(logs)) return 0;
   const isGoodDay = log => {
     const { beginAt } = log;
@@ -24,7 +25,7 @@ export const getDayLog = (dayId, logs, currentTime) => {
     const year = parseInt(splittedDate[0]);
     const month = parseInt(splittedDate[1]);
     const day = parseInt(take(2, splittedDate[2]));
-    return day === dayId && month === currentMonth - 1;
+    return day === dayId && month === selectedMonth - 1;
   };
   const logsOfTheDay = filter(isGoodDay, logs);
   const reducedLogsOfTheDay = reduce(
@@ -35,8 +36,7 @@ export const getDayLog = (dayId, logs, currentTime) => {
   return (reducedLogsOfTheDay / 86400) * 100;
 };
 
-export const getMonthLog = (monthId, logs, currentTime) => {
-  const { currentDay, currentMonth, currentYear } = currentTime;
+export const getMonthLog = (monthId, logs, selectedYear, selectedMonth) => {
   if (length(logs) === 0 || isNil(logs)) return 0;
   const isGoodMonth = log => {
     const { beginAt } = log;
@@ -44,7 +44,7 @@ export const getMonthLog = (monthId, logs, currentTime) => {
     const year = parseInt(splittedDate[0]);
     const month = parseInt(splittedDate[1]);
     const day = parseInt(take(2, splittedDate[2]));
-    return month === monthId + 1 && year === currentYear - 1;
+    return month === monthId + 1 && year === selectedYear;
   };
   const logsOfTheMonth = filter(isGoodMonth, logs);
   const reducedLogsOfTheMonth = reduce(
@@ -55,9 +55,14 @@ export const getMonthLog = (monthId, logs, currentTime) => {
   return (reducedLogsOfTheMonth / 2592000) * 100;
 };
 
-const Logs = ({ logs, currentTime, logsFilter }) => {
+const Logs = ({
+  logs,
+  currentTime,
+  logsFilter,
+  selectedYear,
+  selectedMonth,
+}) => {
   const logsFilterObject = find(propEq('id', logsFilter))(LOGS_FILTER_VALUES);
-  console.log('logsFilterObject: ', logsFilterObject);
   return (
     <Container>
       <TopSide>
@@ -65,7 +70,12 @@ const Logs = ({ logs, currentTime, logsFilter }) => {
           i => (
             <Unit
               key={i}
-              value={logsFilterObject.getUnitLog(i + 1, logs, currentTime)}
+              value={logsFilterObject.getUnitLog(
+                i + 1,
+                logs,
+                selectedYear,
+                selectedMonth,
+              )}
               width={100 / logsFilterObject.nbValue}
             />
           ),
@@ -73,9 +83,42 @@ const Logs = ({ logs, currentTime, logsFilter }) => {
         )}
       </TopSide>
       <Separator />
-      <BottomSide />
+      <BottomSide>
+        <TimeInfo>
+          {logsFilterObject.nbValue === 30
+            ? `${getMonthLabel(selectedMonth)} ${selectedYear}`
+            : selectedYear}
+        </TimeInfo>
+      </BottomSide>
     </Container>
   );
 };
 
-export default Logs;
+const enhance = compose(
+  withStateHandlers(
+    ({ initialSelectedYear = 0, initialSelectedMonth = 0 }) => ({
+      selectedYear: initialSelectedYear,
+      selectedMonth: initialSelectedMonth,
+    }),
+    {
+      handleChangeSelectedYear: () => newSelectedYear => ({
+        selectedYear: newSelectedYear,
+      }),
+      handleChangeSelectedMonth: () => newSelectedMonth => ({
+        selectedMonth: newSelectedMonth,
+      }),
+    },
+  ),
+  lifecycle({
+    componentDidUpdate(prevProps) {
+      if (prevProps.currentTime !== this.props.currentTime) {
+        this.props.handleChangeSelectedYear(this.props.currentTime.currentYear);
+        this.props.handleChangeSelectedMonth(
+          this.props.currentTime.currentMonth,
+        );
+      }
+    },
+  }),
+);
+
+export default enhance(Logs);
