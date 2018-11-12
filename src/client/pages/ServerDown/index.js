@@ -1,11 +1,10 @@
 import React from 'react';
-import { Redirect } from 'react-router';
 
 import { Container, Text, Content } from './styles';
 import Button from '../../components/Button';
 import { reqPing } from '../../requests';
 
-const ServerDown = ({ history }) => (
+const ServerDown = () => (
   <Container>
     <Content>
       <Text>OUPS!</Text>

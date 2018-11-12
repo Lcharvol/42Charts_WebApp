@@ -12,6 +12,7 @@ export const Container = styled.div`
   height: ${({ height }) => height};
   border-radius: 3px;
   margin: 25px;
+  margin-bottom: 0;
   overflow: hidden;
   @media (max-width: 1280px) {
     width: 100%;

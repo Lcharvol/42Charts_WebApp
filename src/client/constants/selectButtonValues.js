@@ -1,6 +1,6 @@
 import { split, take } from 'ramda';
 
-import { getDayLog, getMonthLog } from '../containers/Logs';
+import { getDayLog, getMonthLog } from '../containers/Logs/utils';
 
 export const FILTER_MARK_BUTTON_VALUES = [
   {

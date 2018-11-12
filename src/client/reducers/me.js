@@ -1,6 +1,8 @@
 import { ENHANCE_ME } from '../actions/me';
 
-const initialState = {};
+const initialState = {
+  projects: [],
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

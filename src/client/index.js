@@ -8,6 +8,7 @@ import App from './pages/App';
 import Auth from './auth';
 
 const initialState = {};
+
 export const store = configureStore(initialState);
 
 const Root = () => (

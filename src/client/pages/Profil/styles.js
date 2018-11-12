@@ -37,9 +37,10 @@ export const Header = styled.div`
 export const Content = styled.div`
   position: relative;
   display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
-  flex: 1;
 `;
 
 export const LeftSide = styled.div`

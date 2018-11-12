@@ -4,7 +4,7 @@ import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VisibilitySensor from 'react-visibility-sensor';
-import { LOADING_OFFSET } from './constants';
+import { LOADING_OFFSET, ALL_PROMO_SELECTED } from './constants';
 
 import {
   Container,
@@ -57,7 +57,7 @@ const Ranking = ({
           if (!isEmpty(users)) {
             handleChangeStart(start + LOADING_OFFSET);
             getUsersByPromo(
-              selectedPromo !== 'all' ? selectedPromo : '',
+              selectedPromo !== ALL_PROMO_SELECTED ? selectedPromo : '',
               LOADING_OFFSET,
               start,
             )
@@ -116,7 +116,7 @@ const enhance = compose(
           .then(res => this.props.loadPromos(res))
           .catch(err => err);
       }
-      this.props.handleChangeSelectedPromo('all');
+      this.props.handleChangeSelectedPromo(ALL_PROMO_SELECTED);
     },
     componentDidUpdate(prevProps) {
       if (
@@ -124,7 +124,9 @@ const enhance = compose(
         isEmpty(this.props.users)
       ) {
         getUsersByPromo(
-          this.props.selectedPromo !== 'all' ? this.props.selectedPromo : '',
+          this.props.selectedPromo !== ALL_PROMO_SELECTED
+            ? this.props.selectedPromo
+            : '',
           LOADING_OFFSET,
           this.props.start,
         )

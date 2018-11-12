@@ -3,8 +3,7 @@ import * as Axios from 'axios';
 const chartsToken = localStorage.getItem('chartsToken');
 
 const axios = Axios.create({
-  // baseURL: 'http://e3r11p23:3000/',
-  baseURL: 'http://e3r7p20:3000/',
+  baseURL: 'http://localhost:3000/',
   headers: {
     Authorization: 'Bearer ' + chartsToken,
     ContentType: 'application/json',

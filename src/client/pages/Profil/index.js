@@ -21,6 +21,7 @@ import {
   FILTER_MARK_BUTTON_VALUES,
   LOGS_FILTER_VALUES,
 } from '../../constants/selectButtonValues';
+import AllStats from '../../containers/AllStats';
 
 const proptypes = {
   me: object,
@@ -69,7 +70,7 @@ const Profil = ({
     <Content>
       <Box
         label={'Marks'}
-        width={'45%'}
+        width={'calc(50% - 52px)'}
         height={'400px'}
         content={
           <Marks
@@ -87,7 +88,7 @@ const Profil = ({
       />
       <Box
         label={'My Log'}
-        width={'45%'}
+        width={'calc(50% - 52px)'}
         height={'400px'}
         content={
           <Logs
@@ -102,6 +103,12 @@ const Profil = ({
             handler={handleChangeLogsFilter}
           />
         }
+      />
+      <Box
+        label={'My Stats'}
+        width={'100%'}
+        height={'400px'}
+        content={<AllStats />}
       />
     </Content>
   </Container>

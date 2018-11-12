@@ -54,7 +54,7 @@ const enhance = compose(
         reqPing()
           .then(res => res)
           .catch(err => window.location.replace('serverdown'));
-        if (isEmpty(this.props.me)) {
+        if (isEmpty(this.props.me.projects)) {
           reqMe()
             .then(res => this.props.enhanceMe(res))
             .catch(err => err);
