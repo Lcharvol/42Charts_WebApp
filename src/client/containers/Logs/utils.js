@@ -27,7 +27,8 @@ export const getDayLog = (dayId, logs, selectedYear, selectedMonth) => {
     const splittedDate = split('-', beginAt);
     const month = parseInt(splittedDate[1]);
     const day = parseInt(take(2, splittedDate[2]));
-    return day === dayId && month === selectedMonth - 1;
+    const year = parseInt(splittedDate[0]);
+    return day === dayId && month === selectedMonth && year === selectedYear;
   };
   const logsOfTheDay = filter(isGoodDay, logs);
   const reducedLogsOfTheDay = reduce(

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { BORDER_COLOR, LIGHT_GREY, MAIN_COLOR } from '../../constants/colors';
+import {
+  BORDER_COLOR,
+  LIGHT_GREY,
+  DARK_TEXT_COLOR,
+} from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -46,7 +50,8 @@ export const HeaderLabel = styled.div`
   width: 90%;
   flex: 1;
   font-size: 0.3em;
-  color: ${MAIN_COLOR};
+  color: ${DARK_TEXT_COLOR};
+  opacity: 0.8;
   padding-left: 25px;
 `;
 
