@@ -3,10 +3,10 @@ import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { object, number, func } from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { map, find, propEq, isNil, isEmpty, split, take } from 'ramda';
+import { find, propEq, isNil, isEmpty } from 'ramda';
 
 import { Container, Header, LeftSide, RightSide, Content } from './styles';
-import { getMe, getMarks, getMyLogs } from '../../selectors/me';
+import { getMe, getMarks, getMyLogs, getMyCoalition } from '../../selectors/me';
 import { getCurrentTime } from '../../selectors/time';
 import { enhanceMe } from '../../actions/me';
 import { reqGetMyLogs } from '../../requests';
@@ -21,6 +21,7 @@ import {
   FILTER_MARK_BUTTON_VALUES,
   LOGS_FILTER_VALUES,
 } from '../../constants/selectButtonValues';
+import { coalitionsBackground } from '../../constants/coalitions';
 import AllStats from '../../containers/AllStats';
 
 const proptypes = {
@@ -32,6 +33,7 @@ const proptypes = {
   logsFilter: number.isRequired,
   handleChangeMarkSortBy: func.isRequired,
   handleChangeLogsFilter: func.isRequired,
+  myCoalition: object,
 };
 
 const getLevelFromCursus = (cursusId, cursus) => {
@@ -52,67 +54,77 @@ const Profil = ({
   handleChangeLogsFilter,
   vhandleChangeSelectedCursus,
   handleChangeMarkSortBy,
-}) => (
-  <Container>
-    <Header>
-      <LeftSide>
-        <UserAvatar
-          profilPicture={me.imageUrl}
-          width={'150px'}
-          height={'150px'}
+  myCoalition,
+}) => {
+  const colationElem = find(propEq('name', myCoalition.name))(
+    coalitionsBackground,
+  );
+  return (
+    <Container>
+      <Header
+        backgroundUrl={!isNil(colationElem) ? colationElem.backgroundUrl : ''}
+      >
+        <LeftSide>
+          <UserAvatar
+            profilPicture={me.imageUrl}
+            width={'150px'}
+            height={'150px'}
+          />
+          <InfoContainer selectedCursus={selectedCursus} me={me} />
+        </LeftSide>
+        <RightSide>
+          <LevelBar
+            level={getLevelFromCursus(selectedCursus, me.cursus || [])}
+          />
+        </RightSide>
+      </Header>
+      <Content>
+        <Box
+          label={'Marks'}
+          width={'calc(50% - 52px)'}
+          height={'400px'}
+          content={
+            <Marks
+              marks={marks || []}
+              currentTime={currentTime}
+              sortBy={marksSortBy}
+            />
+          }
+          headerLeft={
+            <SelectButton
+              values={FILTER_MARK_BUTTON_VALUES}
+              handler={handleChangeMarkSortBy}
+            />
+          }
         />
-        <InfoContainer selectedCursus={selectedCursus} me={me} />
-      </LeftSide>
-      <RightSide>
-        <LevelBar level={getLevelFromCursus(selectedCursus, me.cursus || [])} />
-      </RightSide>
-    </Header>
-    <Content>
-      <Box
-        label={'Marks'}
-        width={'calc(50% - 52px)'}
-        height={'400px'}
-        content={
-          <Marks
-            marks={marks || []}
-            currentTime={currentTime}
-            sortBy={marksSortBy}
-          />
-        }
-        headerLeft={
-          <SelectButton
-            values={FILTER_MARK_BUTTON_VALUES}
-            handler={handleChangeMarkSortBy}
-          />
-        }
-      />
-      <Box
-        label={'My Log'}
-        width={'calc(50% - 52px)'}
-        height={'400px'}
-        content={
-          <Logs
-            logs={myLogs}
-            currentTime={currentTime}
-            logsFilter={logsFilter}
-          />
-        }
-        headerLeft={
-          <SelectButton
-            values={LOGS_FILTER_VALUES}
-            handler={handleChangeLogsFilter}
-          />
-        }
-      />
-      <Box
-        label={'My Stats'}
-        width={'100%'}
-        height={'auto'}
-        content={<AllStats />}
-      />
-    </Content>
-  </Container>
-);
+        <Box
+          label={'My Log'}
+          width={'calc(50% - 52px)'}
+          height={'400px'}
+          content={
+            <Logs
+              logs={myLogs}
+              currentTime={currentTime}
+              logsFilter={logsFilter}
+            />
+          }
+          headerLeft={
+            <SelectButton
+              values={LOGS_FILTER_VALUES}
+              handler={handleChangeLogsFilter}
+            />
+          }
+        />
+        <Box
+          label={'My Stats'}
+          width={'100%'}
+          height={'auto'}
+          content={<AllStats />}
+        />
+      </Content>
+    </Container>
+  );
+};
 
 Profil.propTypes = proptypes;
 
@@ -125,6 +137,7 @@ const mapStateToProps = state => ({
   marks: getMarks(state),
   myLogs: getMyLogs(state),
   currentTime: getCurrentTime(state),
+  myCoalition: getMyCoalition(state),
 });
 
 const enhance = compose(

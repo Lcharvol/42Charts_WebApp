@@ -27,7 +27,8 @@ export const Header = styled.div`
     justify-content: flex-end;
     align-items: flex-start;
   }
-  background-image:url('${PolyBackground}');
+    background-image:url('${PolyBackground}');
+    background-image:url('${({ backgroundUrl }) => backgroundUrl}');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -29,6 +29,8 @@ export const getMyAllRank = state => state.me.allRank;
 
 export const getAchievementsCount = state => length(state.me.achievements);
 
+export const getMyCoalition = state => state.me.coalition;
+
 export const getMyCoalitionScore = state => state.me.coalition.userScore;
 
 export const getMyCoalitionRank = state => state.me.coalition.userRank;
