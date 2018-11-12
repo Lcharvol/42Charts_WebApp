@@ -62,7 +62,7 @@ export const RightSide = styled.div`
   flex: 1;
   margin-right: 10px;
   padding: 25px;
-  max-width: 500px;
+  max-width: 600px;
   padding-left: 0px;
   @media (max-width: 1000px) {
     width: calc(100% - 50px);

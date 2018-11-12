@@ -8,8 +8,8 @@ import { ALL_STATS_CONTENT } from '../../constants/allStatsContent';
 
 const Stat = ({ value, label }) => (
   <StatContainer>
-    <StatLabel>{value}</StatLabel>
-    <StatValue>{label}</StatValue>
+    <StatValue>{value}</StatValue>
+    <StatLabel>{label}</StatLabel>
   </StatContainer>
 );
 

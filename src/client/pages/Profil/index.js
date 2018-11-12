@@ -107,7 +107,7 @@ const Profil = ({
       <Box
         label={'My Stats'}
         width={'100%'}
-        height={'400px'}
+        height={'auto'}
         content={<AllStats />}
       />
     </Content>

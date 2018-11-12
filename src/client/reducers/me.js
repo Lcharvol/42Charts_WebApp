@@ -2,6 +2,11 @@ import { ENHANCE_ME } from '../actions/me';
 
 const initialState = {
   projects: [],
+  achievements: [],
+  coalition: {
+    userScore: 0,
+    userRank: 0,
+  },
 };
 
 const reducer = (state = initialState, action) => {

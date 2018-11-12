@@ -3,6 +3,10 @@ import {
   getProjectsValidated,
   getMyPromoRank,
   getMyAllRank,
+  getMyCoalitionRank,
+  getMyCoalitionScore,
+  getHighterLogPerDay,
+  getHighterLogPerMonth,
 } from '../selectors/me';
 
 export const ALL_STATS_CONTENT = [
@@ -23,17 +27,27 @@ export const ALL_STATS_CONTENT = [
   },
   {
     id: 3,
-    value: state => getProjectsValidated(state),
-    label: 'Higher Log/Day',
+    value: state => getHighterLogPerDay(state),
+    label: 'Highter Log/Day',
   },
   {
     id: 4,
-    value: state => getProjectsValidated(state),
-    label: 'Higher Log/Month',
+    value: state => getHighterLogPerMonth(state),
+    label: 'Highter Log/Month',
   },
   {
     id: 5,
     value: state => getAchievementsCount(state),
     label: 'Achievements',
+  },
+  {
+    id: 6,
+    value: state => getMyCoalitionRank(state),
+    label: 'My colation Rank',
+  },
+  {
+    id: 7,
+    value: state => getMyCoalitionScore(state),
+    label: 'My colation score',
   },
 ];
