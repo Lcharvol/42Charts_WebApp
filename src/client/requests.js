@@ -83,3 +83,13 @@ export const reqGetMyLogs = () =>
     .catch(err => {
       throw err;
     });
+
+export const reqGetInfos = () =>
+  axios({
+    method: 'get',
+    url: 'infos',
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });

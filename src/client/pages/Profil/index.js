@@ -173,7 +173,7 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
-      if (isEmpty(this.props.marks)) {
+      if (isEmpty(this.props.myLogs)) {
         reqGetMyLogs()
           .then(logs => this.props.enhanceMe({ logs }))
           .catch(err => err);

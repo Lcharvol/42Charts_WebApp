@@ -1,5 +1,5 @@
 import React from 'react';
-import { contains, split, isEmpty } from 'ramda';
+import { contains, split, isEmpty, fromPairs } from 'ramda';
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,8 +10,10 @@ import Separator from '../../components/Separator';
 import Menu from './Menu';
 import { enhanceMe } from '../../actions/me';
 import { enhanceTime } from '../../actions/time';
+import { loadInfos } from '../../actions/app';
 import { getMe } from '../../selectors/me';
-import { reqMe, reqPing } from '../../requests';
+import { getInfos } from '../../selectors/app';
+import { reqMe, reqPing, reqGetInfos } from '../../requests';
 
 import { noAuthneeded } from '../../auth';
 
@@ -28,10 +30,11 @@ const SideMenu = ({ me, routes, hidden }) => {
   );
 };
 
-const actions = { enhanceMe, enhanceTime };
+const actions = { enhanceMe, enhanceTime, loadInfos };
 
 const mapStateToProps = state => ({
   me: getMe(state),
+  infos: getInfos(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -57,6 +60,11 @@ const enhance = compose(
         if (isEmpty(this.props.me.projects)) {
           reqMe()
             .then(res => this.props.enhanceMe(res))
+            .catch(err => err);
+        }
+        if (isEmpty(this.props.infos.usersByLevels)) {
+          reqGetInfos()
+            .then(res => this.props.loadInfos(res))
             .catch(err => err);
         }
       }

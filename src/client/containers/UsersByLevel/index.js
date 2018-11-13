@@ -1,32 +1,31 @@
 import React from 'react';
-import { array } from 'prop-types';
-import { map } from 'ramda';
+import { array, number } from 'prop-types';
+import { map, fromPairs, length, times } from 'ramda';
 
 import { Container, TopSide, BottomSide, Bar, Label } from './styles';
 import Separator from '../../components/Separator';
 
 const proptypes = {
-  usersByLevel: array,
+  usersByLevels: array,
+  totalUsers: number.isRequired,
 };
 
-const UsersByLevel = ({ usersByLevel = [] }) => (
+const UsersByLevel = ({ usersByLevels = {}, totalUsers }) => (
   <Container>
     <TopSide>
-      {map(
-        level => (
-          <Bar />
-        ),
-        usersByLevel,
-      )}
+      {usersByLevels.map((nbUsers, id) => (
+        <Bar
+          key={id}
+          value={nbUsers / totalUsers}
+          valuesLength={length(usersByLevels)}
+        />
+      ))}
     </TopSide>
     <Separator />
     <BottomSide>
-      {map(
-        level => (
-          <Label />
-        ),
-        usersByLevel,
-      )}
+      {usersByLevels.map((user, id) => (
+        <Label key={id} />
+      ))}
     </BottomSide>
   </Container>
 );
