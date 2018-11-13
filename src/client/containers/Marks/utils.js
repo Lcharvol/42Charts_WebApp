@@ -1,4 +1,4 @@
-import { split, isNil, take, find, propEq, sort } from 'ramda';
+import { split, isNil, take, find, propEq, sort, length } from 'ramda';
 
 import { FILTER_MARK_BUTTON_VALUES } from '../../constants/selectButtonValues';
 
@@ -9,7 +9,7 @@ export const getSortedMarks = (marks, sortBy) => {
 };
 
 export const getSince = (markedAt, currentTime) => {
-  if (isNil(markedAt)) return '';
+  if (isNil(markedAt) || length(markedAt) === 0) return '';
   const { currentYear, currentMonth, currentDay } = currentTime;
   const splittedDate = split('-', markedAt);
   const markedYear = parseInt(splittedDate[0]);
