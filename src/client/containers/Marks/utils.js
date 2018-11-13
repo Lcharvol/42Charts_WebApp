@@ -3,8 +3,8 @@ import { split, isNil, take, find, propEq, sort, length } from 'ramda';
 import { FILTER_MARK_BUTTON_VALUES } from '../../constants/selectButtonValues';
 
 export const getSortedMarks = (marks, sortBy) => {
-  if (isNil(marks) || length(marks) === 0) return '';
   const selectedValue = find(propEq('id', sortBy), FILTER_MARK_BUTTON_VALUES);
+  if (isNil(selectedValue) || length(selectedValue) === 0) return '';
   const sortFunc = selectedValue.sort;
   return sort(sortFunc, marks);
 };
