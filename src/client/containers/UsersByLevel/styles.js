@@ -35,6 +35,7 @@ export const Bar = styled.div`
   &:hover {
     opacity: 0.9;
   }
+  cursor: pointer;
 `;
 
 export const Label = styled.div`
