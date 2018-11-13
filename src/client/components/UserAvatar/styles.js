@@ -5,7 +5,6 @@ export const Container = styled.div`
     position:relative;
     margin:${({ margin }) => margin};
     display:flex;
-    border-radius:3px;
     min-width:${({ width }) => width};
     min-height:${({ height }) => height};
     background-color:${BACKGROUND_COLOR};
@@ -13,4 +12,5 @@ export const Container = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius:${({ round }) => (round ? '100%' : '3px')};
 `;

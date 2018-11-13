@@ -22,24 +22,27 @@ export const TopSide = styled.div`
 export const BottomSide = styled.div`
   position: relative;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-items: center;
   flex: 1;
   height: 50px;
   padding-left: 25px;
 `;
 
-export const Unit = styled.div`
+export const UnitContainer = styled.div`
   position: relative;
   display: flex;
   width: ${({ width }) => width}%;
   height: ${({ value }) => value}%;
   background-color: ${MAIN_COLOR};
   opacity: ${({ value }) => value / 100 + 0.1};
-  transition: height 0.4s ease-in-out, width 0.4s ease-in-out;
+  transition: height 0.4s ease-in-out, width 0.4s ease-in-out,
+    opacity 0.4s ease-in-out;
   &:hover {
     opacity: 0.8;
+    transition: opacity 0s;
   }
+  cursor: pointer;
 `;
 
 export const TimeInfo = styled.div`
@@ -49,11 +52,13 @@ export const TimeInfo = styled.div`
   color: ${DARK_TEXT_COLOR};
   margin-left: 15px;
   opacity: 0.8;
+  flex: 1;
 `;
 
 export const Arrows = styled.div`
   position: relative;
   display: flex;
+  flex: 1;
 `;
 
 export const LeftArrow = styled.div`
@@ -88,4 +93,13 @@ export const RightArrow = styled.div`
   &:hover {
     opacity:0.7;
   }
+`;
+
+export const HoverValue = styled.div`
+  position: relative;
+  display: flex;
+  font-size: 0.5em;
+  color: ${MAIN_COLOR};
+  opacity: 0.8;
+  flex: 1;
 `;

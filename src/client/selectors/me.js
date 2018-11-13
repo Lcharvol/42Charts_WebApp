@@ -9,7 +9,7 @@ export const getMyCursus = state => state.me.cursus;
 export const getMarks = state =>
   filter(project => project.status === 'finished', state.me.projects || []);
 
-export const getMyLogs = state => state.me.logs;
+export const getMyLogs = state => state.me.logs.logs;
 
 export const getProjectsValidated = state => {
   if (isNil(state.me)) return 0;
@@ -37,37 +37,22 @@ export const getMyCoalitionRank = state => state.me.coalition.userRank;
 
 export const getHighterLogPerDay = state => {
   const {
-    me: { logs = [] },
+    me: {
+      logs: {
+        higherLogInADay: { logtimeInSeconds },
+      },
+    },
   } = state;
-  let highterLog = 0;
-  let actualHighterLog = 0;
-  let actualDay = 0;
-  let actualMonth = 0;
-  let actualYear = 0;
-  map(log => {
-    const { beginAt } = log;
-    const splittedDate = split('-', beginAt);
-    const year = parseInt(splittedDate[0]);
-    const month = parseInt(splittedDate[1]);
-    const day = parseInt(take(2, splittedDate[2]));
-    if (actualDay === day && actualMonth === month && actualYear === year) {
-      actualHighterLog += log.logtimeInSeconds;
-    } else {
-      if (actualHighterLog > highterLog) highterLog = actualHighterLog;
-      actualHighterLog = 0;
-      actualDay = day;
-      actualMonth = month;
-      actualYear = year;
-    }
-  }, logs);
-  const hours = Math.floor(highterLog / 60 / 60);
-  const min = Math.floor((highterLog - hours * 60 * 60) / 60);
+  const hours = Math.floor(higherLogInADay / 60 / 60);
+  const min = Math.floor((higherLogInADay - hours * 60 * 60) / 60);
   return `${hours} h ${min} min`;
 };
 
 export const getHighterLogPerMonth = state => {
   const {
-    me: { logs = [] },
+    me: {
+      logs: { logs = [] },
+    },
   } = state;
   let highterLog = 0;
   let actualHighterLog = 0;

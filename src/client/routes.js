@@ -1,8 +1,8 @@
-import Home from './pages/Home';
 import Profil from './pages/Profil';
 import Ranking from './pages/Ranking';
 import Login from './pages/Login';
 import ServerDown from './pages/ServerDown';
+import Users from './pages/Users';
 
 const routes = [
   {
@@ -25,6 +25,11 @@ const routes = [
     id: 4,
     path: '/serverdown',
     component: ServerDown,
+  },
+  {
+    id: 5,
+    path: '/allusers',
+    component: Users,
   },
 ];
 

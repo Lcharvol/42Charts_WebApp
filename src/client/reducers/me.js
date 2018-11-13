@@ -7,6 +7,7 @@ const initialState = {
     userScore: 0,
     userRank: 0,
   },
+  logs: {},
 };
 
 const reducer = (state = initialState, action) => {

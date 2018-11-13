@@ -36,7 +36,7 @@ export const getDayLog = (dayId, logs, selectedYear, selectedMonth) => {
     0,
     logsOfTheDay,
   );
-  return (reducedLogsOfTheDay / SEC_PER_DAY) * 100;
+  return reducedLogsOfTheDay;
 };
 
 export const getMonthLog = (monthId, logs, selectedYear, selectedMonth) => {
@@ -54,5 +54,5 @@ export const getMonthLog = (monthId, logs, selectedYear, selectedMonth) => {
     0,
     logsOfTheMonth,
   );
-  return (reducedLogsOfTheMonth / SEC_PER_MONTH) * 100;
+  return reducedLogsOfTheMonth;
 };

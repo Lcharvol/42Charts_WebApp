@@ -43,6 +43,7 @@ export const StatValue = styled.div`
   font-size: 0.7em;
   font-weight: bold;
   color: ${MAIN_COLOR};
+  opacity: 0.7;
 `;
 
 export const StatLabel = styled.div`

@@ -69,6 +69,7 @@ const Profil = ({
             profilPicture={me.imageUrl}
             width={'150px'}
             height={'150px'}
+            round
           />
           <InfoContainer selectedCursus={selectedCursus} me={me} />
         </LeftSide>
@@ -81,7 +82,7 @@ const Profil = ({
       <Content>
         <Box
           label={'Marks'}
-          width={'calc(50% - 52px)'}
+          width={'calc(50% - 27px)'}
           height={'400px'}
           content={
             <Marks
@@ -99,7 +100,7 @@ const Profil = ({
         />
         <Box
           label={'My Log'}
-          width={'calc(50% - 52px)'}
+          width={'calc(50% - 27px)'}
           height={'400px'}
           content={
             <Logs

@@ -1,46 +1,62 @@
 import React from 'react';
-import { times, find, propEq } from 'ramda';
+import { times, find, propEq, isNil } from 'ramda';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
+import { array, number, func, string } from 'prop-types';
 
 import {
   Container,
   TopSide,
   BottomSide,
-  Unit,
   TimeInfo,
   Arrows,
   LeftArrow,
   RightArrow,
+  HoverValue,
 } from './styles';
 import Separator from '../../components/Separator';
 import { LOGS_FILTER_VALUES } from '../../constants/selectButtonValues';
+import { MIN_YEAR } from './constants';
 import { getMonthLabel } from './utils';
+import Unit from './Unit';
+
+const proptypes = {
+  logs: array,
+  hoveredUnit: number,
+  hoveredUnitValue: string,
+  logsFilter: number.isRequired,
+  selectedYear: number.isRequired,
+  selectedMonth: number.isRequired,
+  handleChangeSelectedMonth: func.isRequired,
+  handleChangeSelectedYear: func.isRequired,
+  handleChangeHoveredUnit: func.isRequired,
+};
 
 const Logs = ({
   logs,
-  currentTime,
   logsFilter,
   selectedYear,
   selectedMonth,
   handleChangeSelectedMonth,
   handleChangeSelectedYear,
+  hoveredUnit,
+  hoveredUnitValue,
+  handleChangeHoveredUnit,
 }) => {
   const logsFilterObject = find(propEq('id', logsFilter))(LOGS_FILTER_VALUES);
+
   return (
     <Container>
-      {console.log('selectedMonth: ', selectedMonth)}
       <TopSide>
         {times(
           i => (
             <Unit
               key={i}
-              value={logsFilterObject.getUnitLog(
-                i + 1,
-                logs,
-                selectedYear,
-                selectedMonth,
-              )}
-              width={100 / logsFilterObject.nbValue}
+              id={i}
+              logsFilterObject={logsFilterObject}
+              logs={logs}
+              selectedYear={selectedYear}
+              selectedMonth={selectedMonth}
+              handleChangeHoveredUnit={handleChangeHoveredUnit}
             />
           ),
           logsFilterObject.nbValue,
@@ -60,7 +76,9 @@ const Logs = ({
               }
               if (logsFilterObject.nbValue === 12)
                 handleChangeSelectedYear(
-                  selectedYear - 1 >= 2013 ? selectedYear - 1 : selectedYear,
+                  selectedYear - 1 >= MIN_YEAR
+                    ? selectedYear - 1
+                    : selectedYear,
                 );
             }}
           />
@@ -83,16 +101,25 @@ const Logs = ({
             ? `${getMonthLabel(selectedMonth - 1)} ${selectedYear}`
             : selectedYear}
         </TimeInfo>
+        <HoverValue>{hoveredUnitValue}</HoverValue>
       </BottomSide>
     </Container>
   );
 };
 
+Logs.propTypes = proptypes;
+
 const enhance = compose(
   withStateHandlers(
-    ({ initialSelectedYear = 0, initialSelectedMonth = 0 }) => ({
+    ({
+      initialSelectedYear = 0,
+      initialSelectedMonth = 0,
+      initialHoveredUnit = undefined,
+    }) => ({
       selectedYear: initialSelectedYear,
       selectedMonth: initialSelectedMonth,
+      hoveredUnit: initialHoveredUnit,
+      hoveredUnitValue: initialHoveredUnit,
     }),
     {
       handleChangeSelectedYear: () => newSelectedYear => ({
@@ -101,9 +128,21 @@ const enhance = compose(
       handleChangeSelectedMonth: () => newSelectedMonth => ({
         selectedMonth: newSelectedMonth,
       }),
+      handleChangeHoveredUnit: () => (unitId, value) => ({
+        hoveredUnit: unitId,
+        hoveredUnitValue: value,
+      }),
     },
   ),
   lifecycle({
+    componentWillMount() {
+      this.props.handleChangeSelectedYear(
+        this.props.currentTime.currentYear || 0,
+      );
+      this.props.handleChangeSelectedMonth(
+        this.props.currentTime.currentMonth || 0,
+      );
+    },
     componentDidUpdate(prevProps) {
       if (
         prevProps.currentTime !== this.props.currentTime ||

@@ -17,6 +17,7 @@ export const Container = styled.div`
   border-radius: 3px;
   margin: 25px;
   margin-bottom: 0;
+  margin-right: 0;
   overflow: hidden;
   @media (max-width: 1280px) {
     width: 100%;
@@ -64,5 +65,4 @@ export const Content = styled.div`
   height: 100%;
   overflow-y: scroll;
   padding-top: 10px;
-  padding-bottom: 25px;
 `;

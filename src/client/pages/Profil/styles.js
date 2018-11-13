@@ -41,7 +41,7 @@ export const Content = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  width: 100%;
+  width: calc(100% - 35px);
 `;
 
 export const LeftSide = styled.div`
