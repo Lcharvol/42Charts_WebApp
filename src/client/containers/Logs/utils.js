@@ -1,6 +1,4 @@
-import { filter, split, length, isNil, take, reduce } from 'ramda';
-
-import { SEC_PER_DAY, SEC_PER_MONTH } from './constants';
+import { length, isNil, isEmpty, map } from 'ramda';
 
 export const getMonthLabel = monthId => {
   const months = [
@@ -21,38 +19,68 @@ export const getMonthLabel = monthId => {
 };
 
 export const getDayLog = (dayId, logs, selectedYear, selectedMonth) => {
-  if (length(logs) === 0 || isNil(logs)) return 0;
-  const isGoodDay = log => {
-    const { beginAt } = log;
-    const splittedDate = split('-', beginAt);
-    const month = parseInt(splittedDate[1]);
-    const day = parseInt(take(2, splittedDate[2]));
-    const year = parseInt(splittedDate[0]);
-    return day === dayId && month === selectedMonth && year === selectedYear;
-  };
-  const logsOfTheDay = filter(isGoodDay, logs);
-  const reducedLogsOfTheDay = reduce(
-    (acc, log) => acc + log.logtimeInSeconds,
-    0,
-    logsOfTheDay,
-  );
-  return reducedLogsOfTheDay;
+  if (isEmpty(logs) || length(logs) === 0 || isNil(logs)) return 0;
+  const logsOfSelectedYear = logs[selectedYear];
+  if (
+    isEmpty(logsOfSelectedYear) ||
+    length(logsOfSelectedYear) === 0 ||
+    isNil(logsOfSelectedYear)
+  )
+    return 0;
+  const logsOfSelectedMonth = logsOfSelectedYear[selectedMonth - 1];
+  if (
+    isEmpty(logsOfSelectedMonth) ||
+    length(logsOfSelectedMonth) === 0 ||
+    isNil(logsOfSelectedMonth)
+  )
+    return 0;
+  return logsOfSelectedMonth[dayId] || 0;
 };
 
 export const getMonthLog = (monthId, logs, selectedYear, selectedMonth) => {
-  if (length(logs) === 0 || isNil(logs)) return 0;
-  const isGoodMonth = log => {
-    const { beginAt } = log;
-    const splittedDate = split('-', beginAt);
-    const year = parseInt(splittedDate[0]);
-    const month = parseInt(splittedDate[1]);
-    return month === monthId + 1 && year === selectedYear;
-  };
-  const logsOfTheMonth = filter(isGoodMonth, logs);
-  const reducedLogsOfTheMonth = reduce(
-    (acc, log) => acc + log.logtimeInSeconds,
-    0,
-    logsOfTheMonth,
-  );
-  return reducedLogsOfTheMonth;
+  let ret = 0;
+  if (isEmpty(logs) || length(logs) === 0 || isNil(logs)) return 0;
+  const logsOfSelectedYear = logs[selectedYear];
+  if (
+    isEmpty(logsOfSelectedYear) ||
+    length(logsOfSelectedYear) === 0 ||
+    isNil(logsOfSelectedYear)
+  )
+    return 0;
+  const logsOfSelectedMonth = logsOfSelectedYear[monthId - 1];
+  if (
+    isEmpty(logsOfSelectedMonth) ||
+    length(logsOfSelectedMonth) === 0 ||
+    isNil(logsOfSelectedMonth)
+  )
+    return 0;
+  map(log => {
+    ret += log;
+  }, logsOfSelectedMonth);
+  return ret;
+};
+
+export const getTotalTimeOfSelectedLogsFilter = (
+  logs,
+  nbValue,
+  selectedYear,
+  selectedMonth,
+) => {
+  const logsOfYear = logs[selectedYear];
+  if (isEmpty(logsOfYear) || isNil(logsOfYear)) return '0 h 0 min';
+  const logsOfMonth = logsOfYear[selectedMonth];
+  let sum = 0;
+  if (nbValue === 12) {
+    map(month => {
+      map(day => {
+        sum += day;
+      }, month);
+    }, logsOfYear);
+  } else {
+    if (isEmpty(logsOfMonth) || isNil(logsOfMonth)) return '0 h 0 min';
+    map(day => (sum += day), logsOfMonth);
+  }
+  const hours = Math.floor(sum / 3600);
+  const min = Math.floor((sum - hours * 3600) / 60);
+  return `${hours} h ${min} min`;
 };

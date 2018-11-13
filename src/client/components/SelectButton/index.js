@@ -31,28 +31,27 @@ const SelectButton = ({
   wrapped,
   handleChangeWrapped,
   handler,
+  value,
 }) => (
   <Container
     width={width}
     height={height}
     onClick={() => handleChangeWrapped()}
   >
-    <SelectedValue>
-      {getSelectedValueLabel(selectedValueId, values)}
-    </SelectedValue>
+    <SelectedValue>{values[value] ? values[value].label : ''}</SelectedValue>
     <ChevIcon />
     {!wrapped && (
       <Content height={height}>
         {map(
-          value => (
+          elemValue => (
             <Value
-              key={value.id}
+              key={elemValue.id}
               onClick={() => {
-                handleChangeSelectedValueId(value.id);
-                handler(value.id);
+                handleChangeSelectedValueId(elemValue.id);
+                handler(elemValue.id);
               }}
             >
-              {value.label}
+              {elemValue.label}
             </Value>
           ),
           values,

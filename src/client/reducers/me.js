@@ -7,7 +7,15 @@ const initialState = {
     userScore: 0,
     userRank: 0,
   },
-  logs: {},
+  logs: {
+    logs: {},
+    higherLogInADay: {
+      logtimeInSeconds: 0,
+    },
+    higherLogInMonth: {
+      logtimeInSeconds: 0,
+    },
+  },
 };
 
 const reducer = (state = initialState, action) => {

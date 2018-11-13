@@ -10,6 +10,7 @@ export const Container = styled.div`
   width: calc(100vw - 240px);
   margin-left: 240px;
   min-height: 100vh;
+  padding-bottom: 25px;
 `;
 
 export const Header = styled.div`

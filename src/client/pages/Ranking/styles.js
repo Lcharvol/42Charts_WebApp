@@ -29,6 +29,7 @@ export const Title = styled.div`
   display: flex;
   color: ${MAIN_COLOR};
   margin-bottom: 25px;
+  opacity: 0.8;
 `;
 
 export const Header = styled.div`

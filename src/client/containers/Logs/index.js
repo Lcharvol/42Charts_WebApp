@@ -1,7 +1,7 @@
 import React from 'react';
-import { times, find, propEq, isNil } from 'ramda';
+import { times, find, propEq, length } from 'ramda';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
-import { array, number, func, string } from 'prop-types';
+import { number, func, string, object } from 'prop-types';
 
 import {
   Container,
@@ -16,11 +16,11 @@ import {
 import Separator from '../../components/Separator';
 import { LOGS_FILTER_VALUES } from '../../constants/selectButtonValues';
 import { MIN_YEAR } from './constants';
-import { getMonthLabel } from './utils';
+import { getMonthLabel, getTotalTimeOfSelectedLogsFilter } from './utils';
 import Unit from './Unit';
 
 const proptypes = {
-  logs: array,
+  logs: object,
   hoveredUnit: number,
   hoveredUnitValue: string,
   logsFilter: number.isRequired,
@@ -29,6 +29,7 @@ const proptypes = {
   handleChangeSelectedMonth: func.isRequired,
   handleChangeSelectedYear: func.isRequired,
   handleChangeHoveredUnit: func.isRequired,
+  handleChangeLogsFilter: func.isRequired,
 };
 
 const Logs = ({
@@ -41,6 +42,7 @@ const Logs = ({
   hoveredUnit,
   hoveredUnitValue,
   handleChangeHoveredUnit,
+  handleChangeLogsFilter,
 }) => {
   const logsFilterObject = find(propEq('id', logsFilter))(LOGS_FILTER_VALUES);
 
@@ -57,6 +59,8 @@ const Logs = ({
               selectedYear={selectedYear}
               selectedMonth={selectedMonth}
               handleChangeHoveredUnit={handleChangeHoveredUnit}
+              handleChangeSelectedMonth={handleChangeSelectedMonth}
+              handleChangeLogsFilter={handleChangeLogsFilter}
             />
           ),
           logsFilterObject.nbValue,
@@ -101,7 +105,16 @@ const Logs = ({
             ? `${getMonthLabel(selectedMonth - 1)} ${selectedYear}`
             : selectedYear}
         </TimeInfo>
-        <HoverValue>{hoveredUnitValue}</HoverValue>
+        <HoverValue>
+          {length(hoveredUnitValue) > 0
+            ? hoveredUnitValue
+            : getTotalTimeOfSelectedLogsFilter(
+                logs,
+                logsFilterObject.nbValue,
+                selectedYear,
+                selectedMonth - 1,
+              )}
+        </HoverValue>
       </BottomSide>
     </Container>
   );
@@ -144,10 +157,7 @@ const enhance = compose(
       );
     },
     componentDidUpdate(prevProps) {
-      if (
-        prevProps.currentTime !== this.props.currentTime ||
-        prevProps.logsFilter !== this.props.logsFilter
-      ) {
+      if (prevProps.currentTime !== this.props.currentTime) {
         this.props.handleChangeSelectedYear(this.props.currentTime.currentYear);
         this.props.handleChangeSelectedMonth(
           this.props.currentTime.currentMonth,

@@ -26,7 +26,6 @@ export const BottomSide = styled.div`
   align-items: center;
   flex: 1;
   height: 50px;
-  padding-left: 25px;
 `;
 
 export const UnitContainer = styled.div`
@@ -35,11 +34,12 @@ export const UnitContainer = styled.div`
   width: ${({ width }) => width}%;
   height: ${({ value }) => value}%;
   background-color: ${MAIN_COLOR};
-  opacity: ${({ value }) => value / 100 + 0.1};
+  opacity: ${({ value }) =>
+    value / 100 + 0.1 >= 0.9 ? 0.9 : value / 100 + 0.1};
   transition: height 0.4s ease-in-out, width 0.4s ease-in-out,
     opacity 0.4s ease-in-out;
   &:hover {
-    opacity: 0.8;
+    opacity: 0.9;
     transition: opacity 0s;
   }
   cursor: pointer;
@@ -48,9 +48,10 @@ export const UnitContainer = styled.div`
 export const TimeInfo = styled.div`
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 0.3em;
   color: ${DARK_TEXT_COLOR};
-  margin-left: 15px;
   opacity: 0.8;
   flex: 1;
 `;
@@ -58,6 +59,8 @@ export const TimeInfo = styled.div`
 export const Arrows = styled.div`
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
 `;
 
@@ -98,6 +101,8 @@ export const RightArrow = styled.div`
 export const HoverValue = styled.div`
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 0.5em;
   color: ${MAIN_COLOR};
   opacity: 0.8;

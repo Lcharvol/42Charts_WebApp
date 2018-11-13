@@ -11,6 +11,8 @@ const Unit = ({
   selectedYear,
   selectedMonth,
   handleChangeHoveredUnit,
+  handleChangeSelectedMonth,
+  handleChangeLogsFilter,
 }) => {
   const value = logsFilterObject.getUnitLog(
     id + 1,
@@ -30,6 +32,12 @@ const Unit = ({
       width={100 / logsFilterObject.nbValue}
       onMouseEnter={() => handleChangeHoveredUnit(id, `${hours} h ${min} min`)}
       onMouseLeave={() => handleChangeHoveredUnit(undefined, '')}
+      onClick={() => {
+        if (logsFilterObject.nbValue === 12) {
+          handleChangeSelectedMonth(id + 1);
+          handleChangeLogsFilter(0);
+        }
+      }}
     />
   );
 };

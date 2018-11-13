@@ -82,10 +82,11 @@ export const Logout = styled.div`
   text-decoration: none;
   width: 100%;
   height: 100%;
-  transition: color 0.1s ease-in;
-  color: ${DARK_MAIN_COLOR};
+  opacity: 0.9;
+  transition: all 0.1s ease-in;
+  color: ${MAIN_COLOR};
   &:hover {
-    color: ${MAIN_COLOR};
+    opacity: 0.5;
   }
   cursor: pointer;
 `;

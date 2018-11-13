@@ -9,7 +9,7 @@ const proptypes = {
   usersByLevel: array,
 };
 
-const UsersByLevel = ({ usersByLevel = fakeUsersByLevel }) => (
+const UsersByLevel = ({ usersByLevel = [] }) => (
   <Container>
     <TopSide>
       {map(

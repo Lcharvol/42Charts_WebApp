@@ -52,7 +52,7 @@ const Profil = ({
   marksSortBy,
   logsFilter,
   handleChangeLogsFilter,
-  vhandleChangeSelectedCursus,
+  handleChangeSelectedCursus,
   handleChangeMarkSortBy,
   myCoalition,
 }) => {
@@ -95,6 +95,7 @@ const Profil = ({
             <SelectButton
               values={FILTER_MARK_BUTTON_VALUES}
               handler={handleChangeMarkSortBy}
+              value={marksSortBy}
             />
           }
         />
@@ -107,12 +108,14 @@ const Profil = ({
               logs={myLogs}
               currentTime={currentTime}
               logsFilter={logsFilter}
+              handleChangeLogsFilter={handleChangeLogsFilter}
             />
           }
           headerLeft={
             <SelectButton
               values={LOGS_FILTER_VALUES}
               handler={handleChangeLogsFilter}
+              value={logsFilter}
             />
           }
         />
