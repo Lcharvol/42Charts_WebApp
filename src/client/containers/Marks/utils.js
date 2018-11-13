@@ -1,11 +1,11 @@
-import { split, isNil, take, find, propEq, sort, length } from 'ramda';
+import { split, isNil, take, find, propEq, sort, length, isEmpty } from 'ramda';
 
 import { FILTER_MARK_BUTTON_VALUES } from '../../constants/selectButtonValues';
 
 export const getSortedMarks = (marks, sortBy) => {
   const selectedValue = find(propEq('id', sortBy), FILTER_MARK_BUTTON_VALUES);
-  if (isNil(selectedValue) || length(selectedValue) === 0) return '';
   const sortFunc = selectedValue.sort;
+  if (isNil(marks) || isEmpty(marks)) return '';
   return sort(sortFunc, marks);
 };
 

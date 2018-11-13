@@ -1,4 +1,4 @@
-import { split, take } from 'ramda';
+import { split, take, isNil } from 'ramda';
 
 import { getDayLog, getMonthLog } from '../containers/Logs/utils';
 
@@ -7,6 +7,7 @@ export const FILTER_MARK_BUTTON_VALUES = [
     id: 0,
     label: 'By time',
     sort: (a, b) => {
+      if (isNil(a.markedAt) || isNil(b.markedAt)) return 0;
       const aSplittedDate = split('-', a.markedAt);
       const bSplittedDate = split('-', b.markedAt);
       const aYear = parseInt(aSplittedDate[0]);
