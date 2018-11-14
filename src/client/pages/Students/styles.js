@@ -41,11 +41,18 @@ export const Header = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
-  background-color: ${BACKGROUND_COLOR};
   z-index: 1000;
   width: calc(100vw - 390px);
   top: 0;
   padding-top: 30px;
+  background: linear-gradient(
+    to bottom,
+    rgba(25, 25, 25, 1) 0%,
+    rgba(25, 25, 25, 1) 1%,
+    rgba(25, 25, 25, 1) 64%,
+    rgba(25, 25, 25, 1) 90%,
+    rgba(25, 25, 25, 0) 100%
+  );
 `;
 
 export const Content = styled.div`

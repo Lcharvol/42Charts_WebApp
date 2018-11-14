@@ -1,6 +1,6 @@
 export const BACKGROUND_COLOR = 'rgb(25,25,25)';
 
-export const LIGHT_BACKGROUND_COLOR = 'rgb(35,35,35)';
+export const LIGHT_BACKGROUND_COLOR = 'rgb(30,30,30)';
 
 export const HEADER_BACKGROUND_COLOR = 'rgb(45,45,45)';
 
