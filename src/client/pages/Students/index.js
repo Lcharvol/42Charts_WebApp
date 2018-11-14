@@ -15,9 +15,14 @@ import {
   Content,
 } from './styles';
 import PromoFilter from './PromoFilter';
+import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
 import { getUsersByPromo } from '../../requests';
-import { getPromos } from '../../selectors/app';
+import {
+  getPromos,
+  getTotalUsers,
+  getUsersByLevels,
+} from '../../selectors/app';
 import { getMyLogin } from '../../selectors/me';
 import { reqGetPromo } from '../../requests';
 import { loadPromos } from '../../actions/app';
@@ -31,10 +36,13 @@ const Ranking = ({
   enhanceUsers,
   users,
   myLogin,
+  totalUsers,
+  usersByLevels,
 }) => (
   <Container>
     <Header>
-      <Title>Ranking</Title>
+      <Title>Students</Title>
+      <Graph nbUsers={totalUsers} usersByUnit={usersByLevels} />
       <PromoFilter
         promos={promos}
         selectedPromo={selectedPromo}
@@ -75,6 +83,8 @@ const Ranking = ({
 const mapStateToProps = state => ({
   promos: getPromos(state),
   myLogin: getMyLogin(state),
+  totalUsers: getTotalUsers(state),
+  usersByLevels: getUsersByLevels(state),
 });
 
 const actions = { loadPromos };

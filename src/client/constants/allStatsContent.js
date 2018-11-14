@@ -7,6 +7,8 @@ import {
   getMyCoalitionScore,
   getHighterLogPerDay,
   getHighterLogPerMonth,
+  getMyNumberOfLogs,
+  getMyTotalLogTime,
 } from '../selectors/me';
 
 export const ALL_STATS_CONTENT = [
@@ -43,11 +45,21 @@ export const ALL_STATS_CONTENT = [
   {
     id: 6,
     value: state => getMyCoalitionRank(state),
-    label: 'My colation Rank',
+    label: 'My coaliton Rank',
   },
   {
     id: 7,
     value: state => getMyCoalitionScore(state),
-    label: 'My colation score',
+    label: 'My coaliton score',
+  },
+  {
+    id: 8,
+    value: state => getMyNumberOfLogs(state),
+    label: 'Number of logs',
+  },
+  {
+    id: 9,
+    value: state => getMyTotalLogTime(state),
+    label: 'Total Logtime',
   },
 ];

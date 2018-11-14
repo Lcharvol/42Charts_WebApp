@@ -1,5 +1,5 @@
 import Profil from './pages/Profil';
-import Ranking from './pages/Ranking';
+import Students from './pages/Students';
 import Login from './pages/Login';
 import ServerDown from './pages/ServerDown';
 import Users from './pages/Users';
@@ -18,8 +18,8 @@ const routes = [
   },
   {
     id: 3,
-    path: '/ranking',
-    component: Ranking,
+    path: '/students',
+    component: Students,
   },
   {
     id: 4,

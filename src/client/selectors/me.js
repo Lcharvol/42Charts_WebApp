@@ -54,3 +54,12 @@ export const getHighterLogPerMonth = state => {
   const min = Math.floor((logtimeInSeconds - hours * 60 * 60) / 60);
   return `${hours} h ${min} min`;
 };
+
+export const getMyNumberOfLogs = state => state.me.logs.numberOfLogs;
+
+export const getMyTotalLogTime = state => {
+  const logTimInSecond = state.me.logs.totalLogTime;
+  const days = Math.floor(logTimInSecond / 86400);
+  const hours = Math.floor((logTimInSecond - days * 86400) / 3600);
+  return `${days} D ${hours} H`;
+};

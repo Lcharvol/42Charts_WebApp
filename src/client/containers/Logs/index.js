@@ -18,6 +18,7 @@ import { LOGS_FILTER_VALUES } from '../../constants/selectButtonValues';
 import { MIN_YEAR } from './constants';
 import { getMonthLabel, getTotalTimeOfSelectedLogsFilter } from './utils';
 import Unit from './Unit';
+import { DARK_BORDER_COLOR } from '../../constants/colors';
 
 const proptypes = {
   logs: object,
@@ -66,7 +67,7 @@ const Logs = ({
           logsFilterObject.nbValue,
         )}
       </TopSide>
-      <Separator />
+      <Separator color={DARK_BORDER_COLOR} />
       <BottomSide>
         <Arrows>
           <LeftArrow

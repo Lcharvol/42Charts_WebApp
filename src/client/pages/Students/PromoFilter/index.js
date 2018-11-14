@@ -4,6 +4,7 @@ import { array, string, func } from 'prop-types';
 
 import { Container, Label, SelectedBox, Content } from './styles';
 import Separator from '../../../components/Separator';
+import { MAIN_COLOR } from '../../../constants/colors';
 
 const propTypes = {
   promos: array,
@@ -31,7 +32,6 @@ const PromoFilter = ({ promos, selectedPromo, handleChangeSelectedPromo }) => (
         />
       )}
     </Content>
-    <Separator />
   </Container>
 );
 

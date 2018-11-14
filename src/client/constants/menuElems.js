@@ -11,8 +11,8 @@ const menuElems = [
   },
   {
     key: 2,
-    to: '/ranking',
-    label: 'Ranking',
+    to: '/students',
+    label: 'Students',
   },
 ];
 

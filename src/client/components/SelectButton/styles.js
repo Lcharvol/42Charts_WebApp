@@ -4,6 +4,11 @@ import {
   BORDER_COLOR,
   LIGHT_GREY,
   DARK_TEXT_COLOR,
+  DARK_BACKGROUND_COLOR,
+  LIGHT_BACKGROUND_COLOR,
+  DARK_BORDER_COLOR,
+  BACKGROUND_COLOR,
+  FONT_COLOR,
 } from '../../constants/colors';
 import ChevronDownIcon from '../../../../public/chev_down.png';
 
@@ -14,12 +19,12 @@ export const Container = styled.div`
   align-items: center;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  background-color: rgb(250, 250, 250);
+  background-color: ${LIGHT_BACKGROUND_COLOR};
   border-radius: 3px;
-  border: solid 1px ${BORDER_COLOR};
+  border: solid 1px ${DARK_BORDER_COLOR};
   cursor: pointer;
   &:hover {
-    background-color: white;
+    background-color: ${BACKGROUND_COLOR};
   }
   z-index: 1000;
 `;
@@ -30,8 +35,8 @@ export const Content = styled.div`
   flex-direction: column;
   width: 100%;
   min-height: 30px;
-  background-color: white;
-  border: solid 1px ${BORDER_COLOR};
+  background-color: ${BACKGROUND_COLOR};
+  border: solid 1px ${DARK_BORDER_COLOR};
   top: ${({ height }) => height}px;
 `;
 
@@ -43,8 +48,9 @@ export const SelectedValue = styled.div`
   flex: 1;
   font-size: 0.25em;
   padding-left: 15px;
-  color: ${DARK_TEXT_COLOR};
+  color: ${FONT_COLOR};
   user-select: none;
+  opacity: 0.7;
 `;
 
 export const ChevIcon = styled.div`
@@ -66,12 +72,12 @@ export const Value = styled.div`
   justify-content: flex-start;
   align-items: center;
   font-size: 0.23em;
-  color: ${DARK_TEXT_COLOR};
+  color: ${FONT_COLOR};
   user-select: none;
   width: calc(100% - 15px);
   height: 25px;
   padding-left: 15px;
   &:hover {
-    background-color: ${LIGHT_GREY};
+    background-color: ${LIGHT_BACKGROUND_COLOR};
   }
 `;

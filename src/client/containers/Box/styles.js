@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 import {
-  BORDER_COLOR,
-  LIGHT_GREY,
+  HEADER_BACKGROUND_COLOR,
   DARK_TEXT_COLOR,
+  LIGHT_BACKGROUND_COLOR,
+  DARK_BORDER_COLOR,
+  MAIN_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  border: solid 1px ${BORDER_COLOR};
-  background-color: white;
+  border: solid 1px ${DARK_BORDER_COLOR};
+  background-color: ${LIGHT_BACKGROUND_COLOR};
   width: ${({ width }) => width};
   min-width: 405px;
   height: ${({ height }) => height};
@@ -31,8 +33,8 @@ export const Header = styled.div`
   align-items: center;
   width: 100%;
   height: 50px;
-  background-color: ${LIGHT_GREY};
-  border-bottom: solid 1px ${BORDER_COLOR};
+  background-color: ${HEADER_BACKGROUND_COLOR};
+  border-bottom: solid 1px ${DARK_BORDER_COLOR};
 `;
 
 export const HeaderLeftSide = styled.div`
@@ -51,8 +53,7 @@ export const HeaderLabel = styled.div`
   width: 90%;
   flex: 1;
   font-size: 0.3em;
-  color: ${DARK_TEXT_COLOR};
-  opacity: 0.8;
+  color: ${MAIN_COLOR};
   padding-left: 25px;
 `;
 
@@ -63,6 +64,9 @@ export const Content = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-top: 10px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;

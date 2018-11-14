@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { MAIN_COLOR, DARK_TEXT_COLOR } from '../../constants/colors';
+import {
+  MAIN_COLOR,
+  DARK_TEXT_COLOR,
+  FONT_COLOR,
+} from '../../constants/colors';
 import ChevronDownIcon from '../../../../public/chev_down.png';
 
 export const Container = styled.div`
@@ -34,12 +38,11 @@ export const UnitContainer = styled.div`
   width: ${({ width }) => width}%;
   height: ${({ value }) => value}%;
   background-color: ${MAIN_COLOR};
-  opacity: ${({ value }) =>
-    value / 100 + 0.1 >= 0.9 ? 0.9 : value / 100 + 0.1};
+  opacity: ${({ value }) => value / 100 + 0.3};
   transition: height 0.4s ease-in-out, width 0.4s ease-in-out,
     opacity 0.4s ease-in-out;
   &:hover {
-    opacity: 0.9;
+    opacity: 1;
     transition: opacity 0s;
   }
   cursor: pointer;
@@ -51,7 +54,7 @@ export const TimeInfo = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 0.3em;
-  color: ${DARK_TEXT_COLOR};
+  color: ${FONT_COLOR};
   opacity: 0.8;
   flex: 1;
 `;
@@ -78,7 +81,8 @@ export const LeftArrow = styled.div`
   cursor:pointer;
   &:hover {
     opacity:0.7;
-  }
+  };
+  margin-right:10px;
   `;
 
 export const RightArrow = styled.div`
@@ -95,7 +99,8 @@ export const RightArrow = styled.div`
   cursor:pointer;
   &:hover {
     opacity:0.7;
-  }
+  };
+  margin-left:10px;
 `;
 
 export const HoverValue = styled.div`
@@ -105,6 +110,5 @@ export const HoverValue = styled.div`
   align-items: center;
   font-size: 0.5em;
   color: ${MAIN_COLOR};
-  opacity: 0.8;
   flex: 1;
 `;

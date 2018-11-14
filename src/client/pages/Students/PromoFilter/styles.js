@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { DARK_TEXT_COLOR, MAIN_COLOR } from '../../../constants/colors';
+import {
+  DARK_TEXT_COLOR,
+  MAIN_COLOR,
+  FONT_COLOR,
+} from '../../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -19,7 +23,7 @@ export const Content = styled.div`
 `;
 
 export const Label = styled.div`
-    color: ${DARK_TEXT_COLOR};
+    color: ${FONT_COLOR};
     display:flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +32,7 @@ export const Label = styled.div`
     margin-right:15px;
     width: 50px
     cursor:pointer;
-    opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
+    opacity: ${({ isSelected }) => (isSelected ? 1 : 0.3)};
     ${({ isSelected }) => isSelected && 'color:white'}
     z-index:50;
     user-select:none;

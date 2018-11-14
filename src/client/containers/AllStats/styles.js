@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   BORDER_COLOR,
   MAIN_COLOR,
-  DARK_MAIN_COLOR,
+  DARK_BORDER_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -10,7 +10,8 @@ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  width: 100%;
+  width: calc(100% - 50px);
+  padding: 25px;
   justify-content: flex-start;
   align-items: flex-start;
 `;
@@ -19,8 +20,8 @@ export const StatContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: white;
-  border: solid 1px ${BORDER_COLOR};
+  background-color: rgba(45, 45, 45, 0.3);
+  border: solid 1px ${DARK_BORDER_COLOR};
   min-width: 175px;
   flex: 1;
   height: 100px;
@@ -32,6 +33,7 @@ export const StatContainer = styled.div`
   cursor: pointer;
   &:hover {
     border: solid 2px ${MAIN_COLOR};
+    background-color: rgba(45, 45, 45, 0.8);
     margin: 14px;
   }
   transition: all 0.1s ease-in-out;
@@ -43,7 +45,6 @@ export const StatValue = styled.div`
   font-size: 0.7em;
   font-weight: bold;
   color: ${MAIN_COLOR};
-  opacity: 0.7;
 `;
 
 export const StatLabel = styled.div`
@@ -53,4 +54,5 @@ export const StatLabel = styled.div`
   margin-top: 25px;
   font-weight: light;
   color: ${BORDER_COLOR};
+  opacity: 0.7;
 `;

@@ -1,14 +1,19 @@
 import styled from 'styled-components';
-import { MAIN_COLOR, LIGHT_GREY } from '../../constants/colors';
+import {
+  MAIN_COLOR,
+  LIGHT_GREY,
+  BACKGROUND_COLOR,
+} from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: calc(100% - 335px);
+  width: calc(100vw - 315px);
   margin-left: 240px;
   min-height: 100vh;
   padding-left: 75px;
+  overflow-y: scroll;
 `;
 
 export const UsersPrewiewContainer = styled.div`
@@ -36,9 +41,9 @@ export const Header = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: ${BACKGROUND_COLOR};
   z-index: 1000;
-  width: 100%;
+  width: calc(100% - 390px);
   top: 0;
   padding-top: 30px;
 `;
@@ -47,5 +52,5 @@ export const Content = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 200px;
+  margin-top: 500px;
 `;

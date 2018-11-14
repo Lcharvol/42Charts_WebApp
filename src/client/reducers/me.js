@@ -16,6 +16,9 @@ const initialState = {
       logtimeInSeconds: 0,
     },
   },
+  infos: {
+    logs: {},
+  },
 };
 
 const reducer = (state = initialState, action) => {

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { DARK_TEXT_COLOR, MAIN_COLOR } from '../../constants/colors';
+import {
+  DARK_TEXT_COLOR,
+  MAIN_COLOR,
+  FONT_COLOR,
+} from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -13,6 +17,8 @@ export const Container = styled.div`
   padding-left: 5px;
   background-color: ${({ color }) => color};
   border-radius: 3px;
+  opacity: ${({ opacity }) => opacity};
+  transition: opacity 0.3s ease-in-out;
 `;
 
 export const Login = styled.div`
@@ -21,7 +27,7 @@ export const Login = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 0.3em;
-  color: ${DARK_TEXT_COLOR};
+  color: ${FONT_COLOR};
   opacity: 0.7;
   margin-left: 25px;
   width: 100px;
@@ -57,4 +63,5 @@ export const CampusLabel = styled.div`
   opacity: 0.7;
   margin-left: 25px;
   width: 100px;
+  color: ${FONT_COLOR};
 `;

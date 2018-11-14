@@ -4,6 +4,7 @@ import { map } from 'ramda';
 
 import Mark from '../../components/Mark';
 import { getSortedMarks, getSince, getRetries } from './utils';
+import { Container } from './styles';
 
 const proptypes = {
   marks: array.isRequired,
@@ -12,7 +13,7 @@ const proptypes = {
 };
 
 const Marks = ({ marks, currentTime, sortBy }) => (
-  <Fragment>
+  <Container>
     {map(
       mark => (
         <Mark
@@ -25,7 +26,7 @@ const Marks = ({ marks, currentTime, sortBy }) => (
       ),
       getSortedMarks(marks, sortBy),
     )}
-  </Fragment>
+  </Container>
 );
 
 Marks.proptypes = proptypes;

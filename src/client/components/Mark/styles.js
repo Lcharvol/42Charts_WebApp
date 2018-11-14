@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import {
-  BORDER_COLOR,
-  DARK_TEXT_COLOR,
-  LIGHT_GREY,
+  DARK_BORDER_COLOR,
+  FONT_COLOR,
+  DARK_FONT_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -10,7 +10,7 @@ export const Container = styled.div`
   display: flex;
   width: 90%;
   min-height: 40px;
-  border-bottom: solid 1px ${BORDER_COLOR};
+  border-bottom: solid 1px ${DARK_BORDER_COLOR};
 `;
 
 export const Name = styled.div`
@@ -18,7 +18,7 @@ export const Name = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: ${DARK_TEXT_COLOR};
+  color: ${FONT_COLOR};
   opacity: 0.9;
   font-size: 0.3em;
 `;
@@ -28,7 +28,7 @@ export const Since = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: ${DARK_TEXT_COLOR};
+  color: ${DARK_FONT_COLOR};
   opacity: 0.5;
   font-size: 0.3em;
   margin-left: 10px;
