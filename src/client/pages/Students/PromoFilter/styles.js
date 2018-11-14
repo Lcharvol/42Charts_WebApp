@@ -36,6 +36,9 @@ export const Label = styled.div`
     ${({ isSelected }) => isSelected && 'color:white'}
     z-index:50;
     user-select:none;
+    &:hover {
+      opacity: 0.8;
+    }
 `;
 
 export const SelectedBox = styled.div`

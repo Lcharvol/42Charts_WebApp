@@ -23,7 +23,8 @@ export const UsersPrewiewContainer = styled.div`
 `;
 
 export const VisibilitySensorBox = styled.div`
-  position: relative;
+  position: absolute;
+  bottom: 400px;
   display: flex;
   width: 100%;
   height: 75px;

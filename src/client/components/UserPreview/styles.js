@@ -18,8 +18,11 @@ export const Container = styled.div`
   padding-left: 5px;
   background-color: ${({ color }) => color};
   border-radius: 3px;
-  opacity: ${({ opacity }) => opacity};
-  transition: opacity 0.3s ease-in-out;
+  opacity: 0.7;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const Login = styled.div`

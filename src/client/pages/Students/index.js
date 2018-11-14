@@ -38,10 +38,12 @@ const Ranking = ({
   usersByLevels,
   filterBy,
   usersRatio,
+  isFetching,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
   handleChangeFilterBy,
+  handleChangeIsFetching,
 }) => (
   <Container>
     <Header>
@@ -56,6 +58,7 @@ const Ranking = ({
         handleChangeSelectedPromo={handleChangeSelectedPromo}
         filterBy={filterBy}
         handleChangeFilterBy={handleChangeFilterBy}
+        usable={!isFetching}
       />
     </Header>
     <Content>
@@ -72,6 +75,7 @@ const Ranking = ({
       <VisibilitySensor
         onChange={() => {
           if (!isEmpty(users)) {
+            handleChangeIsFetching(true);
             handleChangeStart(start + LOADING_OFFSET);
             getUsersByPromo(
               selectedPromo !== ALL_PROMO_SELECTED ? selectedPromo : '',
@@ -113,12 +117,14 @@ const enhance = compose(
       initialStart = 0,
       initialFilterBy = 0,
       initialUsersRatio = [],
+      initialIsFetching = false,
     }) => ({
       selectedPromo: initialSelectedPromo,
       users: initialUsers,
       start: initialStart,
       filterBy: initialFilterBy,
       usersRatio: initialUsersRatio,
+      isFetching: initialIsFetching,
     }),
     {
       handleChangeSelectedPromo: () => newPromo => ({
@@ -142,6 +148,9 @@ const enhance = compose(
       }),
       handleChangeUsersRatio: () => newUsersRatio => ({
         usersRatio: newUsersRatio,
+      }),
+      handleChangeIsFetching: () => newValue => ({
+        isFetching: newValue,
       }),
     },
   ),
@@ -179,13 +188,13 @@ const enhance = compose(
           .then(res => {
             this.props.handleChangeUsers(res);
             this.props.handleChangeStart(this.props.start + LOADING_OFFSET);
+            reqGetUsersRatio(
+              this.props.selectedPromo,
+              find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
+            )
+              .then(res => this.props.handleChangeUsersRatio(res))
+              .catch(err => err);
           })
-          .catch(err => err);
-        reqGetUsersRatio(
-          this.props.selectedPromo,
-          find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
-        )
-          .then(res => this.props.handleChangeUsersRatio(res))
           .catch(err => err);
       }
     },

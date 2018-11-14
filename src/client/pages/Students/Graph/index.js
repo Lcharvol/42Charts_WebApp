@@ -1,6 +1,7 @@
 import React from 'react';
 import { array, number } from 'prop-types';
 import { length } from 'ramda';
+import { onlyUpdateForKeys } from 'recompose';
 
 import { Container, TopSide, BottomSide, Bar, Label } from './styles';
 import Separator from '../../../components/Separator';
@@ -13,6 +14,7 @@ const proptypes = {
 
 const Graph = ({ usersByUnit = [], nbUsers }) => (
   <Container>
+    {console.log('Graph Render')}
     <TopSide>
       {usersByUnit.map((UsersPerUnit, id) => (
         <Bar
@@ -33,4 +35,4 @@ const Graph = ({ usersByUnit = [], nbUsers }) => (
 
 Graph.propTypes = proptypes;
 
-export default Graph;
+export default onlyUpdateForKeys(['usersByUnit'])(Graph);

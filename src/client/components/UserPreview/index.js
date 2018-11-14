@@ -1,7 +1,12 @@
 import React from 'react';
 import { object, string } from 'prop-types';
 import { equals } from 'ramda';
-import { compose, withStateHandlers, lifecycle } from 'recompose';
+import {
+  compose,
+  withStateHandlers,
+  lifecycle,
+  onlyUpdateForKeys,
+} from 'recompose';
 
 import { Container, Login, Level, Rank, CampusLabel, LogTime } from './styles';
 import { UserAvatar } from '../UserAvatar';
@@ -37,16 +42,20 @@ const getLogtTime = logTimInSecond => {
   return `${days} D ${hours} H`;
 };
 
-const UserPreview = ({ user, rank, myLogin = '', opacity }) => (
+const UserPreview = ({ user, rank, myLogin = '' }) => (
   <Container
-    opacity={opacity}
     color={
       myLogin.toLowerCase() === user.login.toLowerCase()
         ? 'rgba(46,204,113, 0.1)'
         : 'none'
     }
   >
-    <UserAvatar profilPicture={user.imageUrl} width={'60px'} height={'60px'} />
+    <UserAvatar
+      profilPicture={user.imageUrl}
+      width={'60px'}
+      height={'60px'}
+      round
+    />
     <Rank color={getRankColor(rank)}>{rank}</Rank>
     <Login>{user.login}</Login>
     <Level color={getLevelColor(user.cursusLevel)}>
@@ -59,22 +68,4 @@ const UserPreview = ({ user, rank, myLogin = '', opacity }) => (
 
 UserPreview.propTypes = propTypes;
 
-const enhance = compose(
-  withStateHandlers(
-    ({ initialOpacity = 0 }) => ({
-      opacity: initialOpacity,
-    }),
-    {
-      handleChangeOpacity: () => newOpacity => ({
-        opacity: newOpacity,
-      }),
-    },
-  ),
-  lifecycle({
-    componentDidMount() {
-      setTimeout(() => this.props.handleChangeOpacity(1), 10);
-    },
-  }),
-);
-
-export default enhance(UserPreview);
+export default UserPreview;

@@ -29,11 +29,11 @@ export const BottomSide = styled.div`
 export const Bar = styled.div`
   position: relative;
   display: flex;
-  height: ${({ value }) => value * 300}%;
+  height: ${({ value }) => value * 200}%;
   min-width: ${({ valuesLength }) => 100 / valuesLength}%;
   background-color: ${MAIN_COLOR};
   opacity: ${({ value }) => value * 20};
-  transition: height 0.4s ease-in-out, width 0.4s ease-in-out,
+  transition: height 0.4s ease-in-out, width 0.4s ease-in-out;
     opacity 0.4s ease-in-out;
   &:hover {
     opacity: 1;
