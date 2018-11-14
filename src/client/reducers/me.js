@@ -15,6 +15,9 @@ const initialState = {
     higherLogInMonth: {
       logtimeInSeconds: 0,
     },
+    hostPrefered: {
+      logtimeInSeconds: 0,
+    },
   },
   infos: {
     logs: {},

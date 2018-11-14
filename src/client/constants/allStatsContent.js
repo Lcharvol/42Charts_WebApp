@@ -9,6 +9,9 @@ import {
   getHighterLogPerMonth,
   getMyNumberOfLogs,
   getMyTotalLogTime,
+  getMyLogsAllRank,
+  getMyLogsPromoRank,
+  getMyPreferedHost,
 } from '../selectors/me';
 
 export const ALL_STATS_CONTENT = [
@@ -61,5 +64,20 @@ export const ALL_STATS_CONTENT = [
     id: 9,
     value: state => getMyTotalLogTime(state),
     label: 'Total Logtime',
+  },
+  {
+    id: 10,
+    value: state => getMyLogsAllRank(state),
+    label: 'Logs All Rank',
+  },
+  {
+    id: 11,
+    value: state => getMyLogsPromoRank(state),
+    label: 'Logs Promo Rank',
+  },
+  {
+    id: 12,
+    value: state => getMyPreferedHost(state),
+    label: 'Most used Computer',
   },
 ];

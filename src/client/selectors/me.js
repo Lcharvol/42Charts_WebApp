@@ -63,3 +63,14 @@ export const getMyTotalLogTime = state => {
   const hours = Math.floor((logTimInSecond - days * 86400) / 3600);
   return `${days} D ${hours} H`;
 };
+
+export const getMyLogsAllRank = state => state.me.logs.allRank;
+
+export const getMyLogsPromoRank = state => state.me.logs.promoRank;
+
+export const getMyPreferedHost = state => {
+  const { name, logtimeInSeconds } = state.me.logs.hostPrefered;
+  const days = Math.floor(logtimeInSeconds / 86400);
+  const hours = Math.floor((logtimeInSeconds - days * 86400) / 3600);
+  return `${name} ${days} D ${hours} H`;
+};
