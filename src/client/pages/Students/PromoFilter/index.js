@@ -1,6 +1,7 @@
 import React from 'react';
-import { isEmpty, findIndex, fromPairs } from 'ramda';
-import { array, string, func } from 'prop-types';
+import { isEmpty, findIndex } from 'ramda';
+import { array, string, func, bool } from 'prop-types';
+import { onlyUpdateForKeys } from 'recompose';
 
 import { Container, Label, SelectedBox, Content, FilterLabel } from './styles';
 import { FILTER_VALUES } from '../constants';
@@ -10,6 +11,7 @@ const propTypes = {
   promos: array,
   selectedPromo: string.isRequired,
   handleChangeSelectedPromo: func.isRequired,
+  usable: bool.isRequired,
 };
 
 const PromoFilter = ({
@@ -18,6 +20,7 @@ const PromoFilter = ({
   filterBy,
   handleChangeSelectedPromo,
   handleChangeFilterBy,
+  usable,
 }) => (
   <Container>
     <Content>
@@ -25,7 +28,7 @@ const PromoFilter = ({
         <Label
           key={id}
           isSelected={promo === selectedPromo}
-          onClick={() => handleChangeSelectedPromo(promo)}
+          onClick={() => usable && handleChangeSelectedPromo(promo)}
         >
           {promo}
         </Label>
@@ -49,4 +52,6 @@ const PromoFilter = ({
 
 PromoFilter.propTypes = propTypes;
 
-export default PromoFilter;
+export default onlyUpdateForKeys(['promos', 'selectedPromo', 'usable'])(
+  PromoFilter,
+);

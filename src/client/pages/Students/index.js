@@ -74,7 +74,7 @@ const Ranking = ({
       </UsersPrewiewContainer>
       <VisibilitySensor
         onChange={() => {
-          if (!isEmpty(users)) {
+          if (!isEmpty(users) && !isFetching) {
             handleChangeIsFetching(true);
             handleChangeStart(start + LOADING_OFFSET);
             getUsersByPromo(
@@ -83,7 +83,10 @@ const Ranking = ({
               start,
               find(propEq('id', filterBy))(FILTER_VALUES).label,
             )
-              .then(res => enhanceUsers(res))
+              .then(res => {
+                enhanceUsers(res);
+                setTimeout(() => handleChangeIsFetching(false), 1000);
+              })
               .catch(err => console.log('err: ', err));
           }
         }}
@@ -177,11 +180,12 @@ const enhance = compose(
           prevProps.filterBy !== this.props.filterBy) &&
         isEmpty(this.props.users)
       ) {
+        this.props.handleChangeIsFetching(true);
         getUsersByPromo(
           this.props.selectedPromo !== ALL_PROMO_SELECTED
             ? this.props.selectedPromo
             : '',
-          LOADING_OFFSET,
+          25,
           this.props.start,
           find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
         )
@@ -194,6 +198,7 @@ const enhance = compose(
             )
               .then(res => this.props.handleChangeUsersRatio(res))
               .catch(err => err);
+            setTimeout(() => this.props.handleChangeIsFetching(false), 1000);
           })
           .catch(err => err);
       }
