@@ -33,8 +33,11 @@ export const Bar = styled.div`
   min-width: ${({ valuesLength }) => 100 / valuesLength}%;
   background-color: ${MAIN_COLOR};
   opacity: ${({ value }) => value * 20};
+  transition: height 0.4s ease-in-out, width 0.4s ease-in-out,
+    opacity 0.4s ease-in-out;
   &:hover {
-    opacity: 0.9;
+    opacity: 1;
+    transition: opacity 0s;
   }
   cursor: pointer;
 `;

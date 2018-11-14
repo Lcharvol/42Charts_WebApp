@@ -3,7 +3,7 @@ import { object, string } from 'prop-types';
 import { equals } from 'ramda';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
 
-import { Container, Login, Level, Rank, CampusLabel } from './styles';
+import { Container, Login, Level, Rank, CampusLabel, LogTime } from './styles';
 import { UserAvatar } from '../UserAvatar';
 import {
   FIRST_RANK_COLOR,
@@ -31,6 +31,12 @@ const getRankColor = rank => {
   return BORDER_COLOR;
 };
 
+const getLogtTime = logTimInSecond => {
+  const days = Math.floor(logTimInSecond / 86400);
+  const hours = Math.floor((logTimInSecond - days * 86400) / 3600);
+  return `${days} D ${hours} H`;
+};
+
 const UserPreview = ({ user, rank, myLogin = '', opacity }) => (
   <Container
     opacity={opacity}
@@ -47,6 +53,7 @@ const UserPreview = ({ user, rank, myLogin = '', opacity }) => (
       {user.cursusLevel.toFixed(2)}
     </Level>
     <CampusLabel>{user.campusName}</CampusLabel>
+    <LogTime>{getLogtTime(user.totalLogTime)}</LogTime>
   </Container>
 );
 

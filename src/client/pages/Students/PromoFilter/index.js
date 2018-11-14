@@ -1,10 +1,10 @@
 import React from 'react';
-import { isEmpty, findIndex } from 'ramda';
+import { isEmpty, findIndex, fromPairs } from 'ramda';
 import { array, string, func } from 'prop-types';
 
-import { Container, Label, SelectedBox, Content } from './styles';
-import Separator from '../../../components/Separator';
-import { MAIN_COLOR } from '../../../constants/colors';
+import { Container, Label, SelectedBox, Content, FilterLabel } from './styles';
+import { FILTER_VALUES } from '../constants';
+import SelectButton from '../../../components/SelectButton';
 
 const propTypes = {
   promos: array,
@@ -12,7 +12,13 @@ const propTypes = {
   handleChangeSelectedPromo: func.isRequired,
 };
 
-const PromoFilter = ({ promos, selectedPromo, handleChangeSelectedPromo }) => (
+const PromoFilter = ({
+  promos,
+  selectedPromo,
+  filterBy,
+  handleChangeSelectedPromo,
+  handleChangeFilterBy,
+}) => (
   <Container>
     <Content>
       {promos.map((promo, id) => (
@@ -31,6 +37,12 @@ const PromoFilter = ({ promos, selectedPromo, handleChangeSelectedPromo }) => (
           }
         />
       )}
+      <FilterLabel>Filter by </FilterLabel>
+      <SelectButton
+        values={FILTER_VALUES}
+        value={filterBy}
+        handler={handleChangeFilterBy}
+      />
     </Content>
   </Container>
 );

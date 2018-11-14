@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  DARK_TEXT_COLOR,
+  DARK_FONT_COLOR,
   MAIN_COLOR,
   FONT_COLOR,
 } from '../../../constants/colors';
@@ -48,4 +48,14 @@ export const SelectedBox = styled.div`
   opacity: 0.8;
   left: ${({ leftPosition }) => leftPosition}px;
   transition: left 0.2s ease-in-out;
+`;
+
+export const FilterLabel = styled.div`
+  position: relative;
+  display: flex;
+  font-size: 0.3em;
+  color: ${DARK_FONT_COLOR};
+  margin-right: 15px;
+  margin-left: 25px;
+  min-width: 60px;
 `;

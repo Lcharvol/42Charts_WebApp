@@ -21,7 +21,7 @@ import {
 import PromoFilter from './PromoFilter';
 import { reqGetPromo } from '../../requests';
 import { loadPromos } from '../../actions/app';
-import { ALL_PROMO_SELECTED } from '../Ranking/constants';
+import { ALL_PROMO_SELECTED } from '../Students/constants';
 
 const Users = ({
   usersByLevels,

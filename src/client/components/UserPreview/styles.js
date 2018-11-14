@@ -10,7 +10,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  min-width: 100%;
+  width: 80%;
+  min-width: 425px;
   height: 75px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -64,4 +65,15 @@ export const CampusLabel = styled.div`
   margin-left: 25px;
   width: 100px;
   color: ${FONT_COLOR};
+`;
+
+export const LogTime = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: ${MAIN_COLOR};
+  font-size: 0.4em;
+  min-width: 125px;
+  margin-left: 10px;
 `;

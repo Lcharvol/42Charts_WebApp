@@ -11,7 +11,7 @@ const proptypes = {
   nbUsers: number.isRequired,
 };
 
-const Graph = ({ usersByUnit = {}, nbUsers }) => (
+const Graph = ({ usersByUnit = [], nbUsers }) => (
   <Container>
     <TopSide>
       {usersByUnit.map((UsersPerUnit, id) => (

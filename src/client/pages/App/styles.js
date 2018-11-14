@@ -3,7 +3,6 @@ import { BACKGROUND_COLOR } from '../../constants/colors';
 
 export const AppContainer = styled.div`
   display: flex;
-  width: 100vw;
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
   color: rgb(35, 35, 35);

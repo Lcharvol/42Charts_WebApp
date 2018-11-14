@@ -1,10 +1,10 @@
 import React from 'react';
-import { map, isEmpty } from 'ramda';
+import { map, isEmpty, find, propEq, reduce } from 'ramda';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VisibilitySensor from 'react-visibility-sensor';
-import { LOADING_OFFSET, ALL_PROMO_SELECTED } from './constants';
+import { LOADING_OFFSET, ALL_PROMO_SELECTED, FILTER_VALUES } from './constants';
 
 import {
   Container,
@@ -17,7 +17,7 @@ import {
 import PromoFilter from './PromoFilter';
 import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
-import { getUsersByPromo } from '../../requests';
+import { getUsersByPromo, reqGetUsersRatio } from '../../requests';
 import {
   getPromos,
   getTotalUsers,
@@ -31,22 +31,31 @@ const Ranking = ({
   start,
   promos,
   selectedPromo,
-  handleChangeSelectedPromo,
-  handleChangeStart,
   enhanceUsers,
   users,
   myLogin,
   totalUsers,
   usersByLevels,
+  filterBy,
+  usersRatio,
+  handleChangeUsersRatio,
+  handleChangeSelectedPromo,
+  handleChangeStart,
+  handleChangeFilterBy,
 }) => (
   <Container>
     <Header>
       <Title>Students</Title>
-      <Graph nbUsers={totalUsers} usersByUnit={usersByLevels} />
+      <Graph
+        nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
+        usersByUnit={usersRatio}
+      />
       <PromoFilter
         promos={promos}
         selectedPromo={selectedPromo}
         handleChangeSelectedPromo={handleChangeSelectedPromo}
+        filterBy={filterBy}
+        handleChangeFilterBy={handleChangeFilterBy}
       />
     </Header>
     <Content>
@@ -68,6 +77,7 @@ const Ranking = ({
               selectedPromo !== ALL_PROMO_SELECTED ? selectedPromo : '',
               LOADING_OFFSET,
               start,
+              find(propEq('id', filterBy))(FILTER_VALUES).label,
             )
               .then(res => enhanceUsers(res))
               .catch(err => console.log('err: ', err));
@@ -97,10 +107,18 @@ const enhance = compose(
     mapDispatchToProps,
   ),
   withStateHandlers(
-    ({ initialSelectedPromo = '', initialUsers = [], initialStart = 0 }) => ({
+    ({
+      initialSelectedPromo = '',
+      initialUsers = [],
+      initialStart = 0,
+      initialFilterBy = 0,
+      initialUsersRatio = [],
+    }) => ({
       selectedPromo: initialSelectedPromo,
       users: initialUsers,
       start: initialStart,
+      filterBy: initialFilterBy,
+      usersRatio: initialUsersRatio,
     }),
     {
       handleChangeSelectedPromo: () => newPromo => ({
@@ -117,6 +135,14 @@ const enhance = compose(
       enhanceUsers: ({ users }) => newUsers => ({
         users: [...users, ...newUsers],
       }),
+      handleChangeFilterBy: () => newFilter => ({
+        filterBy: newFilter,
+        start: 0,
+        users: [],
+      }),
+      handleChangeUsersRatio: () => newUsersRatio => ({
+        usersRatio: newUsersRatio,
+      }),
     },
   ),
   lifecycle({
@@ -126,11 +152,20 @@ const enhance = compose(
           .then(res => this.props.loadPromos(res))
           .catch(err => err);
       }
+      if (isEmpty(this.props.usersRatio)) {
+        reqGetUsersRatio(
+          this.props.selectedPromo,
+          find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
+        )
+          .then(res => this.props.handleChangeUsersRatio(res))
+          .catch(err => err);
+      }
       this.props.handleChangeSelectedPromo(ALL_PROMO_SELECTED);
     },
     componentDidUpdate(prevProps) {
       if (
-        prevProps.selectedPromo !== this.props.selectedPromo &&
+        (prevProps.selectedPromo !== this.props.selectedPromo ||
+          prevProps.filterBy !== this.props.filterBy) &&
         isEmpty(this.props.users)
       ) {
         getUsersByPromo(
@@ -139,11 +174,18 @@ const enhance = compose(
             : '',
           LOADING_OFFSET,
           this.props.start,
+          find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
         )
           .then(res => {
             this.props.handleChangeUsers(res);
             this.props.handleChangeStart(this.props.start + LOADING_OFFSET);
           })
+          .catch(err => err);
+        reqGetUsersRatio(
+          this.props.selectedPromo,
+          find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
+        )
+          .then(res => this.props.handleChangeUsersRatio(res))
           .catch(err => err);
       }
     },

@@ -34,7 +34,6 @@ export const Title = styled.div`
   display: flex;
   color: ${MAIN_COLOR};
   margin-bottom: 25px;
-  opacity: 0.8;
 `;
 
 export const Header = styled.div`
@@ -43,7 +42,7 @@ export const Header = styled.div`
   flex-direction: column;
   background-color: ${BACKGROUND_COLOR};
   z-index: 1000;
-  width: calc(100% - 390px);
+  width: calc(100vw - 390px);
   top: 0;
   padding-top: 30px;
 `;
@@ -53,4 +52,5 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 500px;
+  width: 100%;
 `;
