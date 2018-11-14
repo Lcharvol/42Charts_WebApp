@@ -66,7 +66,7 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const Login = styled.div`
+export const Login = styled(Link)`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -74,6 +74,7 @@ export const Login = styled.div`
   font-size: 0.4em;
   margin-bottom: 15px;
   opacity: 0.9;
+  text-decoration: none;
 `;
 
 export const Logout = styled.div`

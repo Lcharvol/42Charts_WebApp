@@ -12,7 +12,7 @@ const SideMenuHeader = ({ me }) => {
         margin={'15px'}
         profilPicture={me.imageUrl}
       />
-      <Login>{me.login}</Login>
+      <Login to={'/'}>{me.login}</Login>
     </SideMenuHeaderContainer>
   );
 };
