@@ -68,9 +68,11 @@ export const getMyLogsAllRank = state => state.me.logs.allRank;
 
 export const getMyLogsPromoRank = state => state.me.logs.promoRank;
 
-export const getMyPreferedHost = state => {
-  const { name, logtimeInSeconds } = state.me.logs.hostPrefered;
+export const getMyPreferedHostName = state => state.me.logs.hostPrefered.name;
+
+export const getMyPreferedHostTime = state => {
+  const { logtimeInSeconds } = state.me.logs.hostPrefered;
   const days = Math.floor(logtimeInSeconds / 86400);
   const hours = Math.floor((logtimeInSeconds - days * 86400) / 3600);
-  return `${name} ${days} D ${hours} H`;
+  return `${days} Days ${hours} Hours`;
 };
