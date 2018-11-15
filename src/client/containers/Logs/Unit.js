@@ -1,7 +1,7 @@
 import React from 'react';
 import { onlyUpdateForKeys } from 'recompose';
 
-import { UnitContainer } from './styles';
+import { UnitContainer, UnitContent } from './styles';
 import { SEC_PER_DAY, SEC_PER_MONTH } from './constants';
 
 const Unit = ({
@@ -13,6 +13,7 @@ const Unit = ({
   handleChangeHoveredUnit,
   handleChangeSelectedMonth,
   handleChangeLogsFilter,
+  hoveredUnit,
 }) => {
   const value = logsFilterObject.getUnitLog(
     id + 1,
@@ -24,11 +25,6 @@ const Unit = ({
   const min = Math.floor((value - hours * 3600) / 60);
   return (
     <UnitContainer
-      value={
-        logsFilterObject.nbValue === 12
-          ? (value / SEC_PER_MONTH) * 100
-          : (value / SEC_PER_DAY) * 100
-      }
       width={100 / logsFilterObject.nbValue}
       onMouseEnter={() => handleChangeHoveredUnit(id, `${hours} h ${min} min`)}
       onMouseLeave={() => handleChangeHoveredUnit(undefined, '')}
@@ -38,7 +34,16 @@ const Unit = ({
           handleChangeLogsFilter(0);
         }
       }}
-    />
+    >
+      <UnitContent
+        value={
+          logsFilterObject.nbValue === 12
+            ? (value / SEC_PER_MONTH) * 100
+            : (value / SEC_PER_DAY) * 100
+        }
+        isHover={hoveredUnit === id}
+      />
+    </UnitContainer>
   );
 };
 
@@ -47,4 +52,5 @@ export default onlyUpdateForKeys([
   'selectedYear',
   'selectedMonth',
   'logsFilterObject',
+  'hoveredUnit',
 ])(Unit);

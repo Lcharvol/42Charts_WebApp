@@ -35,17 +35,27 @@ export const BottomSide = styled.div`
 export const UnitContainer = styled.div`
   position: relative;
   display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   width: ${({ width }) => width}%;
-  height: ${({ value }) => value}%;
-  background-color: ${MAIN_COLOR};
-  opacity: ${({ value }) => value / 100 + 0.3};
-  transition: height 0.4s ease-in-out, width 0.4s ease-in-out,
-    opacity 0.4s ease-in-out;
+  height: 100%;
   &:hover {
     opacity: 1;
     transition: opacity 0s;
   }
   cursor: pointer;
+`;
+
+export const UnitContent = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: ${({ value }) => value}%;
+  opacity: ${({ value }) => value / 100 + 0.3};
+  background-color: ${MAIN_COLOR};
+  transition: height 0.4s ease-in-out, width 0.4s ease-in-out,
+    opacity 0.4s ease-in-out;
+  ${({ isHover }) => isHover && 'opacity: 1; transition: opacity 0s;'};
 `;
 
 export const TimeInfo = styled.div`

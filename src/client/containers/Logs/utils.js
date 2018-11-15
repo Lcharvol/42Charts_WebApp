@@ -1,22 +1,21 @@
 import { length, isNil, isEmpty, map } from 'ramda';
 
-export const getMonthLabel = monthId => {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  return months[monthId];
-};
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+export const getMonthLabel = monthId => months[monthId];
 
 export const getDayLog = (dayId, logs, selectedYear, selectedMonth) => {
   if (isEmpty(logs) || length(logs) === 0 || isNil(logs)) return 0;
@@ -83,4 +82,10 @@ export const getTotalTimeOfSelectedLogsFilter = (
   const hours = Math.floor(sum / 3600);
   const min = Math.floor((sum - hours * 3600) / 60);
   return `${hours} h ${min} min`;
+};
+
+export const getHoverInfo = (hoveredUnitId, nbValue) => {
+  const months = ['Jan'];
+  if (nbValue === 12) return getMonthLabel(hoveredUnitId) || '';
+  return !isNil(hoveredUnitId) ? hoveredUnitId + 1 : '';
 };

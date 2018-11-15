@@ -16,7 +16,11 @@ import {
 import Separator from '../../components/Separator';
 import { LOGS_FILTER_VALUES } from '../../constants/selectButtonValues';
 import { MIN_YEAR } from './constants';
-import { getMonthLabel, getTotalTimeOfSelectedLogsFilter } from './utils';
+import {
+  getMonthLabel,
+  getTotalTimeOfSelectedLogsFilter,
+  getHoverInfo,
+} from './utils';
 import Unit from './Unit';
 import { DARK_BORDER_COLOR } from '../../constants/colors';
 
@@ -62,6 +66,7 @@ const Logs = ({
               handleChangeHoveredUnit={handleChangeHoveredUnit}
               handleChangeSelectedMonth={handleChangeSelectedMonth}
               handleChangeLogsFilter={handleChangeLogsFilter}
+              hoveredUnit={hoveredUnit}
             />
           ),
           logsFilterObject.nbValue,
@@ -102,9 +107,11 @@ const Logs = ({
           />
         </Arrows>
         <TimeInfo>
-          {logsFilterObject.nbValue === 30
-            ? `${getMonthLabel(selectedMonth - 1)} ${selectedYear}`
-            : selectedYear}
+          {`${getHoverInfo(hoveredUnit, logsFilterObject.nbValue)} ${
+            logsFilterObject.nbValue === 30
+              ? `${getMonthLabel(selectedMonth - 1)} ${selectedYear}`
+              : selectedYear
+          }`}
         </TimeInfo>
         <HoverValue>
           {length(hoveredUnitValue) > 0

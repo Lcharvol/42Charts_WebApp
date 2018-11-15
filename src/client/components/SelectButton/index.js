@@ -47,7 +47,7 @@ const SelectButton = ({
             <Value
               key={elemValue.id}
               onClick={() => {
-                if (selectedValueId !== elemValue.id) {
+                if (value !== elemValue.label) {
                   handleChangeSelectedValueId(elemValue.id);
                   handler(elemValue.id);
                 }
