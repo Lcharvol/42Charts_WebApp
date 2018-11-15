@@ -35,6 +35,7 @@ export const Title = styled.div`
   display: flex;
   color: ${MAIN_COLOR};
   margin-bottom: 25px;
+  font-weight: bold;
 `;
 
 export const Header = styled.div`

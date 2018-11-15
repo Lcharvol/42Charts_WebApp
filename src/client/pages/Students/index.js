@@ -51,6 +51,7 @@ const Ranking = ({
       <Graph
         nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
         usersByUnit={usersRatio}
+        filterBy={filterBy}
       />
       <PromoFilter
         promos={promos}

@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
 import {
-  BORDER_COLOR,
-  LIGHT_GREY,
-  DARK_TEXT_COLOR,
-  DARK_BACKGROUND_COLOR,
   LIGHT_BACKGROUND_COLOR,
   DARK_BORDER_COLOR,
   BACKGROUND_COLOR,
@@ -25,6 +21,7 @@ export const Container = styled.div`
   cursor: pointer;
   &:hover {
     background-color: ${BACKGROUND_COLOR};
+    border: solid 1px ${DARK_BORDER_COLOR};
   }
   z-index: 1000;
 `;

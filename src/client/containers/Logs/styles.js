@@ -87,10 +87,10 @@ export const LeftArrow = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.5;
+  opacity: 0.7;
   cursor:pointer;
   &:hover {
-    opacity:0.7;
+    opacity:1;
   };
   margin-right:10px;
   `;
@@ -105,10 +105,10 @@ export const RightArrow = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.5;
+  opacity: 0.7;
   cursor:pointer;
   &:hover {
-    opacity:0.7;
+    opacity:1;
   };
   margin-left:10px;
 `;

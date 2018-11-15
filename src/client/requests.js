@@ -4,7 +4,7 @@ import { values } from 'ramda';
 const chartsToken = localStorage.getItem('chartsToken');
 
 const axios = Axios.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'http://e3r5p19:3000/',
   headers: {
     Authorization: 'Bearer ' + chartsToken,
     ContentType: 'application/json',
@@ -50,7 +50,7 @@ export const postLogin = code =>
       redirect_uri: 'http://localhost:8080/login',
     },
   })
-    .then(res => res.data.jwt)
+    .then(res => res.data.accessToken)
     .catch(err => {
       throw err;
     });
