@@ -8,18 +8,37 @@ import {
 export const Container = styled.div`
   position: relative;
   display: flex;
+  width: 100%;
+  min-height: 70px;
+  flex-drap: wrap;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  height: 70px;
 `;
 
 export const Content = styled.div`
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 25px;
+  height: 100%;
+`;
+
+export const LeftSide = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50px;
+`;
+
+export const RightSide = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50px;
 `;
 
 export const Label = styled.div`

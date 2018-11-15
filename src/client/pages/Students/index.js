@@ -1,5 +1,5 @@
 import React from 'react';
-import { map, isEmpty, find, propEq, reduce } from 'ramda';
+import { isEmpty, find, propEq, reduce } from 'ramda';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,6 +17,7 @@ import {
 import PromoFilter from './PromoFilter';
 import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
+import Spinner from '../../components/Spinner';
 import { getUsersByPromo, reqGetUsersRatio } from '../../requests';
 import {
   getPromos,
@@ -72,28 +73,30 @@ const Ranking = ({
             user={user}
           />
         ))}
+        <VisibilitySensor
+          onChange={() => {
+            if (!isEmpty(users) && !isFetching) {
+              handleChangeIsFetching(true);
+              handleChangeStart(start + LOADING_OFFSET);
+              getUsersByPromo(
+                selectedPromo !== ALL_PROMO_SELECTED ? selectedPromo : '',
+                LOADING_OFFSET,
+                start,
+                find(propEq('id', filterBy))(FILTER_VALUES).label,
+              )
+                .then(res => {
+                  enhanceUsers(res);
+                  setTimeout(() => handleChangeIsFetching(false), 1000);
+                })
+                .catch(err => console.log('err: ', err));
+            }
+          }}
+        >
+          <VisibilitySensorBox>
+            <Spinner />
+          </VisibilitySensorBox>
+        </VisibilitySensor>
       </UsersPrewiewContainer>
-      <VisibilitySensor
-        onChange={() => {
-          if (!isEmpty(users) && !isFetching) {
-            handleChangeIsFetching(true);
-            handleChangeStart(start + LOADING_OFFSET);
-            getUsersByPromo(
-              selectedPromo !== ALL_PROMO_SELECTED ? selectedPromo : '',
-              LOADING_OFFSET,
-              start,
-              find(propEq('id', filterBy))(FILTER_VALUES).label,
-            )
-              .then(res => {
-                enhanceUsers(res);
-                setTimeout(() => handleChangeIsFetching(false), 1000);
-              })
-              .catch(err => console.log('err: ', err));
-          }
-        }}
-      >
-        <VisibilitySensorBox />
-      </VisibilitySensor>
     </Content>
   </Container>
 );
@@ -192,7 +195,7 @@ const enhance = compose(
         )
           .then(res => {
             this.props.handleChangeUsers(res);
-            this.props.handleChangeStart(this.props.start + LOADING_OFFSET);
+            this.props.handleChangeStart(this.props.start + 25);
             reqGetUsersRatio(
               this.props.selectedPromo,
               find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,

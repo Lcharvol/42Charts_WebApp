@@ -56,7 +56,7 @@ const UserPreview = ({ user, rank, myLogin = '' }) => (
       height={'60px'}
       round
     />
-    <Rank color={getRankColor(rank)}>{rank}</Rank>
+    <Rank color={getRankColor(rank)}>{user.rank}</Rank>
     <Login>{user.login}</Login>
     <Level color={getLevelColor(user.cursusLevel)}>
       {user.cursusLevel.toFixed(2)}

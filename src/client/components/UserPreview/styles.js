@@ -23,6 +23,7 @@ export const Container = styled.div`
   &:hover {
     opacity: 1;
   }
+  min-width: 560px;
 `;
 
 export const Login = styled.div`

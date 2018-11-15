@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom';
 import {
   SIDE_MENU_COLOR,
   BORDER_COLOR,
+  LIGHT_BACKGROUND_COLOR,
   DARK_TEXT_COLOR,
   MAIN_COLOR,
   DARK_MAIN_COLOR,
+  BACKGROUND_COLOR,
+  DARK_BORDER_COLOR,
+  FONT_COLOR,
+  DARK_FONT_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -14,15 +19,18 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 200px;
-  background-color: ${SIDE_MENU_COLOR};
+  background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(40, 40, 40));
   height: 100vh;
   top: 0;
   left: ${({ hidden }) => (hidden ? -250 : 0)}px;
   padding-top: 50px;
   padding-right: 20px;
   padding-left: 20px;
-  border-right: 1px ${BORDER_COLOR} solid;
+  border-right: 1px ${DARK_BORDER_COLOR} solid;
   z-index: 10000;
+  @media (max-width: 1000px) {
+    width: 50px;
+  }
   transition: left 0.3s eas-n-out;
 `;
 
@@ -60,7 +68,8 @@ export const StyledLink = styled(Link)`
   width: 100%;
   height: 100%;
   transition: color 0.1s ease-in;
-  color: ${DARK_TEXT_COLOR};
+  color: ${DARK_FONT_COLOR};
+  opacity: 0.8;
   &:hover {
     color: ${MAIN_COLOR};
   }
@@ -70,7 +79,7 @@ export const Login = styled(Link)`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  color: ${DARK_TEXT_COLOR};
+  color: ${MAIN_COLOR};
   font-size: 0.4em;
   margin-bottom: 15px;
   opacity: 0.9;
@@ -83,9 +92,9 @@ export const Logout = styled.div`
   text-decoration: none;
   width: 100%;
   height: 100%;
-  opacity: 0.9;
   transition: all 0.1s ease-in;
-  color: ${MAIN_COLOR};
+  color: ${DARK_FONT_COLOR};
+  opacity: 0.8;
   &:hover {
     opacity: 0.5;
   }

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { BORDER_COLOR, MAIN_COLOR } from '../../constants/colors';
+import {
+  BORDER_COLOR,
+  MAIN_COLOR,
+  BACKGROUND_COLOR,
+} from '../../constants/colors';
 
 import LogoUI from '../../../../public/logo.svg';
 
@@ -21,8 +25,7 @@ export const LoginContent = styled.div`
   align-items: center;
   width: 400px;
   height: 250px;
-  background-color: white;
-  border: 1px ${BORDER_COLOR} solid;
+  background-image: linear-gradient(rgb(40, 40, 40), ${BACKGROUND_COLOR});
   border-radius: 3px;
 `;
 

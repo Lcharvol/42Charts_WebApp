@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router';
 import { length, split, takeLast, isNil } from 'ramda';
 
 import { Container, LoginContent, Logo, LoginButton } from './styles';
@@ -10,13 +9,10 @@ const getCodeFromUrlParams = urlParams => takeLast(1, split('=', urlParams))[0];
 
 const Login = ({ history, ...props }) => {
   const code = getCodeFromUrlParams(props.location.search);
-  if (length(code) > 0 && !isNil(code))
-    postLogin(code)
-      .then(jwt => {
-        localStorage.setItem('chartsToken', jwt);
-        window.location.replace('/');
-      })
-      .catch(() => window.location.reload());
+  if (length(code) > 0 && !isNil(code)) {
+    localStorage.setItem('chartsToken', code);
+    window.location.reload();
+  }
   return (
     <Container>
       <LoginContent>

@@ -11,6 +11,11 @@ export const Container = styled.div`
   margin-left: 240px;
   min-height: 100vh;
   padding-bottom: 25px;
+  @media (max-width: 1000px) {
+    width: calc(100vw - 90px);
+    margin-left: 90px;
+  }
+  transition: width 0.2s ease-in;
 `;
 
 export const Header = styled.div`

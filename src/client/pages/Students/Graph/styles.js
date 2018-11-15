@@ -8,6 +8,7 @@ export const Container = styled.div`
   height: 300px;
   width: 100%;
   margin-bottom: 15px;
+  min-width: 560px;
 `;
 
 export const TopSide = styled.div`
@@ -65,6 +66,7 @@ export const HoverContent = styled.div`
   width: 360px;
   top: 0;
   right: 0;
+  user-select: none;
 `;
 
 export const HoverValue = styled.div`
