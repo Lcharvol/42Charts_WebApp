@@ -13,6 +13,7 @@ import {
   getMyLogsPromoRank,
   getMyPreferedHostName,
   getMyPreferedHostTime,
+  getAverageLogsPerSession,
 } from '../selectors/me';
 
 export const ALL_STATS_CONTENT = [
@@ -67,7 +68,7 @@ export const ALL_STATS_CONTENT = [
   {
     id: 8,
     value: state => getMyNumberOfLogs(state),
-    secondValue: state => undefined,
+    secondValue: state => getAverageLogsPerSession(state),
     label: 'Number of logs',
   },
   {

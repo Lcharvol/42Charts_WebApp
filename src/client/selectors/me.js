@@ -76,3 +76,12 @@ export const getMyPreferedHostTime = state => {
   const hours = Math.floor((logtimeInSeconds - days * 86400) / 3600);
   return `${days} Days ${hours} Hours`;
 };
+
+export const getAverageLogsPerSession = state => {
+  const averageLogTimeInSecond = Math.floor(
+    state.me.logs.totalLogTime / getMyNumberOfLogs(state),
+  );
+  const hours = Math.floor(averageLogTimeInSecond / 3600);
+  const min = Math.floor((averageLogTimeInSecond - hours * 3600) / 60);
+  return `${hours} Hours ${min} min / log`;
+};
