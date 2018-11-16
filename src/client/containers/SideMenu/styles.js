@@ -1,16 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { MdPowerSettingsNew } from 'react-icons/md';
 
 import {
-  SIDE_MENU_COLOR,
-  BORDER_COLOR,
-  LIGHT_BACKGROUND_COLOR,
-  DARK_TEXT_COLOR,
   MAIN_COLOR,
-  DARK_MAIN_COLOR,
   BACKGROUND_COLOR,
   DARK_BORDER_COLOR,
-  FONT_COLOR,
   DARK_FONT_COLOR,
 } from '../../constants/colors';
 
@@ -68,8 +63,8 @@ export const StyledLink = styled(Link)`
   width: 100%;
   height: 100%;
   transition: color 0.1s ease-in;
-  color: ${DARK_FONT_COLOR};
-  opacity: 0.8;
+  color: ${({ color }) => color};
+  opacity: 1;
   &:hover {
     color: ${MAIN_COLOR};
   }
@@ -99,4 +94,29 @@ export const Logout = styled.div`
     opacity: 0.5;
   }
   cursor: pointer;
+`;
+
+export const LogoContainer = styled(Link)`
+  position: relative;
+  display: flex;
+  width: 100;
+  height: 75px;
+  margin-top: 10px;
+  color: ${({ color }) => color};
+  &:hover {
+    color: ${MAIN_COLOR};
+  }
+`;
+
+export const LogoutLogo = styled(MdPowerSettingsNew)`
+  position: relative;
+  display: flex;
+  width: 100;
+  height: 75px;
+  margin-top: 10px;
+  color: ${DARK_BORDER_COLOR};
+  cursor: pointer;
+  &:hover {
+    color: ${MAIN_COLOR};
+  }
 `;

@@ -67,7 +67,6 @@ const Ranking = ({
         handleChangeSearchValue={handleChangeSearchValue}
         searchValue={searchValue}
       />
-      {console.log('searchValue: ', searchValue)}
     </Header>
     <Content>
       <UsersPrewiewContainer>

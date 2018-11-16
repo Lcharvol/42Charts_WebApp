@@ -17,7 +17,15 @@ import { reqMe, reqPing } from '../../requests';
 import { noAuthneeded } from '../../auth';
 import { DARK_BORDER_COLOR } from '../../constants/colors';
 
-const SideMenu = ({ me, routes, hidden, winWidth }) => {
+const SideMenu = ({
+  me,
+  routes,
+  hidden,
+  winWidth,
+  history,
+  selectedLink,
+  handleChangeSelectedLink,
+}) => {
   const { pathname } = window.location;
   const [route] = split('/', pathname.slice(1));
   if (contains(route, noAuthneeded) || route === 'serverdown') return null;
@@ -25,7 +33,12 @@ const SideMenu = ({ me, routes, hidden, winWidth }) => {
     <Container hidden={hidden}>
       <SideMenuHeader me={me} winWidth={winWidth} />
       <Separator width={'85%'} color={DARK_BORDER_COLOR} />
-      <Menu routes={routes} winWidth={winWidth} />
+      <Menu
+        routes={routes}
+        winWidth={winWidth}
+        selectedLink={selectedLink}
+        handleChangeSelectedLink={handleChangeSelectedLink}
+      />
     </Container>
   );
 };
@@ -44,12 +57,19 @@ const enhance = compose(
     mapDispatchToProps,
   ),
   withStateHandlers(
-    ({ initialWinWidth = 0 }) => ({
+    ({
+      initialWinWidth = 0,
+      initialSelectedLink = window.location.pathname,
+    }) => ({
       winWidth: initialWinWidth,
+      selectedLink: initialSelectedLink,
     }),
     {
       handleChangeWinWidth: () => newWinWidth => ({
         winWidth: newWinWidth,
+      }),
+      handleChangeSelectedLink: () => newSelectedLink => ({
+        selectedLink: newSelectedLink,
       }),
     },
   ),
