@@ -54,7 +54,7 @@ export const HeaderLabel = styled.div`
   flex: 1;
   font-size: 0.3em;
   color: ${MAIN_COLOR};
-  padding-left: 25px;
+  padding-left: 15px;
 `;
 
 export const Content = styled.div`
@@ -74,6 +74,10 @@ export const Content = styled.div`
 export const LogoContainer = styled.div`
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 40px;
+  color: ${MAIN_COLOR};
+  font-size: 0.4em;
 `;

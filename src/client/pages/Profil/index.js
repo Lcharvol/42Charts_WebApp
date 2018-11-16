@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { object, number, func } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { find, propEq, isNil, isEmpty } from 'ramda';
+import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
 
 import { Container, Header, LeftSide, RightSide, Content } from './styles';
 import { getMe, getMarks, getMyLogs, getMyCoalition } from '../../selectors/me';
@@ -98,6 +99,7 @@ const Profil = ({
               value={marksSortBy}
             />
           }
+          icon={<MdCollectionsBookmark />}
         />
         <Box
           label={'My Log'}
@@ -118,12 +120,14 @@ const Profil = ({
               value={logsFilter}
             />
           }
+          icon={<MdTimeline />}
         />
         <Box
           label={'My Stats'}
           width={'100%'}
           height={'auto'}
           content={<AllStats />}
+          icon={<MdTune />}
         />
       </Content>
     </Container>

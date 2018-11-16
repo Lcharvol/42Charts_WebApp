@@ -10,11 +10,11 @@ import {
   LogoContainer,
 } from './styles';
 
-const Box = ({ width, height, label, content, headerLeft, logo }) => (
+const Box = ({ width, height, label, content, headerLeft, icon }) => (
   <Container width={width} height={height}>
     {!isNil(label) && (
       <Header>
-        <LogoContainer>{logo}</LogoContainer>
+        {!isNil(icon) && <LogoContainer>{icon}</LogoContainer>}
         <HeaderLabel>{label}</HeaderLabel>
         <HeaderLeftSide>{headerLeft}</HeaderLeftSide>
       </Header>
