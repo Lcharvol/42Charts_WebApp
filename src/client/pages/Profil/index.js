@@ -18,6 +18,7 @@ import InfoContainer from './InfoContainer';
 import Box from '../../containers/Box';
 import Logs from '../../containers/Logs';
 import SelectButton from '../../components/SelectButton';
+import UserCoalition from '../../containers/UserCoalition';
 import {
   FILTER_MARK_BUTTON_VALUES,
   LOGS_FILTER_VALUES,
@@ -75,6 +76,7 @@ const Profil = ({
           <InfoContainer selectedCursus={selectedCursus} me={me} />
         </LeftSide>
         <RightSide>
+          <UserCoalition coalition={me.coalition} />
           <LevelBar
             level={getLevelFromCursus(selectedCursus, me.cursus || [])}
           />

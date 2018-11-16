@@ -46,6 +46,7 @@ export const Level = styled.div`
   color: ${({ color }) => color};
   font-size: 0.4em;
   width: 100px;
+  user-select: none;
 `;
 
 export const Rank = styled.div`
@@ -56,6 +57,7 @@ export const Rank = styled.div`
   color: ${({ color }) => color};
   font-size: 0.4em;
   width: 50px;
+  user-select: none;
 `;
 
 export const CampusLabel = styled.div`
@@ -69,6 +71,7 @@ export const CampusLabel = styled.div`
   margin-left: 25px;
   width: 100px;
   color: ${FONT_COLOR};
+  user-select: none;
 `;
 
 export const LogTime = styled.div`
@@ -80,4 +83,5 @@ export const LogTime = styled.div`
   font-size: 0.4em;
   min-width: 125px;
   margin-left: 10px;
+  user-select: none;
 `;

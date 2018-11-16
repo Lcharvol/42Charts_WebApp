@@ -29,6 +29,7 @@ export const FullName = styled.div`
   font-size: 0.4em;
   color: white;
   margin-bottom: 5px;
+  user-select: none;
 `;
 
 export const Content = styled.div`
@@ -58,4 +59,5 @@ export const Value = styled.div`
   font-weight: 70;
   font-size: 0.3em;
   width: 100%;
+  user-select: none;
 `;

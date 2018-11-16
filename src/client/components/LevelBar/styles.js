@@ -29,4 +29,5 @@ export const Label = styled.div`
   color: white;
   z-index: 200;
   font-size: 0.3em;
+  user-select: none;
 `;

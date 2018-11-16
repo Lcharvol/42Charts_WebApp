@@ -72,6 +72,7 @@ export const StyledLink = styled(Link)`
   &:hover {
     color: ${MAIN_COLOR};
   }
+  user-select: none;
 `;
 
 export const Login = styled(Link)`
@@ -83,6 +84,7 @@ export const Login = styled(Link)`
   margin-bottom: 15px;
   opacity: 0.9;
   text-decoration: none;
+  user-select: none;
 `;
 
 export const Logout = styled.div`
@@ -101,6 +103,7 @@ export const Logout = styled.div`
     opacity: 0.5;
   }
   cursor: pointer;
+  user-select: none;
 `;
 
 export const LogoContainer = styled(Link)`

@@ -69,6 +69,7 @@ export const TimeInfo = styled.div`
   color: ${FONT_COLOR};
   opacity: 0.8;
   flex: 1;
+  user-select: none;
 `;
 
 export const Arrows = styled.div`
@@ -117,4 +118,5 @@ export const HoverValue = styled.div`
   font-size: 0.5em;
   color: ${MAIN_COLOR};
   flex: 1;
+  user-select: none;
 `;

@@ -55,6 +55,7 @@ export const HeaderLabel = styled.div`
   font-size: 0.3em;
   color: ${MAIN_COLOR};
   padding-left: 15px;
+  user-select: none;
 `;
 
 export const Content = styled.div`

@@ -11,6 +11,7 @@ export const Container = styled.div`
   width: 90%;
   min-height: 40px;
   border-bottom: solid 1px ${DARK_BORDER_COLOR};
+  user-select: none;
 `;
 
 export const Name = styled.div`
