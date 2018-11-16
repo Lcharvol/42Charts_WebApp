@@ -8,18 +8,20 @@ import {
   Label,
   SelectedBox,
   Content,
-  FilterLabel,
+  SortLabel,
   LeftSide,
   RightSide,
 } from './styles';
 import { FILTER_VALUES } from '../constants';
 import SelectButton from '../../../components/SelectButton';
+import SearchBar from '../../../components/SearchBar';
 
 const propTypes = {
   promos: array,
   selectedPromo: string.isRequired,
   handleChangeSelectedPromo: func.isRequired,
   usable: bool.isRequired,
+  searchValue: string.isRequired,
 };
 
 const PromoFilter = ({
@@ -29,6 +31,8 @@ const PromoFilter = ({
   handleChangeSelectedPromo,
   handleChangeFilterBy,
   usable,
+  handleChangeSearchValue,
+  searchValue,
 }) => (
   <Container>
     <Content>
@@ -52,11 +56,15 @@ const PromoFilter = ({
         )}
       </LeftSide>
       <RightSide>
-        <FilterLabel>Sort by </FilterLabel>
+        <SortLabel>Sort by </SortLabel>
         <SelectButton
           values={FILTER_VALUES}
           value={filterBy}
           handler={handleChangeFilterBy}
+        />
+        <SearchBar
+          searchValue={searchValue}
+          handleChangeSearchValue={handleChangeSearchValue}
         />
       </RightSide>
     </Content>

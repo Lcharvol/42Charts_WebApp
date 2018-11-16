@@ -72,12 +72,12 @@ export const SelectedBox = styled.div`
   transition: left 0.2s ease-in-out;
 `;
 
-export const FilterLabel = styled.div`
+export const SortLabel = styled.div`
   position: relative;
   display: flex;
   font-size: 0.3em;
   color: ${DARK_FONT_COLOR};
   margin-right: 15px;
-  margin-left: 25px;
   min-width: 60px;
+  margin-left: 15px;
 `;

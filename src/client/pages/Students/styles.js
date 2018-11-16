@@ -64,8 +64,8 @@ export const Header = styled.div`
     to bottom,
     rgba(25, 25, 25, 1) 0%,
     rgba(25, 25, 25, 1) 1%,
-    rgba(25, 25, 25, 1) 64%,
-    rgba(25, 25, 25, 1) 90%,
+    rgba(25, 25, 25, 1) 84%,
+    rgba(25, 25, 25, 1) 93%,
     rgba(25, 25, 25, 0) 100%
   );
 `;
@@ -74,6 +74,6 @@ export const Content = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 500px;
+  margin-top: 530px;
   width: 100%;
 `;

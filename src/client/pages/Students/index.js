@@ -18,14 +18,13 @@ import PromoFilter from './PromoFilter';
 import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
 import Spinner from '../../components/Spinner';
-import { getUsersByPromo, reqGetUsersRatio } from '../../requests';
+import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
 import {
   getPromos,
   getTotalUsers,
   getUsersByLevels,
 } from '../../selectors/app';
 import { getMyLogin } from '../../selectors/me';
-import { reqGetPromo } from '../../requests';
 import { loadPromos } from '../../actions/app';
 
 const Ranking = ({
@@ -40,11 +39,13 @@ const Ranking = ({
   filterBy,
   usersRatio,
   isFetching,
+  searchValue,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
   handleChangeFilterBy,
   handleChangeIsFetching,
+  handleChangeSearchValue,
 }) => (
   <Container>
     <Header>
@@ -54,6 +55,7 @@ const Ranking = ({
         usersByUnit={usersRatio}
         filterBy={filterBy}
       />
+      {console.log('searchValue: ', searchValue)}
       <PromoFilter
         promos={promos}
         selectedPromo={selectedPromo}
@@ -61,6 +63,8 @@ const Ranking = ({
         filterBy={filterBy}
         handleChangeFilterBy={handleChangeFilterBy}
         usable={!isFetching}
+        handleChangeSearchValue={handleChangeSearchValue}
+        searchValue={searchValue}
       />
     </Header>
     <Content>
@@ -83,6 +87,7 @@ const Ranking = ({
                 LOADING_OFFSET,
                 start,
                 find(propEq('id', filterBy))(FILTER_VALUES).label,
+                searchValue,
               )
                 .then(res => {
                   enhanceUsers(res);
@@ -125,6 +130,7 @@ const enhance = compose(
       initialFilterBy = 0,
       initialUsersRatio = [],
       initialIsFetching = false,
+      initialSearchValue = '',
     }) => ({
       selectedPromo: initialSelectedPromo,
       users: initialUsers,
@@ -132,6 +138,7 @@ const enhance = compose(
       filterBy: initialFilterBy,
       usersRatio: initialUsersRatio,
       isFetching: initialIsFetching,
+      searchValue: initialSearchValue,
     }),
     {
       handleChangeSelectedPromo: () => newPromo => ({
@@ -159,6 +166,11 @@ const enhance = compose(
       handleChangeIsFetching: () => newValue => ({
         isFetching: newValue,
       }),
+      handleChangeSearchValue: () => newValue => ({
+        searchValue: newValue,
+        start: 0,
+        users: [],
+      }),
     },
   ),
   lifecycle({
@@ -181,7 +193,8 @@ const enhance = compose(
     componentDidUpdate(prevProps) {
       if (
         (prevProps.selectedPromo !== this.props.selectedPromo ||
-          prevProps.filterBy !== this.props.filterBy) &&
+          prevProps.filterBy !== this.props.filterBy ||
+          prevProps.searchValue !== this.props.searchValue) &&
         isEmpty(this.props.users)
       ) {
         this.props.handleChangeIsFetching(true);
@@ -192,6 +205,7 @@ const enhance = compose(
           25,
           this.props.start,
           find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
+          this.props.searchValue,
         )
           .then(res => {
             this.props.handleChangeUsers(res);

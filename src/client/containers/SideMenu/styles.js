@@ -19,7 +19,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 200px;
-  background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(40, 40, 40));
+  background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(30, 30, 30));
   height: 100vh;
   top: 0;
   left: ${({ hidden }) => (hidden ? -250 : 0)}px;
