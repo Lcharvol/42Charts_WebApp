@@ -82,21 +82,31 @@ export const Arrows = styled.div`
 export const LeftArrow = styled(MdChevronLeft)`
   position: relative;
   display: flex;
-  width: 25px;
+  align-items: flex-end;
+  flex: 1;
   height: 25px;
   cursor: pointer;
   margin-right: 10px;
   color: ${MAIN_COLOR};
+  &:hover {
+    height: 40px;
+  }
+  transition: all 0.1s ease-in-out;
 `;
 
 export const RightArrow = styled(MdChevronRight)`
   position: relative;
   display: flex;
-  width: 25px;
+  align-items: flex-start;
+  flex: 1;
   height: 25px;
   cursor: pointer;
   margin-left: 10px;
   color: ${MAIN_COLOR};
+  &:hover {
+    height: 40px;
+  }
+  transition: all 0.1s ease-in-out;
 `;
 
 export const HoverValue = styled.div`
