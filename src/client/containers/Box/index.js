@@ -7,12 +7,14 @@ import {
   HeaderLabel,
   Content,
   HeaderLeftSide,
+  LogoContainer,
 } from './styles';
 
-const Box = ({ width, height, label, content, headerLeft }) => (
+const Box = ({ width, height, label, content, headerLeft, logo }) => (
   <Container width={width} height={height}>
     {!isNil(label) && (
       <Header>
+        <LogoContainer>{logo}</LogoContainer>
         <HeaderLabel>{label}</HeaderLabel>
         <HeaderLeftSide>{headerLeft}</HeaderLeftSide>
       </Header>

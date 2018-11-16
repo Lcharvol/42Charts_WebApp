@@ -70,3 +70,10 @@ export const Content = styled.div`
     display: none;
   }
 `;
+
+export const LogoContainer = styled.div`
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 40px;
+`;

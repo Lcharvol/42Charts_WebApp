@@ -50,14 +50,18 @@ export const MenuContainer = styled.div`
 export const MenuElemContainer = styled.div`
   position: relative;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   margin-left: 15px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  height: 50px;
 `;
 
 export const StyledLink = styled(Link)`
   position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-size: 0.3em;
   text-decoration: none;
   width: 100%;
@@ -83,6 +87,9 @@ export const Login = styled(Link)`
 
 export const Logout = styled.div`
   position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-size: 0.3em;
   text-decoration: none;
   width: 100%;
