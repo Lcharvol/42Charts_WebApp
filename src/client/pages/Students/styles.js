@@ -24,6 +24,8 @@ export const UsersPrewiewContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-top: 25px;
+  padding-bottom: 75px;
 `;
 
 export const VisibilitySensorBox = styled.div`

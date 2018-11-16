@@ -1,4 +1,4 @@
-export const LOADING_OFFSET = 50;
+export const LOADING_OFFSET = 75;
 
 export const ALL_PROMO_SELECTED = 'all';
 

@@ -64,7 +64,7 @@ const PromoFilter = ({
         />
         <SearchBar
           searchValue={searchValue}
-          handleChangeSearchValue={handleChangeSearchValue}
+          handler={handleChangeSearchValue}
         />
       </RightSide>
     </Content>

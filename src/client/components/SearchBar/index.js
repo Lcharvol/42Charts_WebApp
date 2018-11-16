@@ -1,25 +1,57 @@
-import React from 'react';
-
+import React, { Fragment } from 'react';
+import { length } from 'ramda';
+import { withStateHandlers } from 'recompose';
 import { func, string } from 'prop-types';
 
-import { Container } from './styles';
+import { Container, Content, SearchLogo, CrossButton } from './styles';
 
 const proptypes = {
-  handleChangeSearchValue: func.isRequired,
   searchValue: string.isRequired,
+  innerValue: string.isRequired,
+  handler: func.isRequired,
+  handleChangeInnerValue: func.isRequired,
 };
 
-const SearchBar = ({ handleChangeSearchValue, searchValue }) => (
-  <Container
-    type="text"
-    spellCheck="false"
-    onKeyPress={e => {
-      if (e.key === 'Enter' && searchValue !== e.target.value)
-        handleChangeSearchValue(e.target.value);
-    }}
-  />
+const SearchBar = ({
+  handler,
+  searchValue,
+  innerValue,
+  handleChangeInnerValue,
+}) => (
+  <Fragment>
+    <Container>
+      <Content
+        type="text"
+        spellCheck="false"
+        value={innerValue}
+        onKeyPress={e => {
+          if (e.key === 'Enter' && searchValue !== e.target.value)
+            handler(e.target.value);
+        }}
+        onChange={e => handleChangeInnerValue(e.target.value)}
+      />
+      {length(innerValue) === 0 && <SearchLogo />}
+      {length(innerValue) > 0 && (
+        <CrossButton
+          onClick={() => {
+            if (length(searchValue) !== 0) handler('');
+            handleChangeInnerValue('');
+          }}
+        />
+      )}
+    </Container>
+  </Fragment>
 );
 
 SearchBar.proptypes = proptypes;
 
-export default SearchBar;
+export default withStateHandlers(
+  ({ initialInnerValue = '' }) => ({
+    innerValue: initialInnerValue,
+  }),
+  {
+    handleChangeInnerValue: () => newValue => ({
+      innerValue: newValue,
+    }),
+  },
+)(SearchBar);

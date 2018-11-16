@@ -1,5 +1,5 @@
 import React from 'react';
-import { isEmpty, find, propEq, reduce } from 'ramda';
+import { isEmpty, find, propEq, reduce, length } from 'ramda';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -40,12 +40,14 @@ const Ranking = ({
   usersRatio,
   isFetching,
   searchValue,
+  isFetchingPossible,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
   handleChangeFilterBy,
   handleChangeIsFetching,
   handleChangeSearchValue,
+  handeChangeIsFetchingPossible,
 }) => (
   <Container>
     <Header>
@@ -55,7 +57,6 @@ const Ranking = ({
         usersByUnit={usersRatio}
         filterBy={filterBy}
       />
-      {console.log('searchValue: ', searchValue)}
       <PromoFilter
         promos={promos}
         selectedPromo={selectedPromo}
@@ -66,6 +67,7 @@ const Ranking = ({
         handleChangeSearchValue={handleChangeSearchValue}
         searchValue={searchValue}
       />
+      {console.log('searchValue: ', searchValue)}
     </Header>
     <Content>
       <UsersPrewiewContainer>
@@ -77,30 +79,34 @@ const Ranking = ({
             user={user}
           />
         ))}
-        <VisibilitySensor
-          onChange={() => {
-            if (!isEmpty(users) && !isFetching) {
-              handleChangeIsFetching(true);
-              handleChangeStart(start + LOADING_OFFSET);
-              getUsersByPromo(
-                selectedPromo !== ALL_PROMO_SELECTED ? selectedPromo : '',
-                LOADING_OFFSET,
-                start,
-                find(propEq('id', filterBy))(FILTER_VALUES).label,
-                searchValue,
-              )
-                .then(res => {
-                  enhanceUsers(res);
-                  setTimeout(() => handleChangeIsFetching(false), 1000);
-                })
-                .catch(err => console.log('err: ', err));
-            }
-          }}
-        >
-          <VisibilitySensorBox>
-            <Spinner />
-          </VisibilitySensorBox>
-        </VisibilitySensor>
+        {isFetchingPossible && (
+          <VisibilitySensor
+            onChange={() => {
+              if (!isEmpty(users) && !isFetching) {
+                handleChangeIsFetching(true);
+                handleChangeStart(start + LOADING_OFFSET);
+                getUsersByPromo(
+                  selectedPromo !== ALL_PROMO_SELECTED ? selectedPromo : '',
+                  LOADING_OFFSET,
+                  start,
+                  find(propEq('id', filterBy))(FILTER_VALUES).label,
+                  searchValue,
+                )
+                  .then(res => {
+                    if (length(res) < LOADING_OFFSET)
+                      handeChangeIsFetchingPossible(false);
+                    enhanceUsers(res);
+                    setTimeout(() => handleChangeIsFetching(false), 1000);
+                  })
+                  .catch(err => console.log('err: ', err));
+              }
+            }}
+          >
+            <VisibilitySensorBox>
+              <Spinner />
+            </VisibilitySensorBox>
+          </VisibilitySensor>
+        )}
       </UsersPrewiewContainer>
     </Content>
   </Container>
@@ -131,6 +137,7 @@ const enhance = compose(
       initialUsersRatio = [],
       initialIsFetching = false,
       initialSearchValue = '',
+      initialIsFetchingPossible = true,
     }) => ({
       selectedPromo: initialSelectedPromo,
       users: initialUsers,
@@ -139,12 +146,14 @@ const enhance = compose(
       usersRatio: initialUsersRatio,
       isFetching: initialIsFetching,
       searchValue: initialSearchValue,
+      isFetchingPossible: initialIsFetchingPossible,
     }),
     {
       handleChangeSelectedPromo: () => newPromo => ({
         selectedPromo: newPromo,
         start: 0,
         users: [],
+        isFetchingPossible: true,
       }),
       handleChangeUsers: () => newUsers => ({
         users: newUsers,
@@ -159,6 +168,7 @@ const enhance = compose(
         filterBy: newFilter,
         start: 0,
         users: [],
+        isFetchingPossible: true,
       }),
       handleChangeUsersRatio: () => newUsersRatio => ({
         usersRatio: newUsersRatio,
@@ -170,6 +180,10 @@ const enhance = compose(
         searchValue: newValue,
         start: 0,
         users: [],
+        isFetchingPossible: true,
+      }),
+      handeChangeIsFetchingPossible: () => newValue => ({
+        isFetchingPossible: newValue,
       }),
     },
   ),
@@ -208,6 +222,8 @@ const enhance = compose(
           this.props.searchValue,
         )
           .then(res => {
+            if (length(res) < 25)
+              this.props.handeChangeIsFetchingPossible(false);
             this.props.handleChangeUsers(res);
             this.props.handleChangeStart(this.props.start + 25);
             reqGetUsersRatio(

@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { MdChevronRight, MdChevronLeft } from 'react-icons/md';
+
 import {
   MAIN_COLOR,
   DARK_TEXT_COLOR,
@@ -77,40 +79,24 @@ export const Arrows = styled.div`
   flex: 1;
 `;
 
-export const LeftArrow = styled.div`
-  position:relative;
-  display:flex;
-  width:25px;
-  height:25px;
-  transform: rotate(90deg);
-  background-image:url('${ChevronDownIcon}');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.7;
-  cursor:pointer;
-  &:hover {
-    opacity:1;
-  };
-  margin-right:10px;
-  `;
+export const LeftArrow = styled(MdChevronLeft)`
+  position: relative;
+  display: flex;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin-right: 10px;
+  color: ${MAIN_COLOR};
+`;
 
-export const RightArrow = styled.div`
-  position:relative;
-  display:flex;
-  width:25px;
-  height:25px;
-  transform: rotate(-90deg);
-  background-image:url('${ChevronDownIcon}');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.7;
-  cursor:pointer;
-  &:hover {
-    opacity:1;
-  };
-  margin-left:10px;
+export const RightArrow = styled(MdChevronRight)`
+  position: relative;
+  display: flex;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin-left: 10px;
+  color: ${MAIN_COLOR};
 `;
 
 export const HoverValue = styled.div`
