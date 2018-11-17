@@ -24,7 +24,7 @@ export const Header = styled.div`
   background-color: rgb(25, 25, 25);
   justify-content: flex-start;
   align-items: flex-end;
-  width: 100%;
+  width: calc(100% - 15px);
   min-width: 460px;
   min-height: 200px;
   padding-top: 25px;
@@ -43,6 +43,7 @@ export const Header = styled.div`
 export const Content = styled.div`
   position: relative;
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -53,9 +54,10 @@ export const LeftSide = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: flex-start;
   min-height: 100%;
   padding: 25px;
+  flex: 1;
   @media (max-width: 1000px) {
     width: calc(100% - 50px);
   }
@@ -66,15 +68,14 @@ export const RightSide = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  flex: 1;
-  margin-right: 10px;
   padding: 25px;
+  padding-left: 0;
   max-width: 600px;
-  padding-left: 0px;
   @media (max-width: 1000px) {
     width: calc(100% - 50px);
     max-width: calc(100%);
     padding-left: 25px;
     padding-top: 0px;
   }
+  flex: 1;
 `;

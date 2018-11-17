@@ -5,9 +5,12 @@ import {
   LeftSide,
   RightSide,
   Flag,
+  CoalitionIcon,
   Name,
   Score,
+  ScoreIcon,
   Rank,
+  RankIcon,
 } from './styles';
 
 const UserCoalition = ({
@@ -15,12 +18,20 @@ const UserCoalition = ({
 }) => (
   <Container>
     <LeftSide>
-      <Flag color={color} logo={imageUrl} />
+      <Flag color={color} logo={imageUrl}>
+        <CoalitionIcon icon={imageUrl} />
+      </Flag>
     </LeftSide>
     <RightSide>
       <Name color={color}>{name}</Name>
-      <Score>{userScore}</Score>
-      <Rank>{userRank}</Rank>
+      <Score>
+        <ScoreIcon />
+        {userScore}
+      </Score>
+      <Rank>
+        <RankIcon />
+        {userRank}
+      </Rank>
     </RightSide>
   </Container>
 );

@@ -42,7 +42,7 @@ const getLogtTime = logTimInSecond => {
   return `${days} D ${hours} H`;
 };
 
-const UserPreview = ({ user, rank, myLogin = '' }) => (
+const UserPreview = ({ user, myLogin = '' }) => (
   <Container
     color={
       myLogin.toLowerCase() === user.login.toLowerCase()
@@ -56,7 +56,7 @@ const UserPreview = ({ user, rank, myLogin = '' }) => (
       height={'60px'}
       round
     />
-    <Rank color={getRankColor(rank)}>{user.rank}</Rank>
+    <Rank color={getRankColor(user.rank)}>{user.rank}</Rank>
     <Login>{user.login}</Login>
     <Level color={getLevelColor(user.cursusLevel)}>
       {user.cursusLevel.toFixed(2)}

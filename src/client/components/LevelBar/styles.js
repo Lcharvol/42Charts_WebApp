@@ -9,8 +9,8 @@ export const Container = styled.div`
   height: 40px;
   background-color: rgba(15, 15, 15, 0.7);
   border-radius: 3px;
-  margin: 5px;
   overflow: hidden;
+  margin-bottom: 5px;
 `;
 
 export const Content = styled.div`

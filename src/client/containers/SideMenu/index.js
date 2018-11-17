@@ -58,7 +58,7 @@ const enhance = compose(
   ),
   withStateHandlers(
     ({
-      initialWinWidth = 0,
+      initialWinWidth = window.innerWidth,
       initialSelectedLink = window.location.pathname,
     }) => ({
       winWidth: initialWinWidth,
@@ -83,7 +83,6 @@ const enhance = compose(
       const currentDay = currentdate.getDate();
 
       if (route !== 'serverdown') {
-        this.props.handleChangeWinWidth(window.innerWidth);
         window.addEventListener('resize', event =>
           this.props.handleChangeWinWidth(event.srcElement.innerWidth),
         );

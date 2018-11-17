@@ -57,6 +57,7 @@ const Profil = ({
   handleChangeSelectedCursus,
   handleChangeMarkSortBy,
   myCoalition,
+  winWidth,
 }) => {
   const colationElem = find(propEq('name', myCoalition.name))(
     coalitionsBackground,
@@ -74,9 +75,10 @@ const Profil = ({
             round
           />
           <InfoContainer selectedCursus={selectedCursus} me={me} />
+          {winWidth <= 1000 && <UserCoalition coalition={me.coalition} />}
         </LeftSide>
         <RightSide>
-          <UserCoalition coalition={me.coalition} />
+          {winWidth > 1000 && <UserCoalition coalition={me.coalition} />}
           <LevelBar
             level={getLevelFromCursus(selectedCursus, me.cursus || [])}
           />
@@ -160,10 +162,12 @@ const enhance = compose(
       initialSelectedCursus = 1,
       initialMarksSortBy = 0,
       initialLogsFilter = 0,
+      initialWinWidth = window.innerWidth,
     }) => ({
       selectedCursus: initialSelectedCursus,
       marksSortBy: initialMarksSortBy,
       logsFilter: initialLogsFilter,
+      winWidth: initialWinWidth,
     }),
     {
       handleChangeSelectedCursus: () => cursusId => ({
@@ -175,6 +179,9 @@ const enhance = compose(
       handleChangeLogsFilter: () => newFilterId => ({
         logsFilter: newFilterId,
       }),
+      handleChangeWinWidth: () => newWinWidth => ({
+        winWidth: newWinWidth,
+      }),
     },
   ),
   lifecycle({
@@ -184,6 +191,12 @@ const enhance = compose(
           .then(logs => this.props.enhanceMe({ logs }))
           .catch(err => err);
       }
+      window.addEventListener('resize', event =>
+        this.props.handleChangeWinWidth(event.srcElement.innerWidth),
+      );
+    },
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.props.handleChangeWinWidth);
     },
   }),
 );

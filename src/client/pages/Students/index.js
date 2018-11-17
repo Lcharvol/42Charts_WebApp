@@ -1,5 +1,5 @@
 import React from 'react';
-import { isEmpty, find, propEq, reduce, length } from 'ramda';
+import { map, isEmpty, find, propEq, reduce, length } from 'ramda';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -70,14 +70,12 @@ const Ranking = ({
     </Header>
     <Content>
       <UsersPrewiewContainer>
-        {users.map((user, id) => (
-          <UserPreview
-            myLogin={myLogin}
-            key={user.id}
-            rank={id + 1}
-            user={user}
-          />
-        ))}
+        {map(
+          user => (
+            <UserPreview myLogin={myLogin} key={user.id} user={user} />
+          ),
+          users,
+        )}
         {isFetchingPossible && (
           <VisibilitySensor
             onChange={() => {
