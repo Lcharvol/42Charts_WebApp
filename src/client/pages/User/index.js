@@ -2,12 +2,26 @@ import React from 'react';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { drop, length } from 'ramda';
+import { drop, length, isEmpty } from 'ramda';
 
 import { Container } from './styles';
 import { reqGetUserById } from '../../requests';
+import ProfilHeader from '../../containers/ProfilHeader';
 
-const User = () => <Container />;
+const User = ({ user, winWidth }) => {
+  if (isEmpty(user)) return <div />;
+  return (
+    <Container>
+      <ProfilHeader
+        winWidth={winWidth}
+        coalition={user.coalition}
+        profilPicture={user.imageUrl}
+        cursus={user.cursus}
+        user={user}
+      />
+    </Container>
+  );
+};
 
 const mapStateToProps = state => ({});
 
@@ -21,12 +35,16 @@ const enhance = compose(
     mapDispatchToProps,
   ),
   withStateHandlers(
-    ({ initialUser = {} }) => ({
+    ({ initialUser = {}, initialWinWidth = window.innerWidth }) => ({
       user: initialUser,
+      winWidth: initialWinWidth,
     }),
     {
-      handleChangeSelectedPromo: () => newPromo => ({
-        selectedPromo: newPromo,
+      loadUser: () => user => ({
+        user,
+      }),
+      handleChangeWinWidth: () => newWinWidth => ({
+        winWidth: newWinWidth,
       }),
     },
   ),
@@ -35,11 +53,17 @@ const enhance = compose(
       const userId = drop(1, this.props.location.search);
       if (length(userId) > 0) {
         reqGetUserById(userId)
-          .then(data => console.log('user: ', data))
-          .catch(err => console.log('err: ', err));
+          .then(data => this.props.loadUser(data))
+          .catch(err => err);
       }
+      window.addEventListener('resize', event =>
+        this.props.handleChangeWinWidth(event.srcElement.innerWidth),
+      );
     },
     componentDidUpdate(prevProps) {},
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.props.handleChangeWinWidth);
+    },
   }),
 );
 export default enhance(User);

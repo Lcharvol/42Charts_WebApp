@@ -37,7 +37,6 @@ const ProfilHeader = ({
     <Container
       backgroundUrl={!isNil(colationElem) ? colationElem.backgroundUrl : ''}
     >
-      {console.log('coalition: ', coalition)}
       <LeftSide>
         <UserAvatar
           profilPicture={profilPicture}
