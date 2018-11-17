@@ -1,11 +1,13 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import {
   DARK_TEXT_COLOR,
   MAIN_COLOR,
   FONT_COLOR,
 } from '../../constants/colors';
 
-export const Container = styled.div`
+export const Container = styled(Link)`
   position: relative;
   display: flex;
   justify-content: flex-start;
@@ -24,6 +26,7 @@ export const Container = styled.div`
     opacity: 1;
   }
   min-width: 560px;
+  text-decoration: none;
 `;
 
 export const Login = styled.div`

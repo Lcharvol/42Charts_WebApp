@@ -2,7 +2,7 @@ import Profil from './pages/Profil';
 import Students from './pages/Students';
 import Login from './pages/Login';
 import ServerDown from './pages/ServerDown';
-import Users from './pages/Users';
+import User from './pages/User';
 
 const routes = [
   {
@@ -28,8 +28,8 @@ const routes = [
   },
   {
     id: 5,
-    path: '/allusers',
-    component: Users,
+    path: '/user',
+    component: User,
   },
 ];
 

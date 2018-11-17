@@ -44,6 +44,7 @@ const getLogtTime = logTimInSecond => {
 
 const UserPreview = ({ user, myLogin = '' }) => (
   <Container
+    to={`/user?${user.id}`}
     color={
       myLogin.toLowerCase() === user.login.toLowerCase()
         ? 'rgba(46,204,113, 0.1)'

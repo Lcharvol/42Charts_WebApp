@@ -96,3 +96,13 @@ export const reqGetUsersRatio = (promo = '2013', sortBy = 'level') =>
     .catch(err => {
       throw err;
     });
+
+export const reqGetUserById = id =>
+  axios({
+    method: 'get',
+    url: `users/id/${id}`,
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });

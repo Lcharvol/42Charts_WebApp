@@ -44,16 +44,17 @@ export const LoginButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgba(25, 25, 25, 0.5);
   width: 80%;
   background-color: ${MAIN_COLOR};
   height: 55px;
   border-radius: 3px;
+  opacity: 0.8;
   &:hover {
-    opacity: 0.6;
+    opacity: 1;
   }
   cursor: pointer;
-  font-size: 0.3em;
+  font-size: 0.4em;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   top: 40px;
