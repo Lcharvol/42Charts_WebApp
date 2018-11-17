@@ -106,3 +106,13 @@ export const reqGetUserById = id =>
     .catch(err => {
       throw err;
     });
+
+export const reqGetUserLogsById = id =>
+  axios({
+    method: 'get',
+    url: `users/id/${id}/logs`,
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });

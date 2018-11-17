@@ -14,3 +14,13 @@ export const Container = styled.div`
   }
   transition: width 0.2s ease-in;
 `;
+
+export const Content = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: calc(100% - 35px);
+`;
