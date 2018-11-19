@@ -16,7 +16,7 @@ import {
   getAverageLogsPerSession,
 } from '../selectors/me';
 
-export const ALL_STATS_CONTENT = [
+export const MY_STATS_CONTENT = [
   {
     id: 0,
     value: state => getProjectsValidated(state),

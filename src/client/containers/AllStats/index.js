@@ -4,7 +4,6 @@ import { withStateHandlers } from 'recompose';
 
 import { store } from '../../index';
 import { Container, StatContainer, StatLabel, StatValue } from './styles';
-import { ALL_STATS_CONTENT } from '../../constants/allStatsContent';
 
 const Stat = ({ value, label, isHover, handleChangeIsHover, secondValue }) => (
   <StatContainer
@@ -29,7 +28,7 @@ const EnhancedStart = withStateHandlers(
   },
 )(Stat);
 
-const AllStats = () => {
+const AllStats = ({ stats }) => {
   const state = !isNil(store) ? store.getState() : {};
   return (
     <Container>
@@ -42,7 +41,7 @@ const AllStats = () => {
             secondValue={stat.secondValue(state)}
           />
         ),
-        ALL_STATS_CONTENT,
+        stats,
       )}
     </Container>
   );

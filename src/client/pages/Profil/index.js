@@ -19,6 +19,7 @@ import {
   FILTER_MARK_BUTTON_VALUES,
   LOGS_FILTER_VALUES,
 } from '../../constants/selectButtonValues';
+import { MY_STATS_CONTENT } from '../../constants/stats';
 import AllStats from '../../containers/AllStats';
 import ProfilHeader from '../../containers/ProfilHeader';
 
@@ -103,7 +104,7 @@ const Profil = ({
         label={'My Stats'}
         width={'100%'}
         height={'auto'}
-        content={<AllStats />}
+        content={<AllStats stats={MY_STATS_CONTENT} />}
         icon={<MdTune />}
       />
     </Content>

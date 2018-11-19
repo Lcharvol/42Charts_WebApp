@@ -61,7 +61,7 @@ const User = ({
           icon={<MdCollectionsBookmark />}
         />
         <Box
-          label={'My Log'}
+          label={'Logs'}
           width={'calc(50% - 27px)'}
           height={'400px'}
           content={
