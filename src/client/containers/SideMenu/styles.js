@@ -42,6 +42,8 @@ export const SideMenuHeaderContainer = styled.div`
 export const MenuContainer = styled.div`
   position: relative;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
   flex-direction: column;
   width: 100%;
   margin-top: 25px;
@@ -82,7 +84,6 @@ export const Login = styled(Link)`
   color: ${MAIN_COLOR};
   font-size: 0.4em;
   margin-bottom: 15px;
-  opacity: 0.9;
   text-decoration: none;
   user-select: none;
 `;
@@ -109,7 +110,7 @@ export const Logout = styled.div`
 export const LogoContainer = styled(Link)`
   position: relative;
   display: flex;
-  width: 100;
+  width: 80%;
   height: 75px;
   margin-top: 10px;
   color: ${({ color }) => color};
@@ -121,8 +122,7 @@ export const LogoContainer = styled(Link)`
 export const LogoutLogo = styled(MdPowerSettingsNew)`
   position: relative;
   display: flex;
-  width: 100;
-  height: 75px;
+  width: 80%;
   margin-top: 10px;
   color: ${DARK_BORDER_COLOR};
   cursor: pointer;

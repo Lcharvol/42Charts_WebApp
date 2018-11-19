@@ -100,6 +100,9 @@ const enhance = compose(
     componentWillUnmount() {
       window.removeEventListener('resize', this.props.handleChangeWinWidth);
     },
+    componentDidUpdate() {
+      window.scrollTo(0, 0);
+    },
   }),
 );
 export default enhance(SideMenu);

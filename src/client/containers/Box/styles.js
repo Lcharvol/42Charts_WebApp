@@ -37,14 +37,14 @@ export const Header = styled.div`
   border-bottom: solid 1px ${DARK_BORDER_COLOR};
 `;
 
-export const HeaderLeftSide = styled.div`
+export const HeaderRightSide = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   flex: 2;
   height: 100%;
-  padding-right: 15px;
+  padding-right: 10px;
 `;
 
 export const HeaderLabel = styled.div`

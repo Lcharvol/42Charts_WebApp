@@ -8,11 +8,13 @@ import InfoContainer from './InfoContainer';
 import UserCoalition from '../../containers/UserCoalition';
 import LevelBar from '../../components/LevelBar';
 import { coalitionsBackground } from '../../constants/coalitions';
+import { MAIN_COLOR } from '../../constants/colors';
 
 const proptypes = {
   winWidth: number.isRequired,
   coalition: object,
   profilPicture: string,
+  color: string,
 };
 
 const getLevelFromCursus = (cursusId, cursus) => {
@@ -29,6 +31,7 @@ const ProfilHeader = ({
   cursus,
   selectedCursus,
   user,
+  color = MAIN_COLOR,
 }) => {
   const colationElem = find(propEq('name', coalition.name))(
     coalitionsBackground,
@@ -44,12 +47,19 @@ const ProfilHeader = ({
           height={'150px'}
           round
         />
-        <InfoContainer selectedCursus={selectedCursus} user={user} />
+        <InfoContainer
+          selectedCursus={selectedCursus}
+          user={user}
+          color={color}
+        />
         {winWidth <= 1000 && <UserCoalition coalition={coalition} />}
       </LeftSide>
       <RightSide>
         {winWidth > 1000 && <UserCoalition coalition={coalition} />}
-        <LevelBar level={getLevelFromCursus(selectedCursus, cursus || [])} />
+        <LevelBar
+          level={getLevelFromCursus(selectedCursus, cursus || [])}
+          color={color}
+        />
       </RightSide>
     </Container>
   );

@@ -57,6 +57,7 @@ const Profil = ({
       cursus={me.cursus}
       selectedCursus={selectedCursus}
       user={me}
+      color={me.coalition.color}
     />
     <Content>
       <Box
@@ -70,7 +71,7 @@ const Profil = ({
             sortBy={marksSortBy}
           />
         }
-        headerLeft={
+        headerRight={
           <SelectButton
             values={FILTER_MARK_BUTTON_VALUES}
             handler={handleChangeMarkSortBy}
@@ -91,7 +92,7 @@ const Profil = ({
             handleChangeLogsFilter={handleChangeLogsFilter}
           />
         }
-        headerLeft={
+        headerRight={
           <SelectButton
             values={LOGS_FILTER_VALUES}
             handler={handleChangeLogsFilter}

@@ -25,12 +25,12 @@ export const LeftSide = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   min-height: 100%;
   padding: 25px;
-  flex: 1;
   @media (max-width: 1000px) {
     width: calc(100% - 50px);
+    align-items: flex-start;
   }
 `;
 

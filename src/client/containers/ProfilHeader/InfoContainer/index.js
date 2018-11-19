@@ -6,7 +6,7 @@ import { Container, FullName, Content, Label, Value } from './styles';
 const getSelectedCursusObject = (cursusId, cursus) =>
   find(propEq('id', cursusId))(cursus);
 
-const InfoContainer = ({ user, selectedCursus }) => {
+const InfoContainer = ({ user, selectedCursus, color }) => {
   const cursusObject = getSelectedCursusObject(
     selectedCursus,
     user.cursus || [],
@@ -39,7 +39,7 @@ const InfoContainer = ({ user, selectedCursus }) => {
       {map(
         elem => (
           <Content key={elem.id}>
-            <Label>{elem.label}</Label>
+            <Label color={color}>{elem.label}</Label>
             <Value>{elem.value}</Value>
           </Content>
         ),

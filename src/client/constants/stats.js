@@ -16,6 +16,13 @@ import {
   getAverageLogsPerSession,
 } from '../selectors/me';
 
+import {
+  getUserAllRank,
+  getUserPromoRank,
+  getUserValidatedProjects,
+  getUserAchievementsCount,
+} from '../selectors/user';
+
 export const MY_STATS_CONTENT = [
   {
     id: 0,
@@ -97,4 +104,29 @@ export const MY_STATS_CONTENT = [
   },
 ];
 
-export const USER_STATS_CONTENT = [];
+export const USER_STATS_CONTENT = [
+  {
+    id: 0,
+    value: state => getUserAllRank(state),
+    secondValue: state => {},
+    label: 'All Rank',
+  },
+  {
+    id: 1,
+    value: state => getUserPromoRank(state),
+    secondValue: state => undefined,
+    label: 'Promo Rank',
+  },
+  {
+    id: 2,
+    value: state => getUserValidatedProjects(state),
+    secondValue: state => undefined,
+    label: 'Validaed Projects',
+  },
+  {
+    id: 3,
+    value: state => getUserAchievementsCount(state),
+    secondValue: state => undefined,
+    label: 'Achievements',
+  },
+];

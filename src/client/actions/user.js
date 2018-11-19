@@ -7,4 +7,4 @@ export const loadUser = user => dispatch => dispatch({ type: LOAD_USER, user });
 export const loadUserLogs = logs => dispatch =>
   dispatch({ type: LOAD_USER_LOGS, logs });
 
-export const resetUser = () => dispatch => dispatch({ type: RESET_USER, logs });
+export const resetUser = () => dispatch => dispatch({ type: RESET_USER });

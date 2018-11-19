@@ -7,7 +7,7 @@ import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
 
 import { Container, Content } from './styles';
 import { reqGetUserById, reqGetUserLogsById } from '../../requests';
-import { loadUser, loadUserLogs } from '../../actions/user';
+import { loadUser, loadUserLogs, resetUser } from '../../actions/user';
 import { getCurrentTime } from '../../selectors/time';
 import { getUser, getUserLogs } from '../../selectors/user';
 
@@ -42,6 +42,7 @@ const User = ({
         profilPicture={user.imageUrl}
         cursus={user.cursus}
         user={user}
+        color={user.coalition.color}
       />
       <Content>
         <Box
@@ -55,7 +56,7 @@ const User = ({
               sortBy={marksSortBy}
             />
           }
-          headerLeft={
+          headerRight={
             <SelectButton
               values={FILTER_MARK_BUTTON_VALUES}
               handler={handleChangeMarkSortBy}
@@ -77,7 +78,7 @@ const User = ({
               handleChangeLogsFilter={handleChangeLogsFilter}
             />
           }
-          headerLeft={
+          headerRight={
             <SelectButton
               values={LOGS_FILTER_VALUES}
               handler={handleChangeLogsFilter}
@@ -86,13 +87,13 @@ const User = ({
           }
           icon={<MdTimeline />}
         />
-        {/* <Box
+        <Box
           label={'Stats'}
           width={'100%'}
           height={'auto'}
           content={<AllStats stats={USER_STATS_CONTENT} />}
           icon={<MdTune />}
-        /> */}
+        />
       </Content>
     </Container>
   );
@@ -104,7 +105,7 @@ const mapStateToProps = state => ({
   userLogs: getUserLogs(state),
 });
 
-const actions = { loadUser, loadUserLogs };
+const actions = { loadUser, loadUserLogs, resetUser };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
@@ -152,7 +153,11 @@ const enhance = compose(
     },
     componentDidUpdate(prevProps) {},
     componentWillUnmount() {
+      this.props.resetUser();
       window.removeEventListener('resize', this.props.handleChangeWinWidth);
+    },
+    componentDidUpdate() {
+      window.scrollTo(0, 0);
     },
   }),
 );

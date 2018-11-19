@@ -41,12 +41,12 @@ export const Content = styled.div`
 
 export const Label = styled.div`
   position: relative;
-  color: ${MAIN_COLOR};
   font-size: 0.3em;
   margin-right: 10px;
   user-select: none;
   font-family: 'Roboto', sans-serif;
   font-weight: 0;
+  color: ${({ color }) => color};
 `;
 
 export const Value = styled.div`

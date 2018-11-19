@@ -5,6 +5,7 @@ const initialState = {
   logs: {
     logs: {},
   },
+  projects: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +16,7 @@ const reducer = (state = initialState, action) => {
     case LOAD_USER_LOGS: {
       return { ...state, logs: action.logs };
     }
-    case LOAD_USER_LOGS: {
+    case RESET_USER: {
       return initialState;
     }
     default:

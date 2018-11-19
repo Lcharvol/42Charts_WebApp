@@ -6,17 +6,17 @@ import {
   Header,
   HeaderLabel,
   Content,
-  HeaderLeftSide,
+  HeaderRightSide,
   LogoContainer,
 } from './styles';
 
-const Box = ({ width, height, label, content, headerLeft, icon }) => (
+const Box = ({ width, height, label, content, headerRight, icon }) => (
   <Container width={width} height={height}>
     {!isNil(label) && (
       <Header>
         {!isNil(icon) && <LogoContainer>{icon}</LogoContainer>}
         <HeaderLabel>{label}</HeaderLabel>
-        <HeaderLeftSide>{headerLeft}</HeaderLeftSide>
+        <HeaderRightSide>{headerRight}</HeaderRightSide>
       </Header>
     )}
     <Content>{content}</Content>

@@ -17,7 +17,7 @@ export const Content = styled.div`
   position: absolute;
   display: flex;
   height: 100%;
-  background-color: ${MAIN_COLOR};
+  background-color: ${({ color }) => color};
   width: ${({ value }) => value}%;
   z-index: 100;
 `;
