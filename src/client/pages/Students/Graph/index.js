@@ -1,6 +1,6 @@
 import React from 'react';
 import { array, number, func } from 'prop-types';
-import { length, isNil } from 'ramda';
+import { length, isNil, isEmpty } from 'ramda';
 import { compose, onlyUpdateForKeys, withStateHandlers } from 'recompose';
 
 import {
@@ -47,20 +47,22 @@ const Graph = ({
 }) => (
   <Container>
     <TopSide>
-      {usersByUnit.map((UsersPerUnit, id) => (
-        <BarContainer
-          key={id}
-          valuesLength={length(usersByUnit)}
-          value={UsersPerUnit / nbUsers}
-          onMouseEnter={() => handleChangeHoveredUnit(id)}
-          onMouseLeave={() => handleChangeHoveredUnit(undefined)}
-        >
-          <Bar
-            value={UsersPerUnit / nbUsers}
-            valuesLength={length(usersByUnit)}
-          />
-        </BarContainer>
-      ))}
+      {(isEmpty(usersByUnit) ? new Array(30).fill(0, 0) : usersByUnit).map(
+        (UsersPerUnit, id) => {
+          const value = nbUsers > 0 ? UsersPerUnit / nbUsers : 0;
+          return (
+            <BarContainer
+              key={id}
+              valuesLength={length(usersByUnit)}
+              value={value}
+              onMouseEnter={() => handleChangeHoveredUnit(id)}
+              onMouseLeave={() => handleChangeHoveredUnit(undefined)}
+            >
+              <Bar value={value} valuesLength={length(usersByUnit)} />
+            </BarContainer>
+          );
+        },
+      )}
     </TopSide>
     <Separator color={MAIN_COLOR} />
     <BottomSide>

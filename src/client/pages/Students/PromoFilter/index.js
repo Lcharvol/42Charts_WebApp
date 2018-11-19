@@ -49,7 +49,10 @@ const PromoFilter = ({
         {!isEmpty(promos) && (
           <SelectedBox
             leftPosition={
-              (findIndex(promo => promo === selectedPromo)(promos) || 0) * 80 +
+              (findIndex(promo => promo === selectedPromo)(promos) >= 0
+                ? findIndex(promo => promo === selectedPromo)(promos)
+                : 0) *
+                80 +
               7.5
             }
           />

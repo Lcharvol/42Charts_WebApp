@@ -65,7 +65,6 @@ const User = ({
           }
           icon={<MdCollectionsBookmark />}
         />
-        {console.log('userLogs: ', userLogs)}
         <Box
           label={'Logs'}
           width={'calc(50% - 27px)'}

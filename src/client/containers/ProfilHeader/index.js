@@ -9,6 +9,7 @@ import UserCoalition from '../../containers/UserCoalition';
 import LevelBar from '../../components/LevelBar';
 import { coalitionsBackground } from '../../constants/coalitions';
 import { MAIN_COLOR } from '../../constants/colors';
+import DEFAULT_BACKGROUND from '../../../../public/poly_background.jpg';
 
 const proptypes = {
   winWidth: number.isRequired,
@@ -38,7 +39,9 @@ const ProfilHeader = ({
   );
   return (
     <Container
-      backgroundUrl={!isNil(colationElem) ? colationElem.backgroundUrl : ''}
+      backgroundUrl={
+        !isNil(colationElem) ? colationElem.backgroundUrl : DEFAULT_BACKGROUND
+      }
     >
       <LeftSide>
         <UserAvatar
@@ -52,10 +55,12 @@ const ProfilHeader = ({
           user={user}
           color={color}
         />
-        {winWidth <= 1000 && <UserCoalition coalition={coalition} />}
+        {winWidth <= 1000 &&
+          !isNil(colationElem) && <UserCoalition coalition={coalition} />}
       </LeftSide>
       <RightSide>
-        {winWidth > 1000 && <UserCoalition coalition={coalition} />}
+        {winWidth > 1000 &&
+          !isNil(colationElem) && <UserCoalition coalition={coalition} />}
         <LevelBar
           level={getLevelFromCursus(selectedCursus, cursus || [])}
           color={color}
