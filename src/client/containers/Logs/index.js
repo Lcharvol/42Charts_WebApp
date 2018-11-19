@@ -1,5 +1,5 @@
 import React from 'react';
-import { times, find, propEq, length } from 'ramda';
+import { times, find, propEq, length, isEmpty, isNil } from 'ramda';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { number, func, string, object } from 'prop-types';
 
@@ -50,7 +50,7 @@ const Logs = ({
   handleChangeLogsFilter,
 }) => {
   const logsFilterObject = find(propEq('id', logsFilter))(LOGS_FILTER_VALUES);
-
+  if (isEmpty(logs) || isNil(logs)) return <div />;
   return (
     <Container>
       <TopSide>

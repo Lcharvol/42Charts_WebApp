@@ -96,3 +96,5 @@ export const MY_STATS_CONTENT = [
     label: 'Most used Computer',
   },
 ];
+
+export const USER_STATS_CONTENT = [];

@@ -3,21 +3,25 @@ import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { drop, length, isEmpty } from 'ramda';
-import { MdCollectionsBookmark, MdTimeline } from 'react-icons/md';
+import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
 
 import { Container, Content } from './styles';
 import { reqGetUserById, reqGetUserLogsById } from '../../requests';
+import { loadUser, loadUserLogs } from '../../actions/user';
 import { getCurrentTime } from '../../selectors/time';
+import { getUser, getUserLogs } from '../../selectors/user';
 
 import ProfilHeader from '../../containers/ProfilHeader';
 import Box from '../../containers/Box';
 import Marks from '../../containers/Marks';
 import Logs from '../../containers/Logs';
+import AllStats from '../../containers/AllStats';
 import SelectButton from '../../components/SelectButton';
 import {
   FILTER_MARK_BUTTON_VALUES,
   LOGS_FILTER_VALUES,
 } from '../../constants/selectButtonValues';
+import { USER_STATS_CONTENT } from '../../constants/stats';
 
 const User = ({
   user,
@@ -60,6 +64,7 @@ const User = ({
           }
           icon={<MdCollectionsBookmark />}
         />
+        {console.log('userLogs: ', userLogs)}
         <Box
           label={'Logs'}
           width={'calc(50% - 27px)'}
@@ -81,6 +86,13 @@ const User = ({
           }
           icon={<MdTimeline />}
         />
+        {/* <Box
+          label={'Stats'}
+          width={'100%'}
+          height={'auto'}
+          content={<AllStats stats={USER_STATS_CONTENT} />}
+          icon={<MdTune />}
+        /> */}
       </Content>
     </Container>
   );
@@ -88,9 +100,11 @@ const User = ({
 
 const mapStateToProps = state => ({
   currentTime: getCurrentTime(state),
+  user: getUser(state),
+  userLogs: getUserLogs(state),
 });
 
-const actions = {};
+const actions = { loadUser, loadUserLogs };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
@@ -101,25 +115,15 @@ const enhance = compose(
   ),
   withStateHandlers(
     ({
-      initialUser = {},
       initialWinWidth = window.innerWidth,
       initialMarksSortBy = 0,
-      initialUserLogs = [],
       initialLogsFilter = 0,
     }) => ({
-      user: initialUser,
       winWidth: initialWinWidth,
       marksSortBy: initialMarksSortBy,
-      userLogs: initialUserLogs,
       logsFilter: initialLogsFilter,
     }),
     {
-      loadUser: () => user => ({
-        user,
-      }),
-      loadUserLogs: () => userLogs => ({
-        userLogs,
-      }),
       handleChangeWinWidth: () => newWinWidth => ({
         winWidth: newWinWidth,
       }),
