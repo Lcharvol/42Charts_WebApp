@@ -117,6 +117,7 @@ export const LogoContainer = styled(Link)`
   &:hover {
     color: ${MAIN_COLOR};
   }
+  transition: color 0.1s ease-in;
 `;
 
 export const LogoutLogo = styled(MdPowerSettingsNew)`
@@ -127,6 +128,7 @@ export const LogoutLogo = styled(MdPowerSettingsNew)`
   color: ${DARK_BORDER_COLOR};
   cursor: pointer;
   &:hover {
-    color: ${MAIN_COLOR};
+    color: rgba(255, 255, 255, 0.7);
   }
+  transition: color 0.1s ease-in;
 `;

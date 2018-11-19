@@ -3,7 +3,14 @@ import { array, number, string, func, bool } from 'prop-types';
 import { find, propEq, isNil, map } from 'ramda';
 import { compose, withStateHandlers } from 'recompose';
 
-import { Container, Content, ChevIcon, SelectedValue, Value } from './styles';
+import {
+  Container,
+  Content,
+  ChevIcon,
+  SelectedValue,
+  Value,
+  Shadow,
+} from './styles';
 
 const proptypes = {
   values: array.isRequired,
@@ -60,6 +67,7 @@ const SelectButton = ({
         )}
       </Content>
     )}
+    {!wrapped && <Shadow />}
   </Container>
 );
 

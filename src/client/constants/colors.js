@@ -2,7 +2,7 @@ export const BACKGROUND_COLOR = 'rgb(25,25,25)';
 
 export const LIGHT_BACKGROUND_COLOR = 'rgb(30,30,30)';
 
-export const HEADER_BACKGROUND_COLOR = 'rgb(45,45,45)';
+export const HEADER_BACKGROUND_COLOR = 'rgb(40,40, 40)';
 
 export const FONT_COLOR = 'rgb(255,255,255)';
 
@@ -31,3 +31,7 @@ export const THIRD_RANK_COLOR = '#965A38';
 export const VALIDATED_MARK_COLOR = '#2ecc71';
 
 export const FAIL_MARK_COLOR = '#e74c3c';
+
+export const RED = '#e74c3c';
+
+export const TRANSPARENT_DARK_BACKGROUND = 'rgba(15, 15, 15, 0.5)';

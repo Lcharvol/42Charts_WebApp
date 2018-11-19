@@ -1,4 +1,5 @@
 import React from 'react';
+import { equals } from 'ramda';
 
 import {
   Container,
@@ -12,6 +13,18 @@ import {
   Rank,
   RankIcon,
 } from './styles';
+import {
+  FIRST_RANK_COLOR,
+  SECOND_RANK_COLOR,
+  THIRD_RANK_COLOR,
+} from '../../constants/colors';
+
+const getColorFromRank = rank => {
+  if (equals(rank, 1)) return FIRST_RANK_COLOR;
+  if (equals(rank, 2)) return SECOND_RANK_COLOR;
+  if (equals(rank, 3)) return THIRD_RANK_COLOR;
+  return undefined;
+};
 
 const UserCoalition = ({
   coalition: { name, color, imageUrl, userScore, userRank },
@@ -29,7 +42,7 @@ const UserCoalition = ({
         {userScore}
       </Score>
       <Rank>
-        <RankIcon />
+        <RankIcon color={getColorFromRank(parseInt(userRank))} />
         {userRank}
       </Rank>
     </RightSide>

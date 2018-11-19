@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { BORDER_COLOR, MAIN_COLOR } from '../../../constants/colors';
+import {
+  BORDER_COLOR,
+  MAIN_COLOR,
+  TRANSPARENT_DARK_BACKGROUND,
+} from '../../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -7,12 +11,12 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: rgba(15, 15, 15, 0.7);
+  background-color: ${TRANSPARENT_DARK_BACKGROUND};
   border-radius: 3px;
   min-height: 120px;
-  min-width: 200px;
+  min-width: 240px;
   max-height: 120px;
-  max-width: 200px;
+  max-width: 240px;
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 5px;

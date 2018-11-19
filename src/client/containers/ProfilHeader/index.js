@@ -53,7 +53,7 @@ const ProfilHeader = ({
         <InfoContainer
           selectedCursus={selectedCursus}
           user={user}
-          color={color}
+          color={color[0] === '#' ? color : `#${color}`}
         />
         {winWidth <= 1000 &&
           !isNil(colationElem) && <UserCoalition coalition={coalition} />}
@@ -63,7 +63,7 @@ const ProfilHeader = ({
           !isNil(colationElem) && <UserCoalition coalition={coalition} />}
         <LevelBar
           level={getLevelFromCursus(selectedCursus, cursus || [])}
-          color={color}
+          color={color[0] === '#' ? color : `#${color}`}
         />
       </RightSide>
     </Container>

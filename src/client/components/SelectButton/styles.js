@@ -35,6 +35,7 @@ export const Content = styled.div`
   background-color: ${BACKGROUND_COLOR};
   border: solid 1px ${DARK_BORDER_COLOR};
   top: ${({ height }) => height}px;
+  z-index: 1000;
 `;
 
 export const SelectedValue = styled.div`
@@ -77,4 +78,13 @@ export const Value = styled.div`
   &:hover {
     background-color: ${LIGHT_BACKGROUND_COLOR};
   }
+`;
+
+export const Shadow = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
 `;

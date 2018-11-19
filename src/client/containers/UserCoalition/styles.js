@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { isNil } from 'ramda';
 import { FaTrophy } from 'react-icons/fa';
 import { MdTurnedIn } from 'react-icons/md';
 
@@ -7,7 +8,6 @@ import { FONT_COLOR } from '../../constants/colors';
 export const Container = styled.div`
   position: relative;
   display: flex;
-  width: 150px;
   height: 110px;
 `;
 
@@ -15,7 +15,6 @@ export const LeftSide = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 1;
 `;
 
 export const RightSide = styled.div`
@@ -23,7 +22,7 @@ export const RightSide = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 65px;
+  height: 90px;
   padding-left: 10px;
 `;
 
@@ -33,9 +32,14 @@ export const Flag = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ color }) => color};
-  width: 65px;
-  height: 65px;
+  width: 85px;
+  height: 85px;
   border-radius: 3px;
+  &:hover {
+    opacity: 0.8;
+  }
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 `;
 
 export const CoalitionIcon = styled.div`
@@ -63,8 +67,6 @@ export const Name = styled.div`
 export const Score = styled.div`
   position: relative;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   font-size: 0.3em;
   color: ${FONT_COLOR};
   flex: 1;
@@ -77,8 +79,6 @@ export const ScoreIcon = styled(FaTrophy)`
 export const Rank = styled.div`
   position: relative;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   font-size: 0.3em;
   color: ${FONT_COLOR};
   flex: 1;
@@ -86,4 +86,5 @@ export const Rank = styled.div`
 
 export const RankIcon = styled(MdTurnedIn)`
   margin-right: 5px;
+  color: ${({ color }) => (!isNil(color) ? color : 'rgba(255,255,255, 0.7)')};
 `;

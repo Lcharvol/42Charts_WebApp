@@ -30,8 +30,10 @@ const User = ({
   marksSortBy,
   userLogs,
   logsFilter,
+  selectedCursus,
   handleChangeMarkSortBy,
   handleChangeLogsFilter,
+  handleChangeSelectedCursus,
 }) => {
   if (isEmpty(user)) return <div />;
   return (
@@ -43,6 +45,7 @@ const User = ({
         cursus={user.cursus}
         user={user}
         color={user.coalition.color}
+        selectedCursus={selectedCursus}
       />
       <Content>
         <Box
@@ -118,10 +121,12 @@ const enhance = compose(
       initialWinWidth = window.innerWidth,
       initialMarksSortBy = 0,
       initialLogsFilter = 0,
+      initialSelectedCursus = 1,
     }) => ({
       winWidth: initialWinWidth,
       marksSortBy: initialMarksSortBy,
       logsFilter: initialLogsFilter,
+      selectedCursus: initialSelectedCursus,
     }),
     {
       handleChangeWinWidth: () => newWinWidth => ({
@@ -133,11 +138,16 @@ const enhance = compose(
       handleChangeMarkSortBy: () => newSortBy => ({
         marksSortBy: newSortBy,
       }),
+      handleChangeSelectedCursus: () => cursusId => ({
+        selectedCursus: cursusId,
+      }),
     },
   ),
   lifecycle({
     componentDidMount() {
       const userId = drop(1, this.props.location.search);
+      window.scrollTo(0, 0);
+
       if (length(userId) > 0) {
         reqGetUserById(userId)
           .then(data => this.props.loadUser(data))
@@ -154,9 +164,6 @@ const enhance = compose(
     componentWillUnmount() {
       this.props.resetUser();
       window.removeEventListener('resize', this.props.handleChangeWinWidth);
-    },
-    componentDidUpdate() {
-      window.scrollTo(0, 0);
     },
   }),
 );
