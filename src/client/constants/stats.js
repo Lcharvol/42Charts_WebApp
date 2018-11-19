@@ -14,6 +14,8 @@ import {
   getMyPreferedHostName,
   getMyPreferedHostTime,
   getAverageLogsPerSession,
+  getMyAllRankEvolution,
+  getMyPromoRankEvolution,
 } from '../selectors/me';
 
 import {
@@ -21,6 +23,8 @@ import {
   getUserPromoRank,
   getUserValidatedProjects,
   getUserAchievementsCount,
+  getUserAllRankEvolution,
+  getUserPromoRankEvolution,
 } from '../selectors/user';
 
 export const MY_STATS_CONTENT = [
@@ -33,13 +37,13 @@ export const MY_STATS_CONTENT = [
   {
     id: 1,
     value: state => getMyPromoRank(state),
-    secondValue: state => undefined,
+    secondValue: state => getMyPromoRankEvolution(state),
     label: 'Promo Rank',
   },
   {
     id: 2,
     value: state => getMyAllRank(state),
-    secondValue: state => undefined,
+    secondValue: state => getMyAllRankEvolution(state),
     label: 'All Rank',
   },
   {
@@ -108,20 +112,20 @@ export const USER_STATS_CONTENT = [
   {
     id: 0,
     value: state => getUserAllRank(state),
-    secondValue: state => {},
+    secondValue: state => getUserAllRankEvolution(state),
     label: 'All Rank',
   },
   {
     id: 1,
     value: state => getUserPromoRank(state),
-    secondValue: state => undefined,
+    secondValue: state => getUserPromoRankEvolution(state),
     label: 'Promo Rank',
   },
   {
     id: 2,
     value: state => getUserValidatedProjects(state),
     secondValue: state => undefined,
-    label: 'Validaed Projects',
+    label: 'Validated Projects',
   },
   {
     id: 3,

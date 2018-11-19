@@ -36,7 +36,6 @@ export const StatContainer = styled.div`
     border: solid 2px ${MAIN_COLOR};
     background-color: rgba(45, 45, 45, 0.8);
     margin: 14px;
-    transform: scale(1.05);
   }
   transition: all 0.1s ease-in-out;
 `;

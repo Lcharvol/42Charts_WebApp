@@ -4,7 +4,7 @@ import { map } from 'ramda';
 
 import Mark from '../../components/Mark';
 import { getSortedMarks, getSince, getRetries } from './utils';
-import { Container } from './styles';
+import { Container, EndBlock } from './styles';
 
 const proptypes = {
   marks: array.isRequired,
@@ -26,6 +26,7 @@ const Marks = ({ marks, currentTime, sortBy }) => (
       ),
       getSortedMarks(marks, sortBy),
     )}
+    <EndBlock />
   </Container>
 );
 

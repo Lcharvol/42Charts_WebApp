@@ -1,4 +1,9 @@
+import React from 'react';
+import styled from 'styled-components';
 import { filter, isNil, length, map, split, take } from 'ramda';
+import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
+
+import { MAIN_COLOR, RED } from '../constants/colors';
 
 export const getMe = state => state.me;
 
@@ -84,4 +89,48 @@ export const getAverageLogsPerSession = state => {
   const hours = Math.floor(averageLogTimeInSecond / 3600);
   const min = Math.floor((averageLogTimeInSecond - hours * 3600) / 60);
   return `${hours} Hours ${min} min / log`;
+};
+
+export const getMyAllRankEvolution = state => {
+  const {
+    me: { allRank, oldAllRank },
+  } = state;
+  const diff = allRank - oldAllRank;
+  const color = diff >= 0 ? MAIN_COLOR : RED;
+  const Container = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${color};
+  `;
+  const Icon = diff >= 0 ? MdArrowDropUp : MdArrowDropDown;
+  return (
+    <Container>
+      <Icon />
+      {diff}
+    </Container>
+  );
+};
+
+export const getMyPromoRankEvolution = state => {
+  const {
+    me: { promoRank, oldPromoRank },
+  } = state;
+  const diff = promoRank - oldPromoRank;
+  const color = diff >= 0 ? MAIN_COLOR : RED;
+  const Container = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${color};
+  `;
+  const Icon = diff >= 0 ? MdArrowDropUp : MdArrowDropDown;
+  return (
+    <Container>
+      <Icon />
+      {diff}
+    </Container>
+  );
 };

@@ -7,6 +7,11 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  padding-bottom: 25px;
-  height: auto;
+`;
+
+export const EndBlock = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 25px;
 `;

@@ -7,8 +7,8 @@ import { Container, StatContainer, StatLabel, StatValue } from './styles';
 
 const Stat = ({ value, label, isHover, handleChangeIsHover, secondValue }) => (
   <StatContainer
-    onMouseEnter={() => handleChangeIsHover()}
-    onMouseLeave={() => handleChangeIsHover()}
+    onMouseEnter={() => handleChangeIsHover(true)}
+    onMouseLeave={() => handleChangeIsHover(false)}
   >
     <StatValue>{value}</StatValue>
     <StatLabel>
@@ -22,8 +22,8 @@ const EnhancedStart = withStateHandlers(
     isHover: initialIsHover,
   }),
   {
-    handleChangeIsHover: ({ isHover }) => () => ({
-      isHover: !isHover,
+    handleChangeIsHover: () => newValue => ({
+      isHover: newValue,
     }),
   },
 )(Stat);
