@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { filter, isNil, length, map, split, take } from 'ramda';
+import { filter, isNil, length, find, propEq } from 'ramda';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 
 import { MAIN_COLOR, RED } from '../constants/colors';
@@ -16,13 +16,25 @@ export const getMarks = state =>
 
 export const getMyLogs = state => state.me.logs.logs;
 
-export const getProjectsValidated = state => {
+export const getMyProjectsValidated = state => {
   if (isNil(state.me)) return 0;
   const {
     me: { projects },
   } = state;
   const validatedProject = filter(
-    project => project.status === 'finished',
+    project => project.status === 'finished' && project.finalMark >= 50,
+    projects,
+  );
+  return length(validatedProject);
+};
+
+export const getMyProjectsFailed = state => {
+  if (isNil(state.me)) return 0;
+  const {
+    me: { projects },
+  } = state;
+  const validatedProject = filter(
+    project => project.status == 'finished' && project.finalMark < 50,
     projects,
   );
   return length(validatedProject);
@@ -37,6 +49,15 @@ export const getAchievementsCount = state => length(state.me.achievements);
 export const getMyCoalition = state => state.me.coalition;
 
 export const getMyCoalitionScore = state => state.me.coalition.userScore;
+
+export const getMyCoalitionScoreInfo = state => {
+  const {
+    me: {
+      coalition: { userScore, coalitionScore },
+    },
+  } = state;
+  return `/ ${coalitionScore}`;
+};
 
 export const getMyCoalitionRank = state => state.me.coalition.userRank;
 
@@ -53,11 +74,47 @@ export const getHighterLogPerDay = state => {
   return `${hours} h ${min} min`;
 };
 
+export const getHighterLogPerDayInfos = state => {
+  const {
+    me: {
+      logs: {
+        higherLogInADay: { year, month, day },
+      },
+    },
+  } = state;
+  return `${day}/${month}/${year}`;
+};
+
 export const getHighterLogPerMonth = state => {
   const logtimeInSeconds = state.me.logs.higherLogInMonth.logtimeInSeconds;
   const hours = Math.floor(logtimeInSeconds / 60 / 60);
   const min = Math.floor((logtimeInSeconds - hours * 60 * 60) / 60);
   return `${hours} h ${min} min`;
+};
+
+export const getHighterLogPerMonthInfos = state => {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const {
+    me: {
+      logs: {
+        higherLogInMonth: { year, month },
+      },
+    },
+  } = state;
+  return `${months[parseInt(month)]} ${year}`;
 };
 
 export const getMyNumberOfLogs = state => state.me.logs.numberOfLogs;
@@ -95,7 +152,7 @@ export const getMyAllRankEvolution = state => {
   const {
     me: { allRank, oldAllRank },
   } = state;
-  const diff = allRank - oldAllRank;
+  const diff = oldAllRank - allRank;
   const color = diff >= 0 ? MAIN_COLOR : RED;
   const Container = styled.div`
     position: relative;
@@ -117,7 +174,7 @@ export const getMyPromoRankEvolution = state => {
   const {
     me: { promoRank, oldPromoRank },
   } = state;
-  const diff = promoRank - oldPromoRank;
+  const diff = oldPromoRank - promoRank;
   const color = diff >= 0 ? MAIN_COLOR : RED;
   const Container = styled.div`
     position: relative;
@@ -133,4 +190,9 @@ export const getMyPromoRankEvolution = state => {
       {diff}
     </Container>
   );
+};
+
+export const getMyAverageLevelByMonth = state => {
+  const cursus = find(propEq('id', 1))(state.me.cursus);
+  return !isNil(cursus) ? cursus.levelByMonth : 0;
 };

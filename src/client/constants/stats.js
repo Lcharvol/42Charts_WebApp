@@ -1,11 +1,13 @@
 import {
   getAchievementsCount,
-  getProjectsValidated,
+  getMyProjectsValidated,
+  getMyProjectsFailed,
   getMyPromoRank,
   getMyAllRank,
   getMyCoalitionRank,
   getMyCoalitionScore,
   getHighterLogPerDay,
+  getHighterLogPerDayInfos,
   getHighterLogPerMonth,
   getMyNumberOfLogs,
   getMyTotalLogTime,
@@ -16,6 +18,9 @@ import {
   getAverageLogsPerSession,
   getMyAllRankEvolution,
   getMyPromoRankEvolution,
+  getHighterLogPerMonthInfos,
+  getMyCoalitionScoreInfo,
+  getMyAverageLevelByMonth,
 } from '../selectors/me';
 
 import {
@@ -25,13 +30,21 @@ import {
   getUserAchievementsCount,
   getUserAllRankEvolution,
   getUserPromoRankEvolution,
+  getUserAverageLevelByMonth,
+  getUserFailedProjects,
+  getUserLogTime,
+  getUserPreferedHostName,
+  getUserPreferedHostTime,
+  getUserCoalitionRank,
+  getUserCoalitionScore,
+  getUserCoalitionScoreInfo,
 } from '../selectors/user';
 
 export const MY_STATS_CONTENT = [
   {
     id: 0,
-    value: state => getProjectsValidated(state),
-    secondValue: state => undefined,
+    value: state => getMyProjectsValidated(state),
+    secondValue: state => `${getMyProjectsFailed(state)} projects failed`,
     label: 'Projects validated',
   },
   {
@@ -49,13 +62,13 @@ export const MY_STATS_CONTENT = [
   {
     id: 3,
     value: state => getHighterLogPerDay(state),
-    secondValue: state => undefined,
+    secondValue: state => getHighterLogPerDayInfos(state),
     label: 'Highter Log/Day',
   },
   {
     id: 4,
     value: state => getHighterLogPerMonth(state),
-    secondValue: state => undefined,
+    secondValue: state => getHighterLogPerMonthInfos(state),
     label: 'Highter Log/Month',
   },
   {
@@ -73,7 +86,7 @@ export const MY_STATS_CONTENT = [
   {
     id: 7,
     value: state => getMyCoalitionScore(state),
-    secondValue: state => undefined,
+    secondValue: state => getMyCoalitionScoreInfo(state),
     label: 'My coaliton score',
   },
   {
@@ -106,6 +119,12 @@ export const MY_STATS_CONTENT = [
     secondValue: state => getMyPreferedHostTime(state),
     label: 'Most used Computer',
   },
+  {
+    id: 13,
+    value: state => getMyAverageLevelByMonth(state),
+    secondValue: state => undefined,
+    label: 'Average Level/Month',
+  },
 ];
 
 export const USER_STATS_CONTENT = [
@@ -124,7 +143,7 @@ export const USER_STATS_CONTENT = [
   {
     id: 2,
     value: state => getUserValidatedProjects(state),
-    secondValue: state => undefined,
+    secondValue: state => `${getUserFailedProjects(state)} projects failed`,
     label: 'Validated Projects',
   },
   {
@@ -132,5 +151,35 @@ export const USER_STATS_CONTENT = [
     value: state => getUserAchievementsCount(state),
     secondValue: state => undefined,
     label: 'Achievements',
+  },
+  {
+    id: 4,
+    value: state => getUserAverageLevelByMonth(state),
+    secondValue: state => undefined,
+    label: 'Average Level/Month',
+  },
+  {
+    id: 5,
+    value: state => getUserLogTime(state),
+    secondValue: state => undefined,
+    label: 'Total LogTime',
+  },
+  {
+    id: 6,
+    value: state => getUserPreferedHostName(state),
+    secondValue: state => getUserPreferedHostTime(state),
+    label: 'Most used Computer',
+  },
+  {
+    id: 7,
+    value: state => getUserCoalitionRank(state),
+    secondValue: state => undefined,
+    label: 'My coaliton Rank',
+  },
+  {
+    id: 8,
+    value: state => getUserCoalitionScore(state),
+    secondValue: state => getUserCoalitionScoreInfo(state),
+    label: 'My coaliton score',
   },
 ];

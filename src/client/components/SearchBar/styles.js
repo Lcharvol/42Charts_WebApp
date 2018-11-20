@@ -12,7 +12,7 @@ import {
 export const Container = styled.div`
   position: relative;
   display: flex;
-  min-width: 150px;
+  min-width: 175px;
   height: 25px;
   margin-left: 25px;
 `;

@@ -7,6 +7,7 @@ import {
   BACKGROUND_COLOR,
   DARK_BORDER_COLOR,
   DARK_FONT_COLOR,
+  FONT_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -81,7 +82,7 @@ export const Login = styled(Link)`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  color: ${MAIN_COLOR};
+  color: ${FONT_COLOR};
   font-size: 0.4em;
   margin-bottom: 15px;
   text-decoration: none;

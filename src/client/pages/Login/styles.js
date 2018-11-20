@@ -3,6 +3,7 @@ import {
   BORDER_COLOR,
   MAIN_COLOR,
   BACKGROUND_COLOR,
+  LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
 
 import LogoUI from '../../../../public/logo.svg';
@@ -36,7 +37,7 @@ export const Logo = styled.div`
     background-size: cover;
     width:100%;
     height:230px;
-    top:-127px;
+    top:-126px;
 `;
 
 export const LoginButton = styled.div`
@@ -44,18 +45,19 @@ export const LoginButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgba(25, 25, 25, 0.5);
+  color: ${MAIN_COLOR};
   width: 80%;
-  background-color: ${MAIN_COLOR};
+  background-color: ${BACKGROUND_COLOR};
   height: 55px;
   border-radius: 3px;
-  opacity: 0.8;
-  &:hover {
-    opacity: 1;
-  }
   cursor: pointer;
   font-size: 0.4em;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   top: 40px;
+  &:hover {
+    background-color: ${LIGHT_BACKGROUND_COLOR};
+  }
+  transition: all 0.1s ease-in-out;
+  border: solid 1px ${MAIN_COLOR};
 `;

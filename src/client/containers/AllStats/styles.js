@@ -3,6 +3,7 @@ import {
   BORDER_COLOR,
   MAIN_COLOR,
   DARK_BORDER_COLOR,
+  LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -38,6 +39,7 @@ export const StatContainer = styled.div`
     margin: 14px;
   }
   transition: all 0.1s ease-in-out;
+  background-image: linear-gradient(rgb(35, 35, 35), rgba(30, 30, 30));
 `;
 
 export const StatValue = styled.div`

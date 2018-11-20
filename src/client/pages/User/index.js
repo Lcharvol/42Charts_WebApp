@@ -160,7 +160,6 @@ const enhance = compose(
         this.props.handleChangeWinWidth(event.srcElement.innerWidth),
       );
     },
-    componentDidUpdate(prevProps) {},
     componentWillUnmount() {
       this.props.resetUser();
       window.removeEventListener('resize', this.props.handleChangeWinWidth);

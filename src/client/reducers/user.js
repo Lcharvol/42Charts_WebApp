@@ -4,8 +4,18 @@ const initialState = {
   coalition: {},
   logs: {
     logs: {},
+    higherLogInADay: {
+      logtimeInSeconds: 0,
+    },
+    higherLogInMonth: {
+      logtimeInSeconds: 0,
+    },
+    hostPrefered: {
+      logtimeInSeconds: 0,
+    },
   },
   projects: [],
+  cursus: {},
 };
 
 const reducer = (state = initialState, action) => {

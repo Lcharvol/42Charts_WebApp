@@ -22,6 +22,7 @@ const initialState = {
   infos: {
     logs: {},
   },
+  cursus: [],
 };
 
 const reducer = (state = initialState, action) => {

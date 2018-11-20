@@ -27,7 +27,7 @@ import {
 import { getMyLogin } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
 
-const Ranking = ({
+const Students = ({
   start,
   promos,
   selectedPromo,
@@ -229,11 +229,11 @@ const enhance = compose(
             )
               .then(res => this.props.handleChangeUsersRatio(res))
               .catch(err => err);
-            setTimeout(() => this.props.handleChangeIsFetching(false), 1000);
+            setTimeout(() => this.props.handleChangeIsFetching(false), 300);
           })
           .catch(err => err);
       }
     },
   }),
 );
-export default enhance(Ranking);
+export default enhance(Students);
