@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
-  margin-left: 240px;
+  margin-left: ${SIDE_MENU_TOTAL_WIDTH}px;
   min-height: 100vh;
   padding-left: 75px;
   overflow-y: scroll;

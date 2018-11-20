@@ -24,9 +24,12 @@ export const Container = styled(Link)`
   cursor: pointer;
   &:hover {
     opacity: 1;
+    ${({ color }) =>
+      color === 'none' && 'background-color: rgba(150,150, 150,0.1);'};
   }
   min-width: 560px;
   text-decoration: none;
+  transition: all 0.1s ease-in-out;
 `;
 
 export const Login = styled.div`
@@ -82,7 +85,7 @@ export const LogTime = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: ${MAIN_COLOR};
+  color: ${({ color }) => color};
   font-size: 0.4em;
   min-width: 125px;
   margin-left: 10px;

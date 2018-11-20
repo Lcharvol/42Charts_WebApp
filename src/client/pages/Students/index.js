@@ -18,6 +18,7 @@ import PromoFilter from './PromoFilter';
 import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
 import Spinner from '../../components/Spinner';
+import EmptySearch from '../../components/EmptySearch';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
 import {
   getPromos,
@@ -93,7 +94,7 @@ const Students = ({
                     if (length(res) < LOADING_OFFSET)
                       handeChangeIsFetchingPossible(false);
                     enhanceUsers(res);
-                    setTimeout(() => handleChangeIsFetching(false), 1000);
+                    setTimeout(() => handleChangeIsFetching(false), 300);
                   })
                   .catch(err => console.log('err: ', err));
               }
@@ -104,6 +105,8 @@ const Students = ({
             </VisibilitySensorBox>
           </VisibilitySensor>
         )}
+        {isEmpty(users) &&
+          !isFetching && <EmptySearch searchValue={searchValue} />}
       </UsersPrewiewContainer>
     </Content>
   </Container>
