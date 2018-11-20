@@ -1,15 +1,13 @@
 import styled from 'styled-components';
-import {
-  MAIN_COLOR,
-  LIGHT_GREY,
-  BACKGROUND_COLOR,
-} from '../../constants/colors';
+
+import { MAIN_COLOR } from '../../constants/colors';
+import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
 
 export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: calc(100vw - 315px);
+  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   margin-left: 240px;
   min-height: 100vh;
   padding-left: 75px;

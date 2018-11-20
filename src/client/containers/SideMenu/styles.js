@@ -9,19 +9,20 @@ import {
   DARK_FONT_COLOR,
   FONT_COLOR,
 } from '../../constants/colors';
+import { SIDE_MENU_WIDTH, SIDE_MENU_PADDING } from './constants';
 
 export const Container = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: ${SIDE_MENU_WIDTH}px;
   background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(30, 30, 30));
   height: 100vh;
   top: 0;
   left: ${({ hidden }) => (hidden ? -250 : 0)}px;
   padding-top: 50px;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: ${SIDE_MENU_PADDING}px;
+  padding-left: ${SIDE_MENU_PADDING}px;
   border-right: 1px ${DARK_BORDER_COLOR} solid;
   z-index: 10000;
   @media (max-width: 1000px) {

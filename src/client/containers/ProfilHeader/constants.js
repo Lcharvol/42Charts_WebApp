@@ -1,0 +1,1 @@
+export const RESPONSIVITY_WIDTH = 1100;

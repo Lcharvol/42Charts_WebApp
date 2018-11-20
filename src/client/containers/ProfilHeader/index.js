@@ -10,6 +10,7 @@ import LevelBar from '../../components/LevelBar';
 import { coalitionsBackground } from '../../constants/coalitions';
 import { MAIN_COLOR } from '../../constants/colors';
 import DEFAULT_BACKGROUND from '../../../../public/poly_background.jpg';
+import { RESPONSIVITY_WIDTH } from './constants';
 
 const proptypes = {
   winWidth: number.isRequired,
@@ -55,11 +56,11 @@ const ProfilHeader = ({
           user={user}
           color={color[0] === '#' ? color : `#${color}`}
         />
-        {winWidth <= 1000 &&
+        {winWidth <= RESPONSIVITY_WIDTH &&
           !isNil(colationElem) && <UserCoalition coalition={coalition} />}
       </LeftSide>
       <RightSide>
-        {winWidth > 1000 &&
+        {winWidth > RESPONSIVITY_WIDTH &&
           !isNil(colationElem) && <UserCoalition coalition={coalition} />}
         <LevelBar
           level={getLevelFromCursus(selectedCursus, cursus || [])}

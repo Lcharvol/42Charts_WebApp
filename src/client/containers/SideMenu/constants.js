@@ -1,0 +1,5 @@
+export const SIDE_MENU_WIDTH = 175;
+
+export const SIDE_MENU_PADDING = 20;
+
+export const SIDE_MENU_TOTAL_WIDTH = SIDE_MENU_WIDTH + 2 * SIDE_MENU_PADDING;
