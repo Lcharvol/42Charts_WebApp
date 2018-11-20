@@ -13,6 +13,8 @@ import {
   Title,
   Header,
   Content,
+  RetryRequestContainer,
+  RetryRequest,
 } from './styles';
 import PromoFilter from './PromoFilter';
 import Graph from './Graph';
@@ -42,6 +44,7 @@ const Students = ({
   isFetching,
   searchValue,
   isFetchingPossible,
+  isFetchingFailed,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
@@ -49,6 +52,7 @@ const Students = ({
   handleChangeIsFetching,
   handleChangeSearchValue,
   handeChangeIsFetchingPossible,
+  handleChangeIsFetchingFailed,
 }) => (
   <Container>
     <Header>
@@ -77,12 +81,39 @@ const Students = ({
           ),
           users,
         )}
-        {isFetchingPossible && (
-          <VisibilitySensor
-            onChange={() => {
-              if (!isEmpty(users) && !isFetching) {
-                handleChangeIsFetching(true);
-                handleChangeStart(start + LOADING_OFFSET);
+        {isFetchingPossible &&
+          !isFetchingFailed && (
+            <VisibilitySensor
+              onChange={() => {
+                if (!isEmpty(users) && !isFetching) {
+                  handleChangeIsFetching(true);
+                  handleChangeStart(start + LOADING_OFFSET);
+                  getUsersByPromo(
+                    selectedPromo !== ALL_PROMO_SELECTED ? selectedPromo : '',
+                    LOADING_OFFSET,
+                    start,
+                    find(propEq('id', filterBy))(FILTER_VALUES).label,
+                    searchValue,
+                  )
+                    .then(res => {
+                      if (length(res) < LOADING_OFFSET)
+                        handeChangeIsFetchingPossible(false);
+                      enhanceUsers(res);
+                      setTimeout(() => handleChangeIsFetching(false), 300);
+                    })
+                    .catch(err => handleChangeIsFetchingFailed(true));
+                }
+              }}
+            >
+              <VisibilitySensorBox>
+                <Spinner />
+              </VisibilitySensorBox>
+            </VisibilitySensor>
+          )}
+        {isFetchingFailed && (
+          <RetryRequestContainer>
+            <RetryRequest
+              onClick={() => {
                 getUsersByPromo(
                   selectedPromo !== ALL_PROMO_SELECTED ? selectedPromo : '',
                   LOADING_OFFSET,
@@ -91,22 +122,20 @@ const Students = ({
                   searchValue,
                 )
                   .then(res => {
+                    handleChangeIsFetchingFailed(false);
                     if (length(res) < LOADING_OFFSET)
                       handeChangeIsFetchingPossible(false);
                     enhanceUsers(res);
                     setTimeout(() => handleChangeIsFetching(false), 300);
                   })
-                  .catch(err => console.log('err: ', err));
-              }
-            }}
-          >
-            <VisibilitySensorBox>
-              <Spinner />
-            </VisibilitySensorBox>
-          </VisibilitySensor>
+                  .catch(err => handleChangeIsFetchingFailed(true));
+              }}
+            />
+          </RetryRequestContainer>
         )}
         {isEmpty(users) &&
-          !isFetching && <EmptySearch searchValue={searchValue} />}
+          !isFetching &&
+          !isFetchingFailed && <EmptySearch searchValue={searchValue} />}
       </UsersPrewiewContainer>
     </Content>
   </Container>
@@ -138,6 +167,7 @@ const enhance = compose(
       initialIsFetching = false,
       initialSearchValue = '',
       initialIsFetchingPossible = true,
+      initialIsFetchingFailed = false,
     }) => ({
       selectedPromo: initialSelectedPromo,
       users: initialUsers,
@@ -147,6 +177,7 @@ const enhance = compose(
       isFetching: initialIsFetching,
       searchValue: initialSearchValue,
       isFetchingPossible: initialIsFetchingPossible,
+      isFetchingFailed: initialIsFetchingFailed,
     }),
     {
       handleChangeSelectedPromo: () => newPromo => ({
@@ -154,6 +185,7 @@ const enhance = compose(
         start: 0,
         users: [],
         isFetchingPossible: true,
+        isFetchingFailed: false,
       }),
       handleChangeUsers: () => newUsers => ({
         users: newUsers,
@@ -169,6 +201,7 @@ const enhance = compose(
         start: 0,
         users: [],
         isFetchingPossible: true,
+        isFetchingFailed: false,
       }),
       handleChangeUsersRatio: () => newUsersRatio => ({
         usersRatio: newUsersRatio,
@@ -181,9 +214,13 @@ const enhance = compose(
         start: 0,
         users: [],
         isFetchingPossible: true,
+        isFetchingFailed: false,
       }),
       handeChangeIsFetchingPossible: () => newValue => ({
         isFetchingPossible: newValue,
+      }),
+      handleChangeIsFetchingFailed: () => newValue => ({
+        isFetchingFailed: newValue,
       }),
     },
   ),
@@ -234,7 +271,10 @@ const enhance = compose(
               .catch(err => err);
             setTimeout(() => this.props.handleChangeIsFetching(false), 300);
           })
-          .catch(err => err);
+          .catch(err => {
+            this.props.handleChangeIsFetchingFailed(true);
+            this.props.handleChangeIsFetching(false);
+          });
       }
     },
   }),

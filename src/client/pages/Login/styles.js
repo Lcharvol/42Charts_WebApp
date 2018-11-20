@@ -47,7 +47,8 @@ export const LoginButton = styled.div`
   align-items: center;
   color: ${MAIN_COLOR};
   width: 80%;
-  background-color: ${BACKGROUND_COLOR};
+  background-image: none;
+  background-color: ${LIGHT_BACKGROUND_COLOR};
   height: 55px;
   border-radius: 3px;
   cursor: pointer;
@@ -56,8 +57,8 @@ export const LoginButton = styled.div`
   text-decoration: none;
   top: 40px;
   &:hover {
-    background-color: ${LIGHT_BACKGROUND_COLOR};
+    background-image: linear-gradient(rgb(35, 35, 35), rgba(30, 30, 30));
   }
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border: solid 1px ${MAIN_COLOR};
 `;

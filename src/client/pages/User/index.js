@@ -2,7 +2,7 @@ import React from 'react';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { drop, length, isEmpty } from 'ramda';
+import { drop, length, isEmpty, filter, propEq } from 'ramda';
 import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
 
 import { Container, Content } from './styles';
@@ -54,7 +54,7 @@ const User = ({
           height={'400px'}
           content={
             <Marks
-              marks={user.projects || []}
+              marks={filter(propEq('status', 'finished'))(user.projects) || []}
               currentTime={currentTime}
               sortBy={marksSortBy}
             />

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MdRefresh } from 'react-icons/md';
 
 import { MAIN_COLOR } from '../../constants/colors';
 import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
@@ -76,4 +77,30 @@ export const Content = styled.div`
   flex-direction: column;
   margin-top: 530px;
   width: 100%;
+`;
+
+export const RetryRequestContainer = styled.div`
+  position: relative;
+  bottom: 0px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  min-width: 425px;
+  height: 75px;
+`;
+
+export const RetryRequest = styled(MdRefresh)`
+  color: ${MAIN_COLOR};
+  cursor: pointer;
+  margin-top: 75px;
+  &:hover {
+    transform: rotate(180deg);
+  }
+  &:active {
+    transform: rotate(540deg);
+    transition: all 0.2s ease-in-out;
+  }
+  transition: all 0.3s ease-in-out;
 `;

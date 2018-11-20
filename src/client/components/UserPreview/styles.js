@@ -14,6 +14,7 @@ export const Container = styled(Link)`
   align-items: center;
   width: 80%;
   min-width: 425px;
+  max-width: 800px;
   height: 75px;
   margin-top: 5px;
   margin-bottom: 5px;

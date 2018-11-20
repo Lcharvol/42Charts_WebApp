@@ -3,7 +3,7 @@ import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { object, number, func } from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { isEmpty } from 'ramda';
+import { isEmpty, filter, propEq } from 'ramda';
 import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
 
 import { Container, Content } from './styles';
@@ -66,7 +66,7 @@ const Profil = ({
         height={'400px'}
         content={
           <Marks
-            marks={marks || []}
+            marks={filter(propEq('status', 'finished'))(marks) || []}
             currentTime={currentTime}
             sortBy={marksSortBy}
           />

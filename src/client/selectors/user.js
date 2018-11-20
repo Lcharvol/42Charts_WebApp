@@ -16,7 +16,7 @@ export const getUserPromoRank = state => state.user.promoRank;
 export const getUserValidatedProjects = state =>
   reduce(
     (acc, project) =>
-      project.status === 'finished' && project.finalMaark >= 50 ? acc + 1 : acc,
+      project.status === 'finished' && project.finalMark >= 50 ? acc + 1 : acc,
     0,
     state.user.projects,
   );
@@ -24,7 +24,7 @@ export const getUserValidatedProjects = state =>
 export const getUserFailedProjects = state =>
   reduce(
     (acc, project) =>
-      project.status === 'finished' && project.finalMaark < 50 ? acc + 1 : acc,
+      project.status === 'finished' && project.finalMark < 50 ? acc + 1 : acc,
     0,
     state.user.projects,
   );
@@ -81,7 +81,7 @@ export const getUserAverageLevelByMonth = state => {
 };
 
 export const getUserLogTime = state => {
-  const logTimInSecond = state.user.logs.totalLogTime;
+  const logTimInSecond = state.user.logs.totalLogTime || 0;
   const days = Math.floor(logTimInSecond / 86400);
   const hours = Math.floor((logTimInSecond - days * 86400) / 3600);
   return `${days} D ${hours} H`;
