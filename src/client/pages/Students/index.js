@@ -30,6 +30,7 @@ import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
 import { getPromos } from '../../selectors/app';
 import { getMyLogin } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
+import { addFriend } from '../../actions/me';
 
 const Students = ({
   start,
@@ -44,6 +45,7 @@ const Students = ({
   searchValue,
   isFetchingPossible,
   isFetchingFailed,
+  addFriend,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
@@ -76,7 +78,12 @@ const Students = ({
       <UsersPrewiewContainer>
         {map(
           user => (
-            <UserPreview myLogin={myLogin} key={user.id} user={user} />
+            <UserPreview
+              myLogin={myLogin}
+              key={user.id}
+              user={user}
+              addFriend={addFriend}
+            />
           ),
           users,
         )}
@@ -145,7 +152,7 @@ const mapStateToProps = state => ({
   myLogin: getMyLogin(state),
 });
 
-const actions = { loadPromos };
+const actions = { loadPromos, addFriend };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 

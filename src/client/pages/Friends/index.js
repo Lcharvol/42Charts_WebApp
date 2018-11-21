@@ -1,5 +1,5 @@
 import React from 'react';
-import { isEmpty, map } from 'ramda';
+import { isEmpty, map, length } from 'ramda';
 import {
   compose,
   withStateHandlers,
@@ -17,10 +17,12 @@ import {
   Content,
   UsersPrewiewContainer,
 } from './styles';
-import { getMyFriends } from '../../selectors/me';
+import { getMyFriends, getMyLogin } from '../../selectors/me';
 import PromoFilter from '../../containers/PromoFilter';
+import Graph from '../../pages/Students/Graph';
 import { getPromos } from '../../selectors/app';
 import { loadPromos } from '../../actions/app';
+import { removeFriend } from '../../actions/me';
 import { reqGetPromo } from '../../requests';
 import { ALL_PROMO_SELECTED } from '../Students/constants';
 import UserPreview from '../../components/UserPreview';
@@ -36,10 +38,13 @@ const Friends = ({
   filterBy,
   handleChangeSelectedPromo,
   handleChangeFilterBy,
+  myLogin,
+  removeFriend,
 }) => (
   <Container>
     <Header>
       <Title>Friends</Title>
+      <Graph nbUsers={length(friends)} usersByUnit={[]} filterBy={filterBy} />
       <PromoFilter
         promos={promos}
         selectedPromo={selectedPromo}
@@ -55,7 +60,12 @@ const Friends = ({
       <UsersPrewiewContainer>
         {map(
           user => (
-            <UserPreview myLogin={myLogin} key={user.id} user={user} />
+            <UserPreview
+              myLogin={myLogin}
+              key={user.id}
+              user={user}
+              removeFriend={removeFriend}
+            />
           ),
           friends,
         )}
@@ -69,9 +79,10 @@ Friends.propTypes = proptypes;
 const mapStateToProps = state => ({
   friends: getMyFriends(state),
   promos: getPromos(state),
+  myLogin: getMyLogin(state),
 });
 
-const actions = { loadPromos };
+const actions = { loadPromos, removeFriend };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
