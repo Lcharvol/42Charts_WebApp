@@ -1,6 +1,11 @@
 import React from 'react';
 import { map, isEmpty, find, propEq, reduce, length } from 'ramda';
-import { compose, withStateHandlers, lifecycle } from 'recompose';
+import {
+  compose,
+  withStateHandlers,
+  lifecycle,
+  onlyUpdateForKeys,
+} from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VisibilitySensor from 'react-visibility-sensor';
@@ -62,6 +67,7 @@ const Students = ({
         usersByUnit={usersRatio}
         filterBy={filterBy}
       />
+      {console.log('render')}
       <PromoFilter
         promos={promos}
         selectedPromo={selectedPromo}
@@ -278,5 +284,12 @@ const enhance = compose(
       }
     },
   }),
+  onlyUpdateForKeys([
+    'users',
+    'selectedPromo',
+    'filterBy',
+    'isFetching',
+    'isFetchingFailed',
+  ]),
 );
 export default enhance(Students);
