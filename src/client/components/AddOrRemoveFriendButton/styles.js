@@ -3,8 +3,9 @@ import {
   LIGHT_BACKGROUND_COLOR,
   BACKGROUND_COLOR,
   MAIN_COLOR,
+  RED,
 } from '../../constants/colors';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 export const Container = styled.div`
   position: relative;
@@ -26,11 +27,22 @@ export const IconContainer = styled.div`
   width: 35px;
   height: 35px;
   border-radius: 3px;
-  background-color: ${({ isHover }) =>
-    isHover ? MAIN_COLOR : LIGHT_BACKGROUND_COLOR};
+  background-color: ${({ isHover, remove }) => {
+    if (remove) return RED;
+    return isHover ? MAIN_COLOR : LIGHT_BACKGROUND_COLOR;
+  }};
+  transition: all 0.2s ease-in-out;
 `;
 
-export const Icon = styled(FaPlus)`
+export const AddIcon = styled(FaPlus)`
+  position: relative;
+  display: flex;
+  width: 70%;
+  height: 70%;
+  color: ${BACKGROUND_COLOR};
+`;
+
+export const RemoveIcon = styled(FaMinus)`
   position: relative;
   display: flex;
   width: 70%;
@@ -42,6 +54,8 @@ export const Label = styled.div`
   position: relative;
   display: flex;
   font-size: 0.3em;
-  color: ${MAIN_COLOR};
+  color: ${({ remove }) => (remove ? RED : MAIN_COLOR)};
   margin-left: 10px;
+  opacity: ${({ opacity }) => opacity};
+  transition: all 0.2s ease-in-out;
 `;

@@ -28,9 +28,10 @@ import Spinner from '../../components/Spinner';
 import EmptySearch from '../../components/EmptySearch';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
 import { getPromos } from '../../selectors/app';
-import { getMyLogin } from '../../selectors/me';
+import { getMyLogin, getMyFriends } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
-import { addFriend } from '../../actions/me';
+import { addFriend, removeFriend } from '../../actions/me';
+import { isMyFriend } from './utils';
 
 const Students = ({
   start,
@@ -46,6 +47,8 @@ const Students = ({
   isFetchingPossible,
   isFetchingFailed,
   addFriend,
+  removeFriend,
+  friends,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
@@ -83,6 +86,8 @@ const Students = ({
               key={user.id}
               user={user}
               addFriend={addFriend}
+              removeFriend={removeFriend}
+              isMyFriend={isMyFriend(user.id, friends)}
             />
           ),
           users,
@@ -150,9 +155,10 @@ const Students = ({
 const mapStateToProps = state => ({
   promos: getPromos(state),
   myLogin: getMyLogin(state),
+  friends: getMyFriends(state),
 });
 
-const actions = { loadPromos, addFriend };
+const actions = { loadPromos, addFriend, removeFriend };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
@@ -290,6 +296,7 @@ const enhance = compose(
     'filterBy',
     'isFetching',
     'isFetchingFailed',
+    'friends',
   ]),
 );
 export default enhance(Students);

@@ -36,12 +36,12 @@ export const Container = styled(Link)`
 export const Login = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-size: 0.3em;
   color: ${FONT_COLOR};
   opacity: 0.7;
-  margin-left: 25px;
+  margin-left: 5px;
   width: 100px;
 `;
 

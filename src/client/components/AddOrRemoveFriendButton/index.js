@@ -2,7 +2,7 @@ import React from 'react';
 import { withStateHandlers } from 'recompose';
 import { isNil } from 'ramda';
 
-import { Container, IconContainer, Icon, Label } from './styles';
+import { Container, IconContainer, AddIcon, RemoveIcon, Label } from './styles';
 
 const AddOrRemoveFriendButton = ({
   user,
@@ -12,28 +12,30 @@ const AddOrRemoveFriendButton = ({
   isHover,
   handleChangeIsHover,
   opacity,
-}) => (
-  <Container
-    opacity={opacity}
-    onClick={e => {
-      e.preventDefault();
-      if (!isNil(addFriend)) addFriend(user);
-      if (!isNil(removeFriend)) removeFriend(userId);
-    }}
-    onMouseEnter={() => handleChangeIsHover(true)}
-    onMouseLeave={() => handleChangeIsHover(false)}
-  >
-    <IconContainer isHover={isHover}>
-      <Icon />
-    </IconContainer>
-    {isHover && (
-      <Label>
-        {!isNil(addFriend) && 'Add to Friends'}
-        {!isNil(removeFriend) && 'Remove Friend'}
+}) => {
+  const remove = !isNil(removeFriend);
+  const add = !isNil(addFriend);
+  return (
+    <Container
+      opacity={opacity}
+      onClick={e => {
+        e.preventDefault();
+        if (add) addFriend(user);
+        if (remove) removeFriend(userId);
+      }}
+      onMouseEnter={() => handleChangeIsHover(true)}
+      onMouseLeave={() => handleChangeIsHover(false)}
+    >
+      <IconContainer remove={remove} isHover={isHover}>
+        {remove ? <RemoveIcon /> : <AddIcon />}
+      </IconContainer>
+      <Label opacity={isHover ? 1 : 0} remove={remove}>
+        {add && 'Add to Friends'}
+        {remove && 'Remove Friend'}
       </Label>
-    )}
-  </Container>
-);
+    </Container>
+  );
+};
 
 export default withStateHandlers(
   ({ initialIsHover = false }) => ({

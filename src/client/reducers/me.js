@@ -5,6 +5,8 @@ import { ENHANCE_ME, ADD_FRIEND, REMOVE_FRIEND } from '../actions/me';
 const initialState = {
   projects: [],
   achievements: [],
+  login: '',
+  imageUrl: '',
   coalition: {
     userScore: 0,
     userRank: 0,

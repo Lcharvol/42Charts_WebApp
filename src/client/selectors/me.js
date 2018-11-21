@@ -198,3 +198,7 @@ export const getMyAverageLevelByMonth = state => {
 };
 
 export const getMyFriends = state => state.me.friends;
+
+export const getMyProfilPicture = state => state.me.imageUrl;
+
+export const getMyProjects = state => state.me.projects;

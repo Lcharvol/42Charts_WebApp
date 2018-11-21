@@ -70,6 +70,7 @@ const Friends = ({
               key={user.id}
               user={user}
               removeFriend={removeFriend}
+              isMyFriend={true}
             />
           ),
           getFileredAndSortedFriends(friends, selectedPromo, filterBy),

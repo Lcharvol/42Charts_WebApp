@@ -1,5 +1,5 @@
 import React from 'react';
-import { object, string, func } from 'prop-types';
+import { object, string, func, bool } from 'prop-types';
 import { equals, isNil } from 'ramda';
 import { withStateHandlers } from 'recompose';
 
@@ -19,6 +19,8 @@ const propTypes = {
   user: object.isRequired,
   myLogin: string,
   addFriend: func,
+  removeFriend: func,
+  isMyFriend: bool,
 };
 
 const getLevelColor = level => {
@@ -48,6 +50,7 @@ const UserPreview = ({
   handleChangeIsHover,
   removeFriend,
   addFriend,
+  isMyFriend,
 }) => (
   <Container
     onMouseEnter={() => handleChangeIsHover(true)}
@@ -88,8 +91,8 @@ const UserPreview = ({
       <AddOrRemoveFriendButtom
         user={user}
         userId={user.id}
-        addFriend={addFriend}
-        removeFriend={removeFriend}
+        addFriend={isMyFriend ? undefined : addFriend}
+        removeFriend={isMyFriend ? removeFriend : undefined}
         opacity={isHover ? 1 : 0}
       />
     )}
