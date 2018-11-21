@@ -67,7 +67,6 @@ const Students = ({
         usersByUnit={usersRatio}
         filterBy={filterBy}
       />
-      {console.log('render')}
       <PromoFilter
         promos={promos}
         selectedPromo={selectedPromo}
@@ -273,9 +272,11 @@ const enhance = compose(
               this.props.selectedPromo,
               find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
             )
-              .then(res => this.props.handleChangeUsersRatio(res))
+              .then(res => {
+                this.props.handleChangeUsersRatio(res);
+                this.props.handleChangeIsFetching(false);
+              })
               .catch(err => err);
-            setTimeout(() => this.props.handleChangeIsFetching(false), 300);
           })
           .catch(err => {
             this.props.handleChangeIsFetchingFailed(true);

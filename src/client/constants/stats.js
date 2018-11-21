@@ -174,12 +174,12 @@ export const USER_STATS_CONTENT = [
     id: 7,
     value: state => getUserCoalitionRank(state),
     secondValue: state => undefined,
-    label: 'My coaliton Rank',
+    label: 'Coaliton Rank',
   },
   {
     id: 8,
     value: state => getUserCoalitionScore(state),
     secondValue: state => getUserCoalitionScoreInfo(state),
-    label: 'My coaliton score',
+    label: 'Coaliton score',
   },
 ];
