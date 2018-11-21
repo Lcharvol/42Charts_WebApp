@@ -12,9 +12,9 @@ import {
   LeftSide,
   RightSide,
 } from './styles';
-import { FILTER_VALUES } from '../constants';
-import SelectButton from '../../../components/SelectButton';
-import SearchBar from '../../../components/SearchBar';
+import { FILTER_VALUES } from '../../pages/Students/constants';
+import SelectButton from '../../components/SelectButton';
+import SearchBar from '../../components/SearchBar';
 
 const propTypes = {
   promos: array,

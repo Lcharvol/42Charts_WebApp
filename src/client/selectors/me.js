@@ -196,3 +196,5 @@ export const getMyAverageLevelByMonth = state => {
   const cursus = find(propEq('id', 1))(state.me.cursus);
   return !isNil(cursus) ? cursus.levelByMonth : 0;
 };
+
+export const getMyFriends = state => state.me.friends;

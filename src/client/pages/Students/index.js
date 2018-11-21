@@ -21,17 +21,13 @@ import {
   RetryRequestContainer,
   RetryRequest,
 } from './styles';
-import PromoFilter from './PromoFilter';
+import PromoFilter from '../../containers/PromoFilter';
 import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
 import Spinner from '../../components/Spinner';
 import EmptySearch from '../../components/EmptySearch';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
-import {
-  getPromos,
-  getTotalUsers,
-  getUsersByLevels,
-} from '../../selectors/app';
+import { getPromos } from '../../selectors/app';
 import { getMyLogin } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
 
@@ -42,8 +38,6 @@ const Students = ({
   enhanceUsers,
   users,
   myLogin,
-  totalUsers,
-  usersByLevels,
   filterBy,
   usersRatio,
   isFetching,
@@ -149,8 +143,6 @@ const Students = ({
 const mapStateToProps = state => ({
   promos: getPromos(state),
   myLogin: getMyLogin(state),
-  totalUsers: getTotalUsers(state),
-  usersByLevels: getUsersByLevels(state),
 });
 
 const actions = { loadPromos };

@@ -19,35 +19,6 @@ export const Container = styled.div`
   }
 `;
 
-export const UsersPrewiewContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding-top: 25px;
-  padding-bottom: 75px;
-`;
-
-export const VisibilitySensorBox = styled.div`
-  position: relative;
-  bottom: 0px;
-  left: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 80%;
-  min-width: 425px;
-  height: 75px;
-`;
-
-export const Title = styled.div`
-  position: relative;
-  display: flex;
-  color: ${MAIN_COLOR};
-  margin-bottom: 25px;
-  font-weight: bold;
-  user-select: none;
-`;
-
 export const Header = styled.div`
   position: fixed;
   display: flex;
@@ -69,6 +40,35 @@ export const Header = styled.div`
     rgba(25, 25, 25, 0.75) 95%,
     rgba(25, 25, 25, 0) 100%
   );
+`;
+
+export const Title = styled.div`
+  position: relative;
+  display: flex;
+  color: ${MAIN_COLOR};
+  margin-bottom: 25px;
+  font-weight: light;
+  user-select: none;
+`;
+
+export const UsersPrewiewContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+  padding-bottom: 75px;
+`;
+
+export const VisibilitySensorBox = styled.div`
+  position: relative;
+  bottom: 0px;
+  left: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 80%;
+  min-width: 425px;
+  height: 75px;
 `;
 
 export const Content = styled.div`
