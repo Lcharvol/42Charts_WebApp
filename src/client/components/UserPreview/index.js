@@ -57,8 +57,6 @@ const UserPreview = ({
       myLogin.toLowerCase() === user.login.toLowerCase() ? MAIN_COLOR : 'none'
     }
   >
-    {console.log('addFriend: ', addFriend)}
-    {console.log('removeFriend: ', removeFriend)}
     <UserAvatar
       profilPicture={user.imageUrl}
       width={'60px'}

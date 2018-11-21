@@ -26,6 +26,7 @@ import { removeFriend } from '../../actions/me';
 import { reqGetPromo } from '../../requests';
 import { ALL_PROMO_SELECTED } from '../Students/constants';
 import UserPreview from '../../components/UserPreview';
+import { getFileredAndSortedFriends, getFriendsByUnit } from './utils';
 
 const proptypes = {
   friends: array.isRequired,
@@ -44,7 +45,11 @@ const Friends = ({
   <Container>
     <Header>
       <Title>Friends</Title>
-      <Graph nbUsers={length(friends)} usersByUnit={[]} filterBy={filterBy} />
+      <Graph
+        nbUsers={length(friends)}
+        usersByUnit={getFriendsByUnit(friends)}
+        filterBy={filterBy}
+      />
       <PromoFilter
         promos={promos}
         selectedPromo={selectedPromo}
@@ -67,7 +72,7 @@ const Friends = ({
               removeFriend={removeFriend}
             />
           ),
-          friends,
+          getFileredAndSortedFriends(friends, selectedPromo, filterBy),
         )}
       </UsersPrewiewContainer>
     </Content>
