@@ -1,6 +1,11 @@
 import React from 'react';
 import { contains, split, isEmpty } from 'ramda';
-import { compose, lifecycle, withStateHandlers } from 'recompose';
+import {
+  compose,
+  lifecycle,
+  withStateHandlers,
+  onlyUpdateForKeys,
+} from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -11,14 +16,20 @@ import Menu from './Menu';
 import { enhanceMe } from '../../actions/me';
 import { enhanceTime } from '../../actions/time';
 import { loadInfos } from '../../actions/app';
-import { getMe } from '../../selectors/me';
-import { reqMe, reqPing } from '../../requests';
+import {
+  getMyLogin,
+  getMyProfilPicture,
+  getMyProjects,
+  getMyFriends,
+} from '../../selectors/me';
+import { reqMe, reqPing, reqGetMyFriends } from '../../requests';
 
 import { noAuthneeded } from '../../auth';
 import { DARK_BORDER_COLOR } from '../../constants/colors';
 
 const SideMenu = ({
-  me,
+  login,
+  imageUrl,
   routes,
   hidden,
   winWidth,
@@ -31,7 +42,7 @@ const SideMenu = ({
   if (contains(route, noAuthneeded) || route === 'serverdown') return null;
   return (
     <Container hidden={hidden}>
-      <SideMenuHeader me={me} winWidth={winWidth} />
+      <SideMenuHeader login={login} imageUrl={imageUrl} winWidth={winWidth} />
       <Separator width={'85%'} color={DARK_BORDER_COLOR} />
       <Menu
         routes={routes}
@@ -46,7 +57,10 @@ const SideMenu = ({
 const actions = { enhanceMe, enhanceTime, loadInfos };
 
 const mapStateToProps = state => ({
-  me: getMe(state),
+  login: getMyLogin(state),
+  imageUrl: getMyProfilPicture(state),
+  projects: getMyProjects(state),
+  friends: getMyFriends(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -89,9 +103,14 @@ const enhance = compose(
         reqPing()
           .then(res => res)
           .catch(err => window.location.replace('serverdown'));
-        if (isEmpty(this.props.me.projects)) {
+        if (isEmpty(this.props.projects)) {
           reqMe()
             .then(res => this.props.enhanceMe(res))
+            .catch(err => err);
+        }
+        if (isEmpty(this.props.friends)) {
+          reqGetMyFriends()
+            .then(res => this.props.enhanceMe({ friends: res }))
             .catch(err => err);
         }
       }
@@ -100,9 +119,7 @@ const enhance = compose(
     componentWillUnmount() {
       window.removeEventListener('resize', this.props.handleChangeWinWidth);
     },
-    componentDidUpdate() {
-      window.scrollTo(0, 0);
-    },
   }),
+  onlyUpdateForKeys(['login', 'imageUrl', 'selectedLink', 'winWidth']),
 );
 export default enhance(SideMenu);

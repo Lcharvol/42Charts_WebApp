@@ -1,12 +1,7 @@
 import React from 'react';
-import { object, string } from 'prop-types';
-import { equals } from 'ramda';
-import {
-  compose,
-  withStateHandlers,
-  lifecycle,
-  onlyUpdateForKeys,
-} from 'recompose';
+import { object, string, func, bool } from 'prop-types';
+import { equals, isNil } from 'ramda';
+import { withStateHandlers } from 'recompose';
 
 import { Container, Login, Level, Rank, CampusLabel, LogTime } from './styles';
 import { UserAvatar } from '../UserAvatar';
@@ -18,10 +13,15 @@ import {
   MAIN_COLOR,
   BACKGROUND_COLOR,
 } from '../../constants/colors';
+import AddOrRemoveFriendButtom from '../AddOrRemoveFriendButton';
 
 const propTypes = {
   user: object.isRequired,
   myLogin: string,
+  addFriend: func,
+  removeFriend: func,
+  isMyFriend: bool,
+  enhanceMe: func,
 };
 
 const getLevelColor = level => {
@@ -44,8 +44,19 @@ const getLogtTime = logTimInSecond => {
   return `${days} D ${hours} H`;
 };
 
-const UserPreview = ({ user, myLogin = '' }) => (
+const UserPreview = ({
+  user,
+  myLogin = '',
+  isHover,
+  handleChangeIsHover,
+  removeFriend,
+  addFriend,
+  isMyFriend,
+  enhanceMe,
+}) => (
   <Container
+    onMouseEnter={() => handleChangeIsHover(true)}
+    onMouseLeave={() => handleChangeIsHover(false)}
     to={`/user?${user.id}`}
     color={
       myLogin.toLowerCase() === user.login.toLowerCase() ? MAIN_COLOR : 'none'
@@ -78,9 +89,28 @@ const UserPreview = ({ user, myLogin = '' }) => (
     >
       {getLogtTime(user.totalLogTime)}
     </LogTime>
+    {(!isNil(addFriend) || !isNil(removeFriend)) && (
+      <AddOrRemoveFriendButtom
+        user={user}
+        userId={user.id}
+        addFriend={isMyFriend ? undefined : addFriend}
+        removeFriend={isMyFriend ? removeFriend : undefined}
+        opacity={isHover ? 1 : 0}
+        enhanceMe={enhanceMe}
+      />
+    )}
   </Container>
 );
 
 UserPreview.propTypes = propTypes;
 
-export default UserPreview;
+export default withStateHandlers(
+  ({ initialIsHover = false }) => ({
+    isHover: initialIsHover,
+  }),
+  {
+    handleChangeIsHover: () => newValue => ({
+      isHover: newValue,
+    }),
+  },
+)(UserPreview);

@@ -3,7 +3,7 @@ import {
   DARK_FONT_COLOR,
   MAIN_COLOR,
   FONT_COLOR,
-} from '../../../constants/colors';
+} from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;

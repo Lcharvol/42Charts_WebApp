@@ -21,19 +21,17 @@ import {
   RetryRequestContainer,
   RetryRequest,
 } from './styles';
-import PromoFilter from './PromoFilter';
+import PromoFilter from '../../containers/PromoFilter';
 import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
 import Spinner from '../../components/Spinner';
 import EmptySearch from '../../components/EmptySearch';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
-import {
-  getPromos,
-  getTotalUsers,
-  getUsersByLevels,
-} from '../../selectors/app';
-import { getMyLogin } from '../../selectors/me';
+import { getPromos } from '../../selectors/app';
+import { getMyLogin, getMyFriends } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
+import { enhanceMe, addFriend, removeFriend } from '../../actions/me';
+import { isMyFriend } from './utils';
 
 const Students = ({
   start,
@@ -42,14 +40,16 @@ const Students = ({
   enhanceUsers,
   users,
   myLogin,
-  totalUsers,
-  usersByLevels,
   filterBy,
   usersRatio,
   isFetching,
   searchValue,
   isFetchingPossible,
   isFetchingFailed,
+  addFriend,
+  removeFriend,
+  enhanceMe,
+  friends,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
@@ -82,7 +82,15 @@ const Students = ({
       <UsersPrewiewContainer>
         {map(
           user => (
-            <UserPreview myLogin={myLogin} key={user.id} user={user} />
+            <UserPreview
+              myLogin={myLogin}
+              key={user.id}
+              user={user}
+              addFriend={addFriend}
+              removeFriend={removeFriend}
+              enhanceMe={enhanceMe}
+              isMyFriend={isMyFriend(user.id, friends)}
+            />
           ),
           users,
         )}
@@ -149,11 +157,10 @@ const Students = ({
 const mapStateToProps = state => ({
   promos: getPromos(state),
   myLogin: getMyLogin(state),
-  totalUsers: getTotalUsers(state),
-  usersByLevels: getUsersByLevels(state),
+  friends: getMyFriends(state),
 });
 
-const actions = { loadPromos };
+const actions = { loadPromos, addFriend, removeFriend, enhanceMe };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
@@ -291,6 +298,7 @@ const enhance = compose(
     'filterBy',
     'isFetching',
     'isFetchingFailed',
+    'friends',
   ]),
 );
 export default enhance(Students);

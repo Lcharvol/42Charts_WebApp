@@ -5,6 +5,7 @@ const chartsToken = localStorage.getItem('chartsToken');
 
 const axios = Axios.create({
   baseURL: 'http://localhost:3000/',
+  // baseURL: 'https://api.42charts.fr',
   headers: {
     Authorization: 'Bearer ' + chartsToken,
     ContentType: 'application/json',
@@ -111,6 +112,40 @@ export const reqGetUserLogsById = id =>
   axios({
     method: 'get',
     url: `users/id/${id}/logs`,
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
+
+export const reqGetMyFriends = () =>
+  axios({
+    method: 'get',
+    url: 'friends',
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
+
+export const reqAddNewFriends = userId =>
+  axios({
+    method: 'post',
+    url: `friends`,
+    data: {
+      userId,
+    },
+  })
+    .then(res => res.data)
+    .catch(err => {
+      console.log('err: ', err);
+      throw err;
+    });
+
+export const reqDeleteFriends = userId =>
+  axios({
+    method: 'delete',
+    url: `friends/${userId}`,
   })
     .then(res => res.data)
     .catch(err => {

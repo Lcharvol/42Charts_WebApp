@@ -12,9 +12,9 @@ import {
   LeftSide,
   RightSide,
 } from './styles';
-import { FILTER_VALUES } from '../constants';
-import SelectButton from '../../../components/SelectButton';
-import SearchBar from '../../../components/SearchBar';
+import { FILTER_VALUES } from '../../pages/Students/constants';
+import SelectButton from '../../components/SelectButton';
+import SearchBar from '../../components/SearchBar';
 
 const propTypes = {
   promos: array,
@@ -22,6 +22,7 @@ const propTypes = {
   handleChangeSelectedPromo: func.isRequired,
   usable: bool.isRequired,
   searchValue: string.isRequired,
+  displaySearchBar: bool,
 };
 
 const PromoFilter = ({
@@ -33,6 +34,7 @@ const PromoFilter = ({
   usable,
   handleChangeSearchValue,
   searchValue,
+  displaySearchBar = true,
 }) => (
   <Container>
     <Content>
@@ -65,10 +67,12 @@ const PromoFilter = ({
           value={filterBy}
           handler={handleChangeFilterBy}
         />
-        <SearchBar
-          searchValue={searchValue}
-          handler={handleChangeSearchValue}
-        />
+        {displaySearchBar && (
+          <SearchBar
+            searchValue={searchValue}
+            handler={handleChangeSearchValue}
+          />
+        )}
       </RightSide>
     </Content>
   </Container>
@@ -76,6 +80,9 @@ const PromoFilter = ({
 
 PromoFilter.propTypes = propTypes;
 
-export default onlyUpdateForKeys(['promos', 'selectedPromo', 'usable'])(
-  PromoFilter,
-);
+export default onlyUpdateForKeys([
+  'promos',
+  'selectedPromo',
+  'usable',
+  'filterBy',
+])(PromoFilter);

@@ -3,6 +3,7 @@ import Students from './pages/Students';
 import Login from './pages/Login';
 import ServerDown from './pages/ServerDown';
 import User from './pages/User';
+import Friends from './pages/Friends';
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     id: 5,
     path: '/user',
     component: User,
+  },
+  {
+    id: 6,
+    path: '/friends',
+    component: Friends,
   },
 ];
 
