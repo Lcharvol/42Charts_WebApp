@@ -23,14 +23,15 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 1000;
-  width: calc(100vw - 390px);
+  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH + 105}px);
   @media (max-width: 1000px) {
-    width: calc(100vw - 205px);
+    width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   }
+  min-width: 650px;
   max-width: 1200px;
   top: 0;
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 90px;
   background: linear-gradient(
     to bottom,
     rgba(25, 25, 25, 1) 0%,
@@ -45,7 +46,7 @@ export const Title = styled.div`
   position: relative;
   display: flex;
   color: ${MAIN_COLOR};
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   font-weight: light;
   user-select: none;
 `;
@@ -61,7 +62,13 @@ export const Content = styled.div`
 export const UsersPrewiewContainer = styled.div`
   position: relative;
   display: flex;
+  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH + 105}px);
+  padding-top: 30px;
+  @media (max-width: 1300px) {
+    padding-top: 60px;
+  }
   flex-direction: column;
-  padding-top: 25px;
   padding-bottom: 75px;
+  min-width: 650px;
+  padding-right: 15px;
 `;

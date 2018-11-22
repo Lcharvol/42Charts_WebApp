@@ -47,7 +47,7 @@ export const Title = styled.div`
   position: relative;
   display: flex;
   color: ${MAIN_COLOR};
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   font-weight: light;
   user-select: none;
 `;
@@ -56,13 +56,14 @@ export const UsersPrewiewContainer = styled.div`
   position: relative;
   display: flex;
   width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH + 105}px);
-  @media (max-width: 1000px) {
-    width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
+  padding-top: 30px;
+  @media (max-width: 1300px) {
+    padding-top: 60px;
   }
   flex-direction: column;
-  padding-top: 25px;
   padding-bottom: 75px;
   min-width: 650px;
+  padding-right: 15px;
 `;
 
 export const VisibilitySensorBox = styled.div`

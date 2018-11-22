@@ -22,6 +22,7 @@ const propTypes = {
   handleChangeSelectedPromo: func.isRequired,
   usable: bool.isRequired,
   searchValue: string.isRequired,
+  displaySearchBar: bool,
 };
 
 const PromoFilter = ({
@@ -33,6 +34,7 @@ const PromoFilter = ({
   usable,
   handleChangeSearchValue,
   searchValue,
+  displaySearchBar = true,
 }) => (
   <Container>
     <Content>
@@ -65,10 +67,12 @@ const PromoFilter = ({
           value={filterBy}
           handler={handleChangeFilterBy}
         />
-        <SearchBar
-          searchValue={searchValue}
-          handler={handleChangeSearchValue}
-        />
+        {displaySearchBar && (
+          <SearchBar
+            searchValue={searchValue}
+            handler={handleChangeSearchValue}
+          />
+        )}
       </RightSide>
     </Content>
   </Container>

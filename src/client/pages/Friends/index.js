@@ -26,6 +26,7 @@ import { removeFriend } from '../../actions/me';
 import { reqGetPromo } from '../../requests';
 import { ALL_PROMO_SELECTED } from '../Students/constants';
 import UserPreview from '../../components/UserPreview';
+import NoFriends from './NoFriends';
 import { getFileredAndSortedFriends, getFriendsByUnit } from './utils';
 
 const proptypes = {
@@ -65,9 +66,13 @@ const Friends = ({
           usable
           handleChangeSearchValue={() => {}}
           searchValue={''}
+          displaySearchBar={false}
         />
       </Header>
       <Content>
+        {length(filteredAndSortedFriends) === 0 && (
+          <NoFriends selectedPromo={selectedPromo} />
+        )}
         <UsersPrewiewContainer>
           {map(
             user => (

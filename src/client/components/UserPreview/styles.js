@@ -16,6 +16,7 @@ export const Container = styled(Link)`
   height: 75px;
   margin-top: 5px;
   margin-bottom: 5px;
+  max-width: 800px;
   padding-left: 5px;
   background-color: ${({ color }) => color};
   border-radius: 3px;
@@ -86,7 +87,7 @@ export const LogTime = styled.div`
   align-items: center;
   color: ${({ color }) => color};
   font-size: 0.4em;
-  min-width: 105px;
+  min-width: 110px;
   margin-left: 5px;
   user-select: none;
 `;

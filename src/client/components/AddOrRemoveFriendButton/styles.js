@@ -26,28 +26,31 @@ export const IconContainer = styled.div`
   align-items: center;
   width: 25px;
   height: 25px;
-  border-radius: 3px;
-  background-color: ${({ isHover, remove }) => {
-    if (remove) return RED;
+  border-radius: 100%;
+  transition: all 0.2s ease-in-out;
+  border: solid 1.5px;
+  border-color: ${({ isHover, remove }) => {
+    if (remove) return isHover ? RED : LIGHT_BACKGROUND_COLOR;
     return isHover ? MAIN_COLOR : LIGHT_BACKGROUND_COLOR;
   }};
-  transition: all 0.2s ease-in-out;
+  color: ${({ isHover, remove }) => {
+    if (remove) return isHover ? RED : LIGHT_BACKGROUND_COLOR;
+    return isHover ? MAIN_COLOR : LIGHT_BACKGROUND_COLOR;
+  }};
 `;
 
 export const AddIcon = styled(FaPlus)`
   position: relative;
   display: flex;
-  width: 70%;
-  height: 70%;
-  color: ${BACKGROUND_COLOR};
+  width: 55%;
+  height: 55%;
 `;
 
 export const RemoveIcon = styled(FaMinus)`
   position: relative;
   display: flex;
-  width: 70%;
-  height: 70%;
-  color: ${BACKGROUND_COLOR};
+  width: 55%;
+  height: 55%;
 `;
 
 export const Label = styled.div`
