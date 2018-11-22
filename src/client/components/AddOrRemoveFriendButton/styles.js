@@ -13,7 +13,7 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  flex: 1;
+  min-width: 150px;
   opacity: ${({ opacity }) => opacity};
   transition: opacity 0.2s ease-in-out;
   ${({ opacity }) => opacity === 1 && 'transition-delay: 0.4s;'};
@@ -24,8 +24,8 @@ export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   border-radius: 3px;
   background-color: ${({ isHover, remove }) => {
     if (remove) return RED;
@@ -55,7 +55,7 @@ export const Label = styled.div`
   display: flex;
   font-size: 0.3em;
   color: ${({ remove }) => (remove ? RED : MAIN_COLOR)};
-  margin-left: 10px;
+  margin-left: 15px;
   opacity: ${({ opacity }) => opacity};
   transition: all 0.2s ease-in-out;
 `;

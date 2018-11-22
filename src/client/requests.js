@@ -116,3 +116,23 @@ export const reqGetUserLogsById = id =>
     .catch(err => {
       throw err;
     });
+
+export const getMyFriends = () =>
+  axios({
+    method: 'get',
+    url: 'friends',
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
+
+export const addNewFriends = id =>
+  axios({
+    method: 'post',
+    url: `friends/${id}`,
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
