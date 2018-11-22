@@ -30,7 +30,7 @@ import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
 import { getPromos } from '../../selectors/app';
 import { getMyLogin, getMyFriends } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
-import { addFriend, removeFriend } from '../../actions/me';
+import { enhanceMe, addFriend, removeFriend } from '../../actions/me';
 import { isMyFriend } from './utils';
 
 const Students = ({
@@ -48,6 +48,7 @@ const Students = ({
   isFetchingFailed,
   addFriend,
   removeFriend,
+  enhanceMe,
   friends,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
@@ -87,6 +88,7 @@ const Students = ({
               user={user}
               addFriend={addFriend}
               removeFriend={removeFriend}
+              enhanceMe={enhanceMe}
               isMyFriend={isMyFriend(user.id, friends)}
             />
           ),
@@ -158,7 +160,7 @@ const mapStateToProps = state => ({
   friends: getMyFriends(state),
 });
 
-const actions = { loadPromos, addFriend, removeFriend };
+const actions = { loadPromos, addFriend, removeFriend, enhanceMe };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 

@@ -1,12 +1,20 @@
-import { reduce } from 'ramda';
+import { reduce, filter, propEq, sort } from 'ramda';
+import { ALL_PROMO_SELECTED } from '../Students/constants';
 
 export const getFileredAndSortedFriends = (
   friends,
   selectedPromo,
   filterBy,
 ) => {
-  const friendsFiterByPromo = '';
-  return friends;
+  const friendsFiterByPromo =
+    selectedPromo !== ALL_PROMO_SELECTED
+      ? filter(propEq('promo', parseInt(selectedPromo)), friends)
+      : friends;
+  const filterByValue = filterBy === 0 ? 'cursusLevel' : 'totalLogTime';
+  return sort(
+    (first, second) => second[filterByValue] - first[filterByValue],
+    friendsFiterByPromo,
+  );
 };
 
 export const getFriendsByUnit = friends => {

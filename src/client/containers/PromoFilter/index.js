@@ -76,6 +76,9 @@ const PromoFilter = ({
 
 PromoFilter.propTypes = propTypes;
 
-export default onlyUpdateForKeys(['promos', 'selectedPromo', 'usable'])(
-  PromoFilter,
-);
+export default onlyUpdateForKeys([
+  'promos',
+  'selectedPromo',
+  'usable',
+  'filterBy',
+])(PromoFilter);

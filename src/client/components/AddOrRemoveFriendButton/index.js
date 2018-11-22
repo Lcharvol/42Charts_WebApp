@@ -3,6 +3,11 @@ import { withStateHandlers } from 'recompose';
 import { isNil } from 'ramda';
 
 import { Container, IconContainer, AddIcon, RemoveIcon, Label } from './styles';
+import {
+  reqAddNewFriends,
+  reqDeleteFriends,
+  reqGetMyFriends,
+} from '../../requests';
 
 const AddOrRemoveFriendButton = ({
   user,
@@ -12,6 +17,7 @@ const AddOrRemoveFriendButton = ({
   isHover,
   handleChangeIsHover,
   opacity,
+  enhanceMe,
 }) => {
   const remove = !isNil(removeFriend);
   const add = !isNil(addFriend);
@@ -20,8 +26,16 @@ const AddOrRemoveFriendButton = ({
       opacity={opacity}
       onClick={e => {
         e.preventDefault();
-        if (add) addFriend(user);
-        if (remove) removeFriend(userId);
+        if (add) {
+          addFriend(user);
+          reqAddNewFriends(user.id).then(() =>
+            reqGetMyFriends().then(friends => enhanceMe({ friends })),
+          );
+        }
+        if (remove) {
+          removeFriend(userId);
+          reqDeleteFriends(user.id);
+        }
       }}
       onMouseEnter={() => handleChangeIsHover(true)}
       onMouseLeave={() => handleChangeIsHover(false)}

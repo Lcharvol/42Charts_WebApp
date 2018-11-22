@@ -117,7 +117,7 @@ export const reqGetUserLogsById = id =>
       throw err;
     });
 
-export const getMyFriends = () =>
+export const reqGetMyFriends = () =>
   axios({
     method: 'get',
     url: 'friends',
@@ -127,10 +127,24 @@ export const getMyFriends = () =>
       throw err;
     });
 
-export const addNewFriends = id =>
+export const reqAddNewFriends = userId =>
   axios({
     method: 'post',
-    url: `friends/${id}`,
+    url: `friends`,
+    data: {
+      userId,
+    },
+  })
+    .then(res => res.data)
+    .catch(err => {
+      console.log('err: ', err);
+      throw err;
+    });
+
+export const reqDeleteFriends = userId =>
+  axios({
+    method: 'delete',
+    url: `friends/${userId}`,
   })
     .then(res => res.data)
     .catch(err => {

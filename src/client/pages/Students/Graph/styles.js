@@ -47,7 +47,7 @@ export const BarContainer = styled.div`
 export const Bar = styled.div`
   position: relative;
   display: flex;
-  height: ${({ value }) => value * 200}%;
+  height: ${({ value }) => value * 100}%;
   width: 100%;
   background-color: ${MAIN_COLOR};
   transition: height 0.4s ease-in-out;

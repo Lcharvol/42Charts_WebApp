@@ -20,8 +20,9 @@ import {
   getMyLogin,
   getMyProfilPicture,
   getMyProjects,
+  getMyFriends,
 } from '../../selectors/me';
-import { reqMe, reqPing } from '../../requests';
+import { reqMe, reqPing, reqGetMyFriends } from '../../requests';
 
 import { noAuthneeded } from '../../auth';
 import { DARK_BORDER_COLOR } from '../../constants/colors';
@@ -59,6 +60,7 @@ const mapStateToProps = state => ({
   login: getMyLogin(state),
   imageUrl: getMyProfilPicture(state),
   projects: getMyProjects(state),
+  friends: getMyFriends(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -106,14 +108,16 @@ const enhance = compose(
             .then(res => this.props.enhanceMe(res))
             .catch(err => err);
         }
+        if (isEmpty(this.props.friends)) {
+          reqGetMyFriends()
+            .then(res => this.props.enhanceMe({ friends: res }))
+            .catch(err => err);
+        }
       }
       this.props.enhanceTime({ currentYear, currentMonth, currentDay });
     },
     componentWillUnmount() {
       window.removeEventListener('resize', this.props.handleChangeWinWidth);
-    },
-    componentDidUpdate() {
-      window.scrollTo(0, 0);
     },
   }),
   onlyUpdateForKeys(['login', 'imageUrl', 'selectedLink', 'winWidth']),

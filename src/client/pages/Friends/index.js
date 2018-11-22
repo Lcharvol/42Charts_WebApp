@@ -41,44 +41,51 @@ const Friends = ({
   handleChangeFilterBy,
   myLogin,
   removeFriend,
-}) => (
-  <Container>
-    <Header>
-      <Title>Friends</Title>
-      <Graph
-        nbUsers={length(friends)}
-        usersByUnit={getFriendsByUnit(friends)}
-        filterBy={filterBy}
-      />
-      <PromoFilter
-        promos={promos}
-        selectedPromo={selectedPromo}
-        handleChangeSelectedPromo={handleChangeSelectedPromo}
-        filterBy={filterBy}
-        handleChangeFilterBy={handleChangeFilterBy}
-        usable
-        handleChangeSearchValue={() => {}}
-        searchValue={''}
-      />
-    </Header>
-    <Content>
-      <UsersPrewiewContainer>
-        {map(
-          user => (
-            <UserPreview
-              myLogin={myLogin}
-              key={user.id}
-              user={user}
-              removeFriend={removeFriend}
-              isMyFriend={true}
-            />
-          ),
-          getFileredAndSortedFriends(friends, selectedPromo, filterBy),
-        )}
-      </UsersPrewiewContainer>
-    </Content>
-  </Container>
-);
+}) => {
+  const filteredAndSortedFriends = getFileredAndSortedFriends(
+    friends,
+    selectedPromo,
+    filterBy,
+  );
+  return (
+    <Container>
+      <Header>
+        <Title>Friends</Title>
+        <Graph
+          nbUsers={length(filteredAndSortedFriends)}
+          usersByUnit={getFriendsByUnit(filteredAndSortedFriends)}
+          filterBy={filterBy}
+        />
+        <PromoFilter
+          promos={promos}
+          selectedPromo={selectedPromo}
+          handleChangeSelectedPromo={handleChangeSelectedPromo}
+          filterBy={filterBy}
+          handleChangeFilterBy={handleChangeFilterBy}
+          usable
+          handleChangeSearchValue={() => {}}
+          searchValue={''}
+        />
+      </Header>
+      <Content>
+        <UsersPrewiewContainer>
+          {map(
+            user => (
+              <UserPreview
+                myLogin={myLogin}
+                key={user.id}
+                user={user}
+                removeFriend={removeFriend}
+                isMyFriend={true}
+              />
+            ),
+            filteredAndSortedFriends,
+          )}
+        </UsersPrewiewContainer>
+      </Content>
+    </Container>
+  );
+};
 
 Friends.propTypes = proptypes;
 
@@ -120,8 +127,7 @@ const enhance = compose(
           .catch(err => err);
       }
     },
-    componentDidUpdate(prevProps) {},
   }),
-  onlyUpdateForKeys(['friends', 'promos', 'selectedPromo']),
+  onlyUpdateForKeys(['friends', 'promos', 'selectedPromo', 'filterBy']),
 );
 export default enhance(Friends);

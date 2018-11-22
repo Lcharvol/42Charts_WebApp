@@ -21,6 +21,7 @@ const propTypes = {
   addFriend: func,
   removeFriend: func,
   isMyFriend: bool,
+  enhanceMe: func,
 };
 
 const getLevelColor = level => {
@@ -51,6 +52,7 @@ const UserPreview = ({
   removeFriend,
   addFriend,
   isMyFriend,
+  enhanceMe,
 }) => (
   <Container
     onMouseEnter={() => handleChangeIsHover(true)}
@@ -94,6 +96,7 @@ const UserPreview = ({
         addFriend={isMyFriend ? undefined : addFriend}
         removeFriend={isMyFriend ? removeFriend : undefined}
         opacity={isHover ? 1 : 0}
+        enhanceMe={enhanceMe}
       />
     )}
   </Container>
