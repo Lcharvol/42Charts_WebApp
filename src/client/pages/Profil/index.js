@@ -160,6 +160,7 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
+      window.scrollTo(0, 0);
       if (isEmpty(this.props.myLogs)) {
         reqGetMyLogs()
           .then(logs => this.props.enhanceMe({ logs }))

@@ -89,16 +89,17 @@ const UserPreview = ({
     >
       {getLogtTime(user.totalLogTime)}
     </LogTime>
-    {(!isNil(addFriend) || !isNil(removeFriend)) && (
-      <AddOrRemoveFriendButtom
-        user={user}
-        userId={user.id}
-        addFriend={isMyFriend ? undefined : addFriend}
-        removeFriend={isMyFriend ? removeFriend : undefined}
-        opacity={isHover ? 1 : 0}
-        enhanceMe={enhanceMe}
-      />
-    )}
+    {myLogin.toLowerCase() !== user.login.toLowerCase() &&
+      (!isNil(addFriend) || !isNil(removeFriend)) && (
+        <AddOrRemoveFriendButtom
+          user={user}
+          userId={user.id}
+          addFriend={isMyFriend ? undefined : addFriend}
+          removeFriend={isMyFriend ? removeFriend : undefined}
+          opacity={isHover ? 1 : 0}
+          enhanceMe={enhanceMe}
+        />
+      )}
   </Container>
 );
 

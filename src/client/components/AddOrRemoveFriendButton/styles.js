@@ -37,6 +37,7 @@ export const IconContainer = styled.div`
     if (remove) return isHover ? RED : LIGHT_BACKGROUND_COLOR;
     return isHover ? MAIN_COLOR : LIGHT_BACKGROUND_COLOR;
   }};
+  transition: all 0.2s ease-in-out;
 `;
 
 export const AddIcon = styled(FaPlus)`

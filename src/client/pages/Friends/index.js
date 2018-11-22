@@ -115,16 +115,23 @@ const enhance = compose(
       filterBy: initialFilterBy,
     }),
     {
-      handleChangeSelectedPromo: () => newPromo => ({
-        selectedPromo: newPromo,
-      }),
-      handleChangeFilterBy: () => newFilter => ({
-        filterBy: newFilter,
-      }),
+      handleChangeSelectedPromo: () => newPromo => {
+        window.scrollTo(0, 0);
+        return {
+          selectedPromo: newPromo,
+        };
+      },
+      handleChangeFilterBy: () => newFilter => {
+        window.scrollTo(0, 0);
+        return {
+          filterBy: newFilter,
+        };
+      },
     },
   ),
   lifecycle({
     componentDidMount() {
+      window.scrollTo(0, 0);
       this.props.handleChangeSelectedPromo(ALL_PROMO_SELECTED);
       if (isEmpty(this.props.promos)) {
         reqGetPromo()

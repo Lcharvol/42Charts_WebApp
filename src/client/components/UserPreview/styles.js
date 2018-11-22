@@ -38,7 +38,7 @@ export const Rank = styled.div`
   align-items: center;
   color: ${({ color }) => color};
   font-size: 0.4em;
-  min-width: 40px;
+  min-width: 60px;
   user-select: none;
 `;
 
