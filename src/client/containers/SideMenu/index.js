@@ -22,7 +22,12 @@ import {
   getMyProjects,
   getMyFriends,
 } from '../../selectors/me';
-import { reqMe, reqPing, reqGetMyFriends } from '../../requests';
+import {
+  reqMe,
+  reqPing,
+  reqGetMyFriends,
+  reqRefreshToken,
+} from '../../requests';
 
 import { noAuthneeded } from '../../auth';
 import { DARK_BORDER_COLOR } from '../../constants/colors';
@@ -106,7 +111,19 @@ const enhance = compose(
         if (isEmpty(this.props.projects)) {
           reqMe()
             .then(res => this.props.enhanceMe(res))
-            .catch(err => err);
+            .catch(err => {
+              if (err.message === 'Not authorized') {
+                reqRefreshToken()
+                  .then(res => {
+                    localStorage.setItem('chartsToken', res.token);
+                    localStorage.setItem(
+                      'chartsRefreshToken',
+                      res.refreshToken,
+                    );
+                  })
+                  .catch(err => window.location.replace('login'));
+              }
+            });
         }
         if (isEmpty(this.props.friends)) {
           reqGetMyFriends()

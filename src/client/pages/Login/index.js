@@ -5,19 +5,26 @@ import { Container, LoginContent, Logo, LoginButton } from './styles';
 import { getLogin, postLogin } from '../../requests';
 import Spinner from '../../components/Spinner';
 
-const getCodeFromUrlParams = urlParams => takeLast(1, split('=', urlParams))[0];
+const extractUrlValue = (key, url) => {
+  if (typeof url === 'undefined') url = window.location.href;
+  var match = url.match('[?&]' + key + '=([^&]+)');
+  return match ? match[1] : null;
+};
 
 const Login = ({ history, ...props }) => {
-  const code = getCodeFromUrlParams(props.location.search);
-  if (length(code) > 0 && !isNil(code)) {
-    localStorage.setItem('chartsToken', code);
+  const token = extractUrlValue('token');
+  const refreshToken = extractUrlValue('refresh');
+  const isFetching = !isNil(token) && !isNil(refreshToken);
+  if (isFetching) {
+    localStorage.setItem('chartsToken', token);
+    localStorage.setItem('chartsRefreshToken', refreshToken);
     window.location.reload();
   }
   return (
     <Container>
       <LoginContent>
         <Logo />
-        {length(code) === 0 ? (
+        {!isFetching ? (
           <LoginButton
             onClick={() => {
               getLogin().then(redicrectUri =>

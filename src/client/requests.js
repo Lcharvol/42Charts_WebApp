@@ -3,6 +3,8 @@ import { values } from 'ramda';
 
 const chartsToken = localStorage.getItem('chartsToken');
 
+const chartsRefreshToken = localStorage.getItem('chartsRefreshToken');
+
 const axios = Axios.create({
   baseURL: 'http://localhost:3000/',
   // baseURL: 'https://api.42charts.fr',
@@ -138,7 +140,6 @@ export const reqAddNewFriends = userId =>
   })
     .then(res => res.data)
     .catch(err => {
-      console.log('err: ', err);
       throw err;
     });
 
@@ -148,6 +149,19 @@ export const reqDeleteFriends = userId =>
     url: `friends/${userId}`,
   })
     .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
+
+export const reqRefreshToken = () =>
+  axios({
+    method: 'post',
+    url: '/oauth/token',
+    data: {
+      refreshToken: chartsRefreshToken,
+    },
+  })
+    .then(res => res)
     .catch(err => {
       throw err;
     });
