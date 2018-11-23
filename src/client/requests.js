@@ -165,3 +165,13 @@ export const reqRefreshToken = () =>
     .catch(err => {
       throw err;
     });
+
+export const reqGetApps = () =>
+  axios({
+    method: 'get',
+    url: 'apps',
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
