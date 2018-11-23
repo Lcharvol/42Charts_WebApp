@@ -148,7 +148,12 @@ const Students = ({
         )}
         {isEmpty(users) &&
           !isFetching &&
-          !isFetchingFailed && <EmptySearch searchValue={searchValue} />}
+          !isFetchingFailed && (
+            <EmptySearch
+              searchValue={searchValue}
+              selectedPromo={selectedPromo}
+            />
+          )}
       </UsersPrewiewContainer>
     </Content>
   </Container>

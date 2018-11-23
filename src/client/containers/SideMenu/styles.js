@@ -17,7 +17,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: ${SIDE_MENU_WIDTH}px;
   background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(30, 30, 30));
-  height: 100vh;
+  height: calc(100vh - 50px);
   top: 0;
   left: ${({ hidden }) => (hidden ? -250 : 0)}px;
   padding-top: 50px;

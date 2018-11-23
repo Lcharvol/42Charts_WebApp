@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import { Container } from './styles';
 import SideMenuHeader from './SideMenuHeader';
 import Separator from '../../components/Separator';
+import VersionLabel from '../../components/VersionLabel';
 import Menu from './Menu';
 import { enhanceMe } from '../../actions/me';
 import { enhanceTime } from '../../actions/time';
@@ -55,6 +56,7 @@ const SideMenu = ({
         selectedLink={selectedLink}
         handleChangeSelectedLink={handleChangeSelectedLink}
       />
+      <VersionLabel />
     </Container>
   );
 };

@@ -32,13 +32,11 @@ export const Header = styled.div`
   max-width: 1200px;
   top: 0;
   padding-top: 30px;
-  padding-bottom: 90px;
+  padding-bottom: 40px;
   background: linear-gradient(
     to bottom,
     rgba(25, 25, 25, 1) 0%,
-    rgba(25, 25, 25, 1) 1%,
-    rgba(25, 25, 25, 1) 90%,
-    rgba(25, 25, 25, 0.85) 95%,
+    rgba(25, 25, 25, 1) 99%,
     rgba(25, 25, 25, 0) 100%
   );
 `;
@@ -56,14 +54,13 @@ export const UsersPrewiewContainer = styled.div`
   position: relative;
   display: flex;
   width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH + 105}px);
-  padding-top: 30px;
-  @media (max-width: 1300px) {
-    padding-top: 60px;
-  }
   flex-direction: column;
   padding-bottom: 75px;
   min-width: 650px;
   padding-right: 15px;
+  @media (max-width: 1300px) {
+    margin-top: 25px;
+  }
 `;
 
 export const VisibilitySensorBox = styled.div`
