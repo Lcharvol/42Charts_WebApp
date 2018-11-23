@@ -6,7 +6,7 @@
   "repository": "git@github.com:lcharvol/React-WebApp-Boilerplate.git",
   "author": "lcharvol <lcharvol@student.42.fr>",
   "scripts": {
-    "build": "webpack -p",
+    "build": "webpack",
     "cli": "webpack --watch --display none",
     "pret": "pretty-quick"
   },
