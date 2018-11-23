@@ -17,4 +17,25 @@ export const Container = styled.div`
   background-size: cover;
   overflow: hidden;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+  transition: all 0.1s ease-in-out;
 `;
+
+export const Shadow = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(25, 25, 25, 0.4);
+  width: 115px;
+  height: 115px;
+  opacity: ${({ opacity }) => opacity};
+  transition: all 0.2s ease-in-out;
+`;
+
+export const LikeIcon = styled.div``;
+
+export const DislikeIcon = styled.div``;
+
+export const MoreIcon = styled.div``;
