@@ -43,10 +43,10 @@ const AddOrRemoveFriendButton = ({
       <IconContainer remove={remove} isHover={isHover}>
         {remove ? <RemoveIcon /> : <AddIcon />}
       </IconContainer>
-      <Label opacity={isHover ? 1 : 0} remove={remove}>
+      {/* <Label opacity={isHover ? 1 : 0} remove={remove}>
         {add && 'Add to Friends'}
         {remove && 'Remove Friend'}
-      </Label>
+      </Label> */}
     </Container>
   );
 };
