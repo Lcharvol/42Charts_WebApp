@@ -3,7 +3,16 @@ import { object, string, func, bool } from 'prop-types';
 import { equals, isNil } from 'ramda';
 import { withStateHandlers } from 'recompose';
 
-import { Container, Login, Level, Rank, CampusLabel, LogTime } from './styles';
+import {
+  Container,
+  LeftSide,
+  RightSide,
+  Login,
+  Level,
+  Rank,
+  CampusLabel,
+  LogTime,
+} from './styles';
 import { UserAvatar } from '../UserAvatar';
 import {
   FIRST_RANK_COLOR,
@@ -62,37 +71,40 @@ const UserPreview = ({
       myLogin.toLowerCase() === user.login.toLowerCase() ? MAIN_COLOR : 'none'
     }
   >
-    <UserAvatar
-      profilPicture={user.imageUrl}
-      width={'60px'}
-      height={'60px'}
-      round
-    />
-    <Rank color={getRankColor(user.rank)}>{user.rank}</Rank>
-    <Login>{user.login}</Login>
-    <Level
-      color={
-        myLogin.toLowerCase() === user.login.toLowerCase()
-          ? BACKGROUND_COLOR
-          : getLevelColor(user.cursusLevel)
-      }
-    >
-      {user.cursusLevel.toFixed(2)}
-    </Level>
-    <CampusLabel>{user.campusName}</CampusLabel>
-    <LogTime
-      color={
-        myLogin.toLowerCase() === user.login.toLowerCase()
-          ? BACKGROUND_COLOR
-          : MAIN_COLOR
-      }
-    >
-      {getLogtTime(user.totalLogTime)}
-    </LogTime>
-    {myLogin.toLowerCase() !== user.login.toLowerCase() &&
-      (!isNil(addFriend) || !isNil(removeFriend)) && (
+    <LeftSide>
+      <Rank color={getRankColor(user.rank)}>{user.rank}</Rank>
+      <UserAvatar
+        profilPicture={user.imageUrl}
+        width={'60px'}
+        height={'60px'}
+        round
+      />
+      <Login>{user.login}</Login>
+    </LeftSide>
+    <RightSide>
+      <Level
+        color={
+          myLogin.toLowerCase() === user.login.toLowerCase()
+            ? BACKGROUND_COLOR
+            : getLevelColor(user.cursusLevel)
+        }
+      >
+        {user.cursusLevel.toFixed(2)}
+      </Level>
+      <CampusLabel>{user.campusName}</CampusLabel>
+      <LogTime
+        color={
+          myLogin.toLowerCase() === user.login.toLowerCase()
+            ? BACKGROUND_COLOR
+            : MAIN_COLOR
+        }
+      >
+        {getLogtTime(user.totalLogTime)}
+      </LogTime>
+      {(!isNil(addFriend) || !isNil(removeFriend)) && (
         <AddOrRemoveFriendButtom
           user={user}
+          usable={myLogin.toLowerCase() !== user.login.toLowerCase()}
           userId={user.id}
           addFriend={isMyFriend ? undefined : addFriend}
           removeFriend={isMyFriend ? removeFriend : undefined}
@@ -100,6 +112,7 @@ const UserPreview = ({
           enhanceMe={enhanceMe}
         />
       )}
+    </RightSide>
   </Container>
 );
 

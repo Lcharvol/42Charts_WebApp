@@ -13,6 +13,7 @@ import { Container } from './styles';
 import SideMenuHeader from './SideMenuHeader';
 import Separator from '../../components/Separator';
 import VersionLabel from '../../components/VersionLabel';
+import AppLogo from '../../components/AppLogo';
 import Menu from './Menu';
 import { enhanceMe } from '../../actions/me';
 import { enhanceTime } from '../../actions/time';
@@ -22,6 +23,7 @@ import {
   getMyProfilPicture,
   getMyProjects,
   getMyFriends,
+  getMyDisplayname,
 } from '../../selectors/me';
 import {
   reqMe,
@@ -48,6 +50,7 @@ const SideMenu = ({
   if (contains(route, noAuthneeded) || route === 'serverdown') return null;
   return (
     <Container hidden={hidden}>
+      <AppLogo />
       <SideMenuHeader login={login} imageUrl={imageUrl} winWidth={winWidth} />
       <Separator width={'85%'} color={DARK_BORDER_COLOR} />
       <Menu
@@ -65,6 +68,7 @@ const actions = { enhanceMe, enhanceTime, loadInfos };
 
 const mapStateToProps = state => ({
   login: getMyLogin(state),
+  name: getMyDisplayname(state),
   imageUrl: getMyProfilPicture(state),
   projects: getMyProjects(state),
   friends: getMyFriends(state),
@@ -113,19 +117,7 @@ const enhance = compose(
         if (isEmpty(this.props.projects)) {
           reqMe()
             .then(res => this.props.enhanceMe(res))
-            .catch(err => {
-              if (err.message === 'Not authorized') {
-                reqRefreshToken()
-                  .then(res => {
-                    localStorage.setItem('chartsToken', res.token);
-                    localStorage.setItem(
-                      'chartsRefreshToken',
-                      res.refreshToken,
-                    );
-                  })
-                  .catch(err => window.location.replace('login'));
-              }
-            });
+            .catch(err => err);
         }
         if (isEmpty(this.props.friends)) {
           reqGetMyFriends()

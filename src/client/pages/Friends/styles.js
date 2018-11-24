@@ -23,11 +23,11 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 1000;
-  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH + 105}px);
+  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH + 115}px);
   @media (max-width: 1000px) {
     width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   }
-  min-width: 650px;
+  min-width: 550px;
   max-width: 1200px;
   top: 0;
   padding-top: 30px;
@@ -66,6 +66,6 @@ export const Content = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 530px;
+  margin-top: 430px;
   width: 100%;
 `;

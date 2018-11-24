@@ -28,11 +28,12 @@ export const Header = styled.div`
   @media (max-width: 1000px) {
     width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   }
-  min-width: 650px;
+  min-width: 550px;
   max-width: 1200px;
   top: 0;
   padding-top: 30px;
   padding-bottom: 40px;
+  padding:-right:10px;
   background: linear-gradient(
     to bottom,
     rgba(25, 25, 25, 1) 0%,
@@ -50,6 +51,14 @@ export const Title = styled.div`
   user-select: none;
 `;
 
+export const Content = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 430px;
+  width: 100%;
+`;
+
 export const UsersPrewiewContainer = styled.div`
   position: relative;
   display: flex;
@@ -64,8 +73,8 @@ export const UsersPrewiewContainer = styled.div`
 `;
 
 export const VisibilitySensorBox = styled.div`
-  position: relative;
-  bottom: 0px;
+  position: absolute;
+  bottom: ${({ bottom }) => bottom}px;
   left: 0;
   display: flex;
   justify-content: flex-start;
@@ -73,14 +82,6 @@ export const VisibilitySensorBox = styled.div`
   width: 80%;
   min-width: 425px;
   height: 75px;
-`;
-
-export const Content = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin-top: 530px;
-  width: 100%;
 `;
 
 export const RetryRequestContainer = styled.div`

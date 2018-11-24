@@ -5,7 +5,8 @@ import {
   MAIN_COLOR,
   RED,
 } from '../../constants/colors';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
+import { MdPerson } from 'react-icons/md';
 
 export const Container = styled.div`
   position: relative;
@@ -13,10 +14,20 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  min-width: 150px;
+  margin:15px
   opacity: ${({ opacity }) => opacity};
   transition: opacity 0.2s ease-in-out;
   ${({ opacity }) => opacity === 1 && 'transition-delay: 0.4s;'};
+`;
+
+export const FakeContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 25px;
+  height: 100%;
+  margin: 15px;
 `;
 
 export const IconContainer = styled.div`
@@ -40,18 +51,18 @@ export const IconContainer = styled.div`
   transition: all 0.2s ease-in-out;
 `;
 
-export const AddIcon = styled(FaPlus)`
+export const AddIcon = styled(MdPerson)`
   position: relative;
   display: flex;
-  width: 55%;
-  height: 55%;
+  width: 70%;
+  height: 70%;
 `;
 
-export const RemoveIcon = styled(FaMinus)`
+export const RemoveIcon = styled(FaTrash)`
   position: relative;
   display: flex;
-  width: 55%;
-  height: 55%;
+  width: 50%;
+  height: 50%;
 `;
 
 export const Label = styled.div`
