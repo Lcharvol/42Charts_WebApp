@@ -73,8 +73,8 @@ export const UsersPrewiewContainer = styled.div`
 `;
 
 export const VisibilitySensorBox = styled.div`
-  position: relative;
-  bottom: 0px;
+  position: absolute;
+  bottom: ${({ bottom }) => bottom}px;
   left: 0;
   display: flex;
   justify-content: flex-start;

@@ -118,11 +118,10 @@ const Students = ({
                 }
               }}
             >
-              <VisibilitySensorBox>
-                <Spinner />
-              </VisibilitySensorBox>
+              <VisibilitySensorBox bottom={length(users) > 0 ? 500 : 0} />
             </VisibilitySensor>
           )}
+        {isFetchingPossible && !isFetchingFailed && <Spinner />}
         {isFetchingFailed && (
           <RetryRequestContainer>
             <RetryRequest
