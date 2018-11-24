@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdFace, MdPeopleOutline, MdContacts } from 'react-icons/md';
+import { MdFace, MdPeopleOutline, MdContacts, MdApps } from 'react-icons/md';
 
 const menuElems = [
   {
@@ -19,6 +19,12 @@ const menuElems = [
     to: '/friends',
     label: 'Friends',
     logo: <MdContacts />,
+  },
+  {
+    key: 3,
+    to: '/apps',
+    label: '42 Apps',
+    logo: <MdApps />,
   },
 ];
 
