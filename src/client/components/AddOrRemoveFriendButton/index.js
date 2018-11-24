@@ -2,7 +2,14 @@ import React from 'react';
 import { withStateHandlers } from 'recompose';
 import { isNil } from 'ramda';
 
-import { Container, IconContainer, AddIcon, RemoveIcon, Label } from './styles';
+import {
+  Container,
+  FakeContainer,
+  IconContainer,
+  AddIcon,
+  RemoveIcon,
+  Label,
+} from './styles';
 import {
   reqAddNewFriends,
   reqDeleteFriends,
@@ -18,9 +25,11 @@ const AddOrRemoveFriendButton = ({
   handleChangeIsHover,
   opacity,
   enhanceMe,
+  usable = true,
 }) => {
   const remove = !isNil(removeFriend);
   const add = !isNil(addFriend);
+  if (!usable) return <FakeContainer />;
   return (
     <Container
       opacity={opacity}

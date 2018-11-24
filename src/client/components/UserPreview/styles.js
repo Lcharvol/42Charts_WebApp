@@ -10,13 +10,13 @@ import {
 export const Container = styled(Link)`
   position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   max-width: 800px;
   height: 75px;
   margin-top: 5px;
   margin-bottom: 5px;
-  max-width: 800px;
+  max-width: 1000px;
   padding-left: 5px;
   background-color: ${({ color }) => color};
   border-radius: 3px;
@@ -29,6 +29,20 @@ export const Container = styled(Link)`
   }
   text-decoration: none;
   transition: all 0.1s ease-in-out;
+`;
+
+export const LeftSide = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const RightSide = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 export const Rank = styled.div`
@@ -50,7 +64,7 @@ export const Login = styled.div`
   font-size: 0.3em;
   color: ${FONT_COLOR};
   opacity: 0.7;
-  margin-left: 5px;
+  margin-left: 20px;
   min-width: 80px;
 `;
 

@@ -14,10 +14,20 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  min-width: 150px;
+  margin:15px
   opacity: ${({ opacity }) => opacity};
   transition: opacity 0.2s ease-in-out;
   ${({ opacity }) => opacity === 1 && 'transition-delay: 0.4s;'};
+`;
+
+export const FakeContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 25px;
+  height: 100%;
+  margin: 15px;
 `;
 
 export const IconContainer = styled.div`
