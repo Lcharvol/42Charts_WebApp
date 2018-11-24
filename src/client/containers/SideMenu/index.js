@@ -113,19 +113,7 @@ const enhance = compose(
         if (isEmpty(this.props.projects)) {
           reqMe()
             .then(res => this.props.enhanceMe(res))
-            .catch(err => {
-              if (err.message === 'Not authorized') {
-                reqRefreshToken()
-                  .then(res => {
-                    localStorage.setItem('chartsToken', res.token);
-                    localStorage.setItem(
-                      'chartsRefreshToken',
-                      res.refreshToken,
-                    );
-                  })
-                  .catch(err => window.location.replace('login'));
-              }
-            });
+            .catch(err => err);
         }
         if (isEmpty(this.props.friends)) {
           reqGetMyFriends()

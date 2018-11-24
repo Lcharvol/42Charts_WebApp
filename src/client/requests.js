@@ -14,6 +14,30 @@ const axios = Axios.create({
   },
 });
 
+export const reqRefreshToken = () =>
+  axios({
+    method: 'post',
+    url: '/oauth/token',
+    data: {
+      refreshToken: chartsRefreshToken,
+    },
+  })
+    .then(res => res)
+    .catch(err => {
+      throw err;
+    });
+
+const checkToken = err => {
+  if (err.message === 'Not authorized') {
+    reqRefreshToken()
+      .then(res => {
+        localStorage.setItem('chartsToken', res.token);
+        localStorage.setItem('chartsRefreshToken', res.refreshToken);
+      })
+      .catch(err => window.location.replace('login'));
+  }
+};
+
 export const reqPing = () =>
   axios({
     method: 'get',
@@ -21,6 +45,7 @@ export const reqPing = () =>
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -31,6 +56,7 @@ export const reqMe = () =>
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -57,6 +83,7 @@ export const getUsersByPromo = (
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -67,6 +94,7 @@ export const reqGetPromo = () =>
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -77,6 +105,7 @@ export const reqGetMyLogs = () =>
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -87,6 +116,7 @@ export const reqGetInfos = () =>
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -97,6 +127,7 @@ export const reqGetUsersRatio = (promo = '2013', sortBy = 'level') =>
   })
     .then(res => values(res.data))
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -107,6 +138,7 @@ export const reqGetUserById = id =>
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -117,6 +149,7 @@ export const reqGetUserLogsById = id =>
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -127,6 +160,7 @@ export const reqGetMyFriends = () =>
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -140,6 +174,7 @@ export const reqAddNewFriends = userId =>
   })
     .then(res => res.data)
     .catch(err => {
+      checkToken(err);
       throw err;
     });
 
@@ -150,18 +185,6 @@ export const reqDeleteFriends = userId =>
   })
     .then(res => res.data)
     .catch(err => {
-      throw err;
-    });
-
-export const reqRefreshToken = () =>
-  axios({
-    method: 'post',
-    url: '/oauth/token',
-    data: {
-      refreshToken: chartsRefreshToken,
-    },
-  })
-    .then(res => res)
-    .catch(err => {
+      checkToken(err);
       throw err;
     });
