@@ -36,6 +36,7 @@ export const LeftSide = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding-right: 10px;
 `;
 
 export const RightSide = styled.div`
@@ -97,7 +98,7 @@ export const CampusLabel = styled.div`
 export const LogTime = styled.div`
   position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   color: ${({ color }) => color};
   font-size: 0.4em;

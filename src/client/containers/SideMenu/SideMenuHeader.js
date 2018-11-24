@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SideMenuHeaderContainer, Login } from './styles';
+import { SideMenuHeaderContainer, NameAndLogin, Login } from './styles';
 import UserAvatar from '../../components/UserAvatar';
 
 const SideMenuHeader = ({ imageUrl, login, winWidth }) => {
@@ -12,7 +12,7 @@ const SideMenuHeader = ({ imageUrl, login, winWidth }) => {
         margin={winWidth > 1000 ? '15px' : '0px'}
         profilPicture={imageUrl}
       />
-      {winWidth > 1000 && <Login to={'/'}>{login}</Login>}
+      <NameAndLogin>{winWidth > 1000 && <Login>{login}</Login>}</NameAndLogin>
     </SideMenuHeaderContainer>
   );
 };

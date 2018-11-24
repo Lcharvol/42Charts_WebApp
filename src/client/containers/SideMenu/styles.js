@@ -79,15 +79,23 @@ export const StyledLink = styled(Link)`
   user-select: none;
 `;
 
-export const Login = styled(Link)`
+export const NameAndLogin = styled.div`
+  position: relative;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  flex: 1;
+  flex-direction: column;
+`;
+
+export const Login = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   color: ${FONT_COLOR};
-  font-size: 0.4em;
+  font-size: 0.3em;
   margin-bottom: 15px;
   text-decoration: none;
   user-select: none;
+  opacity: 0.8;
 `;
 
 export const Logout = styled.div`
