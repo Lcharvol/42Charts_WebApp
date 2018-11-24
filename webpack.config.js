@@ -11,6 +11,9 @@ const webpackConfig = {
     filename: 'bundle.js',
     publicPath: '/',
   },
+  node: {
+    fs: 'empty',
+  },
   plugins: [
     new DashboardPlugin(),
     new BrowserSyncPlugin({
@@ -37,7 +40,7 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loaders: ['babel-loader?cacheDirectory'],
+        loaders: ['babel-loader'],
         exclude: /node_modules/,
       },
       {

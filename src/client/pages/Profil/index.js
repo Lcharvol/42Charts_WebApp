@@ -22,6 +22,7 @@ import {
 import { MY_STATS_CONTENT } from '../../constants/stats';
 import AllStats from '../../containers/AllStats';
 import ProfilHeader from '../../containers/ProfilHeader';
+import { visitePageGa } from '../../googleAnalytics';
 
 const proptypes = {
   me: object,
@@ -160,6 +161,7 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
+      visitePageGa('');
       window.scrollTo(0, 0);
       if (isEmpty(this.props.myLogs)) {
         reqGetMyLogs()

@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
 import App from './pages/App';
 import Auth from './auth';
+import { initializeGa } from './googleAnalytics';
 
 const initialState = {};
 
@@ -19,4 +20,4 @@ const Root = () => (
   </Provider>
 );
 
-ReactDOM.render(<Root />, document.getElementById('__NEWPROJECT__'));
+ReactDOM.render(<Root />, document.getElementById('__42CHARTS__'));
