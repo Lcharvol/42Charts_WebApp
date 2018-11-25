@@ -3,7 +3,14 @@ import { object, bool, func } from 'prop-types';
 import { isNil } from 'ramda';
 import { withStateHandlers } from 'recompose';
 
-import { Container, Shadow } from './styles';
+import {
+  Container,
+  Shadow,
+  LikeButton,
+  LikeIcon,
+  PlusButton,
+  PlusIcon,
+} from './styles';
 
 const proptypes = {
   app: object.isRequired,
@@ -21,7 +28,14 @@ const AppElem = ({
     onMouseEnter={() => handleChangeIsHover(true)}
     onMouseLeave={() => handleChangeIsHover(false)}
   >
-    <Shadow opacity={isHover ? 1 : 0} />
+    <Shadow opacity={isHover ? 1 : 0}>
+      <LikeButton>
+        <LikeIcon />
+      </LikeButton>
+      <PlusButton onClick={() => window.open(website, '_blank')}>
+        <PlusIcon />
+      </PlusButton>
+    </Shadow>
   </Container>
 );
 

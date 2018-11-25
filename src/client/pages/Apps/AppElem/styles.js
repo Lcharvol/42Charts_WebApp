@@ -1,5 +1,10 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { isNil } from 'ramda';
+import { FaPlus } from 'react-icons/fa';
+import { MdThumbUp } from 'react-icons/md';
+
+import { DARK_FONT_COLOR, MAIN_COLOR } from '../../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -25,6 +30,8 @@ export const Container = styled.div`
 
 export const Shadow = styled.div`
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 0;
   left: 0;
   background-color: rgba(25, 25, 25, 0.4);
@@ -34,8 +41,34 @@ export const Shadow = styled.div`
   transition: all 0.2s ease-in-out;
 `;
 
-export const LikeIcon = styled.div``;
+export const LikeButton = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+`;
 
-export const DislikeIcon = styled.div``;
+export const LikeIcon = styled(MdThumbUp)`
+  font-size: 0.5em;
+  color: ${DARK_FONT_COLOR};
+  &:hover {
+    color: ${MAIN_COLOR};
+  }
+`;
 
-export const MoreIcon = styled.div``;
+export const PlusButton = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+`;
+
+export const PlusIcon = styled(FaPlus)`
+  font-size: 0.5em;
+  color: ${DARK_FONT_COLOR};
+  &:hover {
+    color: ${MAIN_COLOR};
+  }
+`;
