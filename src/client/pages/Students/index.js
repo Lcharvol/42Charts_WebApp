@@ -32,7 +32,6 @@ import { getMyLogin, getMyFriends } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
 import { enhanceMe, addFriend, removeFriend } from '../../actions/me';
 import { isMyFriend } from './utils';
-import { visitePageGa } from '../../googleAnalytics';
 
 const Students = ({
   start,
@@ -243,7 +242,6 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
-      visitePageGa('students');
       if (isEmpty(this.props.promos)) {
         reqGetPromo()
           .then(res => this.props.loadPromos(res))

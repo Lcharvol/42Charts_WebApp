@@ -34,6 +34,7 @@ import {
 
 import { noAuthneeded } from '../../auth';
 import { DARK_BORDER_COLOR } from '../../constants/colors';
+import { visitePageGa } from '../../googleAnalytics';
 
 const SideMenu = ({
   login,
@@ -107,6 +108,7 @@ const enhance = compose(
       const currentMonth = currentdate.getMonth() + 1;
       const currentDay = currentdate.getDate();
 
+      visitePageGa();
       if (route !== 'serverdown') {
         window.addEventListener('resize', event =>
           this.props.handleChangeWinWidth(event.srcElement.innerWidth),
@@ -130,7 +132,16 @@ const enhance = compose(
     componentWillUnmount() {
       window.removeEventListener('resize', this.props.handleChangeWinWidth);
     },
+    componentDidUpdate(prevProps) {
+      if (prevProps.selectedLink !== this.props.selectedLink) visitePageGa();
+    },
   }),
-  onlyUpdateForKeys(['login', 'imageUrl', 'selectedLink', 'winWidth']),
+  onlyUpdateForKeys([
+    'login',
+    'imageUrl',
+    'selectedLink',
+    'winWidth',
+    'history',
+  ]),
 );
 export default enhance(SideMenu);

@@ -64,13 +64,3 @@ export const RemoveIcon = styled(FaTrash)`
   width: 50%;
   height: 50%;
 `;
-
-export const Label = styled.div`
-  position: relative;
-  display: flex;
-  font-size: 0.3em;
-  color: ${({ remove }) => (remove ? RED : MAIN_COLOR)};
-  margin-left: 15px;
-  opacity: ${({ opacity }) => opacity};
-  transition: all 0.2s ease-in-out;
-`;

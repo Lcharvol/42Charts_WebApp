@@ -22,7 +22,6 @@ import {
   LOGS_FILTER_VALUES,
 } from '../../constants/selectButtonValues';
 import { USER_STATS_CONTENT } from '../../constants/stats';
-import { visitePageGa } from '../../googleAnalytics';
 
 const User = ({
   user,
@@ -146,7 +145,6 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
-      visitePageGa('user');
       const userId = drop(1, this.props.location.search);
       window.scrollTo(0, 0);
 

@@ -28,7 +28,6 @@ import { ALL_PROMO_SELECTED } from '../Students/constants';
 import UserPreview from '../../components/UserPreview';
 import NoFriends from './NoFriends';
 import { getFileredAndSortedFriends, getFriendsByUnit } from './utils';
-import { visitePageGa } from '../../googleAnalytics';
 
 const proptypes = {
   friends: array.isRequired,
@@ -132,7 +131,6 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
-      visitePageGa('friends');
       window.scrollTo(0, 0);
       this.props.handleChangeSelectedPromo(ALL_PROMO_SELECTED);
       if (isEmpty(this.props.promos)) {

@@ -4,6 +4,8 @@ import { withStateHandlers } from 'recompose';
 import { func, string } from 'prop-types';
 
 import { Container, Content, SearchLogo, CrossButton } from './styles';
+import { eventGa } from '../../googleAnalytics';
+import { SEARCH } from '../../constants/GaLabels';
 
 const proptypes = {
   searchValue: string.isRequired,
@@ -25,8 +27,10 @@ const SearchBar = ({
         spellCheck="false"
         value={innerValue}
         onKeyPress={e => {
-          if (e.key === 'Enter' && searchValue !== e.target.value)
+          if (e.key === 'Enter' && searchValue !== e.target.value) {
+            eventGa(SEARCH, e.target.value);
             handler(e.target.value);
+          }
         }}
         onChange={e => handleChangeInnerValue(e.target.value)}
       />

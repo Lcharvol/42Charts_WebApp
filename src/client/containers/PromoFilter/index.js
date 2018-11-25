@@ -15,6 +15,8 @@ import {
 import { FILTER_VALUES } from '../../pages/Students/constants';
 import SelectButton from '../../components/SelectButton';
 import SearchBar from '../../components/SearchBar';
+import { eventGa } from '../../googleAnalytics';
+import { SORT } from '../../constants/GaLabels';
 
 const propTypes = {
   promos: array,
@@ -43,7 +45,12 @@ const PromoFilter = ({
           <Label
             key={id}
             isSelected={promo === selectedPromo}
-            onClick={() => usable && handleChangeSelectedPromo(promo)}
+            onClick={() => {
+              if (usable) {
+                handleChangeSelectedPromo(promo);
+                eventGa(SORT, selectedPromo);
+              }
+            }}
           >
             {promo}
           </Label>
