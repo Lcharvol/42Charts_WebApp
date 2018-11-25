@@ -1,7 +1,13 @@
 import ReactGA from 'react-ga';
 import { find, propEq } from 'ramda';
 
-import { SEARCH, SORT, ADD_FRIEND, REMOVE_FRIEND } from './constants/GaLabels';
+import {
+  SEARCH,
+  SORT,
+  ADD_FRIEND,
+  REMOVE_FRIEND,
+  VIEW_STUDENT,
+} from './constants/GaLabels';
 
 export const initializeGa = () => {
   ReactGA.initialize('UA-46037096-3');
@@ -50,6 +56,15 @@ const events = [
       category: 'Friend',
       action: 'Remove',
       label: '',
+    }),
+  },
+  {
+    id: 3,
+    label: VIEW_STUDENT,
+    getEvent: studentName => ({
+      category: 'Students',
+      action: 'View',
+      label: studentName,
     }),
   },
 ];
