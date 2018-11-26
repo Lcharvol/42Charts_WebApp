@@ -1,7 +1,6 @@
 const path = require('path');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const historyApiFallback = require('connect-history-api-fallback');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const webpackConfig = {
   entry: ['babel-polyfill', './src/client/index.js'],
@@ -11,8 +10,10 @@ const webpackConfig = {
     filename: 'bundle.js',
     publicPath: '/',
   },
+  node: {
+    fs: 'empty',
+  },
   plugins: [
-    new DashboardPlugin(),
     new BrowserSyncPlugin({
       host: '0.0.0.0',
       port: 8080,
@@ -37,7 +38,7 @@ const webpackConfig = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loaders: ['babel-loader?cacheDirectory'],
+        loaders: ['babel-loader'],
         exclude: /node_modules/,
       },
       {

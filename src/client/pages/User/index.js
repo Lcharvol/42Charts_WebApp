@@ -2,7 +2,7 @@ import React from 'react';
 import { compose, withStateHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { drop, length, isEmpty, filter, propEq } from 'ramda';
+import { split, length, isEmpty, filter, propEq, takeLast } from 'ramda';
 import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
 
 import { Container, Content } from './styles';
@@ -129,8 +129,8 @@ const enhance = compose(
       selectedCursus: initialSelectedCursus,
     }),
     {
-      handleChangeWinWidth: () => newWinWidth => ({
-        winWidth: newWinWidth,
+      handleChangeWinWidth: () => e => ({
+        winWidth: e.srcElement.innerWidth,
       }),
       handleChangeLogsFilter: () => newFilterId => ({
         logsFilter: newFilterId,
@@ -145,7 +145,7 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
-      const userId = drop(1, this.props.location.search);
+      const userId = takeLast(1, split('/', this.props.location.pathname));
       window.scrollTo(0, 0);
 
       if (length(userId) > 0) {
@@ -156,9 +156,7 @@ const enhance = compose(
           .then(data => this.props.loadUserLogs(data))
           .catch(err => err);
       }
-      window.addEventListener('resize', event =>
-        this.props.handleChangeWinWidth(event.srcElement.innerWidth),
-      );
+      window.addEventListener('resize', this.props.handleChangeWinWidth);
     },
     componentWillUnmount() {
       this.props.resetUser();

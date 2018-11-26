@@ -16,6 +16,7 @@ const initialState = {
   },
   projects: [],
   cursus: {},
+  achievements: [],
 };
 
 const reducer = (state = initialState, action) => {

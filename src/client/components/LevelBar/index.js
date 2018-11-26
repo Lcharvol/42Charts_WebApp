@@ -1,11 +1,14 @@
 import React from 'react';
-import { split } from 'ramda';
+import { split, takeLast, length } from 'ramda';
 
 import { Container, Content, Label } from './styles';
 
 const LevelBar = ({ level, color }) => {
+  const stringLevel = level.toString();
+  const stringPercent = takeLast(1, split('.', stringLevel))[0];
   const lvl = Math.floor(level);
-  const percent = parseInt(split('.', `${level}`)[1] || 0);
+  const percent =
+    length(stringPercent) < 2 ? `${stringPercent}0` : stringPercent;
   return (
     <Container>
       <Label>{`level ${lvl} - ${percent}%`}</Label>

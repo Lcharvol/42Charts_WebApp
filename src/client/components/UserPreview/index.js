@@ -23,6 +23,8 @@ import {
   BACKGROUND_COLOR,
 } from '../../constants/colors';
 import AddOrRemoveFriendButtom from '../AddOrRemoveFriendButton';
+import { eventGa } from '../../googleAnalytics';
+import { VIEW_STUDENT } from '../../constants/GaLabels';
 
 const propTypes = {
   user: object.isRequired,
@@ -66,7 +68,8 @@ const UserPreview = ({
   <Container
     onMouseEnter={() => handleChangeIsHover(true)}
     onMouseLeave={() => handleChangeIsHover(false)}
-    to={`/user?${user.id}`}
+    to={`/user/${user.id}`}
+    onClick={() => eventGa(VIEW_STUDENT)}
     color={
       myLogin.toLowerCase() === user.login.toLowerCase() ? MAIN_COLOR : 'none'
     }

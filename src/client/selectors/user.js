@@ -29,7 +29,8 @@ export const getUserFailedProjects = state =>
     state.user.projects,
   );
 
-export const getUserAchievementsCount = state => length(state.me.achievements);
+export const getUserAchievementsCount = state =>
+  length(state.user.achievements);
 
 export const getUserAllRankEvolution = state => {
   const {

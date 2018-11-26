@@ -1,15 +1,18 @@
 import React, { Fragment } from 'react';
 import { length } from 'ramda';
 import { withStateHandlers } from 'recompose';
-import { func, string } from 'prop-types';
+import { func, string, number } from 'prop-types';
 
 import { Container, Content, SearchLogo, CrossButton } from './styles';
+import { eventGa } from '../../googleAnalytics';
+import { SEARCH } from '../../constants/GaLabels';
 
 const proptypes = {
   searchValue: string.isRequired,
   innerValue: string.isRequired,
   handler: func.isRequired,
   handleChangeInnerValue: func.isRequired,
+  margin: number,
 };
 
 const SearchBar = ({
@@ -17,16 +20,19 @@ const SearchBar = ({
   searchValue,
   innerValue,
   handleChangeInnerValue,
+  margin = 25,
 }) => (
   <Fragment>
-    <Container>
+    <Container margin={margin}>
       <Content
         type="text"
         spellCheck="false"
         value={innerValue}
         onKeyPress={e => {
-          if (e.key === 'Enter' && searchValue !== e.target.value)
+          if (e.key === 'Enter' && searchValue !== e.target.value) {
+            eventGa(SEARCH, e.target.value);
             handler(e.target.value);
+          }
         }}
         onChange={e => handleChangeInnerValue(e.target.value)}
       />

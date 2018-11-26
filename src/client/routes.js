@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import ServerDown from './pages/ServerDown';
 import User from './pages/User';
 import Friends from './pages/Friends';
+import Apps from './pages/Apps';
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     id: 6,
     path: '/friends',
     component: Friends,
+  },
+  {
+    id: 7,
+    path: '/apps',
+    component: Apps,
   },
 ];
 

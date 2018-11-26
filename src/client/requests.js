@@ -187,3 +187,33 @@ export const reqDeleteFriends = userId =>
       checkToken(err);
       throw err;
     });
+
+export const reqGetApps = () =>
+  axios({
+    method: 'get',
+    url: 'apps',
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
+
+export const reqLikeApp = appId =>
+  axios({
+    method: 'post',
+    url: `apps/like/${appId}`,
+  })
+    .then(res => res)
+    .catch(err => {
+      throw err;
+    });
+
+export const reqRemoveLikeApp = appId =>
+  axios({
+    method: 'delete',
+    url: `apps/like/${appId}`,
+  })
+    .then(res => res)
+    .catch(err => {
+      throw err;
+    });

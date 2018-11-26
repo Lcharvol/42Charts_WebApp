@@ -14,7 +14,7 @@ export const Container = styled.div`
   display: flex;
   min-width: 175px;
   height: 25px;
-  margin-left: 25px;
+  margin-left: ${({ margin }) => margin}px;
 `;
 
 export const Content = styled.input`

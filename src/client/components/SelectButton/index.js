@@ -11,6 +11,8 @@ import {
   Value,
   Shadow,
 } from './styles';
+import { eventGa } from '../../googleAnalytics';
+import { SORT } from '../../constants/GaLabels';
 
 const proptypes = {
   values: array.isRequired,
@@ -54,8 +56,9 @@ const SelectButton = ({
             <Value
               key={elemValue.id}
               onClick={() => {
-                if (value !== elemValue.label) {
+                if (value !== elemValue.id) {
                   handleChangeSelectedValueId(elemValue.id);
+                  eventGa(SORT, elemValue.label);
                   handler(elemValue.id);
                 }
               }}

@@ -31,9 +31,10 @@ export const LeftSide = styled.div`
   min-height: 100%;
   padding: 25px;
   @media (max-width: ${RESPONSIVITY_WIDTH}px) {
-    width: calc(100% - 50px);
+    width: 100%;
     align-items: flex-start;
   }
+  box-sizing: border-box;
 `;
 
 export const RightSide = styled.div`
@@ -45,10 +46,10 @@ export const RightSide = styled.div`
   padding-left: 0;
   max-width: 600px;
   @media (max-width: ${RESPONSIVITY_WIDTH}px) {
-    width: calc(100% - 50px);
-    max-width: calc(100%);
+    min-width: 100%;
     padding-left: 25px;
     padding-top: 0px;
   }
   flex: 1;
+  box-sizing: border-box;
 `;
