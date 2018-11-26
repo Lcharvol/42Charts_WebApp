@@ -23,7 +23,7 @@ export const StatContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: rgba(45, 45, 45, 0.3);
-  border: solid 1px ${DARK_BORDER_COLOR};
+  box-shadow: 0px 0px 0px 1px ${DARK_BORDER_COLOR} inset;
   min-width: 175px;
   flex: 1;
   height: 100px;
@@ -35,9 +35,8 @@ export const StatContainer = styled.div`
   cursor: pointer;
   background-image: linear-gradient(rgb(35, 35, 35), rgba(30, 30, 30));
   &:hover {
-    border: solid 2px ${MAIN_COLOR};
+    box-shadow: 0px 0px 0px 2px ${MAIN_COLOR} inset;
     background-color: rgba(45, 45, 45, 0.8);
-    margin: 14px;
     background-image: none;
   }
   transition: all 0.1s ease-in-out;
