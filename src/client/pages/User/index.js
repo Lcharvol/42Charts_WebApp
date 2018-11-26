@@ -129,8 +129,8 @@ const enhance = compose(
       selectedCursus: initialSelectedCursus,
     }),
     {
-      handleChangeWinWidth: () => newWinWidth => ({
-        winWidth: newWinWidth,
+      handleChangeWinWidth: () => e => ({
+        winWidth: e.srcElement.innerWidth,
       }),
       handleChangeLogsFilter: () => newFilterId => ({
         logsFilter: newFilterId,
@@ -156,9 +156,7 @@ const enhance = compose(
           .then(data => this.props.loadUserLogs(data))
           .catch(err => err);
       }
-      window.addEventListener('resize', event =>
-        this.props.handleChangeWinWidth(event.srcElement.innerWidth),
-      );
+      window.addEventListener('resize', this.props.handleChangeWinWidth);
     },
     componentWillUnmount() {
       this.props.resetUser();

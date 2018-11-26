@@ -30,7 +30,6 @@ export const Header = styled.div`
     width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   }
   min-width: 650px;
-  max-width: 1200px;
   top: 0;
   padding-top: 30px;
   padding-bottom: 40px;

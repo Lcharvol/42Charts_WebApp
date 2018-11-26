@@ -27,7 +27,7 @@ const proptypes = {
 
 const filterBySearchValue = (searchValue, apps) => {
   if (length(searchValue) === 0) return apps;
-  const regExp = new RegExp(searchValue, 'g');
+  const regExp = new RegExp(searchValue, 'i');
   return filter(app => length(match(regExp, app.name)) > 0, apps);
 };
 
