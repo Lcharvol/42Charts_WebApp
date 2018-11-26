@@ -162,7 +162,7 @@ const enhance = compose(
     componentDidMount() {
       this._isMount = true;
       window.scrollTo(0, 0);
-      if (isEmpty(this.props.myLogs && this._isMount)) {
+      if (isEmpty(this.props.myLogs)) {
         reqGetMyLogs()
           .then(logs => {
             if (this._isMount) this.props.enhanceMe({ logs });
