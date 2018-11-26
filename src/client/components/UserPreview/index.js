@@ -68,7 +68,7 @@ const UserPreview = ({
   <Container
     onMouseEnter={() => handleChangeIsHover(true)}
     onMouseLeave={() => handleChangeIsHover(false)}
-    to={`/user?${user.id}`}
+    to={`/user/${user.id}`}
     onClick={() => eventGa(VIEW_STUDENT)}
     color={
       myLogin.toLowerCase() === user.login.toLowerCase() ? MAIN_COLOR : 'none'

@@ -34,6 +34,7 @@ export const LeftSide = styled.div`
     width: calc(100% - 50px);
     align-items: flex-start;
   }
+  box-sizing: border-box;
 `;
 
 export const RightSide = styled.div`
@@ -51,4 +52,5 @@ export const RightSide = styled.div`
     padding-top: 0px;
   }
   flex: 1;
+  box-sizing: border-box;
 `;
