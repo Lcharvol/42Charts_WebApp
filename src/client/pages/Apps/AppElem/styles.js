@@ -2,15 +2,20 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { isNil } from 'ramda';
 import { FaPlus } from 'react-icons/fa';
-import { MdThumbUp } from 'react-icons/md';
+import { MdThumbUp, MdMonochromePhotos } from 'react-icons/md';
 
-import { DARK_FONT_COLOR, MAIN_COLOR } from '../../../constants/colors';
+import {
+  DARK_FONT_COLOR,
+  MAIN_COLOR,
+  BACKGROUND_COLOR,
+  RED,
+} from '../../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
   display: flex;
-  width: 115px;
-  height: 115px;
+  width: 105px;
+  height: 105px;
   margin: 15px;
   border-radius: 3px;
   background-image: ${({ imageUrl }) =>
@@ -35,8 +40,8 @@ export const Shadow = styled.div`
   top: 0;
   left: 0;
   background-color: rgba(25, 25, 25, 0.4);
-  width: 115px;
-  height: 115px;
+  width: 105px;
+  height: 105px;
   opacity: ${({ opacity }) => opacity};
   transition: all 0.2s ease-in-out;
 `;
@@ -44,17 +49,26 @@ export const Shadow = styled.div`
 export const LikeButton = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex: 1;
+  font-size: 0.4em;
+  color: ${DARK_FONT_COLOR};
+  color: ${({ liked }) => (liked ? MAIN_COLOR : DARK_FONT_COLOR)};
+  &:hover {
+    color: ${({ liked }) => (liked ? RED : MAIN_COLOR)};
+  }
+  transition: all 0.2s ease-in-out;
 `;
 
 export const LikeIcon = styled(MdThumbUp)`
-  font-size: 0.5em;
+  font-size: 25px;
+`;
+
+export const NbLikes = styled.div`
+  position: relative;
+  display: flex;
   color: ${DARK_FONT_COLOR};
-  &:hover {
-    color: ${MAIN_COLOR};
-  }
 `;
 
 export const PlusButton = styled.div`
@@ -71,4 +85,12 @@ export const PlusIcon = styled(FaPlus)`
   &:hover {
     color: ${MAIN_COLOR};
   }
+  transition: all 0.2s ease-in-out;
+`;
+
+export const NoPhotoIcon = styled(MdMonochromePhotos)`
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  color: ${BACKGROUND_COLOR};
 `;

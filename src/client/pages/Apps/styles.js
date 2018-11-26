@@ -18,7 +18,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   z-index: 1000;
@@ -57,4 +57,15 @@ export const AppsContainer = styled.div`
   @media (max-width: 1000px) {
     width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   }
+  margin-top: 200px;
+`;
+
+export const HeaderTop = styled.div`
+  position:relative;
+  display:flex;s
+`;
+
+export const HeaderBottom = styled.div`
+  position: relative;
+  display: flex;
 `;

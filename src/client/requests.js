@@ -198,3 +198,23 @@ export const reqGetApps = () =>
     .catch(err => {
       throw err;
     });
+
+export const reqLikeApp = appId =>
+  axios({
+    method: 'post',
+    url: `apps/like/${appId}`,
+  })
+    .then(res => res)
+    .catch(err => {
+      throw err;
+    });
+
+export const reqRemoveLikeApp = appId =>
+  axios({
+    method: 'delete',
+    url: `apps/like/${appId}`,
+  })
+    .then(res => res)
+    .catch(err => {
+      throw err;
+    });
