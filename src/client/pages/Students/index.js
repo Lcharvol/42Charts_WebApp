@@ -242,6 +242,7 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
+      this._isMount = true;
       if (isEmpty(this.props.promos)) {
         reqGetPromo()
           .then(res => this.props.loadPromos(res))
@@ -262,7 +263,8 @@ const enhance = compose(
         (prevProps.selectedPromo !== this.props.selectedPromo ||
           prevProps.filterBy !== this.props.filterBy ||
           prevProps.searchValue !== this.props.searchValue) &&
-        isEmpty(this.props.users)
+        isEmpty(this.props.users) &&
+        this._isMount
       ) {
         this.props.handleChangeIsFetching(true);
         getUsersByPromo(
@@ -275,7 +277,7 @@ const enhance = compose(
           this.props.searchValue,
         )
           .then(res => {
-            if (length(res) < 25)
+            if (length(res) < 25 && this._isMount)
               this.props.handeChangeIsFetchingPossible(false);
             this.props.handleChangeUsers(res);
             this.props.handleChangeStart(this.props.start + 25);
@@ -284,8 +286,10 @@ const enhance = compose(
               find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
             )
               .then(res => {
-                this.props.handleChangeUsersRatio(res);
-                this.props.handleChangeIsFetching(false);
+                if (this._isMount) {
+                  this.props.handleChangeUsersRatio(res);
+                  this.props.handleChangeIsFetching(false);
+                }
               })
               .catch(err => err);
           })
@@ -294,6 +298,9 @@ const enhance = compose(
             this.props.handleChangeIsFetching(false);
           });
       }
+    },
+    componentWillUnmount() {
+      this._isMount = false;
     },
   }),
   onlyUpdateForKeys([

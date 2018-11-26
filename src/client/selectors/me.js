@@ -84,7 +84,7 @@ export const getHighterLogPerDayInfos = state => {
       },
     },
   } = state;
-  return `${day}/${month}/${year}`;
+  return `${day}/${month + 1}/${year}`;
 };
 
 export const getHighterLogPerMonth = state => {

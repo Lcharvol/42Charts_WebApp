@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
-import { MAIN_COLOR } from '../../constants/colors';
+import { MAIN_COLOR, BACKGROUND_COLOR } from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -15,12 +15,15 @@ export const Container = styled.div`
     width: calc(100vw - 90px);
     margin-left: 90px;
   }
+  background-color: ${BACKGROUND_COLOR};
 `;
 
 export const Header = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   z-index: 1000;
   width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH + 105}px);
   @media (max-width: 1000px) {
@@ -51,7 +54,8 @@ export const Title = styled.div`
 export const AppsContainer = styled.div`
   position: relative;
   display: flex;
-  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
   width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH + 105}px);
   @media (max-width: 1000px) {
@@ -61,11 +65,14 @@ export const AppsContainer = styled.div`
 `;
 
 export const HeaderTop = styled.div`
-  position:relative;
-  display:flex;s
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100px;
 `;
 
 export const HeaderBottom = styled.div`
   position: relative;
   display: flex;
+  width: 100%;
 `;

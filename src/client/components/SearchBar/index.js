@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { length } from 'ramda';
 import { withStateHandlers } from 'recompose';
-import { func, string } from 'prop-types';
+import { func, string, number } from 'prop-types';
 
 import { Container, Content, SearchLogo, CrossButton } from './styles';
 import { eventGa } from '../../googleAnalytics';
@@ -12,6 +12,7 @@ const proptypes = {
   innerValue: string.isRequired,
   handler: func.isRequired,
   handleChangeInnerValue: func.isRequired,
+  margin: number,
 };
 
 const SearchBar = ({
@@ -19,9 +20,10 @@ const SearchBar = ({
   searchValue,
   innerValue,
   handleChangeInnerValue,
+  margin = 25,
 }) => (
   <Fragment>
-    <Container>
+    <Container margin={margin}>
       <Content
         type="text"
         spellCheck="false"

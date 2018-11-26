@@ -153,24 +153,26 @@ const enhance = compose(
       handleChangeLogsFilter: () => newFilterId => ({
         logsFilter: newFilterId,
       }),
-      handleChangeWinWidth: () => newWinWidth => ({
-        winWidth: newWinWidth,
+      handleChangeWinWidth: () => e => ({
+        winWidth: e.srcElement.innerWidth,
       }),
     },
   ),
   lifecycle({
     componentDidMount() {
+      this._isMount = true;
       window.scrollTo(0, 0);
-      if (isEmpty(this.props.myLogs)) {
+      if (isEmpty(this.props.myLogs && this._isMount)) {
         reqGetMyLogs()
-          .then(logs => this.props.enhanceMe({ logs }))
+          .then(logs => {
+            if (this._isMount) this.props.enhanceMe({ logs });
+          })
           .catch(err => err);
       }
-      window.addEventListener('resize', event =>
-        this.props.handleChangeWinWidth(event.srcElement.innerWidth),
-      );
+      window.addEventListener('resize', this.props.handleChangeWinWidth);
     },
     componentWillUnmount() {
+      this._isMount = false;
       window.removeEventListener('resize', this.props.handleChangeWinWidth);
     },
   }),
