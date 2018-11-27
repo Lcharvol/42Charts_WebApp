@@ -82,7 +82,18 @@ const UserPreview = ({
         height={'60px'}
         round
       />
-      <Login>{user.login}</Login>
+      <Login>{user.login.charAt(0).toUpperCase() + user.login.slice(1)}</Login>
+      {(!isNil(addFriend) || !isNil(removeFriend)) && (
+        <AddOrRemoveFriendButtom
+          user={user}
+          usable={myLogin.toLowerCase() !== user.login.toLowerCase()}
+          userId={user.id}
+          addFriend={isMyFriend ? undefined : addFriend}
+          removeFriend={isMyFriend ? removeFriend : undefined}
+          opacity={isHover ? 1 : 0}
+          enhanceMe={enhanceMe}
+        />
+      )}
     </LeftSide>
     <RightSide>
       <Level
@@ -104,17 +115,6 @@ const UserPreview = ({
       >
         {getLogtTime(user.totalLogTime)}
       </LogTime>
-      {(!isNil(addFriend) || !isNil(removeFriend)) && (
-        <AddOrRemoveFriendButtom
-          user={user}
-          usable={myLogin.toLowerCase() !== user.login.toLowerCase()}
-          userId={user.id}
-          addFriend={isMyFriend ? undefined : addFriend}
-          removeFriend={isMyFriend ? removeFriend : undefined}
-          opacity={isHover ? 1 : 0}
-          enhanceMe={enhanceMe}
-        />
-      )}
     </RightSide>
   </Container>
 );

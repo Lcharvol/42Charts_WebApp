@@ -49,7 +49,12 @@ const Graph = ({
     <TopSide>
       {(isEmpty(usersByUnit) ? new Array(30).fill(0, 0) : usersByUnit).map(
         (UsersPerUnit, id) => {
-          const value = nbUsers > 0 ? UsersPerUnit / nbUsers : 0;
+          const value =
+            nbUsers > 0
+              ? nbUsers > 1000
+                ? (UsersPerUnit / nbUsers) * 2
+                : UsersPerUnit / nbUsers
+              : 0;
           return (
             <BarContainer
               key={id}

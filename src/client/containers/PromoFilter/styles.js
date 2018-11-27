@@ -3,6 +3,7 @@ import {
   DARK_FONT_COLOR,
   MAIN_COLOR,
   FONT_COLOR,
+  DARK_MAIN_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -65,6 +66,11 @@ export const SelectedBox = styled.div`
   height: 30px;
   width: 65px;
   background-color: ${MAIN_COLOR};
+  background-image: linear-gradient(
+    to bottom,
+    ${MAIN_COLOR} 0%,
+    ${DARK_MAIN_COLOR} 100%
+  );
   border-radius: 3px;
   z-index: 40;
   opacity: 0.8;
