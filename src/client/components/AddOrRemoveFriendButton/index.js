@@ -7,6 +7,7 @@ import {
   FakeContainer,
   IconContainer,
   AddIcon,
+  PoepleIcon,
   RemoveIcon,
 } from './styles';
 import {
@@ -53,7 +54,7 @@ const AddOrRemoveFriendButton = ({
       onMouseLeave={() => handleChangeIsHover(false)}
     >
       <IconContainer remove={remove} isHover={isHover}>
-        {remove ? <RemoveIcon /> : <AddIcon />}
+        {remove ? <RemoveIcon /> : isHover ? <AddIcon /> : <PoepleIcon />}
       </IconContainer>
     </Container>
   );

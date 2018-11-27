@@ -5,7 +5,7 @@ import {
   MAIN_COLOR,
   RED,
 } from '../../constants/colors';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaPlus } from 'react-icons/fa';
 import { MdPerson } from 'react-icons/md';
 
 export const Container = styled.div`
@@ -41,21 +41,28 @@ export const IconContainer = styled.div`
   transition: all 0.2s ease-in-out;
   border: solid 1.5px;
   border-color: ${({ isHover, remove }) => {
-    if (remove) return isHover ? RED : LIGHT_BACKGROUND_COLOR;
-    return isHover ? MAIN_COLOR : LIGHT_BACKGROUND_COLOR;
+    if (remove) return isHover ? RED : BACKGROUND_COLOR;
+    return isHover ? MAIN_COLOR : BACKGROUND_COLOR;
   }};
   color: ${({ isHover, remove }) => {
-    if (remove) return isHover ? RED : LIGHT_BACKGROUND_COLOR;
-    return isHover ? MAIN_COLOR : LIGHT_BACKGROUND_COLOR;
+    if (remove) return isHover ? RED : BACKGROUND_COLOR;
+    return isHover ? MAIN_COLOR : BACKGROUND_COLOR;
   }};
   transition: all 0.2s ease-in-out;
 `;
 
-export const AddIcon = styled(MdPerson)`
+export const PoepleIcon = styled(MdPerson)`
   position: relative;
   display: flex;
   width: 70%;
   height: 70%;
+`;
+
+export const AddIcon = styled(FaPlus)`
+  position: relative;
+  display: flex;
+  width: 50%;
+  height: 50%;
 `;
 
 export const RemoveIcon = styled(FaTrash)`

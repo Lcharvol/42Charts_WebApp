@@ -21,6 +21,7 @@ import {
   BORDER_COLOR,
   MAIN_COLOR,
   BACKGROUND_COLOR,
+  LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
 import AddOrRemoveFriendButtom from '../AddOrRemoveFriendButton';
 import { eventGa } from '../../googleAnalytics';
@@ -36,9 +37,9 @@ const propTypes = {
 };
 
 const getLevelColor = level => {
-  const r = (level / 21) * 46;
-  const g = (level / 21) * 204;
-  const b = (level / 21) * 113;
+  const r = Math.floor((level / 21) * 46);
+  const g = Math.floor((level / 21) * 204);
+  const b = Math.floor((level / 21) * 113);
   return `rgb(${r < 50 ? 50 : r},${g < 50 ? 50 : g},${b < 50 ? 50 : b})`;
 };
 
@@ -71,7 +72,9 @@ const UserPreview = ({
     to={`/user/${user.id}`}
     onClick={() => eventGa(VIEW_STUDENT)}
     color={
-      myLogin.toLowerCase() === user.login.toLowerCase() ? MAIN_COLOR : 'none'
+      myLogin.toLowerCase() === user.login.toLowerCase()
+        ? MAIN_COLOR
+        : LIGHT_BACKGROUND_COLOR
     }
   >
     <LeftSide>
@@ -82,7 +85,18 @@ const UserPreview = ({
         height={'60px'}
         round
       />
-      <Login>{user.login}</Login>
+      <Login>{user.login.charAt(0).toUpperCase() + user.login.slice(1)}</Login>
+      {(!isNil(addFriend) || !isNil(removeFriend)) && (
+        <AddOrRemoveFriendButtom
+          user={user}
+          usable={myLogin.toLowerCase() !== user.login.toLowerCase()}
+          userId={user.id}
+          addFriend={isMyFriend ? undefined : addFriend}
+          removeFriend={isMyFriend ? removeFriend : undefined}
+          opacity={isHover ? 1 : 0}
+          enhanceMe={enhanceMe}
+        />
+      )}
     </LeftSide>
     <RightSide>
       <Level
@@ -104,17 +118,6 @@ const UserPreview = ({
       >
         {getLogtTime(user.totalLogTime)}
       </LogTime>
-      {(!isNil(addFriend) || !isNil(removeFriend)) && (
-        <AddOrRemoveFriendButtom
-          user={user}
-          usable={myLogin.toLowerCase() !== user.login.toLowerCase()}
-          userId={user.id}
-          addFriend={isMyFriend ? undefined : addFriend}
-          removeFriend={isMyFriend ? removeFriend : undefined}
-          opacity={isHover ? 1 : 0}
-          enhanceMe={enhanceMe}
-        />
-      )}
     </RightSide>
   </Container>
 );
