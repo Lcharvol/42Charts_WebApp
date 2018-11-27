@@ -36,9 +36,9 @@ const propTypes = {
 };
 
 const getLevelColor = level => {
-  const r = (level / 21) * 46;
-  const g = (level / 21) * 204;
-  const b = (level / 21) * 113;
+  const r = Math.floor((level / 21) * 46);
+  const g = Math.floor((level / 21) * 204);
+  const b = Math.floor((level / 21) * 113);
   return `rgb(${r < 50 ? 50 : r},${g < 50 ? 50 : g},${b < 50 ? 50 : b})`;
 };
 

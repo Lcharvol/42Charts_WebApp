@@ -3,11 +3,7 @@ import { values, isNil, length } from 'ramda';
 
 const chartsToken = localStorage.getItem('chartsToken');
 
-console.log('chartsToken: ', chartsToken);
-
 const chartsRefreshToken = localStorage.getItem('chartsRefreshToken');
-
-console.log('chartsRefreshToken: ', chartsRefreshToken);
 
 const axios = Axios.create({
   // baseURL: 'https://api.42charts.fr',

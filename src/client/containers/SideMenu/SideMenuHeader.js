@@ -7,12 +7,16 @@ const SideMenuHeader = ({ imageUrl, login, winWidth }) => {
   return (
     <SideMenuHeaderContainer>
       <UserAvatar
-        width={'50px'}
-        height={'50px'}
-        margin={winWidth > 1000 ? '15px' : '0px'}
+        width={'40px'}
+        height={'40px'}
+        margin={winWidth > 1000 ? '15px' : 'px'}
         profilPicture={imageUrl}
       />
-      <NameAndLogin>{winWidth > 1000 && <Login>{login}</Login>}</NameAndLogin>
+      {winWidth > 1000 && (
+        <NameAndLogin>
+          <Login>{login.charAt(0).toUpperCase() + login.slice(1)}</Login>
+        </NameAndLogin>
+      )}
     </SideMenuHeaderContainer>
   );
 };

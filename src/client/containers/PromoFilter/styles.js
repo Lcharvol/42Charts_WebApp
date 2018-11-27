@@ -68,6 +68,7 @@ export const SelectedBox = styled.div`
   border-radius: 3px;
   z-index: 40;
   opacity: 0.8;
+  top: 10px;
   left: ${({ leftPosition }) => leftPosition}px;
   transition: left 0.2s ease-in-out;
 `;

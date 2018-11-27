@@ -4,6 +4,7 @@ import {
   MenuContainer,
   MenuElemContainer,
   StyledLink,
+  LeftBar,
   Logout,
   LogoContainer,
   LogoutLogo,
@@ -22,11 +23,15 @@ const MenuElem = ({
   selectedLink,
   handleChangeSelectedLink,
 }) => (
-  <MenuElemContainer onClick={() => handleChangeSelectedLink(to)}>
+  <MenuElemContainer
+    selected={to === selectedLink}
+    onClick={() => handleChangeSelectedLink(to)}
+  >
     <StyledLink
       to={to}
       color={to === selectedLink ? MAIN_COLOR : DARK_FONT_COLOR}
     >
+      <LeftBar selected={to === selectedLink} />
       {label}
     </StyledLink>
   </MenuElemContainer>
