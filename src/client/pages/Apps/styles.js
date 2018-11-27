@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
-import { MAIN_COLOR, BACKGROUND_COLOR } from '../../constants/colors';
+import {
+  MAIN_COLOR,
+  BACKGROUND_COLOR,
+  DARK_MAIN_COLOR,
+} from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -43,11 +47,16 @@ export const Header = styled.div`
 
 export const Title = styled.div`
   position: relative;
-  display: flex;
-  color: ${MAIN_COLOR};
   margin-bottom: 15px;
   font-weight: light;
   user-select: none;
+  background: linear-gradient(
+    to bottom,
+    ${MAIN_COLOR} 0%,
+    ${DARK_MAIN_COLOR} 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 export const AppsContainer = styled.div`

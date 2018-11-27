@@ -29,6 +29,7 @@ export const Container = styled(Link)`
   }
   text-decoration: none;
   transition: all 0.1s ease-in-out;
+  min-width: 680px;
 `;
 
 export const LeftSide = styled.div`
@@ -44,6 +45,7 @@ export const RightSide = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 25px;
 `;
 
 export const Rank = styled.div`

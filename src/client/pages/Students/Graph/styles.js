@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { MAIN_COLOR, DARK_FONT_COLOR } from '../../../constants/colors';
+import {
+  MAIN_COLOR,
+  DARK_FONT_COLOR,
+  DARK_MAIN_COLOR,
+} from '../../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -14,7 +18,7 @@ export const Container = styled.div`
 export const TopSide = styled.div`
   position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: flex-end;
   height: 100%;
   width: 100%;
@@ -30,9 +34,9 @@ export const BottomSide = styled.div`
 export const BarContainer = styled.div`
   position:relative;
   display:flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-end;
-  min-width: ${({ valuesLength }) => 100 / valuesLength}%;
+  flex:1;
   height:100%;
   opacity: ${({ value }) => value * 20};
   transition: width 0.4s ease-in-out;
@@ -47,10 +51,15 @@ export const BarContainer = styled.div`
 export const Bar = styled.div`
   position: relative;
   display: flex;
-  height: ${({ value }) => value * 100}%;
-  width: 100%;
-  background-color: ${MAIN_COLOR};
+  height: ${({ value }) => Math.floor(value * 100 < 100 ? value * 100 : 100)}%;
+  flex: 1;
   transition: height 0.4s ease-in-out;
+  background-color: ${DARK_MAIN_COLOR};
+  background-image: linear-gradient(
+    to bottom,
+    ${MAIN_COLOR} 0%,
+    ${DARK_MAIN_COLOR} 100%
+  );
 `;
 
 export const Label = styled.div`

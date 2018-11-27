@@ -5,6 +5,7 @@ import {
   MAIN_COLOR,
   DARK_TEXT_COLOR,
   FONT_COLOR,
+  DARK_MAIN_COLOR,
 } from '../../constants/colors';
 import ChevronDownIcon from '../../../../public/chev_down.png';
 
@@ -54,10 +55,15 @@ export const UnitContent = styled.div`
   width: 100%;
   height: ${({ value }) => value}%;
   opacity: ${({ value }) => value / 100 + 0.3};
-  background-color: ${MAIN_COLOR};
+  background-color: ${DARK_MAIN_COLOR};
   transition: height 0.4s ease-in-out, width 0.4s ease-in-out,
     opacity 0.4s ease-in-out;
   ${({ isHover }) => isHover && 'opacity: 1; transition: opacity 0s;'};
+  background-image: linear-gradient(
+    to bottom,
+    ${MAIN_COLOR} 0%,
+    ${DARK_MAIN_COLOR} 100%
+  );
 `;
 
 export const TimeInfo = styled.div`

@@ -8,6 +8,7 @@ import {
   DARK_BORDER_COLOR,
   DARK_FONT_COLOR,
   FONT_COLOR,
+  LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
 import { SIDE_MENU_WIDTH, SIDE_MENU_PADDING } from './constants';
 
@@ -18,6 +19,7 @@ export const Container = styled.div`
   width: ${SIDE_MENU_WIDTH}px;
   background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(30, 30, 30));
   height: calc(100vh - 50px);
+  min-height: 710px;
   top: 0;
   left: ${({ hidden }) => (hidden ? -250 : 0)}px;
   padding-top: 50px;
@@ -26,7 +28,7 @@ export const Container = styled.div`
   border-right: 1px ${DARK_BORDER_COLOR} solid;
   z-index: 10000;
   @media (max-width: 1000px) {
-    width: 50px;
+    width: 90px;
   }
   transition: left 0.3s eas-n-out;
 `;
@@ -39,6 +41,10 @@ export const SideMenuHeaderContainer = styled.div`
   width: 100%;
   height: 100px;
   margin-bottom: 20px;
+  @media (max-width: 1000px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const MenuContainer = styled.div`
@@ -57,8 +63,12 @@ export const MenuElemContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  margin-left: 15px;
   height: 50px;
+  background-color:${({ selected }) =>
+    selected ? LIGHT_BACKGROUND_COLOR : 'transparent'}
+  &:hover {
+    background-color: ${LIGHT_BACKGROUND_COLOR};
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -77,6 +87,16 @@ export const StyledLink = styled(Link)`
     color: ${MAIN_COLOR};
   }
   user-select: none;
+`;
+
+export const LeftBar = styled.div`
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 5px;
+  background-color: ${({ selected }) =>
+    selected ? MAIN_COLOR : 'transparent'};
+  margin-right: 20px;
 `;
 
 export const NameAndLogin = styled.div`
@@ -115,11 +135,14 @@ export const Logout = styled.div`
   }
   cursor: pointer;
   user-select: none;
+  margin-left: 25px;
 `;
 
 export const LogoContainer = styled(Link)`
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   height: 75px;
   margin-top: 10px;

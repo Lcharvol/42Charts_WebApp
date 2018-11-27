@@ -20,7 +20,9 @@ export const DARK_TEXT_COLOR = 'rgb(50,50,50)';
 
 export const MAIN_COLOR = '#2ecc71';
 
-export const DARK_MAIN_COLOR = '#27ae60';
+export const DARK_MAIN_COLOR = '#25a25a';
+
+export const LIGHT_MAIN_COLOR = '#69dd9a';
 
 export const FIRST_RANK_COLOR = '#D9A441';
 
