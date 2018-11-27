@@ -21,6 +21,7 @@ import {
   BORDER_COLOR,
   MAIN_COLOR,
   BACKGROUND_COLOR,
+  LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
 import AddOrRemoveFriendButtom from '../AddOrRemoveFriendButton';
 import { eventGa } from '../../googleAnalytics';
@@ -71,7 +72,9 @@ const UserPreview = ({
     to={`/user/${user.id}`}
     onClick={() => eventGa(VIEW_STUDENT)}
     color={
-      myLogin.toLowerCase() === user.login.toLowerCase() ? MAIN_COLOR : 'none'
+      myLogin.toLowerCase() === user.login.toLowerCase()
+        ? MAIN_COLOR
+        : LIGHT_BACKGROUND_COLOR
     }
   >
     <LeftSide>
