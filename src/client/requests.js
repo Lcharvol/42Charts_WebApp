@@ -1,12 +1,17 @@
 import * as Axios from 'axios';
-import { values } from 'ramda';
+import { values, isNil, length } from 'ramda';
 
 const chartsToken = localStorage.getItem('chartsToken');
 
+console.log('chartsToken: ', chartsToken);
+
 const chartsRefreshToken = localStorage.getItem('chartsRefreshToken');
 
+console.log('chartsRefreshToken: ', chartsRefreshToken);
+
 const axios = Axios.create({
-  baseURL: 'https://api.42charts.fr',
+  // baseURL: 'https://api.42charts.fr',
+  baseURL: 'http://localhost:3000',
   headers: {
     Authorization: 'Bearer ' + chartsToken,
     ContentType: 'application/json',
@@ -27,13 +32,17 @@ export const reqRefreshToken = () =>
     });
 
 const checkToken = err => {
-  if (err.message === 'Not authorized') {
+  if (!isNil(chartsRefreshToken) && length(chartsRefreshToken) > 0) {
     reqRefreshToken()
       .then(res => {
         localStorage.setItem('chartsToken', res.token);
         localStorage.setItem('chartsRefreshToken', res.refreshToken);
       })
-      .catch(err => window.location.replace('login'));
+      .catch(err => {
+        localStorage.setItem('chartsToken', '');
+        localStorage.setItem('chartsRefreshToken', '');
+        window.location.replace('login');
+      });
   }
 };
 
