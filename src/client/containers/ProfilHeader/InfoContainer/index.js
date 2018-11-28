@@ -24,7 +24,7 @@ const InfoContainer = ({ user, selectedCursus, color }) => {
     },
     {
       id: 2,
-      label: 'Cursurs',
+      label: 'Cursus',
       value: !isNil(cursusObject) ? cursusObject.name : '',
     },
     {

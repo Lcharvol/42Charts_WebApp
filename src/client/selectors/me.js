@@ -63,7 +63,7 @@ export const getMyCoalitionScoreInfo = state => {
 
 export const getMyCoalitionRank = state => state.me.coalition.userRank;
 
-export const getHighterLogPerDay = state => {
+export const getHigherLogPerDay = state => {
   const {
     me: {
       logs: {
@@ -76,7 +76,7 @@ export const getHighterLogPerDay = state => {
   return `${hours} h ${min} min`;
 };
 
-export const getHighterLogPerDayInfos = state => {
+export const getHigherLogPerDayInfos = state => {
   const {
     me: {
       logs: {
@@ -87,14 +87,14 @@ export const getHighterLogPerDayInfos = state => {
   return `${day}/${month + 1}/${year}`;
 };
 
-export const getHighterLogPerMonth = state => {
+export const getHigherLogPerMonth = state => {
   const logtimeInSeconds = state.me.logs.higherLogInMonth.logtimeInSeconds;
   const hours = Math.floor(logtimeInSeconds / 60 / 60);
   const min = Math.floor((logtimeInSeconds - hours * 60 * 60) / 60);
   return `${hours} h ${min} min`;
 };
 
-export const getHighterLogPerMonthInfos = state => {
+export const getHigherLogPerMonthInfos = state => {
   const months = [
     'January',
     'February',
