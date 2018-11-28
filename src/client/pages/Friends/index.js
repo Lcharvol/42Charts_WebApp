@@ -56,6 +56,7 @@ const Friends = ({
           nbUsers={length(filteredAndSortedFriends)}
           usersByUnit={getFriendsByUnit(filteredAndSortedFriends)}
           filterBy={filterBy}
+          usersRatioTranches={[]}
         />
         <PromoFilter
           promos={promos}

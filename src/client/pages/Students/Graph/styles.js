@@ -29,6 +29,8 @@ export const BottomSide = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
+  min-height: 20px;
+  padding-top: 10px;
 `;
 
 export const BarContainer = styled.div`
@@ -62,11 +64,6 @@ export const Bar = styled.div`
   );
 `;
 
-export const Label = styled.div`
-  position: relative;
-  display: flex;
-`;
-
 export const HoverContent = styled.div`
   position: absolute;
   display: flex;
@@ -95,4 +92,13 @@ export const HoverLabel = styled.div`
   width: 280px;
   font-size: 0.4em;
   color: ${DARK_FONT_COLOR};
+`;
+
+export const AbscisaLabel = styled.div`
+  position: relative;
+  display: flex;
+  color: ${DARK_FONT_COLOR};
+  font-size: 0.25em;
+  flex: 1;
+  opacity: 0.5;
 `;

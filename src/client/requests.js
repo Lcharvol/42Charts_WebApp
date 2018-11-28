@@ -1,5 +1,5 @@
 import * as Axios from 'axios';
-import { values, isNil, length } from 'ramda';
+import { values, isNil, length, keys } from 'ramda';
 
 const chartsToken = localStorage.getItem('chartsToken');
 
@@ -129,7 +129,7 @@ export const reqGetUsersRatio = (promo = '2013', sortBy = 'level') =>
     method: 'get',
     url: `usersratio?promo=${promo !== 'all' ? promo : ''}&sortBy=${sortBy}`,
   })
-    .then(res => values(res.data))
+    .then(res => ({ values: values(res.data), keys: keys(res.data) }))
     .catch(err => {
       checkToken(err);
       throw err;

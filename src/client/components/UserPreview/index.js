@@ -74,7 +74,7 @@ const UserPreview = ({
     color={
       myLogin.toLowerCase() === user.login.toLowerCase()
         ? MAIN_COLOR
-        : LIGHT_BACKGROUND_COLOR
+        : 'rgba(30,30,30,0.7)'
     }
   >
     <LeftSide>
