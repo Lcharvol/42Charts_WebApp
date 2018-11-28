@@ -24,11 +24,11 @@ export const DARK_MAIN_COLOR = '#25a25a';
 
 export const LIGHT_MAIN_COLOR = '#69dd9a';
 
-export const FIRST_RANK_COLOR = '#D9A441';
+export const FIRST_RANK_COLOR = '#FEE101';
 
-export const SECOND_RANK_COLOR = '#CCC2C2';
+export const SECOND_RANK_COLOR = '#A7A7AD';
 
-export const THIRD_RANK_COLOR = '#965A38';
+export const THIRD_RANK_COLOR = '#A77044';
 
 export const VALIDATED_MARK_COLOR = '#2ecc71';
 

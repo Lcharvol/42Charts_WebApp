@@ -1,6 +1,6 @@
 import React from 'react';
 import { array, number, func } from 'prop-types';
-import { length, isNil, isEmpty } from 'ramda';
+import { length, isNil, isEmpty, times } from 'ramda';
 import { compose, onlyUpdateForKeys, withStateHandlers } from 'recompose';
 
 import {
@@ -13,6 +13,7 @@ import {
   HoverContent,
   HoverValue,
   HoverLabel,
+  AbscisaLabel,
 } from './styles';
 import Separator from '../../../components/Separator';
 import { MAIN_COLOR } from '../../../constants/colors';
@@ -23,6 +24,7 @@ const proptypes = {
   handleChangeHoveredUnit: func.isRequired,
   nbUsers: number.isRequired,
   filterBy: number.isRequired,
+  usersRatioTranches: array.isRequired,
 };
 
 const getHoverValue = (hoveredUnit, usersByUnit) => {
@@ -40,6 +42,7 @@ const getHoverLabel = (hoveredUnit, usersByUnit, nbUsers, filterBy) => {
 
 const Graph = ({
   usersByUnit = [],
+  usersRatioTranches,
   nbUsers,
   hoveredUnit,
   handleChangeHoveredUnit,
@@ -71,9 +74,14 @@ const Graph = ({
     </TopSide>
     <Separator color={MAIN_COLOR} />
     <BottomSide>
-      {usersByUnit.map((user, id) => (
-        <Label key={id} />
-      ))}
+      {times(
+        i => (
+          <AbscisaLabel key={i}>
+            {usersRatioTranches[i * Math.floor(length(usersByUnit) / 6)]}
+          </AbscisaLabel>
+        ),
+        6,
+      )}
     </BottomSide>
     <HoverContent>
       <HoverValue>{getHoverValue(hoveredUnit, usersByUnit)}</HoverValue>

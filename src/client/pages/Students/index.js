@@ -31,7 +31,7 @@ import { getPromos } from '../../selectors/app';
 import { getMyLogin, getMyFriends } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
 import { enhanceMe, addFriend, removeFriend } from '../../actions/me';
-import { isMyFriend } from './utils';
+import { isMyFriend, parseTimeKeys } from './utils';
 
 const Students = ({
   start,
@@ -42,6 +42,7 @@ const Students = ({
   myLogin,
   filterBy,
   usersRatio,
+  usersRatioTranches,
   isFetching,
   searchValue,
   isFetchingPossible,
@@ -66,6 +67,7 @@ const Students = ({
         nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
         usersByUnit={usersRatio}
         filterBy={filterBy}
+        usersRatioTranches={usersRatioTranches}
       />
       <PromoFilter
         promos={promos}
@@ -180,6 +182,7 @@ const enhance = compose(
       initialStart = 0,
       initialFilterBy = 0,
       initialUsersRatio = [],
+      initialUsersRatioTranches = [],
       initialIsFetching = false,
       initialSearchValue = '',
       initialIsFetchingPossible = true,
@@ -190,6 +193,7 @@ const enhance = compose(
       start: initialStart,
       filterBy: initialFilterBy,
       usersRatio: initialUsersRatio,
+      usersRatioTranches: initialUsersRatioTranches,
       isFetching: initialIsFetching,
       searchValue: initialSearchValue,
       isFetchingPossible: initialIsFetchingPossible,
@@ -222,6 +226,9 @@ const enhance = compose(
       handleChangeUsersRatio: () => newUsersRatio => ({
         usersRatio: newUsersRatio,
       }),
+      handleChangeUsersRatioTranches: () => newUsersRatioTranches => ({
+        usersRatioTranches: newUsersRatioTranches,
+      }),
       handleChangeIsFetching: () => newValue => ({
         isFetching: newValue,
       }),
@@ -253,7 +260,10 @@ const enhance = compose(
           this.props.selectedPromo,
           find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
         )
-          .then(res => this.props.handleChangeUsersRatio(res))
+          .then(res => {
+            this.props.handleChangeUsersRatio(res.values);
+            this.props.handleChangeUsersRatioTranches(res.keys);
+          })
           .catch(err => err);
       }
       this.props.handleChangeSelectedPromo(ALL_PROMO_SELECTED);
@@ -287,7 +297,12 @@ const enhance = compose(
             )
               .then(res => {
                 if (this._isMount) {
-                  this.props.handleChangeUsersRatio(res);
+                  this.props.handleChangeUsersRatio(res.values);
+                  this.props.handleChangeUsersRatioTranches(
+                    this.props.filterBy === 1
+                      ? parseTimeKeys(res.keys)
+                      : res.keys,
+                  );
                   this.props.handleChangeIsFetching(false);
                 }
               })

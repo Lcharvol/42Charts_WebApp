@@ -41,13 +41,14 @@ export const IconContainer = styled.div`
   transition: all 0.2s ease-in-out;
   border: solid 1.5px;
   border-color: ${({ isHover, remove }) => {
-    if (remove) return isHover ? RED : BACKGROUND_COLOR;
-    return isHover ? MAIN_COLOR : BACKGROUND_COLOR;
+    if (remove) return isHover ? RED : MAIN_COLOR;
+    return isHover ? MAIN_COLOR : MAIN_COLOR;
   }};
   color: ${({ isHover, remove }) => {
-    if (remove) return isHover ? RED : BACKGROUND_COLOR;
-    return isHover ? MAIN_COLOR : BACKGROUND_COLOR;
+    if (remove) return isHover ? RED : MAIN_COLOR;
+    return isHover ? MAIN_COLOR : MAIN_COLOR;
   }};
+  opacity: ${({ isHover }) => (isHover ? 1 : 0.4)}
   transition: all 0.2s ease-in-out;
 `;
 
