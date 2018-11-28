@@ -71,6 +71,15 @@ export const Login = styled.div`
   min-width: 80px;
 `;
 
+export const Badges = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  min-width: 50px;
+`;
+
 export const Level = styled.div`
   position: relative;
   display: flex;

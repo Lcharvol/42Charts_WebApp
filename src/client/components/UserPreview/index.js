@@ -1,7 +1,7 @@
 import React from 'react';
 import { object, string, func, bool } from 'prop-types';
-import { equals, isNil } from 'ramda';
-import { withStateHandlers } from 'recompose';
+import { equals, isNil, find, propEq, map } from 'ramda';
+import { withStateHandlers, mapProps } from 'recompose';
 
 import {
   Container,
@@ -12,6 +12,7 @@ import {
   Rank,
   CampusLabel,
   LogTime,
+  Badges,
 } from './styles';
 import { UserAvatar } from '../UserAvatar';
 import {
@@ -21,11 +22,13 @@ import {
   BORDER_COLOR,
   MAIN_COLOR,
   BACKGROUND_COLOR,
-  LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
+import { VIEW_STUDENT } from '../../constants/GaLabels';
+import { coalitionsBackground } from '../../constants/coalitions';
+import { badges } from '../../constants/badges';
 import AddOrRemoveFriendButtom from '../AddOrRemoveFriendButton';
 import { eventGa } from '../../googleAnalytics';
-import { VIEW_STUDENT } from '../../constants/GaLabels';
+import Badge from '../Badge';
 
 const propTypes = {
   user: object.isRequired,
@@ -65,62 +68,87 @@ const UserPreview = ({
   addFriend,
   isMyFriend,
   enhanceMe,
-}) => (
-  <Container
-    onMouseEnter={() => handleChangeIsHover(true)}
-    onMouseLeave={() => handleChangeIsHover(false)}
-    to={`/user/${user.id}`}
-    onClick={() => eventGa(VIEW_STUDENT)}
-    color={
-      myLogin.toLowerCase() === user.login.toLowerCase()
-        ? MAIN_COLOR
-        : 'rgba(30,30,30,0.7)'
-    }
-  >
-    <LeftSide>
-      <Rank color={getRankColor(user.rank)}>{user.rank}</Rank>
-      <UserAvatar
-        profilPicture={user.imageUrl}
-        width={'60px'}
-        height={'60px'}
-        round
-      />
-      <Login>{user.login.charAt(0).toUpperCase() + user.login.slice(1)}</Login>
-      {(!isNil(addFriend) || !isNil(removeFriend)) && (
-        <AddOrRemoveFriendButtom
-          user={user}
-          usable={myLogin.toLowerCase() !== user.login.toLowerCase()}
-          userId={user.id}
-          addFriend={isMyFriend ? undefined : addFriend}
-          removeFriend={isMyFriend ? removeFriend : undefined}
-          opacity={isHover ? 1 : 0}
-          enhanceMe={enhanceMe}
+}) => {
+  const userCoalition =
+    find(propEq('id', user.coalitionID))(coalitionsBackground) || {};
+  return (
+    <Container
+      onMouseEnter={() => handleChangeIsHover(true)}
+      onMouseLeave={() => handleChangeIsHover(false)}
+      to={`/user/${user.id}`}
+      onClick={() => eventGa(VIEW_STUDENT)}
+      color={
+        myLogin.toLowerCase() === user.login.toLowerCase()
+          ? MAIN_COLOR
+          : 'rgba(30,30,30,0.7)'
+      }
+    >
+      <LeftSide>
+        <Rank color={getRankColor(user.rank)}>{user.rank}</Rank>
+        <UserAvatar
+          profilPicture={user.imageUrl}
+          width={'60px'}
+          height={'60px'}
+          round
         />
-      )}
-    </LeftSide>
-    <RightSide>
-      <Level
-        color={
-          myLogin.toLowerCase() === user.login.toLowerCase()
-            ? BACKGROUND_COLOR
-            : getLevelColor(user.cursusLevel)
-        }
-      >
-        {user.cursusLevel.toFixed(2)}
-      </Level>
-      <CampusLabel>{user.campusName}</CampusLabel>
-      <LogTime
-        color={
-          myLogin.toLowerCase() === user.login.toLowerCase()
-            ? BACKGROUND_COLOR
-            : MAIN_COLOR
-        }
-      >
-        {getLogtTime(user.totalLogTime)}
-      </LogTime>
-    </RightSide>
-  </Container>
-);
+        <Login>
+          {user.login.charAt(0).toUpperCase() + user.login.slice(1)}
+        </Login>
+        <Badges>
+          <Badge
+            color={userCoalition.color}
+            imageUrl={userCoalition.imageUrl}
+            shape={'square'}
+          />
+          {map(
+            badge =>
+              badge.requirement(user) && (
+                <Badge
+                  key={badge.id}
+                  color={badge.color}
+                  imageUrl={badge.imageUrl}
+                  logo={badge.logo}
+                />
+              ),
+            badges,
+          )}
+        </Badges>
+        {(!isNil(addFriend) || !isNil(removeFriend)) && (
+          <AddOrRemoveFriendButtom
+            user={user}
+            usable={myLogin.toLowerCase() !== user.login.toLowerCase()}
+            userId={user.id}
+            addFriend={isMyFriend ? undefined : addFriend}
+            removeFriend={isMyFriend ? removeFriend : undefined}
+            opacity={isHover ? 1 : 0}
+            enhanceMe={enhanceMe}
+          />
+        )}
+      </LeftSide>
+      <RightSide>
+        <Level
+          color={
+            myLogin.toLowerCase() === user.login.toLowerCase()
+              ? BACKGROUND_COLOR
+              : getLevelColor(user.cursusLevel)
+          }
+        >
+          {user.cursusLevel.toFixed(2)}
+        </Level>
+        <CampusLabel>{user.campusName}</CampusLabel>
+        <LogTime
+          color={
+            myLogin.toLowerCase() === user.login.toLowerCase()
+              ? BACKGROUND_COLOR
+              : MAIN_COLOR
+          }
+        >
+          {getLogtTime(user.totalLogTime)}
+        </LogTime>
+      </RightSide>
+    </Container>
+  );
+};
 
 UserPreview.propTypes = propTypes;
 

@@ -297,7 +297,6 @@ const enhance = compose(
             )
               .then(res => {
                 if (this._isMount) {
-                  console.log('resssss: ', res);
                   this.props.handleChangeUsersRatio(res.values);
                   this.props.handleChangeUsersRatioTranches(
                     this.props.filterBy === 1
