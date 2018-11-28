@@ -9,6 +9,8 @@ export const Container = styled.div`
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   border-radius: ${({ shape }) => (shape === 'round' ? '100%' : '3px')};
+  margin-left: 7px;
+  margin-right: 7px;
 `;
 
 export const Icon = styled.div`
@@ -21,4 +23,11 @@ export const Icon = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     opacity:0.5;
+`;
+
+export const LogoContainer = styled.div`
+  position: relative;
+  display: flex;
+  color: rgba(25, 25, 25, 0.8);
+  font-size: 0.4em;
 `;

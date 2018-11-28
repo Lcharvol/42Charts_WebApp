@@ -1,7 +1,7 @@
 import React from 'react';
 import { object, string, func, bool } from 'prop-types';
-import { equals, isNil, find, propEq } from 'ramda';
-import { withStateHandlers } from 'recompose';
+import { equals, isNil, find, propEq, map } from 'ramda';
+import { withStateHandlers, mapProps } from 'recompose';
 
 import {
   Container,
@@ -25,6 +25,7 @@ import {
 } from '../../constants/colors';
 import { VIEW_STUDENT } from '../../constants/GaLabels';
 import { coalitionsBackground } from '../../constants/coalitions';
+import { badges } from '../../constants/badges';
 import AddOrRemoveFriendButtom from '../AddOrRemoveFriendButton';
 import { eventGa } from '../../googleAnalytics';
 import Badge from '../Badge';
@@ -70,7 +71,6 @@ const UserPreview = ({
 }) => {
   const userCoalition =
     find(propEq('id', user.coalitionID))(coalitionsBackground) || {};
-  console.log('user: ', user);
   return (
     <Container
       onMouseEnter={() => handleChangeIsHover(true)}
@@ -100,6 +100,18 @@ const UserPreview = ({
             imageUrl={userCoalition.imageUrl}
             shape={'square'}
           />
+          {map(
+            badge =>
+              badge.requirement(user) && (
+                <Badge
+                  key={badge.id}
+                  color={badge.color}
+                  imageUrl={badge.imageUrl}
+                  logo={badge.logo}
+                />
+              ),
+            badges,
+          )}
         </Badges>
         {(!isNil(addFriend) || !isNil(removeFriend)) && (
           <AddOrRemoveFriendButtom

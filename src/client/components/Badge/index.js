@@ -1,7 +1,8 @@
 import React from 'react';
+import { isNil } from 'ramda';
 import { string, number } from 'prop-types';
 
-import { Container, Icon } from './styles';
+import { Container, Icon, LogoContainer } from './styles';
 
 const proptypes = {
   color: string,
@@ -10,9 +11,10 @@ const proptypes = {
   shape: string,
 };
 
-const Badge = ({ color, imageUrl, shape = 'round', size = 25 }) => (
+const Badge = ({ color, imageUrl, shape = 'round', size = 25, logo }) => (
   <Container color={color} size={size} shape={shape}>
-    <Icon imageUrl={imageUrl} />
+    {!isNil(imageUrl) && <Icon imageUrl={imageUrl} />}
+    {!isNil(logo) && <LogoContainer>{logo}</LogoContainer>}
   </Container>
 );
 
