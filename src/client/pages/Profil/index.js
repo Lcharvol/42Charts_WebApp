@@ -9,6 +9,7 @@ import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
 import { Container, Content } from './styles';
 import { getMe, getMarks, getMyLogs, getMyCoalition } from '../../selectors/me';
 import { getCurrentTime } from '../../selectors/time';
+import { getWinWidth } from '../../selectors/app';
 import { enhanceMe } from '../../actions/me';
 import { reqGetMyLogs } from '../../requests';
 import Marks from '../../containers/Marks';
@@ -124,6 +125,7 @@ const mapStateToProps = state => ({
   myLogs: getMyLogs(state),
   currentTime: getCurrentTime(state),
   myCoalition: getMyCoalition(state),
+  winWidth: getWinWidth(state),
 });
 
 const enhance = compose(
@@ -136,12 +138,10 @@ const enhance = compose(
       initialSelectedCursus = 1,
       initialMarksSortBy = 0,
       initialLogsFilter = 0,
-      initialWinWidth = window.innerWidth,
     }) => ({
       selectedCursus: initialSelectedCursus,
       marksSortBy: initialMarksSortBy,
       logsFilter: initialLogsFilter,
-      winWidth: initialWinWidth,
     }),
     {
       handleChangeSelectedCursus: () => cursusId => ({
@@ -152,9 +152,6 @@ const enhance = compose(
       }),
       handleChangeLogsFilter: () => newFilterId => ({
         logsFilter: newFilterId,
-      }),
-      handleChangeWinWidth: () => e => ({
-        winWidth: e.srcElement.innerWidth,
       }),
     },
   ),
@@ -169,11 +166,6 @@ const enhance = compose(
           })
           .catch(err => err);
       }
-      window.addEventListener('resize', this.props.handleChangeWinWidth);
-    },
-    componentWillUnmount() {
-      this._isMount = false;
-      window.removeEventListener('resize', this.props.handleChangeWinWidth);
     },
   }),
 );

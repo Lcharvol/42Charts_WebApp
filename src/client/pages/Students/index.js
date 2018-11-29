@@ -27,7 +27,7 @@ import UserPreview from '../../components/UserPreview';
 import Spinner from '../../components/Spinner';
 import EmptySearch from '../../components/EmptySearch';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
-import { getPromos } from '../../selectors/app';
+import { getPromos, getWinWidth } from '../../selectors/app';
 import { getMyLogin, getMyFriends } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
 import { enhanceMe, addFriend, removeFriend } from '../../actions/me';
@@ -51,6 +51,7 @@ const Students = ({
   removeFriend,
   enhanceMe,
   friends,
+  winWidth,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
@@ -92,6 +93,7 @@ const Students = ({
               removeFriend={removeFriend}
               enhanceMe={enhanceMe}
               isMyFriend={isMyFriend(user.id, friends)}
+              winWidth={winWidth}
             />
           ),
           users,
@@ -164,6 +166,7 @@ const mapStateToProps = state => ({
   promos: getPromos(state),
   myLogin: getMyLogin(state),
   friends: getMyFriends(state),
+  winWidth: getWinWidth(state),
 });
 
 const actions = { loadPromos, addFriend, removeFriend, enhanceMe };
@@ -325,6 +328,7 @@ const enhance = compose(
     'isFetching',
     'isFetchingFailed',
     'friends',
+    'winWidth',
   ]),
 );
 export default enhance(Students);

@@ -25,6 +25,7 @@ import {
   getMyFriends,
   getMyDisplayname,
 } from '../../selectors/me';
+import { getWinWidth } from '../../selectors/app';
 import {
   reqMe,
   reqPing,
@@ -75,6 +76,7 @@ const mapStateToProps = state => ({
   imageUrl: getMyProfilPicture(state),
   projects: getMyProjects(state),
   friends: getMyFriends(state),
+  winWidth: getWinWidth(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -85,17 +87,10 @@ const enhance = compose(
     mapDispatchToProps,
   ),
   withStateHandlers(
-    ({
-      initialWinWidth = window.innerWidth,
-      initialSelectedLink = window.location.pathname,
-    }) => ({
-      winWidth: initialWinWidth,
+    ({ initialSelectedLink = window.location.pathname }) => ({
       selectedLink: initialSelectedLink,
     }),
     {
-      handleChangeWinWidth: () => newWinWidth => ({
-        winWidth: newWinWidth,
-      }),
       handleChangeSelectedLink: () => newSelectedLink => ({
         selectedLink: newSelectedLink,
       }),
@@ -112,9 +107,6 @@ const enhance = compose(
 
       visitePageGa();
       if (route !== 'serverdown') {
-        window.addEventListener('resize', event =>
-          this.props.handleChangeWinWidth(event.srcElement.innerWidth),
-        );
         reqPing()
           .then(res => res)
           .catch(err => window.location.replace('serverdown'));
@@ -130,9 +122,6 @@ const enhance = compose(
         }
       }
       this.props.enhanceTime({ currentYear, currentMonth, currentDay });
-    },
-    componentWillUnmount() {
-      window.removeEventListener('resize', this.props.handleChangeWinWidth);
     },
     componentDidUpdate(prevProps) {
       if (prevProps.selectedLink !== this.props.selectedLink) visitePageGa();

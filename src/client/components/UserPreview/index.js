@@ -1,5 +1,5 @@
 import React from 'react';
-import { object, string, func, bool } from 'prop-types';
+import { object, string, func, bool, number } from 'prop-types';
 import { equals, isNil, find, propEq, map } from 'ramda';
 import { withStateHandlers, mapProps } from 'recompose';
 
@@ -37,6 +37,7 @@ const propTypes = {
   removeFriend: func,
   isMyFriend: bool,
   enhanceMe: func,
+  winWidth: number,
 };
 
 const getLevelColor = level => {
@@ -68,6 +69,7 @@ const UserPreview = ({
   addFriend,
   isMyFriend,
   enhanceMe,
+  winWidth,
 }) => {
   const userCoalition =
     find(propEq('id', user.coalitionID))(coalitionsBackground) || {};
@@ -100,20 +102,24 @@ const UserPreview = ({
             imageUrl={userCoalition.imageUrl}
             shape={'square'}
           />
-          {map(
-            badge =>
-              badge.requirement(user) && (
-                <Badge
-                  key={badge.id}
-                  color={badge.color}
-                  imageUrl={badge.imageUrl}
-                  logo={badge.logo}
-                  hoverValue={badge.hoverValue}
-                />
-              ),
-            badges,
-          )}
+          {!isNil(winWidth) &&
+            winWidth > 1000 &&
+            map(
+              badge =>
+                badge.requirement(user) && (
+                  <Badge
+                    key={badge.id}
+                    color={badge.color}
+                    imageUrl={badge.imageUrl}
+                    logo={badge.logo}
+                    hoverValue={badge.hoverValue}
+                  />
+                ),
+              badges,
+            )}
         </Badges>
+      </LeftSide>
+      <RightSide>
         {(!isNil(addFriend) || !isNil(removeFriend)) && (
           <AddOrRemoveFriendButtom
             user={user}
@@ -125,8 +131,6 @@ const UserPreview = ({
             enhanceMe={enhanceMe}
           />
         )}
-      </LeftSide>
-      <RightSide>
         <Level
           color={
             myLogin.toLowerCase() === user.login.toLowerCase()
