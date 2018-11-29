@@ -223,12 +223,12 @@ export const reqRemoveLikeApp = appId =>
       throw err;
     });
 
-export const reqWeekSummary = () =>
+export const reqGetWeekSummary = () =>
   axios({
     method: 'get',
     url: 'weeksummary',
   })
-    .then(res => res)
+    .then(res => res.data)
     .catch(err => {
       throw err;
     });

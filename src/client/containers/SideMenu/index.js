@@ -14,10 +14,11 @@ import SideMenuHeader from './SideMenuHeader';
 import Separator from '../../components/Separator';
 import VersionLabel from '../../components/VersionLabel';
 import AppLogo from '../../components/AppLogo';
+import WeekSummary from '../../containers/WeekSummary';
 import Menu from './Menu';
 import { enhanceMe } from '../../actions/me';
 import { enhanceTime } from '../../actions/time';
-import { loadInfos } from '../../actions/app';
+import { loadInfos, loadWeekSummary } from '../../actions/app';
 import {
   getMyLogin,
   getMyProfilPicture,
@@ -25,14 +26,13 @@ import {
   getMyFriends,
   getMyDisplayname,
 } from '../../selectors/me';
-import { getWinWidth } from '../../selectors/app';
+import { getWinWidth, getWeekSummary } from '../../selectors/app';
 import {
   reqMe,
   reqPing,
   reqGetMyFriends,
-  reqRefreshToken,
+  reqGetWeekSummary,
 } from '../../requests';
-
 import { noAuthneeded } from '../../auth';
 import { DARK_BORDER_COLOR } from '../../constants/colors';
 import { visitePageGa } from '../../googleAnalytics';
@@ -68,7 +68,7 @@ const SideMenu = ({
   );
 };
 
-const actions = { enhanceMe, enhanceTime, loadInfos };
+const actions = { enhanceMe, enhanceTime, loadInfos, loadWeekSummary };
 
 const mapStateToProps = state => ({
   login: getMyLogin(state),
@@ -77,6 +77,7 @@ const mapStateToProps = state => ({
   projects: getMyProjects(state),
   friends: getMyFriends(state),
   winWidth: getWinWidth(state),
+  weekSummary: getWeekSummary(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -119,6 +120,11 @@ const enhance = compose(
           reqGetMyFriends()
             .then(res => this.props.enhanceMe({ friends: res }))
             .catch(err => err);
+        }
+        if (isEmpty(this.props.weekSummary)) {
+          reqGetWeekSummary()
+            .then(res => this.props.loadWeekSummary(res))
+            .catch();
         }
       }
       this.props.enhanceTime({ currentYear, currentMonth, currentDay });
