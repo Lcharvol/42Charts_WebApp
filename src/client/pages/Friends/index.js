@@ -20,7 +20,7 @@ import {
 import { getMyFriends, getMyLogin } from '../../selectors/me';
 import PromoFilter from '../../containers/PromoFilter';
 import Graph from '../../pages/Students/Graph';
-import { getPromos } from '../../selectors/app';
+import { getPromos, getWinWidth } from '../../selectors/app';
 import { loadPromos } from '../../actions/app';
 import { removeFriend } from '../../actions/me';
 import { reqGetPromo } from '../../requests';
@@ -42,6 +42,7 @@ const Friends = ({
   handleChangeFilterBy,
   myLogin,
   removeFriend,
+  winWidth,
 }) => {
   const filteredAndSortedFriends = getFileredAndSortedFriends(
     friends,
@@ -83,6 +84,7 @@ const Friends = ({
                 user={user}
                 removeFriend={removeFriend}
                 isMyFriend={true}
+                winWidth={winWidth}
               />
             ),
             filteredAndSortedFriends,
@@ -99,6 +101,7 @@ const mapStateToProps = state => ({
   friends: getMyFriends(state),
   promos: getPromos(state),
   myLogin: getMyLogin(state),
+  winWidth: getWinWidth(state),
 });
 
 const actions = { loadPromos, removeFriend };
@@ -141,6 +144,12 @@ const enhance = compose(
       }
     },
   }),
-  onlyUpdateForKeys(['friends', 'promos', 'selectedPromo', 'filterBy']),
+  onlyUpdateForKeys([
+    'friends',
+    'promos',
+    'selectedPromo',
+    'filterBy',
+    'winWidth',
+  ]),
 );
 export default enhance(Friends);

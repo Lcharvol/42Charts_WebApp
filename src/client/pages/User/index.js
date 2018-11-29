@@ -22,6 +22,7 @@ import {
   LOGS_FILTER_VALUES,
 } from '../../constants/selectButtonValues';
 import { USER_STATS_CONTENT } from '../../constants/stats';
+import { getWinWidth } from '../../selectors/app';
 
 const User = ({
   user,
@@ -105,6 +106,7 @@ const mapStateToProps = state => ({
   currentTime: getCurrentTime(state),
   user: getUser(state),
   userLogs: getUserLogs(state),
+  winWidth: getWinWidth(state),
 });
 
 const actions = { loadUser, loadUserLogs, resetUser };
@@ -118,20 +120,15 @@ const enhance = compose(
   ),
   withStateHandlers(
     ({
-      initialWinWidth = window.innerWidth,
       initialMarksSortBy = 0,
       initialLogsFilter = 0,
       initialSelectedCursus = 1,
     }) => ({
-      winWidth: initialWinWidth,
       marksSortBy: initialMarksSortBy,
       logsFilter: initialLogsFilter,
       selectedCursus: initialSelectedCursus,
     }),
     {
-      handleChangeWinWidth: () => e => ({
-        winWidth: e.srcElement.innerWidth,
-      }),
       handleChangeLogsFilter: () => newFilterId => ({
         logsFilter: newFilterId,
       }),
@@ -156,11 +153,9 @@ const enhance = compose(
           .then(data => this.props.loadUserLogs(data))
           .catch(err => err);
       }
-      window.addEventListener('resize', this.props.handleChangeWinWidth);
     },
     componentWillUnmount() {
       this.props.resetUser();
-      window.removeEventListener('resize', this.props.handleChangeWinWidth);
     },
   }),
 );

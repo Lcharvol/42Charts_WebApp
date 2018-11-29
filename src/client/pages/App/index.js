@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { compose } from 'recompose';
+import { compose, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import SideMenu from '../../containers/SideMenu';
 import routes from '../../routes';
 import { AppContainer } from './styles';
 import { initializeGa } from '../../googleAnalytics';
+import { updateWinWidth } from '../../actions/app';
 
 const RouteWithSubRoutes = route => (
   <Route
@@ -36,7 +37,7 @@ const App = () => {
   );
 };
 
-const actions = {};
+const actions = { updateWinWidth };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
@@ -45,4 +46,12 @@ export default compose(
     null,
     mapDispatchToProps,
   ),
+  lifecycle({
+    componentDidMount() {
+      window.addEventListener('resize', this.props.updateWinWidth);
+    },
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.props.updateWinWidth);
+    },
+  }),
 )(App);
