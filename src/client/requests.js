@@ -6,8 +6,8 @@ const chartsToken = localStorage.getItem('chartsToken');
 const chartsRefreshToken = localStorage.getItem('chartsRefreshToken');
 
 const axios = Axios.create({
-  baseURL: 'https://api.42charts.fr',
-  // baseURL: 'http://localhost:3000',
+  // baseURL: 'https://api.42charts.fr',
+  baseURL: 'http://localhost:3000',
   headers: {
     Authorization: 'Bearer ' + chartsToken,
     ContentType: 'application/json',
@@ -217,6 +217,16 @@ export const reqRemoveLikeApp = appId =>
   axios({
     method: 'delete',
     url: `apps/like/${appId}`,
+  })
+    .then(res => res)
+    .catch(err => {
+      throw err;
+    });
+
+export const reqWeekSummary = () =>
+  axios({
+    method: 'get',
+    url: 'weeksummary',
   })
     .then(res => res)
     .catch(err => {
