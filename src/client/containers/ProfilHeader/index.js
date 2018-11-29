@@ -35,9 +35,8 @@ const ProfilHeader = ({
   user,
   color = MAIN_COLOR,
 }) => {
-  const colationElem = find(propEq('name', coalition.name))(
-    coalitionsBackground,
-  );
+  const colationElem =
+    find(propEq('name', coalition.name))(coalitionsBackground) || {};
   return (
     <Container
       backgroundUrl={
@@ -65,6 +64,7 @@ const ProfilHeader = ({
         <LevelBar
           level={getLevelFromCursus(selectedCursus, cursus || [])}
           color={color[0] === '#' ? color : `#${color}`}
+          gradientColor={colationElem.gradientColor}
         />
       </RightSide>
     </Container>

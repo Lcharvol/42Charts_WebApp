@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { isNil } from 'ramda';
 import {
   MAIN_COLOR,
   TRANSPARENT_DARK_BACKGROUND,
@@ -20,7 +21,8 @@ export const Content = styled.div`
   position: absolute;
   display: flex;
   height: 100%;
-  background-color: ${({ color }) => color};
+  background: ${({ color, gradientColor }) =>
+    isNil(gradientColor) ? color : gradientColor};
   width: ${({ value }) => value}%;
   z-index: 100;
 `;

@@ -31,7 +31,7 @@ export const Flag = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ color }) => color};
+  background: ${({ gradientColor }) => gradientColor};
   width: 85px;
   height: 85px;
   border-radius: 3px;

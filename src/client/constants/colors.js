@@ -37,3 +37,12 @@ export const FAIL_MARK_COLOR = '#e74c3c';
 export const RED = '#e74c3c';
 
 export const TRANSPARENT_DARK_BACKGROUND = 'rgba(15, 15, 15, 0.5)';
+
+export const GOLD_MEDAL_COLOR =
+  'linear-gradient(rgb(254, 225, 1), rgb(214, 175, 54))';
+
+export const SILVER_MEDAL_COLOR =
+  'linear-gradient(rgb(215, 215, 215), rgb(167, 167, 173))';
+
+export const BRONZE_MEDAL_COLOR =
+  'linear-gradient(rgb(167, 112, 68), rgb(130, 74, 2))';

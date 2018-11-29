@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import {
-  DARK_TEXT_COLOR,
-  MAIN_COLOR,
-  FONT_COLOR,
-} from '../../constants/colors';
+import { DARK_TEXT_COLOR, FONT_COLOR } from '../../constants/colors';
 
 export const Container = styled(Link)`
   position: relative;
@@ -14,18 +10,17 @@ export const Container = styled(Link)`
   align-items: center;
   max-width: 800px;
   height: 75px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 4px;
+  margin-bottom: 4px;
   max-width: 1000px;
   padding-left: 5px;
   background-color: ${({ color }) => color};
   border-radius: 3px;
-  opacity: 0.7;
+  opacity: 0.8;
   cursor: pointer;
   &:hover {
     opacity: 1;
-    ${({ color }) =>
-      color === 'none' && 'background-color: rgba(150,150, 150,0.1);'};
+    background-color: rgba(150, 150, 150, 0.1);
   }
   text-decoration: none;
   transition: all 0.1s ease-in-out;

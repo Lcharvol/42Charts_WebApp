@@ -1,5 +1,5 @@
 import React from 'react';
-import { equals } from 'ramda';
+import { equals, find, propEq } from 'ramda';
 
 import {
   Container,
@@ -18,6 +18,7 @@ import {
   SECOND_RANK_COLOR,
   THIRD_RANK_COLOR,
 } from '../../constants/colors';
+import { coalitionsBackground } from '../../constants/coalitions';
 
 const getColorFromRank = rank => {
   if (equals(rank, 1)) return FIRST_RANK_COLOR;
@@ -27,26 +28,29 @@ const getColorFromRank = rank => {
 };
 
 const UserCoalition = ({
-  coalition: { name, color, imageUrl, userScore, userRank },
-}) => (
-  <Container>
-    <LeftSide>
-      <Flag color={color} logo={imageUrl}>
-        <CoalitionIcon icon={imageUrl} />
-      </Flag>
-    </LeftSide>
-    <RightSide>
-      <Name color={color}>{name}</Name>
-      <Score>
-        <ScoreIcon />
-        {userScore}
-      </Score>
-      <Rank>
-        <RankIcon color={getColorFromRank(parseInt(userRank))} />
-        {userRank}
-      </Rank>
-    </RightSide>
-  </Container>
-);
+  coalition: { id, name, color, imageUrl, userScore, userRank },
+}) => {
+  const coalitionElem = find(propEq('id', id))(coalitionsBackground) || {};
+  return (
+    <Container>
+      <LeftSide>
+        <Flag gradientColor={coalitionElem.gradientColor} logo={imageUrl}>
+          <CoalitionIcon icon={imageUrl} />
+        </Flag>
+      </LeftSide>
+      <RightSide>
+        <Name color={color}>{name}</Name>
+        <Score>
+          <ScoreIcon />
+          {userScore}
+        </Score>
+        <Rank>
+          <RankIcon color={getColorFromRank(parseInt(userRank))} />
+          {userRank}
+        </Rank>
+      </RightSide>
+    </Container>
+  );
+};
 
 export default UserCoalition;

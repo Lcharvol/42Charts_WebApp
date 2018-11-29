@@ -96,7 +96,7 @@ const UserPreview = ({
         </Login>
         <Badges>
           <Badge
-            color={userCoalition.color}
+            color={userCoalition.gradientColor}
             imageUrl={userCoalition.imageUrl}
             shape={'square'}
           />
@@ -108,6 +108,7 @@ const UserPreview = ({
                   color={badge.color}
                   imageUrl={badge.imageUrl}
                   logo={badge.logo}
+                  hoverValue={badge.hoverValue}
                 />
               ),
             badges,
