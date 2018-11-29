@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SideMenuHeaderContainer, NameAndLogin, Login } from './styles';
+import { SideMenuHeaderContainer, Login } from './styles';
 import UserAvatar from '../../components/UserAvatar';
 
 const SideMenuHeader = ({ imageUrl, login, winWidth }) => {
@@ -13,9 +13,7 @@ const SideMenuHeader = ({ imageUrl, login, winWidth }) => {
         profilPicture={imageUrl}
       />
       {winWidth > 1000 && (
-        <NameAndLogin>
-          <Login>{login.charAt(0).toUpperCase() + login.slice(1)}</Login>
-        </NameAndLogin>
+        <Login>{login.charAt(0).toUpperCase() + login.slice(1)}</Login>
       )}
     </SideMenuHeaderContainer>
   );

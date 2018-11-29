@@ -52,8 +52,10 @@ const SideMenu = ({
   return (
     <Container hidden={hidden}>
       <AppLogo />
-      <SideMenuHeader login={login} imageUrl={imageUrl} winWidth={winWidth} />
-      <Separator width={'85%'} color={DARK_BORDER_COLOR} />
+      {winWidth > 1000 && (
+        <SideMenuHeader login={login} imageUrl={imageUrl} winWidth={winWidth} />
+      )}
+      {winWidth > 1000 && <Separator width={'85%'} color={DARK_BORDER_COLOR} />}
       <Menu
         routes={routes}
         winWidth={winWidth}

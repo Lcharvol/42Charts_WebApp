@@ -18,11 +18,11 @@ export const Container = styled.div`
   flex-direction: column;
   width: ${SIDE_MENU_WIDTH}px;
   background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(30, 30, 30));
-  height: calc(100vh - 50px);
+  height: 100vh;
   min-height: 710px;
   top: 0;
   left: ${({ hidden }) => (hidden ? -250 : 0)}px;
-  padding-top: 50px;
+  padding-top: 5px;
   padding-right: ${SIDE_MENU_PADDING}px;
   padding-left: ${SIDE_MENU_PADDING}px;
   border-right: 1px ${DARK_BORDER_COLOR} solid;
@@ -38,8 +38,7 @@ export const SideMenuHeaderContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  width: 100%;
-  height: 100px;
+  height: 60px;
   margin-bottom: 20px;
   @media (max-width: 1000px) {
     justify-content: center;
@@ -99,13 +98,6 @@ export const LeftBar = styled.div`
   margin-right: 20px;
 `;
 
-export const NameAndLogin = styled.div`
-  position: relative;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-`;
-
 export const Login = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -143,7 +135,7 @@ export const LogoContainer = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 50%;
   height: 75px;
   margin-top: 10px;
   color: ${({ color }) => color};
@@ -157,7 +149,7 @@ export const LogoutLogo = styled(MdPowerSettingsNew)`
   position: relative;
   display: flex;
   width: 80%;
-  margin-top: 10px;
+  margin-top: 20px;
   color: ${DARK_BORDER_COLOR};
   cursor: pointer;
   &:hover {

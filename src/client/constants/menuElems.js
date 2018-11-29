@@ -1,24 +1,24 @@
 import React from 'react';
-import { MdFace, MdPeopleOutline, MdContacts, MdApps } from 'react-icons/md';
+import { MdPerson, MdPeople, MdEqualizer, MdApps } from 'react-icons/md';
 
 const menuElems = [
   {
     key: 0,
     to: '/',
     label: 'Home',
-    logo: <MdFace />,
+    logo: <MdPerson />,
   },
   {
     key: 1,
     to: '/students',
     label: 'Students',
-    logo: <MdPeopleOutline />,
+    logo: <MdEqualizer />,
   },
   {
     key: 2,
     to: '/friends',
     label: 'Friends',
-    logo: <MdContacts />,
+    logo: <MdPeople />,
   },
   {
     key: 3,
