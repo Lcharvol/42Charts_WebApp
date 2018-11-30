@@ -14,16 +14,17 @@ export const Container = styled.div`
   border: solid 1px ${DARK_BORDER_COLOR};
   background-color: ${LIGHT_BACKGROUND_COLOR};
   width: ${({ width }) => width};
-  min-width: 405px;
+  min-width: ${({ minWidth }) => minWidth};
   height: ${({ height }) => height};
   border-radius: 3px;
-  margin: 25px;
+  margin: ${({ margin }) => margin};
   margin-bottom: 0;
   margin-right: 0;
   overflow: hidden;
   @media (max-width: 1280px) {
     width: 100%;
   }
+  box-sizing: border-box;
 `;
 
 export const Header = styled.div`
@@ -42,7 +43,7 @@ export const HeaderRightSide = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  flex: 2;
+  flex: 1;
   height: 100%;
   padding-right: 10px;
 `;
@@ -51,10 +52,9 @@ export const HeaderLabel = styled.div`
   position: relative;
   display: flex;
   width: 90%;
-  flex: 1;
+  flex: 2;
   font-size: 0.3em;
   color: ${MAIN_COLOR};
-  padding-left: 15px;
   user-select: none;
 `;
 

@@ -54,7 +54,7 @@ export const UnitContent = styled.div`
   display: flex;
   width: 100%;
   height: ${({ value }) => value}%;
-  opacity: ${({ value }) => value / 100 + 0.3};
+  opacity: ${({ value }) => (value / 100) * 3};
   background-color: ${DARK_MAIN_COLOR};
   transition: height 0.4s ease-in-out, width 0.4s ease-in-out,
     opacity 0.4s ease-in-out;

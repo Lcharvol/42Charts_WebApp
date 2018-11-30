@@ -10,12 +10,13 @@ export const Container = styled.div`
   align-items: flex-end;
   width: calc(100% - 15px);
   min-width: 460px;
-  min-height: 200px;
+  height: 200px;
   padding-top: 25px;
   @media (max-width: ${RESPONSIVITY_WIDTH}px) {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
+    height: 275px;
   }
     background-image:url('${({ backgroundUrl }) => backgroundUrl}');
     background-position: center;
@@ -28,7 +29,6 @@ export const LeftSide = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  min-height: 100%;
   padding: 25px;
   @media (max-width: ${RESPONSIVITY_WIDTH}px) {
     width: 100%;
@@ -41,7 +41,6 @@ export const RightSide = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
   padding: 25px;
   padding-left: 0;
   max-width: 600px;

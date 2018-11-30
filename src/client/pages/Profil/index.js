@@ -62,26 +62,6 @@ const Profil = ({
     />
     <Content>
       <Box
-        label={'Marks'}
-        width={'calc(50% - 27px)'}
-        height={'400px'}
-        content={
-          <Marks
-            marks={filter(propEq('status', 'finished'))(marks) || []}
-            currentTime={currentTime}
-            sortBy={marksSortBy}
-          />
-        }
-        headerRight={
-          <SelectButton
-            values={FILTER_MARK_BUTTON_VALUES}
-            handler={handleChangeMarkSortBy}
-            value={marksSortBy}
-          />
-        }
-        icon={<MdCollectionsBookmark />}
-      />
-      <Box
         label={'My Log'}
         width={'calc(50% - 27px)'}
         height={'400px'}
@@ -101,6 +81,26 @@ const Profil = ({
           />
         }
         icon={<MdTimeline />}
+      />
+      <Box
+        label={'Marks'}
+        width={'calc(50% - 27px)'}
+        height={'400px'}
+        content={
+          <Marks
+            marks={filter(propEq('status', 'finished'))(marks) || []}
+            currentTime={currentTime}
+            sortBy={marksSortBy}
+          />
+        }
+        headerRight={
+          <SelectButton
+            values={FILTER_MARK_BUTTON_VALUES}
+            handler={handleChangeMarkSortBy}
+            value={marksSortBy}
+          />
+        }
+        icon={<MdCollectionsBookmark />}
       />
       <Box
         label={'My Stats'}
