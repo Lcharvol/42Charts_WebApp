@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { MdRefresh } from 'react-icons/md';
 
-import { MAIN_COLOR, DARK_MAIN_COLOR } from '../../constants/colors';
+import {
+  MAIN_COLOR,
+  DARK_MAIN_COLOR,
+  BACKGROUND_COLOR,
+} from '../../constants/colors';
 import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
 
 export const Container = styled.div`
@@ -35,12 +39,7 @@ export const Header = styled.div`
   padding-top: 30px;
   padding-bottom: 40px;
   padding-right: 50px;
-  background: linear-gradient(
-    to bottom,
-    rgba(25, 25, 25, 1) 0%,
-    rgba(25, 25, 25, 1) 99%,
-    rgba(25, 25, 25, 0) 100%
-  );
+  background-color: ${BACKGROUND_COLOR};
 `;
 
 export const Title = styled.div`

@@ -15,7 +15,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(25, 25, 25);
+  background-color: ${BACKGROUND_COLOR};
 `;
 
 export const LoginContent = styled.div`
@@ -26,7 +26,10 @@ export const LoginContent = styled.div`
   align-items: center;
   width: 400px;
   height: 250px;
-  background-image: linear-gradient(rgb(40, 40, 40), ${BACKGROUND_COLOR});
+  background-image: linear-gradient(
+    ${LIGHT_BACKGROUND_COLOR},
+    ${BACKGROUND_COLOR}
+  );
   border-radius: 3px;
 `;
 

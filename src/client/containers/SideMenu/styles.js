@@ -22,7 +22,6 @@ export const Container = styled.div`
   min-height: 710px;
   top: 0;
   left: ${({ hidden }) => (hidden ? -250 : 0)}px;
-  padding-top: 5px;
   padding-right: ${SIDE_MENU_PADDING}px;
   padding-left: ${SIDE_MENU_PADDING}px;
   border-right: 1px ${DARK_BORDER_COLOR} solid;
@@ -62,7 +61,7 @@ export const MenuElemContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 50px;
+  height: 45px;
   background-color:${({ selected }) =>
     selected ? LIGHT_BACKGROUND_COLOR : 'transparent'}
   &:hover {
