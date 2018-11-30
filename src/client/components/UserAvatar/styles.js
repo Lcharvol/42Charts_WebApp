@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { BACKGROUND_COLOR } from '../../constants/colors';
+import {
+  BACKGROUND_COLOR,
+  LIGHT_BACKGROUND_COLOR,
+} from '../../constants/colors';
 
 export const Container = styled.div`
     position:relative;
@@ -13,4 +16,5 @@ export const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     border-radius:${({ round }) => (round ? '100%' : '3px')};
+    background-color:${LIGHT_BACKGROUND_COLOR};
 `;

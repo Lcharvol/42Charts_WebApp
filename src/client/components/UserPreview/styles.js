@@ -16,11 +16,11 @@ export const Container = styled(Link)`
   padding-left: 5px;
   background-color: ${({ color }) => color};
   border-radius: 3px;
-  opacity: 0.8;
+  opacity: 0.9;
   cursor: pointer;
   &:hover {
     opacity: 1;
-    background-color: rgba(150, 150, 150, 0.1);
+    background-color: rgba(30, 30, 30, 1);
   }
   text-decoration: none;
   transition: all 0.1s ease-in-out;

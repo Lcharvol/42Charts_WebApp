@@ -37,12 +37,7 @@ export const Header = styled.div`
   top: 0;
   padding-top: 30px;
   padding-bottom: 40px;
-  background: linear-gradient(
-    to bottom,
-    rgba(25, 25, 25, 1) 0%,
-    rgba(25, 25, 25, 1) 99%,
-    rgba(25, 25, 25, 0) 100%
-  );
+  background-color: ${BACKGROUND_COLOR};
 `;
 
 export const Title = styled.div`

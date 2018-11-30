@@ -15,7 +15,6 @@ export const Container = styled.div`
   border-radius: 3px;
   min-height: 120px;
   min-width: 240px;
-  max-height: 120px;
   max-width: 240px;
   margin-left: 15px;
   margin-right: 15px;

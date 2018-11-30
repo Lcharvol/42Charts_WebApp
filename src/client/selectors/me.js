@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { filter, isNil, length, find, propEq } from 'ramda';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
+import { getFormatedLogtime } from '../utils';
 
 import { MAIN_COLOR, RED } from '../constants/colors';
 
@@ -71,9 +72,7 @@ export const getHigherLogPerDay = state => {
       },
     },
   } = state;
-  const hours = Math.floor(logtimeInSeconds / 60 / 60);
-  const min = Math.floor((logtimeInSeconds - hours * 60 * 60) / 60);
-  return `${hours} h ${min} min`;
+  return getFormatedLogtime(logtimeInSeconds);
 };
 
 export const getHigherLogPerDayInfos = state => {
@@ -89,9 +88,7 @@ export const getHigherLogPerDayInfos = state => {
 
 export const getHigherLogPerMonth = state => {
   const logtimeInSeconds = state.me.logs.higherLogInMonth.logtimeInSeconds;
-  const hours = Math.floor(logtimeInSeconds / 60 / 60);
-  const min = Math.floor((logtimeInSeconds - hours * 60 * 60) / 60);
-  return `${hours} h ${min} min`;
+  return getFormatedLogtime(logtimeInSeconds);
 };
 
 export const getHigherLogPerMonthInfos = state => {
@@ -121,12 +118,8 @@ export const getHigherLogPerMonthInfos = state => {
 
 export const getMyNumberOfLogs = state => state.me.logs.numberOfLogs;
 
-export const getMyTotalLogTime = state => {
-  const logTimInSecond = state.me.logs.totalLogTime;
-  const days = Math.floor(logTimInSecond / 86400);
-  const hours = Math.floor((logTimInSecond - days * 86400) / 3600);
-  return `${days} D ${hours} H`;
-};
+export const getMyTotalLogTime = state =>
+  getFormatedLogtime(state.me.logs.totalLogTime);
 
 export const getMyLogsAllRank = state => state.me.logs.allRank;
 
@@ -134,20 +127,14 @@ export const getMyLogsPromoRank = state => state.me.logs.promoRank;
 
 export const getMyPreferedHostName = state => state.me.logs.hostPrefered.name;
 
-export const getMyPreferedHostTime = state => {
-  const { logtimeInSeconds } = state.me.logs.hostPrefered;
-  const days = Math.floor(logtimeInSeconds / 86400);
-  const hours = Math.floor((logtimeInSeconds - days * 86400) / 3600);
-  return `${days} Days ${hours} Hours`;
-};
+export const getMyPreferedHostTime = state =>
+  getFormatedLogtime(state.me.logs.hostPrefered);
 
 export const getAverageLogsPerSession = state => {
   const averageLogTimeInSecond = Math.floor(
     state.me.logs.totalLogTime / getMyNumberOfLogs(state),
   );
-  const hours = Math.floor(averageLogTimeInSecond / 3600);
-  const min = Math.floor((averageLogTimeInSecond - hours * 3600) / 60);
-  return `${hours} Hours ${min} min / log`;
+  return getFormatedLogtime(averageLogTimeInSecond);
 };
 
 export const getMyAllRankEvolution = state => {

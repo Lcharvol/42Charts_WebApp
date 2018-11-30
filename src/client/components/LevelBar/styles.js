@@ -10,7 +10,7 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   min-width: 250px;
-  height: 40px;
+  min-height: 40px;
   background-color: ${TRANSPARENT_DARK_BACKGROUND};
   border-radius: 3px;
   overflow: hidden;
@@ -25,6 +25,7 @@ export const Content = styled.div`
     isNil(gradientColor) ? color : gradientColor};
   width: ${({ value }) => value}%;
   z-index: 100;
+  transition: width 0.3s ease-in-out;
 `;
 
 export const Label = styled.div`

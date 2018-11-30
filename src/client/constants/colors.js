@@ -1,8 +1,8 @@
-export const BACKGROUND_COLOR = 'rgb(25,25,25)';
+export const BACKGROUND_COLOR = 'rgb(20,20,20)';
 
-export const LIGHT_BACKGROUND_COLOR = 'rgb(30,30,30)';
+export const LIGHT_BACKGROUND_COLOR = 'rgb(25,25,25)';
 
-export const HEADER_BACKGROUND_COLOR = 'rgb(40,40, 40)';
+export const HEADER_BACKGROUND_COLOR = 'rgb(35,35, 35)';
 
 export const FONT_COLOR = 'rgb(255,255,255)';
 

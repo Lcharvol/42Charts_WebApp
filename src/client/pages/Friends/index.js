@@ -10,13 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { array } from 'prop-types';
 
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  UsersPrewiewContainer,
-} from './styles';
+import { Container, Header, Content, UsersPrewiewContainer } from './styles';
 import { getMyFriends, getMyLogin } from '../../selectors/me';
 import PromoFilter from '../../containers/PromoFilter';
 import Graph from '../../pages/Students/Graph';
@@ -26,6 +20,7 @@ import { removeFriend } from '../../actions/me';
 import { reqGetPromo } from '../../requests';
 import { ALL_PROMO_SELECTED } from '../Students/constants';
 import UserPreview from '../../components/UserPreview';
+import Title from '../../components/Title';
 import NoFriends from './NoFriends';
 import { getFileredAndSortedFriends, getFriendsByUnit } from './utils';
 
@@ -52,7 +47,7 @@ const Friends = ({
   return (
     <Container>
       <Header>
-        <Title>Friends</Title>
+        <Title value={'Friends'} />
         <Graph
           nbUsers={length(filteredAndSortedFriends)}
           usersByUnit={getFriendsByUnit(filteredAndSortedFriends)}
