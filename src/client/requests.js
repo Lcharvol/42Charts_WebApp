@@ -6,8 +6,8 @@ const chartsToken = localStorage.getItem('chartsToken');
 const chartsRefreshToken = localStorage.getItem('chartsRefreshToken');
 
 const axios = Axios.create({
-  // baseURL: 'https://api.42charts.fr',
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://api.42charts.fr',
+  // baseURL: 'http://localhost:3000',
   headers: {
     Authorization: 'Bearer ' + chartsToken,
     ContentType: 'application/json',
