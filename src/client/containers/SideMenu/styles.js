@@ -17,7 +17,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: ${SIDE_MENU_WIDTH}px;
-  background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(30, 30, 30));
+  background-image: linear-gradient(
+    ${BACKGROUND_COLOR},
+    ${LIGHT_BACKGROUND_COLOR}
+  );
   height: 100vh;
   min-height: 710px;
   top: 0;

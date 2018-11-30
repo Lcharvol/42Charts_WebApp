@@ -41,20 +41,6 @@ export const Header = styled.div`
   background-color: ${BACKGROUND_COLOR};
 `;
 
-export const Title = styled.div`
-  position: relative;
-  margin-bottom: 15px;
-  font-weight: light;
-  user-select: none;
-  background: linear-gradient(
-    to bottom,
-    ${MAIN_COLOR} 0%,
-    ${DARK_MAIN_COLOR} 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`;
-
 export const UsersPrewiewContainer = styled.div`
   position: relative;
   display: flex;

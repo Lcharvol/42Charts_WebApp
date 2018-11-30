@@ -15,7 +15,6 @@ import {
   Container,
   UsersPrewiewContainer,
   VisibilitySensorBox,
-  Title,
   Header,
   Content,
   RetryRequestContainer,
@@ -24,6 +23,7 @@ import {
 import PromoFilter from '../../containers/PromoFilter';
 import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
+import Title from '../../components/Title';
 import Spinner from '../../components/Spinner';
 import EmptySearch from '../../components/EmptySearch';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
@@ -63,7 +63,7 @@ const Students = ({
 }) => (
   <Container>
     <Header>
-      <Title>Students</Title>
+      <Title value={'Students'} />
       <Graph
         nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
         usersByUnit={usersRatio}
