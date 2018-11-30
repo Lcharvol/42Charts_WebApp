@@ -10,13 +10,24 @@ import {
   LogoContainer,
 } from './styles';
 
-const Box = ({ width, height, label, content, headerRight, icon }) => (
-  <Container width={width} height={height}>
+const Box = ({
+  width,
+  height,
+  label,
+  content,
+  headerRight,
+  icon,
+  minWidth = '405px',
+  margin = '25px',
+}) => (
+  <Container width={width} height={height} minWidth={minWidth} margin={margin}>
     {!isNil(label) && (
       <Header>
         {!isNil(icon) && <LogoContainer>{icon}</LogoContainer>}
         <HeaderLabel>{label}</HeaderLabel>
-        <HeaderRightSide>{headerRight}</HeaderRightSide>
+        {!isNil(headerRight) && (
+          <HeaderRightSide>{headerRight}</HeaderRightSide>
+        )}
       </Header>
     )}
     <Content>{content}</Content>

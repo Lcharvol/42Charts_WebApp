@@ -22,6 +22,7 @@ import {
   BORDER_COLOR,
   MAIN_COLOR,
   BACKGROUND_COLOR,
+  LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
 import { VIEW_STUDENT } from '../../constants/GaLabels';
 import { coalitionsBackground } from '../../constants/coalitions';
@@ -82,7 +83,7 @@ const UserPreview = ({
       color={
         myLogin.toLowerCase() === user.login.toLowerCase()
           ? MAIN_COLOR
-          : 'rgba(30,30,30,0.7)'
+          : LIGHT_BACKGROUND_COLOR
       }
     >
       <LeftSide>

@@ -7,7 +7,9 @@ import {
 const initialState = {
   promos: [],
   winWidth: window.innerWidth,
-  weekSummary: {},
+  weekSummary: {
+    mostUsedPost: {},
+  },
 };
 
 const reducer = (state = initialState, action) => {

@@ -1,21 +1,17 @@
 import React from 'react';
 import { contains, split, isEmpty } from 'ramda';
-import {
-  compose,
-  lifecycle,
-  withStateHandlers,
-  onlyUpdateForKeys,
-} from 'recompose';
+import { compose, lifecycle, withStateHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Container } from './styles';
 import SideMenuHeader from './SideMenuHeader';
+import Menu from './Menu';
 import Separator from '../../components/Separator';
 import VersionLabel from '../../components/VersionLabel';
 import AppLogo from '../../components/AppLogo';
 import WeekSummary from '../../containers/WeekSummary';
-import Menu from './Menu';
+import { DARK_BORDER_COLOR } from '../../constants/colors';
 import { enhanceMe } from '../../actions/me';
 import { enhanceTime } from '../../actions/time';
 import { loadInfos, loadWeekSummary } from '../../actions/app';
@@ -34,7 +30,6 @@ import {
   reqGetWeekSummary,
 } from '../../requests';
 import { noAuthneeded } from '../../auth';
-import { DARK_BORDER_COLOR } from '../../constants/colors';
 import { visitePageGa } from '../../googleAnalytics';
 
 const SideMenu = ({
@@ -64,6 +59,7 @@ const SideMenu = ({
         handleChangeSelectedLink={handleChangeSelectedLink}
       />
       <VersionLabel />
+      {winWidth > 1000 && <WeekSummary />}
     </Container>
   );
 };
@@ -121,7 +117,7 @@ const enhance = compose(
             .then(res => this.props.enhanceMe({ friends: res }))
             .catch(err => err);
         }
-        if (isEmpty(this.props.weekSummary)) {
+        if (isEmpty(this.props.weekSummary.mostUsedPost)) {
           reqGetWeekSummary()
             .then(res => this.props.loadWeekSummary(res))
             .catch();
@@ -133,12 +129,5 @@ const enhance = compose(
       if (prevProps.selectedLink !== this.props.selectedLink) visitePageGa();
     },
   }),
-  onlyUpdateForKeys([
-    'login',
-    'imageUrl',
-    'selectedLink',
-    'winWidth',
-    'history',
-  ]),
 );
 export default enhance(SideMenu);
