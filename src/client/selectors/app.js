@@ -1,5 +1,3 @@
-import { isNil } from 'ramda';
-
 import { getFormatedLogtime } from '../utils';
 
 export const getPromos = state => state.app.promos;
