@@ -2,6 +2,7 @@ import {
   LOAD_PROMOS,
   UPDATE_WIN_WIDTH,
   LOAD_WEEK_SUMMARY,
+  STORE_TOKEN,
 } from '../actions/app';
 
 const initialState = {
@@ -22,6 +23,9 @@ const reducer = (state = initialState, action) => {
     }
     case LOAD_WEEK_SUMMARY: {
       return { ...state, weekSummary: action.weekSummary };
+    }
+    case STORE_TOKEN: {
+      return { ...state, [action.tokenName]: action.token };
     }
     default:
       return state;

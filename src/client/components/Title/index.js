@@ -1,13 +1,17 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
 
 const proptypes = {
   value: string.isRequired,
 };
 
-const Title = ({ value }) => <Container>{value}</Container>;
+const Title = ({ value }) => (
+  <Container>
+    <Content>{value}</Content>
+  </Container>
+);
 
 Title.propTypes = proptypes;
 

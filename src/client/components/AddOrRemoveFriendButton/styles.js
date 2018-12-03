@@ -48,7 +48,7 @@ export const IconContainer = styled.div`
     if (remove) return isHover ? RED : MAIN_COLOR;
     return isHover ? MAIN_COLOR : MAIN_COLOR;
   }};
-  opacity: ${({ isHover }) => (isHover ? 1 : 0.4)}
+  opacity: ${({ isHover }) => (isHover ? 1 : 0.7)}
   transition: all 0.2s ease-in-out;
 `;
 

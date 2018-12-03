@@ -14,3 +14,7 @@ export const getWeekSummaryMostUsedPost = state =>
 
 export const getWeekSummaryAllAverageLogTime = state =>
   getFormatedLogtime(state.app.weekSummary.allAverageLogTime);
+
+export const getChartsToken = state => state.app.chartsToken;
+
+export const getChartsRefreshToken = state => state.app.chartsRefreshToken;

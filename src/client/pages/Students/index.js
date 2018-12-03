@@ -16,6 +16,7 @@ import {
   UsersPrewiewContainer,
   VisibilitySensorBox,
   Header,
+  HeaderContent,
   Content,
   RetryRequestContainer,
   RetryRequest,
@@ -63,23 +64,24 @@ const Students = ({
 }) => (
   <Container>
     <Header>
-      <Title value={'Students'} />
-      <Graph
-        nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
-        usersByUnit={usersRatio}
-        filterBy={filterBy}
-        usersRatioTranches={usersRatioTranches}
-      />
-      <PromoFilter
-        promos={promos}
-        selectedPromo={selectedPromo}
-        handleChangeSelectedPromo={handleChangeSelectedPromo}
-        filterBy={filterBy}
-        handleChangeFilterBy={handleChangeFilterBy}
-        usable={!isFetching}
-        handleChangeSearchValue={handleChangeSearchValue}
-        searchValue={searchValue}
-      />
+      <HeaderContent>
+        <Graph
+          nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
+          usersByUnit={usersRatio}
+          filterBy={filterBy}
+          usersRatioTranches={usersRatioTranches}
+        />
+        <PromoFilter
+          promos={promos}
+          selectedPromo={selectedPromo}
+          handleChangeSelectedPromo={handleChangeSelectedPromo}
+          filterBy={filterBy}
+          handleChangeFilterBy={handleChangeFilterBy}
+          usable={!isFetching}
+          handleChangeSearchValue={handleChangeSearchValue}
+          searchValue={searchValue}
+        />
+      </HeaderContent>
     </Header>
     <Content>
       <UsersPrewiewContainer>

@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
 import logo from '../../../../public/logo.svg';
+import {
+  MAIN_COLOR,
+  BACKGROUND_COLOR,
+  DARK_FONT_COLOR,
+  LIGHT_BACKGROUND_COLOR,
+} from '../../constants/colors';
+import { MdSettings } from 'react-icons/md';
 
 export const Container = styled.div`
   position: relative;
@@ -33,10 +40,8 @@ export const TopSide = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
-  background-image: url('https://cdn.intra.42.fr/coalition/cover/2/alliance_background.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 500%;
+  background-color: rgb(30, 30, 30);
+  opacity: 0.7;
 `;
 
 export const BottomSide = styled.div`
@@ -44,4 +49,19 @@ export const BottomSide = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
+`;
+
+export const OptionButton = styled(MdSettings)`
+  position: absolute;
+  display: flex;
+  top: 10px;
+  left: 10px;
+  font-size: 0.35em;
+  color: ${MAIN_COLOR};
+  &:hover {
+    opacity: 0.6;
+  }
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  z-index: 1000;
 `;

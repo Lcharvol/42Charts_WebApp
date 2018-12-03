@@ -45,10 +45,10 @@ export const WeekSummaryLabel = styled.div`
   positon: relative;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   color: ${DARK_FONT_COLOR};
   font-size: 0.25em;
-  padding-left: 25px;
+  padding-left: 15px;
 `;
 
 export const WeekSummaryValue = styled.div`

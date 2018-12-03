@@ -33,10 +33,10 @@ export const StatContainer = styled.div`
   margin-right: 15px;
   padding: 25px;
   cursor: pointer;
-  background-image: linear-gradient(rgb(35, 35, 35), rgba(30, 30, 30));
+  background-image: linear-gradient(rgb(30, 30, 30), rgba(25, 25, 25));
   &:hover {
     box-shadow: 0px 0px 0px 2px ${MAIN_COLOR} inset;
-    background-color: rgba(45, 45, 45, 0.8);
+    background-color: rgba(45, 45, 45, 0.7);
     background-image: none;
   }
   transition: all 0.1s ease-in-out;

@@ -1,9 +1,15 @@
 import React from 'react';
-import { length, split, takeLast, isNil } from 'ramda';
+import { isNil, length } from 'ramda';
+import { withCookies } from 'react-cookie';
+import { compose, lifecycle } from 'recompose';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Container, LoginContent, Logo, LoginButton } from './styles';
 import { getLogin } from '../../requests';
 import Spinner from '../../components/Spinner';
+import { getChartsToken, getChartsRefreshToken } from '../../selectors/app';
+import { storeToken } from '../../actions/app';
 
 const extractUrlValue = (key, url) => {
   if (typeof url === 'undefined') url = window.location.href;
@@ -11,20 +17,12 @@ const extractUrlValue = (key, url) => {
   return match ? match[1] : null;
 };
 
-const Login = ({ history, ...props }) => {
-  const token = extractUrlValue('token');
-  const refreshToken = extractUrlValue('refresh');
-  const isFetching = !isNil(token) && !isNil(refreshToken);
-  if (isFetching) {
-    localStorage.setItem('chartsToken', token);
-    localStorage.setItem('chartsRefreshToken', refreshToken);
-    window.location.reload();
-  }
+const Login = ({ history, chartsToken, ...props }) => {
   return (
     <Container>
       <LoginContent>
         <Logo />
-        {!isFetching ? (
+        {length(localStorage.getItem('chartsToken')) === 0 ? (
           <LoginButton
             onClick={() => {
               getLogin().then(redicrectUri =>
@@ -42,4 +40,46 @@ const Login = ({ history, ...props }) => {
   );
 };
 
-export default Login;
+const actions = { storeToken };
+
+const mapStateToProps = state => ({
+  chartsToken: getChartsToken(state),
+  refreshChartsToken: getChartsRefreshToken(state),
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
+export default compose(
+  withCookies,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  lifecycle({
+    componentWillMount() {
+      const token = extractUrlValue('token');
+      const refreshToken = extractUrlValue('refresh');
+      const isFetching = !isNil(token) && !isNil(refreshToken);
+      const storedToken = this.props.cookies.get('chartsToken') || undefined;
+      const storedchartsRefreshToken =
+        this.props.cookies.get('chartsRefreshToken') || undefined;
+      if (!isNil(storedToken)) {
+        localStorage.setItem('chartsToken', storedToken);
+        localStorage.setItem('chartsRefreshToken', storedchartsRefreshToken);
+        this.props.storeToken('chartsToken', storedToken);
+        this.props.storeToken('chartsRefreshToken', storedchartsRefreshToken);
+      }
+      if (isFetching) {
+        this.props.storeToken('chartsToken', token);
+        this.props.storeToken('chartsRefreshToken', refreshToken);
+        localStorage.setItem('chartsToken', token);
+        localStorage.setItem('chartsRefreshToken', refreshToken);
+        this.props.cookies.set('chartsToken', token, { path: '/' });
+        this.props.cookies.set('chartsRefreshToken', refreshToken, {
+          path: '/',
+        });
+        window.location.reload();
+      }
+    },
+  }),
+)(Login);
