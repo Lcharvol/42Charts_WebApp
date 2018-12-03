@@ -41,6 +41,9 @@ const checkToken = err => {
         localStorage.setItem('chartsRefreshToken', '');
         window.location.replace('login');
       });
+  } else {
+    localStorage.setItem('chartsToken', '');
+    localStorage.setItem('chartsRefreshToken', '');
   }
 };
 
