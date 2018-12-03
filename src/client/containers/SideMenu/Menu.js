@@ -37,7 +37,12 @@ const MenuElem = ({
   </MenuElemContainer>
 );
 
-const Menu = ({ winWidth, selectedLink, handleChangeSelectedLink }) => (
+const Menu = ({
+  winWidth,
+  selectedLink,
+  handleChangeSelectedLink,
+  cookies,
+}) => (
   <MenuContainer>
     {winWidth > 1000 &&
       map(
@@ -54,7 +59,10 @@ const Menu = ({ winWidth, selectedLink, handleChangeSelectedLink }) => (
       <MenuElemContainer>
         <Logout
           onClick={() => {
+            cookies.remove('chartsToken');
+            cookies.remove('chartsRefreshToken');
             localStorage.setItem('chartsToken', '');
+            localStorage.setItem('chartsRefreshToken', '');
             window.location.replace('/login');
           }}
         >
@@ -80,7 +88,10 @@ const Menu = ({ winWidth, selectedLink, handleChangeSelectedLink }) => (
     {winWidth <= 1000 && (
       <LogoutLogo
         onClick={() => {
+          cookies.remove('chartsToken');
+          cookies.remove('chartsRefreshToken');
           localStorage.setItem('chartsToken', '');
+          localStorage.setItem('chartsRefreshToken', '');
           window.location.replace('/login');
         }}
       />

@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
 import App from './pages/App';
 import Auth from './auth';
+import { CookiesProvider } from 'react-cookie';
 import { initializeGa } from './googleAnalytics';
 
 const initialState = {};
@@ -15,7 +16,9 @@ export const store = configureStore(initialState);
 const Root = () => (
   <Provider store={store}>
     <Auth>
-      <App />
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
     </Auth>
   </Provider>
 );

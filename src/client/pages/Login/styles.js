@@ -38,7 +38,7 @@ export const Logo = styled.div`
     display:flex;
     background-image: url("${LogoUI}");
     background-size: cover;
-    width:100%;
+    width:250px;
     height:230px;
     top:-126px;
 `;

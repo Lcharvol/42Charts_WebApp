@@ -3,6 +3,7 @@ import { contains, split, isEmpty } from 'ramda';
 import { compose, lifecycle, withStateHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withCookies } from 'react-cookie';
 
 import { Container } from './styles';
 import SideMenuHeader from './SideMenuHeader';
@@ -41,6 +42,7 @@ const SideMenu = ({
   history,
   selectedLink,
   handleChangeSelectedLink,
+  cookies,
 }) => {
   const { pathname } = window.location;
   const [route] = split('/', pathname.slice(1));
@@ -57,6 +59,7 @@ const SideMenu = ({
         winWidth={winWidth}
         selectedLink={selectedLink}
         handleChangeSelectedLink={handleChangeSelectedLink}
+        cookies={cookies}
       />
       <VersionLabel />
       {winWidth > 1000 && <WeekSummary />}
@@ -79,6 +82,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const enhance = compose(
+  withCookies,
   connect(
     mapStateToProps,
     mapDispatchToProps,
@@ -107,20 +111,22 @@ const enhance = compose(
         reqPing()
           .then(res => res)
           .catch(err => window.location.replace('serverdown'));
-        if (isEmpty(this.props.projects)) {
-          reqMe()
-            .then(res => this.props.enhanceMe(res))
-            .catch(err => err);
-        }
-        if (isEmpty(this.props.friends)) {
-          reqGetMyFriends()
-            .then(res => this.props.enhanceMe({ friends: res }))
-            .catch(err => err);
-        }
-        if (isEmpty(this.props.weekSummary.mostUsedPost)) {
-          reqGetWeekSummary()
-            .then(res => this.props.loadWeekSummary(res))
-            .catch();
+        if (route !== 'login') {
+          if (isEmpty(this.props.projects)) {
+            reqMe()
+              .then(res => this.props.enhanceMe(res))
+              .catch(err => err);
+          }
+          if (isEmpty(this.props.friends)) {
+            reqGetMyFriends()
+              .then(res => this.props.enhanceMe({ friends: res }))
+              .catch(err => err);
+          }
+          if (isEmpty(this.props.weekSummary.mostUsedPost)) {
+            reqGetWeekSummary()
+              .then(res => this.props.loadWeekSummary(res))
+              .catch();
+          }
         }
       }
       this.props.enhanceTime({ currentYear, currentMonth, currentDay });

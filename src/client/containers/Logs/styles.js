@@ -3,9 +3,9 @@ import { MdChevronRight, MdChevronLeft } from 'react-icons/md';
 
 import {
   MAIN_COLOR,
-  DARK_TEXT_COLOR,
   FONT_COLOR,
   DARK_MAIN_COLOR,
+  HEADER_BACKGROUND_COLOR,
 } from '../../constants/colors';
 import ChevronDownIcon from '../../../../public/chev_down.png';
 
@@ -33,6 +33,7 @@ export const BottomSide = styled.div`
   align-items: center;
   flex: 1;
   height: 50px;
+  background-color: ${HEADER_BACKGROUND_COLOR};
 `;
 
 export const UnitContainer = styled.div`

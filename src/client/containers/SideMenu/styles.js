@@ -56,6 +56,7 @@ export const MenuContainer = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 25px;
+  margin-bottom: 25px;
 `;
 
 export const MenuElemContainer = styled.div`
