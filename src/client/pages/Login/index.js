@@ -22,7 +22,8 @@ const Login = ({ history, chartsToken, ...props }) => {
     <Container>
       <LoginContent>
         <Logo />
-        {length(localStorage.getItem('chartsToken')) === 0 ? (
+        {!isNil(localStorage.getItem('chartsToken')) &&
+        length(localStorage.getItem('chartsToken')) === 0 ? (
           <LoginButton
             onClick={() => {
               getLogin().then(redicrectUri =>
