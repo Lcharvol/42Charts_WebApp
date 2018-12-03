@@ -22,7 +22,7 @@ const Login = ({ history, chartsToken, ...props }) => {
     <Container>
       <LoginContent>
         <Logo />
-        {!isNil(localStorage.getItem('chartsToken')) &&
+        {isNil(localStorage.getItem('chartsToken')) ||
         length(localStorage.getItem('chartsToken')) === 0 ? (
           <LoginButton
             onClick={() => {
