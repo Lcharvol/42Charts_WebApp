@@ -1,6 +1,7 @@
 const path = require('path');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const historyApiFallback = require('connect-history-api-fallback');
+const webpack = require('webpack');
 
 const webpackConfig = {
   entry: ['babel-polyfill', './src/client/index.js'],
@@ -33,6 +34,10 @@ const webpackConfig = {
         },
       },
     }),
+    // new webpack.DefinePlugin({
+    //   'process.env.NODE_ENV': JSON.stringify('production')
+    // }),
+    // new webpack.optimize.UglifyJsPlugin(),
   ],
   module: {
     rules: [

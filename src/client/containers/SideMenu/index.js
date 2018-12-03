@@ -107,20 +107,22 @@ const enhance = compose(
         reqPing()
           .then(res => res)
           .catch(err => window.location.replace('serverdown'));
-        if (isEmpty(this.props.projects)) {
-          reqMe()
-            .then(res => this.props.enhanceMe(res))
-            .catch(err => err);
-        }
-        if (isEmpty(this.props.friends)) {
-          reqGetMyFriends()
-            .then(res => this.props.enhanceMe({ friends: res }))
-            .catch(err => err);
-        }
-        if (isEmpty(this.props.weekSummary.mostUsedPost)) {
-          reqGetWeekSummary()
-            .then(res => this.props.loadWeekSummary(res))
-            .catch();
+        if (route !== 'login') {
+          if (isEmpty(this.props.projects)) {
+            reqMe()
+              .then(res => this.props.enhanceMe(res))
+              .catch(err => err);
+          }
+          if (isEmpty(this.props.friends)) {
+            reqGetMyFriends()
+              .then(res => this.props.enhanceMe({ friends: res }))
+              .catch(err => err);
+          }
+          if (isEmpty(this.props.weekSummary.mostUsedPost)) {
+            reqGetWeekSummary()
+              .then(res => this.props.loadWeekSummary(res))
+              .catch();
+          }
         }
       }
       this.props.enhanceTime({ currentYear, currentMonth, currentDay });

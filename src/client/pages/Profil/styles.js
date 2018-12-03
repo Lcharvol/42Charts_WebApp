@@ -25,5 +25,7 @@ export const Content = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  width: calc(100% - 35px);
+  width: 100%;
+  padding-right: 40px;
+  box-sizing: border-box;
 `;

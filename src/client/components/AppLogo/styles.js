@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import logo from '../../../../public/logo.svg';
+import { MAIN_COLOR } from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -33,10 +34,8 @@ export const TopSide = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
-  background-image: url('https://cdn.intra.42.fr/coalition/cover/2/alliance_background.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 500%;
+  background-color: ${MAIN_COLOR};
+  opacity: 0.5;
 `;
 
 export const BottomSide = styled.div`
@@ -44,4 +43,9 @@ export const BottomSide = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
+`;
+
+export const OptionButton = styled.div`
+  position: relative;
+  display: flex;
 `;

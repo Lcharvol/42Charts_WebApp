@@ -10,7 +10,7 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   min-width: 250px;
-  min-height: 40px;
+  min-height: 45px;
   background-color: ${TRANSPARENT_DARK_BACKGROUND};
   border-radius: 3px;
   overflow: hidden;
@@ -34,6 +34,6 @@ export const Label = styled.div`
   margin: auto;
   color: white;
   z-index: 200;
-  font-size: 0.3em;
+  font-size: 0.33em;
   user-select: none;
 `;

@@ -40,11 +40,11 @@ export const BarContainer = styled.div`
   align-items: flex-end;
   flex:1;
   height:100%;
-  opacity: ${({ value }) => value * 20};
+  opacity: ${({ value }) => value * 7};
   transition: width 0.4s ease-in-out;
     opacity 0.4s ease-in-out;
   &:hover {
-    opacity: ${({ value }) => (value * 20 > 0.9 ? 0.8 : 1)};
+    opacity: ${({ value }) => (value * 7 > 0.9 ? 0.8 : 1)};
     transition: opacity 0s;
   }
   cursor: pointer;
@@ -62,6 +62,7 @@ export const Bar = styled.div`
     ${MAIN_COLOR} 0%,
     ${DARK_MAIN_COLOR} 100%
   );
+  box-sizing: border-box;
 `;
 
 export const HoverContent = styled.div`

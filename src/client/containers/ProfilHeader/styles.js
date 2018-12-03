@@ -43,7 +43,7 @@ export const RightSide = styled.div`
   flex-direction: column;
   padding: 25px;
   padding-left: 0;
-  max-width: 600px;
+  max-width: 750px;
   @media (max-width: ${RESPONSIVITY_WIDTH}px) {
     min-width: 100%;
     padding-left: 25px;
