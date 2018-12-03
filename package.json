@@ -46,6 +46,7 @@
     "path": "^0.12.7",
     "ramda": "^0.25.0",
     "react": "^16.5.2",
+    "react-cookie": "^3.0.7",
     "react-dom": "^16.5.2",
     "react-ga": "^2.5.4",
     "react-icons": "^3.2.2",
@@ -63,9 +64,6 @@
     "webpack": "3.10.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.24.7",
-    "redux-logger": "^3.0.6",
-    "browser-sync-webpack-plugin": "^2.2.2",
     "@babel/cli": "^7.0.0-beta.34",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.54",
     "@babel/preset-react": "^7.0.0-beta.34",
@@ -78,9 +76,12 @@
     "babel-polyfill": "^6.0.16",
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
+    "browser-sync": "^2.24.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "husky": "next",
     "prettier": "^1.14.3",
-    "pretty-quick": "^1.7.0"
+    "pretty-quick": "^1.7.0",
+    "redux-logger": "^3.0.6"
   },
   "eslint": {
     "root": true

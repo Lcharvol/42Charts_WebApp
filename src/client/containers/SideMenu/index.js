@@ -3,6 +3,7 @@ import { contains, split, isEmpty } from 'ramda';
 import { compose, lifecycle, withStateHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withCookies } from 'react-cookie';
 
 import { Container } from './styles';
 import SideMenuHeader from './SideMenuHeader';
@@ -41,6 +42,7 @@ const SideMenu = ({
   history,
   selectedLink,
   handleChangeSelectedLink,
+  cookies,
 }) => {
   const { pathname } = window.location;
   const [route] = split('/', pathname.slice(1));
@@ -57,6 +59,7 @@ const SideMenu = ({
         winWidth={winWidth}
         selectedLink={selectedLink}
         handleChangeSelectedLink={handleChangeSelectedLink}
+        cookies={cookies}
       />
       <VersionLabel />
       {winWidth > 1000 && <WeekSummary />}
@@ -79,6 +82,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const enhance = compose(
+  withCookies,
   connect(
     mapStateToProps,
     mapDispatchToProps,

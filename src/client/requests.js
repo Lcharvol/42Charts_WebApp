@@ -1,5 +1,7 @@
 import * as Axios from 'axios';
 import { values, isNil, length, keys } from 'ramda';
+import { store } from './index';
+import { getChartsToken, getChartsRefreshToken } from './selectors/app';
 
 const chartsToken = localStorage.getItem('chartsToken');
 
@@ -28,9 +30,6 @@ export const reqRefreshToken = () =>
     });
 
 const checkToken = err => {
-  console.log('checkToken');
-  console.log('chartsRefreshToken: ', chartsRefreshToken);
-  console.log('chartsRefreshToken: ', chartsRefreshToken);
   if (!isNil(chartsRefreshToken) && length(chartsRefreshToken) > 0) {
     reqRefreshToken()
       .then(res => {
