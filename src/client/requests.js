@@ -35,6 +35,7 @@ const checkToken = err => {
       .then(res => {
         localStorage.setItem('chartsToken', res.token);
         localStorage.setItem('chartsRefreshToken', res.refreshToken);
+        window.location.reload();
       })
       .catch(err => {
         localStorage.setItem('chartsToken', '');
