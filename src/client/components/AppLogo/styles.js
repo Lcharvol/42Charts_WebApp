@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 import logo from '../../../../public/logo.svg';
-import { MAIN_COLOR } from '../../constants/colors';
+import { MAIN_COLOR, BACKGROUND_COLOR } from '../../constants/colors';
+import { MdSettings } from 'react-icons/md';
 
 export const Container = styled.div`
   position: relative;
@@ -35,7 +36,7 @@ export const TopSide = styled.div`
   flex: 1;
   width: 100%;
   background-color: ${MAIN_COLOR};
-  opacity: 0.5;
+  opacity: 0.6;
 `;
 
 export const BottomSide = styled.div`
@@ -45,7 +46,17 @@ export const BottomSide = styled.div`
   width: 100%;
 `;
 
-export const OptionButton = styled.div`
-  position: relative;
+export const OptionButton = styled(MdSettings)`
+  position: absolute;
   display: flex;
+  top: 10px;
+  left: 10px;
+  font-size: 0.35em;
+  color: ${BACKGROUND_COLOR};
+  &:hover {
+    opacity: 0.6;
+  }
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  z-index: 1000;
 `;

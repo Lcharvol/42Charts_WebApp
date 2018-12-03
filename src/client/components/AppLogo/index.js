@@ -10,9 +10,8 @@ import {
 
 const AppLogo = () => (
   <Container>
-    <TopSide>
-      <OptionButton />
-    </TopSide>
+    <OptionButton />
+    <TopSide />
     <LogoContainer />
     <BottomSide />
   </Container>

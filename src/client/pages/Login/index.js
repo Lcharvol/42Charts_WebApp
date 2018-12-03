@@ -1,5 +1,5 @@
 import React from 'react';
-import { length, split, takeLast, isNil } from 'ramda';
+import { isNil } from 'ramda';
 
 import { Container, LoginContent, Logo, LoginButton } from './styles';
 import { getLogin } from '../../requests';
