@@ -41,6 +41,7 @@ export const TopSide = styled.div`
   flex: 1;
   width: 100%;
   background-color: rgb(30, 30, 30);
+  background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(35, 35, 35));
   opacity: 0.7;
 `;
 
@@ -49,6 +50,7 @@ export const BottomSide = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
+  background-image: linear-gradient(rgb(27, 27, 27), transparent);
 `;
 
 export const OptionButton = styled(MdSettings)`

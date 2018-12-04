@@ -52,3 +52,19 @@ export const RightSide = styled.div`
   flex: 1;
   box-sizing: border-box;
 `;
+
+export const InlineBlock = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const ColumnBlock = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  min-height: 165px;
+  flex: 1;
+`;

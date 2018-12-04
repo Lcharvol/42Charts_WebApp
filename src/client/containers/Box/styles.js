@@ -25,6 +25,7 @@ export const Container = styled.div`
     width: 100%;
   }
   box-sizing: border-box;
+  transition: height 0.3s ease-in-out;
 `;
 
 export const Header = styled.div`
@@ -33,7 +34,8 @@ export const Header = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50px;
+  min-height: 40px;
+  max-height: 40px;
   background-color: ${HEADER_BACKGROUND_COLOR};
   border-bottom: solid 1px ${DARK_BORDER_COLOR};
 `;

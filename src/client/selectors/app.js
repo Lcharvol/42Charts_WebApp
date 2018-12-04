@@ -18,3 +18,12 @@ export const getWeekSummaryAllAverageLogTime = state =>
 export const getChartsToken = state => state.app.chartsToken;
 
 export const getChartsRefreshToken = state => state.app.chartsRefreshToken;
+
+export const getWeekSummaryMoreLogedUserLogin = state =>
+  state.app.weekSummary.mostLogedUsers[0].login;
+
+export const getWeekSummaryMoreLogedUserLogTime = state =>
+  getFormatedLogtime(state.app.weekSummary.mostLogedUsers[0].logtimeInSeconds);
+
+export const getWeekSummaryMoreLogedUserId = state =>
+  state.app.weekSummary.mostLogedUsers[0].id;
