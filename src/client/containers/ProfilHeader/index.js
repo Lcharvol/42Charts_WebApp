@@ -2,7 +2,13 @@ import React from 'react';
 import { number, object, string } from 'prop-types';
 import { isNil, find, propEq, isEmpty } from 'ramda';
 
-import { Container, LeftSide, RightSide, InlineBLock } from './styles';
+import {
+  Container,
+  LeftSide,
+  RightSide,
+  InlineBlock,
+  ColumnBlock,
+} from './styles';
 import UserAvatar from '../../components/UserAvatar';
 import InfoContainer from './InfoContainer';
 import UserCoalition from '../../containers/UserCoalition';
@@ -61,24 +67,38 @@ const ProfilHeader = ({
           user={user}
           color={color[0] === '#' ? color : `#${color}`}
         />
-        {winWidth <= RESPONSIVITY_WIDTH &&
-          !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+        <ColumnBlock>
+          {winWidth <= RESPONSIVITY_WIDTH &&
+            !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+          {winWidth <= RESPONSIVITY_WIDTH &&
+            displayAddFriendButton && (
+              <AddOrRemoveFriendButtonProfil
+                user={user}
+                usable={true}
+                userId={user.id}
+                addFriend={isMyFriend ? undefined : addFriend}
+                removeFriend={isMyFriend ? removeFriend : undefined}
+                enhanceMe={enhanceMe}
+              />
+            )}
+        </ColumnBlock>
       </LeftSide>
       <RightSide>
-        <InlineBLock>
+        <InlineBlock>
           {winWidth > RESPONSIVITY_WIDTH &&
             !isNil(colationElem) && <UserCoalition coalition={coalition} />}
-          {displayAddFriendButton && (
-            <AddOrRemoveFriendButtonProfil
-              user={user}
-              usable={true}
-              userId={user.id}
-              addFriend={isMyFriend ? undefined : addFriend}
-              removeFriend={isMyFriend ? removeFriend : undefined}
-              enhanceMe={enhanceMe}
-            />
-          )}
-        </InlineBLock>
+          {winWidth > RESPONSIVITY_WIDTH &&
+            displayAddFriendButton && (
+              <AddOrRemoveFriendButtonProfil
+                user={user}
+                usable={true}
+                userId={user.id}
+                addFriend={isMyFriend ? undefined : addFriend}
+                removeFriend={isMyFriend ? removeFriend : undefined}
+                enhanceMe={enhanceMe}
+              />
+            )}
+        </InlineBlock>
         <LevelBar
           level={getLevelFromCursus(selectedCursus, cursus || [])}
           color={color[0] === '#' ? color : `#${color}`}

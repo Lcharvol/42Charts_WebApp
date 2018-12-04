@@ -8,7 +8,7 @@ import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
 import { Container, Content } from './styles';
 import { reqGetUserById, reqGetUserLogsById } from '../../requests';
 import { loadUser, loadUserLogs, resetUser } from '../../actions/user';
-import { addFriend, removeFriend } from '../../actions/me';
+import { addFriend, removeFriend, enhanceMe } from '../../actions/me';
 import { getCurrentTime } from '../../selectors/time';
 import { getUser, getUserLogs } from '../../selectors/user';
 
@@ -41,6 +41,7 @@ const User = ({
   handleChangeSelectedCursus,
   addFriend,
   removeFriend,
+  enhanceMe,
 }) => {
   if (isEmpty(user)) return <div />;
   return (
@@ -57,6 +58,7 @@ const User = ({
         isMyFriend={isMyFriend(user.id, friends)}
         addFriend={addFriend}
         removeFriend={removeFriend}
+        enhanceMe={enhanceMe}
       />
       <Content>
         <Box
@@ -120,7 +122,14 @@ const mapStateToProps = state => ({
   friends: getMyFriends(state),
 });
 
-const actions = { loadUser, loadUserLogs, resetUser, addFriend, removeFriend };
+const actions = {
+  loadUser,
+  loadUserLogs,
+  resetUser,
+  addFriend,
+  removeFriend,
+  enhanceMe,
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 

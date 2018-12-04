@@ -5,6 +5,10 @@ import {
   DARK_MAIN_COLOR,
   RED,
   DARK_RED,
+  LIGHT_BACKGROUND_COLOR,
+  HEADER_BACKGROUND_COLOR,
+  DARK_FONT_COLOR,
+  LIGHT_GREY,
 } from '../../constants/colors';
 import { FaTrash, FaPlus } from 'react-icons/fa';
 import { MdPerson } from 'react-icons/md';
@@ -24,8 +28,8 @@ export const ButtonContainer = styled.div`
   align-items: center;
   background-image: linear-gradient(
     to bottom,
-    ${({ remove }) => (remove ? RED : MAIN_COLOR)} 0%,
-    ${({ remove }) => (remove ? RED : DARK_MAIN_COLOR)} 100%
+    ${({ remove }) => (remove ? LIGHT_BACKGROUND_COLOR : MAIN_COLOR)} 0%,
+    ${({ remove }) => (remove ? HEADER_BACKGROUND_COLOR : DARK_MAIN_COLOR)} 100%
   );
   min-width: 120px;
   height: 40px;
@@ -33,15 +37,17 @@ export const ButtonContainer = styled.div`
   border-radius: 3px;
   padding-left: 10px;
   padding-right: 10px;
-  font-size: 0.3em;
+  font-size: 0.25em;
   box-sizing: border-box;
   &:hover {
     background-image: linear-gradient(
       to bottom,
-      ${({ remove }) => (remove ? RED : MAIN_COLOR)} 100%,
-      ${({ remove }) => (remove ? RED : DARK_MAIN_COLOR)} 100%
+      ${({ remove }) => (remove ? LIGHT_BACKGROUND_COLOR : MAIN_COLOR)} 100%,
+      ${({ remove }) =>
+        remove ? HEADER_BACKGROUND_COLOR : DARK_MAIN_COLOR} 100%
     );
-  }
+  };
+  color:${({ remove }) => (remove ? RED : DARK_FONT_COLOR)}
   transition: all 0.3s ease-in-out;
 `;
 
@@ -49,12 +55,12 @@ export const AddIcon = styled(FaPlus)`
   position: relative;
   display: flex;
   height: 50%;
-  margin-right: 5px;
+  margin-right: 10px;
 `;
 
 export const RemoveIcon = styled(FaTrash)`
   position: relative;
   display: flex;
   height: 50%;
-  margin-right: 5px;
+  margin-right: 10px;
 `;
