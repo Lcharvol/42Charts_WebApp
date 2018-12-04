@@ -59,6 +59,7 @@ const Profil = ({
       selectedCursus={selectedCursus}
       user={me}
       color={me.coalition.color}
+      displayAddFriendButton={false}
     />
     <Content>
       <Box

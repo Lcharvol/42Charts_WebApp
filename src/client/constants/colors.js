@@ -36,6 +36,8 @@ export const FAIL_MARK_COLOR = '#e74c3c';
 
 export const RED = '#e74c3c';
 
+export const DARK_RED = '#e02e1c';
+
 export const TRANSPARENT_DARK_BACKGROUND = 'rgba(15, 15, 15, 0.5)';
 
 export const GOLD_MEDAL_COLOR =

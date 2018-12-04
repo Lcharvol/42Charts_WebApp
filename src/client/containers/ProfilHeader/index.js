@@ -2,7 +2,7 @@ import React from 'react';
 import { number, object, string } from 'prop-types';
 import { isNil, find, propEq, isEmpty } from 'ramda';
 
-import { Container, LeftSide, RightSide } from './styles';
+import { Container, LeftSide, RightSide, InlineBLock } from './styles';
 import UserAvatar from '../../components/UserAvatar';
 import InfoContainer from './InfoContainer';
 import UserCoalition from '../../containers/UserCoalition';
@@ -11,6 +11,7 @@ import { coalitionsBackground } from '../../constants/coalitions';
 import { MAIN_COLOR } from '../../constants/colors';
 import DEFAULT_BACKGROUND from '../../../../public/poly_background.jpg';
 import { RESPONSIVITY_WIDTH } from './constants';
+import AddOrRemoveFriendButtonProfil from '../../components/AddOrRemoveFriendButtonProfil';
 
 const proptypes = {
   winWidth: number.isRequired,
@@ -34,6 +35,11 @@ const ProfilHeader = ({
   selectedCursus,
   user,
   color = MAIN_COLOR,
+  displayAddFriendButton,
+  isMyFriend,
+  addFriend,
+  removeFriend,
+  enhanceMe,
 }) => {
   const colationElem =
     find(propEq('name', coalition.name))(coalitionsBackground) || {};
@@ -59,8 +65,20 @@ const ProfilHeader = ({
           !isNil(colationElem) && <UserCoalition coalition={coalition} />}
       </LeftSide>
       <RightSide>
-        {winWidth > RESPONSIVITY_WIDTH &&
-          !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+        <InlineBLock>
+          {winWidth > RESPONSIVITY_WIDTH &&
+            !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+          {displayAddFriendButton && (
+            <AddOrRemoveFriendButtonProfil
+              user={user}
+              usable={true}
+              userId={user.id}
+              addFriend={isMyFriend ? undefined : addFriend}
+              removeFriend={isMyFriend ? removeFriend : undefined}
+              enhanceMe={enhanceMe}
+            />
+          )}
+        </InlineBLock>
         <LevelBar
           level={getLevelFromCursus(selectedCursus, cursus || [])}
           color={color[0] === '#' ? color : `#${color}`}

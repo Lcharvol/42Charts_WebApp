@@ -52,3 +52,9 @@ export const RightSide = styled.div`
   flex: 1;
   box-sizing: border-box;
 `;
+
+export const InlineBLock = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+`;
