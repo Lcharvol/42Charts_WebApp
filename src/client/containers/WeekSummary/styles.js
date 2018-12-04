@@ -1,10 +1,8 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { MdExpandMore, MdExpandLess } from 'react-icons/md';
 
-import {
-  DARK_BORDER_COLOR,
-  MAIN_COLOR,
-  DARK_FONT_COLOR,
-} from '../../constants/colors';
+import { MAIN_COLOR, DARK_FONT_COLOR } from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -66,5 +64,44 @@ export const Spacer = styled.div`
   position:relative;
   display:flex
   width:100%;
-  min-height:25px;
+  min-height:5px;
+`;
+
+export const ExpandButton = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${MAIN_COLOR};
+  font-size: 0.6em;
+  width: 100%;
+  cursor: pointer;
+`;
+
+export const MoreIcon = styled(MdExpandMore)`
+  position: relative;
+  display: flex;
+  color: ${MAIN_COLOR};
+  cursor: pointer;
+`;
+
+export const LessIcon = styled(MdExpandLess)`
+  position: relative;
+  display: flex;
+  color: ${MAIN_COLOR};
+  cursor: pointer;
+`;
+
+export const StyledLink = styled(Link)`
+  positon: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: flex-start;
+  color: ${MAIN_COLOR};
+  flex: 1;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `;

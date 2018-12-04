@@ -1,8 +1,14 @@
 import React from 'react';
 import { number, object, string } from 'prop-types';
-import { isNil, find, propEq, isEmpty } from 'ramda';
+import { isNil, find, propEq, isEmpty, length } from 'ramda';
 
-import { Container, LeftSide, RightSide } from './styles';
+import {
+  Container,
+  LeftSide,
+  RightSide,
+  InlineBlock,
+  ColumnBlock,
+} from './styles';
 import UserAvatar from '../../components/UserAvatar';
 import InfoContainer from './InfoContainer';
 import UserCoalition from '../../containers/UserCoalition';
@@ -11,6 +17,7 @@ import { coalitionsBackground } from '../../constants/coalitions';
 import { MAIN_COLOR } from '../../constants/colors';
 import DEFAULT_BACKGROUND from '../../../../public/poly_background.jpg';
 import { RESPONSIVITY_WIDTH } from './constants';
+import AddOrRemoveFriendButtonProfil from '../../components/AddOrRemoveFriendButtonProfil';
 
 const proptypes = {
   winWidth: number.isRequired,
@@ -34,13 +41,22 @@ const ProfilHeader = ({
   selectedCursus,
   user,
   color = MAIN_COLOR,
+  displayAddFriendButton,
+  isMyFriend,
+  addFriend,
+  removeFriend,
+  enhanceMe,
 }) => {
   const colationElem =
     find(propEq('name', coalition.name))(coalitionsBackground) || {};
   return (
     <Container
       backgroundUrl={
-        !isNil(colationElem) ? colationElem.backgroundUrl : DEFAULT_BACKGROUND
+        !isNil(colationElem) &&
+        !isNil(colationElem.backgroundUrl) &&
+        length(colationElem.backgroundUrl) > 0
+          ? colationElem.backgroundUrl
+          : DEFAULT_BACKGROUND
       }
     >
       <LeftSide>
@@ -55,12 +71,38 @@ const ProfilHeader = ({
           user={user}
           color={color[0] === '#' ? color : `#${color}`}
         />
-        {winWidth <= RESPONSIVITY_WIDTH &&
-          !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+        <ColumnBlock>
+          {winWidth <= RESPONSIVITY_WIDTH &&
+            !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+          {winWidth <= RESPONSIVITY_WIDTH &&
+            displayAddFriendButton && (
+              <AddOrRemoveFriendButtonProfil
+                user={user}
+                usable={true}
+                userId={user.id}
+                addFriend={isMyFriend ? undefined : addFriend}
+                removeFriend={isMyFriend ? removeFriend : undefined}
+                enhanceMe={enhanceMe}
+              />
+            )}
+        </ColumnBlock>
       </LeftSide>
       <RightSide>
-        {winWidth > RESPONSIVITY_WIDTH &&
-          !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+        <InlineBlock>
+          {winWidth > RESPONSIVITY_WIDTH &&
+            !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+          {winWidth > RESPONSIVITY_WIDTH &&
+            displayAddFriendButton && (
+              <AddOrRemoveFriendButtonProfil
+                user={user}
+                usable={true}
+                userId={user.id}
+                addFriend={isMyFriend ? undefined : addFriend}
+                removeFriend={isMyFriend ? removeFriend : undefined}
+                enhanceMe={enhanceMe}
+              />
+            )}
+        </InlineBlock>
         <LevelBar
           level={getLevelFromCursus(selectedCursus, cursus || [])}
           color={color[0] === '#' ? color : `#${color}`}
