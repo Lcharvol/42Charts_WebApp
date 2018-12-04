@@ -32,7 +32,7 @@ export const Container = styled.div`
   @media (max-width: 1000px) {
     width: 90px;
   }
-  transition: left 0.3s eas-n-out;
+  transition: left 0.3s ease-n-out;
 `;
 
 export const SideMenuHeaderContainer = styled.div`

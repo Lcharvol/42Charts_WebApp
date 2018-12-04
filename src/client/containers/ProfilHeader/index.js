@@ -1,6 +1,6 @@
 import React from 'react';
 import { number, object, string } from 'prop-types';
-import { isNil, find, propEq, isEmpty } from 'ramda';
+import { isNil, find, propEq, isEmpty, length } from 'ramda';
 
 import {
   Container,
@@ -52,7 +52,11 @@ const ProfilHeader = ({
   return (
     <Container
       backgroundUrl={
-        !isNil(colationElem) ? colationElem.backgroundUrl : DEFAULT_BACKGROUND
+        !isNil(colationElem) &&
+        !isNil(colationElem.backgroundUrl) &&
+        length(colationElem.backgroundUrl) > 0
+          ? colationElem.backgroundUrl
+          : DEFAULT_BACKGROUND
       }
     >
       <LeftSide>
