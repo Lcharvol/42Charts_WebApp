@@ -125,7 +125,6 @@ const enhance = compose(
           if (isEmpty(this.props.weekSummary.mostUsedPost)) {
             reqGetWeekSummary()
               .then(res => {
-                console.log(res);
                 this.props.loadWeekSummary(res);
               })
               .catch();
