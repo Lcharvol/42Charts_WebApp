@@ -10,9 +10,7 @@ const reducer = (state = initialState, action) => {
       return [...action.apps];
     }
     case LIKE_APP: {
-      console.log('like');
       const appIndex = findIndex(propEq('id', action.appId))(state);
-      console.log('appIndex: ', appIndex);
       let newApps = state;
       newApps[appIndex] = {
         ...newApps[appIndex],

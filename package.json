@@ -1,15 +1,16 @@
 {
-  "name": "newproject",
-  "version": "0.0.0",
+  "name": "charts",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "repository": "git@github.com:lcharvol/React-WebApp-Boilerplate.git",
   "author": "lcharvol <lcharvol@student.42.fr>",
   "scripts": {
-    "build": "webpack",
-    "cli": "NODE_ENV=development webpack --watch --display none",
-    "cli-prod": "NODE_ENV=production webpack --env prod --progress --profile --colors",
-    "pret": "pretty-quick"
+    "cli": " webpack --env dev --watch --display none",
+    "cli-prod": "webpack --env prod --progress --profile --colors",
+    "pret": "pretty-quick --staged",
+    "bundle:stats": "NODE_ENV=production webpack -p --config ./webpack.config.prod.js --profile --json > stats.json",
+    "bundle:analyse": "webpack-bundle-analyzer ./stats.json ./build --report --mode=static"
   },
   "contributors": [
     {
@@ -43,6 +44,7 @@
     "connect-history-api-fallback": "^1.5.0",
     "cors": "^2.8.5",
     "file-loader": "^2.0.0",
+    "fs": "^0.0.1-security",
     "path": "^0.12.7",
     "ramda": "^0.25.0",
     "react": "^16.5.2",
@@ -80,8 +82,9 @@
     "browser-sync-webpack-plugin": "^2.2.2",
     "husky": "next",
     "prettier": "^1.14.3",
-    "pretty-quick": "^1.7.0",
-    "redux-logger": "^3.0.6"
+    "pretty-quick": "1.8.0",
+    "redux-logger": "^3.0.6",
+    "webpack-bundle-analyzer": "^2.9.0"
   },
   "eslint": {
     "root": true
