@@ -6,10 +6,17 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import { connect } from 'react-redux';
 
 import SideMenu from '../../containers/SideMenu';
+import Modal from '../../containers/Modal';
 import routes from '../../routes';
 import { AppContainer } from './styles';
 import { initializeGa } from '../../googleAnalytics';
-import { updateWinWidth } from '../../actions/app';
+import { updateWinWidth, handleChangeDisplayModal } from '../../actions/app';
+import {
+  getDisplayModal,
+  getModalLabel,
+  getModalActionId,
+  getModalPlaceholder,
+} from '../../selectors/app';
 
 const RouteWithSubRoutes = route => (
   <Route
@@ -21,12 +28,26 @@ const RouteWithSubRoutes = route => (
 
 const history = createBrowserHistory();
 
-const App = () => {
+const App = ({
+  displayModal,
+  handleChangeDisplayModal,
+  modalLabel,
+  modalActionId,
+  modalPlaceholder,
+}) => {
   initializeGa();
   return (
     <AppContainer>
       <Router>
         <div>
+          {displayModal && (
+            <Modal
+              handleChangeDisplayModal={handleChangeDisplayModal}
+              modalPlaceholder={modalPlaceholder}
+              label={modalLabel}
+              actionId={modalActionId}
+            />
+          )}
           <SideMenu history={history} routes={routes} />
           {routes.map(route => (
             <RouteWithSubRoutes key={route.id} {...route} />
@@ -37,13 +58,20 @@ const App = () => {
   );
 };
 
-const actions = { updateWinWidth };
+const actions = { updateWinWidth, handleChangeDisplayModal };
+
+const mapStateToProps = state => ({
+  displayModal: getDisplayModal(state),
+  modalLabel: getModalLabel(state),
+  modalActionId: getModalActionId(state),
+  modalPlaceholder: getModalPlaceholder(state),
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default compose(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
   ),
   lifecycle({

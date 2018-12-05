@@ -28,4 +28,10 @@ export const getWeekSummaryMoreLogedUserLogTime = state =>
 export const getWeekSummaryMoreLogedUserId = state =>
   state.app.weekSummary.mostLogedUsers[0].id;
 
-export const getDisplayModal = state => state.app.displayModal;
+export const getDisplayModal = state => state.app.modal.displayModal;
+
+export const getModalLabel = state => state.app.modal.label;
+
+export const getModalActionId = state => state.app.modal.actionId;
+
+export const getModalPlaceholder = state => state.app.modal.placeholder;

@@ -30,8 +30,16 @@ export const storeToken = (tokenName, token) => dispatch =>
     token,
   });
 
-export const displayModal = newValue => dispatch =>
+export const handleChangeDisplayModal = (
+  newValue,
+  label,
+  actionId,
+  placeholder = '',
+) => dispatch =>
   dispatch({
     type: DISPLAY_MODAL,
     newValue,
+    label,
+    actionId,
+    placeholder,
   });

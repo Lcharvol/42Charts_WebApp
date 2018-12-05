@@ -12,7 +12,12 @@ const initialState = {
   weekSummary: {
     mostUsedPost: {},
   },
-  displayModal: false,
+  modal: {
+    displayModal: false,
+    modalLabel: undefined,
+    actionId: undefined,
+    placeholder: undefined,
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,7 +26,16 @@ const reducer = (state = initialState, action) => {
       return { ...state, promos: ['all', ...action.promos] };
     }
     case DISPLAY_MODAL: {
-      return { ...state, displayModal: action.newValue };
+      return {
+        ...state,
+        modal: {
+          ...state.modal,
+          displayModal: action.newValue,
+          label: action.label,
+          actionId: action.actionId,
+          placeholder: action.placeholder,
+        },
+      };
     }
     case UPDATE_WIN_WIDTH: {
       return { ...state, winWidth: action.newWinWidth };
