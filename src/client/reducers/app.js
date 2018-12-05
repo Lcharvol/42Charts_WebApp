@@ -3,6 +3,7 @@ import {
   UPDATE_WIN_WIDTH,
   LOAD_WEEK_SUMMARY,
   STORE_TOKEN,
+  DISPLAY_MODAL,
 } from '../actions/app';
 
 const initialState = {
@@ -11,12 +12,16 @@ const initialState = {
   weekSummary: {
     mostUsedPost: {},
   },
+  displayModal: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_PROMOS: {
       return { ...state, promos: ['all', ...action.promos] };
+    }
+    case DISPLAY_MODAL: {
+      return { ...state, displayModal: action.newValue };
     }
     case UPDATE_WIN_WIDTH: {
       return { ...state, winWidth: action.newWinWidth };

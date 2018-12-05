@@ -18,6 +18,7 @@ import { MAIN_COLOR } from '../../constants/colors';
 import DEFAULT_BACKGROUND from '../../../../public/poly_background.jpg';
 import { RESPONSIVITY_WIDTH } from './constants';
 import AddOrRemoveFriendButtonProfil from '../../components/AddOrRemoveFriendButtonProfil';
+import GitHubButton from '../../components/GitHubButton';
 
 const proptypes = {
   winWidth: number.isRequired,
@@ -74,6 +75,9 @@ const ProfilHeader = ({
         <ColumnBlock>
           {winWidth <= RESPONSIVITY_WIDTH &&
             !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+          {winWidth <= RESPONSIVITY_WIDTH && (
+            <GitHubButton link={user.githubLink} />
+          )}
           {winWidth <= RESPONSIVITY_WIDTH &&
             displayAddFriendButton && (
               <AddOrRemoveFriendButtonProfil
@@ -91,6 +95,9 @@ const ProfilHeader = ({
         <InlineBlock>
           {winWidth > RESPONSIVITY_WIDTH &&
             !isNil(colationElem) && <UserCoalition coalition={coalition} />}
+          {winWidth > RESPONSIVITY_WIDTH && (
+            <GitHubButton link={user.githubLink} />
+          )}
           {winWidth > RESPONSIVITY_WIDTH &&
             displayAddFriendButton && (
               <AddOrRemoveFriendButtonProfil

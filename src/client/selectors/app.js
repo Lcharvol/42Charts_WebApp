@@ -27,3 +27,5 @@ export const getWeekSummaryMoreLogedUserLogTime = state =>
 
 export const getWeekSummaryMoreLogedUserId = state =>
   state.app.weekSummary.mostLogedUsers[0].id;
+
+export const getDisplayModal = state => state.app.displayModal;
