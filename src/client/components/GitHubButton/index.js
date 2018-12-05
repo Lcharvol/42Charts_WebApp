@@ -14,22 +14,26 @@ const proptypes = {
 
 const getGitHubNameFromLink = link => takeLast(1, split('/', link));
 
-const GitHubButton = ({ link, handleChangeDisplayModal }) => (
-  <Container
-    onClick={() => {
-      if (isNil(link))
-        handleChangeDisplayModal(
-          true,
-          'Enter your Github link: ',
-          0,
-          'eg: https://github.com/Lcharvol',
-        );
-    }}
-  >
-    <GitHubIcon />
-    <Label>{!isNil(link) ? getGitHubNameFromLink(link) : 'Add Github'}</Label>
-  </Container>
-);
+const GitHubButton = ({ isMe, link, handleChangeDisplayModal }) => {
+  if (!!isMe && isNil(link)) return null;
+  return (
+    <Container
+      onClick={() => {
+        if (isNil(link))
+          handleChangeDisplayModal(
+            true,
+            'Enter your Github link: ',
+            0,
+            'https://github.com/',
+          );
+        else window.open(link, '_blank');
+      }}
+    >
+      <GitHubIcon />
+      <Label>{!isNil(link) ? getGitHubNameFromLink(link) : 'Add Github'}</Label>
+    </Container>
+  );
+};
 
 GitHubButton.propTypes = proptypes;
 

@@ -76,7 +76,10 @@ const ProfilHeader = ({
           {winWidth <= RESPONSIVITY_WIDTH &&
             !isNil(colationElem) && <UserCoalition coalition={coalition} />}
           {winWidth <= RESPONSIVITY_WIDTH && (
-            <GitHubButton link={user.githubLink} />
+            <GitHubButton
+              isMe={displayAddFriendButton}
+              link={user.githubLink}
+            />
           )}
           {winWidth <= RESPONSIVITY_WIDTH &&
             displayAddFriendButton && (
@@ -96,7 +99,10 @@ const ProfilHeader = ({
           {winWidth > RESPONSIVITY_WIDTH &&
             !isNil(colationElem) && <UserCoalition coalition={coalition} />}
           {winWidth > RESPONSIVITY_WIDTH && (
-            <GitHubButton link={user.githubLink} />
+            <GitHubButton
+              isMe={displayAddFriendButton}
+              link={user.githubLink}
+            />
           )}
           {winWidth > RESPONSIVITY_WIDTH &&
             displayAddFriendButton && (

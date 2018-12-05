@@ -3,7 +3,7 @@ import { string } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withStateHandlers } from 'recompose';
-import { isNil } from 'ramda';
+import { isNil, length } from 'ramda';
 
 import {
   Container,
@@ -48,7 +48,7 @@ const Modal = ({
         placeholder={modalPlaceholder}
         type="text"
         spellCheck="false"
-        value={innerValue}
+        value={length(innerValue) > 0 ? innerValue : modalPlaceholder}
         onChange={e => handleChangeInnerValue(e.target.value)}
       />
       <ButtonsContainer>
