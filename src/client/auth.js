@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { node } from 'prop-types';
 import { split, contains } from 'ramda';
+import { withCookies } from 'react-cookie';
 
 import { reqMe } from './requests';
 
@@ -19,7 +20,11 @@ class Auth extends Component {
   async componentWillMount() {
     reqMe()
       .then(() => this.setState({ isAuthorized: true, isRequested: true }))
-      .catch(err => this.setState({ isRequested: true }));
+      .catch(err => {
+        this.props.cookies.remove('chartsToken');
+        this.props.cookies.remove('chartsRefreshToken');
+        this.setState({ isRequested: true });
+      });
   }
 
   render() {
@@ -44,4 +49,4 @@ class Auth extends Component {
 
 Auth.propTypes = propTypes;
 
-export default Auth;
+export default withCookies(Auth);
