@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { filter, isNil, length, find, propEq } from 'ramda';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
-import { getFormatedLogtime } from '../utils';
+import {
+  getFormatedLogtime,
+  getFormatedLogtimeInDay,
+  getSmicFromLog,
+} from '../utils';
 
 import { MAIN_COLOR, RED } from '../constants/colors';
 
@@ -119,7 +123,10 @@ export const getHigherLogPerMonthInfos = state => {
 export const getMyNumberOfLogs = state => state.me.logs.numberOfLogs;
 
 export const getMyTotalLogTime = state =>
-  getFormatedLogtime(state.me.logs.totalLogTime);
+  getFormatedLogtimeInDay(state.me.logs.totalLogTime);
+
+export const getMyTotalLogTimeEquivalent = state =>
+  getSmicFromLog(state.me.logs.totalLogTime);
 
 export const getMyLogsAllRank = state => state.me.logs.allRank;
 
@@ -128,7 +135,7 @@ export const getMyLogsPromoRank = state => state.me.logs.promoRank;
 export const getMyPreferedHostName = state => state.me.logs.hostPrefered.name;
 
 export const getMyPreferedHostTime = state =>
-  getFormatedLogtime(state.me.logs.hostPrefered);
+  getFormatedLogtimeInDay(state.me.logs.hostPrefered.logtimeInSeconds);
 
 export const getAverageLogsPerSession = state => {
   const averageLogTimeInSecond = Math.floor(

@@ -11,6 +11,7 @@ import {
   getHigherLogPerMonth,
   getMyNumberOfLogs,
   getMyTotalLogTime,
+  getMyTotalLogTimeEquivalent,
   getMyLogsAllRank,
   getMyLogsPromoRank,
   getMyPreferedHostName,
@@ -33,6 +34,7 @@ import {
   getUserAverageLevelByMonth,
   getUserFailedProjects,
   getUserLogTime,
+  getUserTotalLogTimeEquivalent,
   getUserPreferedHostName,
   getUserPreferedHostTime,
   getUserCoalitionRank,
@@ -98,7 +100,7 @@ export const MY_STATS_CONTENT = [
   {
     id: 9,
     value: state => getMyTotalLogTime(state),
-    secondValue: state => undefined,
+    secondValue: state => getMyTotalLogTimeEquivalent(state),
     label: 'Total Logtime',
   },
   {
@@ -161,7 +163,7 @@ export const USER_STATS_CONTENT = [
   {
     id: 5,
     value: state => getUserLogTime(state),
-    secondValue: state => undefined,
+    secondValue: state => getUserTotalLogTimeEquivalent(state),
     label: 'Total LogTime',
   },
   {

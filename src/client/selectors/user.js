@@ -4,6 +4,7 @@ import { length, reduce, find, propEq, isNil } from 'ramda';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 
 import { MAIN_COLOR, RED } from '../constants/colors';
+import { getSmicFromLog } from '../utils';
 
 export const getUser = state => state.user;
 
@@ -87,6 +88,9 @@ export const getUserLogTime = state => {
   const hours = Math.floor((logTimInSecond - days * 86400) / 3600);
   return `${days} D ${hours} H`;
 };
+
+export const getUserTotalLogTimeEquivalent = state =>
+  getSmicFromLog(state.user.logs.totalLogTime);
 
 export const getUserPreferedHostName = state =>
   state.user.logs.hostPrefered.name;
