@@ -32,11 +32,11 @@ export const ButtonContainer = styled.div`
     ${({ remove }) => (remove ? HEADER_BACKGROUND_COLOR : DARK_MAIN_COLOR)} 100%
   );
   min-width: 120px;
-  height: 40px;
+  height: 36px;
   cursor: pointer;
   border-radius: 3px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 3px 10px;
+  line-height: 20px;
   font-size: 0.25em;
   box-sizing: border-box;
   &:hover {

@@ -7,16 +7,13 @@ export const Container = styled.div`
   display: flex;
   background-color: rgb(25, 25, 25);
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: flex-start;
   width: calc(100% - 15px);
   min-width: 460px;
-  height: 200px;
-  padding-top: 25px;
   @media (max-width: ${RESPONSIVITY_WIDTH}px) {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    height: 275px;
   }
     background-image:url('${({ backgroundUrl }) => backgroundUrl}');
     background-position: center;
@@ -43,7 +40,6 @@ export const RightSide = styled.div`
   flex-direction: column;
   padding: 25px;
   padding-left: 0;
-  max-width: 750px;
   @media (max-width: ${RESPONSIVITY_WIDTH}px) {
     min-width: 100%;
     padding-left: 25px;
@@ -67,4 +63,10 @@ export const ColumnBlock = styled.div`
   flex-direction: column;
   min-height: 165px;
   flex: 1;
+`;
+
+export const ButtonsContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
 `;

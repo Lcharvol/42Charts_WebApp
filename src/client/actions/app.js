@@ -6,6 +6,8 @@ export const LOAD_WEEK_SUMMARY = 'LOAD_WEEK_SUMMARY';
 
 export const STORE_TOKEN = 'STORE_TOKEN';
 
+export const DISPLAY_MODAL = 'DISPLAY_MODAL';
+
 export const loadPromos = promos => dispatch =>
   dispatch({ type: LOAD_PROMOS, promos });
 
@@ -26,4 +28,18 @@ export const storeToken = (tokenName, token) => dispatch =>
     type: STORE_TOKEN,
     tokenName,
     token,
+  });
+
+export const handleChangeDisplayModal = (
+  newValue,
+  label,
+  actionId,
+  placeholder = '',
+) => dispatch =>
+  dispatch({
+    type: DISPLAY_MODAL,
+    newValue,
+    label,
+    actionId,
+    placeholder,
   });
