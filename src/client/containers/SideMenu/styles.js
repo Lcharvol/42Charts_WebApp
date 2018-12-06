@@ -66,8 +66,8 @@ export const MenuElemContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 45px;
-  background-color:${({ selected }) =>
-    selected ? LIGHT_BACKGROUND_COLOR : 'transparent'}
+  background-color: ${({ selected }) =>
+    selected ? LIGHT_BACKGROUND_COLOR : 'transparent'};
   &:hover {
     background-color: ${LIGHT_BACKGROUND_COLOR};
   }

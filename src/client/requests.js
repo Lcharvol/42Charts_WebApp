@@ -240,3 +240,16 @@ export const reqGetWeekSummary = () =>
     .catch(err => {
       throw err;
     });
+
+export const reqPutGitHub = githubLink =>
+  axios({
+    method: 'put',
+    url: 'users/me',
+    data: {
+      github: githubLink,
+    },
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
