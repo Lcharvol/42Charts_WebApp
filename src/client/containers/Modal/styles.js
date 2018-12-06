@@ -6,6 +6,7 @@ import {
   MAIN_COLOR,
   DARK_FONT_COLOR,
   BACKGROUND_COLOR,
+  LIGHT_MAIN_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -25,9 +26,8 @@ export const Content = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 80%;
   max-width: 400px;
-  min-height: 200px;
+  padding: 25px;
   background-color: ${LIGHT_BACKGROUND_COLOR};
   border: solid 1px ${DARK_BORDER_COLOR};
   border-radius: 3px;
@@ -37,7 +37,7 @@ export const Content = styled.div`
 export const ButtonsContainer = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-top: 15px;
@@ -53,7 +53,6 @@ export const Button = styled.div`
   background-color: ${({ color }) => color};
   border-radius: 3px;
   font-size: 0.3em;
-  margin: 15px;
   user-select: none;
   cursor: pointer;
   &:hover {
@@ -62,16 +61,20 @@ export const Button = styled.div`
   transition: all 0.1s ease-in-out;
 `;
 
+export const ButtonSpacer = styled.div`
+  position: relative;
+  display: flex;
+  width: 50px;
+`;
+
 export const Label = styled.div`
   color: ${DARK_FONT_COLOR};
   font-size: 0.3em;
-  margin-left: 15px;
-  margin-top: 15px;
 `;
 
 export const StyledInput = styled.input`
   position: relative;
-  width: 80%;
+  width: 100%;
   background-color: ${BACKGROUND_COLOR};
   border-radius: 3px;
   height: 40px;
@@ -82,4 +85,9 @@ export const StyledInput = styled.input`
   padding-right: 15px;
   box-sizing: border-box;
   color: ${DARK_FONT_COLOR};
+  &:focus {
+    border-color: ${MAIN_COLOR};
+    box-shadow: 0 0 8px ${LIGHT_MAIN_COLOR};
+    outline: 0 none;
+  }
 `;

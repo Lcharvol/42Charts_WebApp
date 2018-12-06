@@ -12,16 +12,25 @@ import {
   ButtonsContainer,
   Label,
   StyledInput,
+  ButtonSpacer,
 } from './styles';
-import { MAIN_COLOR, RED } from '../../constants/colors';
+import { MAIN_COLOR, RED, BACKGROUND_COLOR } from '../../constants/colors';
 import { enhanceMe } from '../../actions/me';
+import { reqPutGitHub } from '../../requests';
 
 const proptypes = {
   label: string.isRequired,
 };
 
 const getConfirmAction = (actionId, enhanceMe) => {
-  const actions = [enhanceMe];
+  const actions = [
+    github => {
+      if (!isNil(github.github))
+        reqPutGitHub(github.github)
+          .then(res => enhanceMe(github))
+          .catch(err => err);
+    },
+  ];
   if (isNil(actionId)) return () => {};
   return actions[actionId];
 };
@@ -33,9 +42,11 @@ const Modal = ({
   cancelLabel = 'Cancel',
   actionId,
   enhanceMe,
+  error,
   modalPlaceholder,
   innerValue,
   handleChangeInnerValue,
+  handleChangeError,
 }) => (
   <Container
     onClick={() =>
@@ -48,20 +59,37 @@ const Modal = ({
         placeholder={modalPlaceholder}
         type="text"
         spellCheck="false"
-        value={length(innerValue) > 0 ? innerValue : modalPlaceholder}
-        onChange={e => handleChangeInnerValue(e.target.value)}
+        value={!isNil(innerValue) ? innerValue : modalPlaceholder}
+        onChange={e => {
+          if (!isInputValid(e.target.value)) handleChangeError(true);
+          else {
+            if (error) handleChangeError(false);
+            handleChangeInnerValue(e.target.value);
+          }
+        }}
       />
       <ButtonsContainer>
         <Button
           color={MAIN_COLOR}
+          error={error}
           onClick={e => {
-            getConfirmAction(actionId, enhanceMe)({ githubLink: innerValue });
-            handleChangeDisplayModal(false, undefined, undefined, undefined);
+            if (!error) {
+              getConfirmAction(actionId, enhanceMe)({ github: innerValue });
+              handleChangeDisplayModal(false, undefined, undefined, undefined);
+            }
           }}
         >
           {confirmLabel}
         </Button>
-        <Button color={RED}>{cancelLabel}</Button>
+        <ButtonSpacer />
+        <Button
+          color={BACKGROUND_COLOR}
+          onClick={e => {
+            handleChangeDisplayModal(false, undefined, undefined, undefined);
+          }}
+        >
+          {cancelLabel}
+        </Button>
       </ButtonsContainer>
     </Content>
   </Container>
@@ -79,12 +107,16 @@ export default compose(
     mapDispatchToProps,
   ),
   withStateHandlers(
-    ({ initialInnerValue = '' }) => ({
+    ({ initialInnerValue = undefined, initialError = false }) => ({
       innerValue: initialInnerValue,
+      error: initialError,
     }),
     {
       handleChangeInnerValue: () => newValue => ({
         innerValue: newValue,
+      }),
+      handleChangeError: () => newError => ({
+        error: newError,
       }),
     },
   ),

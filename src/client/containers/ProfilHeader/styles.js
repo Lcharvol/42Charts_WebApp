@@ -64,3 +64,9 @@ export const ColumnBlock = styled.div`
   min-height: 165px;
   flex: 1;
 `;
+
+export const ButtonsContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+`;

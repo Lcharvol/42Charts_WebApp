@@ -8,6 +8,7 @@ import {
   RightSide,
   InlineBlock,
   ColumnBlock,
+  ButtonsContainer,
 } from './styles';
 import UserAvatar from '../../components/UserAvatar';
 import InfoContainer from './InfoContainer';
@@ -72,50 +73,44 @@ const ProfilHeader = ({
           user={user}
           color={color[0] === '#' ? color : `#${color}`}
         />
-        <ColumnBlock>
-          {winWidth <= RESPONSIVITY_WIDTH &&
-            !isNil(colationElem) && <UserCoalition coalition={coalition} />}
-          {winWidth <= RESPONSIVITY_WIDTH && (
-            <GitHubButton
-              isMe={displayAddFriendButton}
-              link={user.githubLink}
-            />
-          )}
-          {winWidth <= RESPONSIVITY_WIDTH &&
-            displayAddFriendButton && (
-              <AddOrRemoveFriendButtonProfil
-                user={user}
-                usable={true}
-                userId={user.id}
-                addFriend={isMyFriend ? undefined : addFriend}
-                removeFriend={isMyFriend ? removeFriend : undefined}
-                enhanceMe={enhanceMe}
-              />
-            )}
-        </ColumnBlock>
+        {winWidth <= RESPONSIVITY_WIDTH && (
+          <ColumnBlock>
+            {!isNil(colationElem) && <UserCoalition coalition={coalition} />}
+            <ButtonsContainer>
+              <GitHubButton isMe={!displayAddFriendButton} link={user.github} />
+              {displayAddFriendButton && (
+                <AddOrRemoveFriendButtonProfil
+                  user={user}
+                  usable={true}
+                  userId={user.id}
+                  addFriend={isMyFriend ? undefined : addFriend}
+                  removeFriend={isMyFriend ? removeFriend : undefined}
+                  enhanceMe={enhanceMe}
+                />
+              )}
+            </ButtonsContainer>
+          </ColumnBlock>
+        )}
       </LeftSide>
       <RightSide>
-        <InlineBlock>
-          {winWidth > RESPONSIVITY_WIDTH &&
-            !isNil(colationElem) && <UserCoalition coalition={coalition} />}
-          {winWidth > RESPONSIVITY_WIDTH && (
-            <GitHubButton
-              isMe={displayAddFriendButton}
-              link={user.githubLink}
-            />
-          )}
-          {winWidth > RESPONSIVITY_WIDTH &&
-            displayAddFriendButton && (
-              <AddOrRemoveFriendButtonProfil
-                user={user}
-                usable={true}
-                userId={user.id}
-                addFriend={isMyFriend ? undefined : addFriend}
-                removeFriend={isMyFriend ? removeFriend : undefined}
-                enhanceMe={enhanceMe}
-              />
-            )}
-        </InlineBlock>
+        {winWidth > RESPONSIVITY_WIDTH && (
+          <InlineBlock>
+            {!isNil(colationElem) && <UserCoalition coalition={coalition} />}
+            <ButtonsContainer>
+              <GitHubButton isMe={!displayAddFriendButton} link={user.github} />
+              {displayAddFriendButton && (
+                <AddOrRemoveFriendButtonProfil
+                  user={user}
+                  usable={true}
+                  userId={user.id}
+                  addFriend={isMyFriend ? undefined : addFriend}
+                  removeFriend={isMyFriend ? removeFriend : undefined}
+                  enhanceMe={enhanceMe}
+                />
+              )}
+            </ButtonsContainer>
+          </InlineBlock>
+        )}
         <LevelBar
           level={getLevelFromCursus(selectedCursus, cursus || [])}
           color={color[0] === '#' ? color : `#${color}`}
