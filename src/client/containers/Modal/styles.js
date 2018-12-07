@@ -56,9 +56,10 @@ export const Button = styled.div`
   user-select: none;
   cursor: pointer;
   &:hover {
-    opacity: 0.8;
+    opacity: ${({ error }) => (error ? 0.5 : 0.8)};
   }
   transition: all 0.1s ease-in-out;
+  opacity: ${({ error }) => (error ? 0.5 : 1)};
 `;
 
 export const ButtonSpacer = styled.div`
@@ -86,8 +87,8 @@ export const StyledInput = styled.input`
   box-sizing: border-box;
   color: ${DARK_FONT_COLOR};
   &:focus {
-    border-color: ${MAIN_COLOR};
-    box-shadow: 0 0 8px ${LIGHT_MAIN_COLOR};
+    border-color: ${({ error }) => (error ? RED : MAIN_COLOR)};
+    box-shadow: 0 0 8px ${({ error }) => (error ? RED : LIGHT_MAIN_COLOR)};
     outline: 0 none;
   }
 `;

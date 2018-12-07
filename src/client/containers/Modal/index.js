@@ -3,7 +3,7 @@ import { string } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { compose, withStateHandlers } from 'recompose';
-import { isNil, length } from 'ramda';
+import { isNil, test } from 'ramda';
 
 import {
   Container,
@@ -35,7 +35,8 @@ const getConfirmAction = (actionId, enhanceMe) => {
   return actions[actionId];
 };
 
-const isInputValid = input => {};
+const isInputValid = input =>
+  test(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i, input);
 
 const Modal = ({
   label,
@@ -62,12 +63,17 @@ const Modal = ({
         type="text"
         spellCheck="false"
         value={!isNil(innerValue) ? innerValue : modalPlaceholder}
+        error={error}
+        onKeyPress={e => {
+          if (e.key === 'Enter' && !error) {
+            getConfirmAction(actionId, enhanceMe)({ github: innerValue });
+            handleChangeDisplayModal(false, undefined, undefined, undefined);
+          }
+        }}
         onChange={e => {
           if (!isInputValid(e.target.value)) handleChangeError(true);
-          else {
-            if (error) handleChangeError(false);
-            handleChangeInnerValue(e.target.value);
-          }
+          else handleChangeError(false);
+          handleChangeInnerValue(e.target.value);
         }}
       />
       <ButtonsContainer>
