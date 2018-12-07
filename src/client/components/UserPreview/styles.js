@@ -1,23 +1,22 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import {
-  DARK_TEXT_COLOR,
-  FONT_COLOR,
-  DARK_BORDER_COLOR,
-} from '../../constants/colors';
+import { DARK_TEXT_COLOR, FONT_COLOR } from '../../constants/colors';
 
 export const Container = styled(Link)`
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 75px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  min-height: 75px;
+  max-height: 75px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   background-color: ${({ color }) => color};
-  border-radius: 3px;
+  border-radius: 60px;
   opacity: 0.9;
   cursor: pointer;
   &:hover {

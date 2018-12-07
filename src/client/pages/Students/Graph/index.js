@@ -1,6 +1,6 @@
 import React from 'react';
 import { array, number, func } from 'prop-types';
-import { length, isNil, isEmpty, times } from 'ramda';
+import { length, isNil, isEmpty, times, reduce, add } from 'ramda';
 import { compose, onlyUpdateForKeys, withStateHandlers } from 'recompose';
 
 import {
@@ -17,6 +17,7 @@ import {
 } from './styles';
 import Separator from '../../../components/Separator';
 import { MAIN_COLOR } from '../../../constants/colors';
+import reducer from '../../../reducers';
 
 const proptypes = {
   usersByUnit: array,
@@ -27,16 +28,33 @@ const proptypes = {
   usersRatioTranches: array.isRequired,
 };
 
+const getTotalStudent = usersByUnit => reduce(add, 0, usersByUnit);
+
 const getHoverValue = (hoveredUnit, usersByUnit) => {
-  return `${!isNil(usersByUnit[hoveredUnit]) ? usersByUnit[hoveredUnit] : ''}`;
+  return `${
+    !isNil(usersByUnit[hoveredUnit])
+      ? usersByUnit[hoveredUnit]
+      : `${getTotalStudent(usersByUnit)}`
+  }`;
 };
 
-const getHoverLabel = (hoveredUnit, usersByUnit, nbUsers, filterBy) => {
-  if (isNil(usersByUnit[hoveredUnit])) return '';
+const getHoverLabel = (
+  hoveredUnit,
+  usersByUnit,
+  nbUsers,
+  filterBy,
+  selectedPromo,
+) => {
+  if (isNil(usersByUnit[hoveredUnit]))
+    return `students ${
+      selectedPromo !== 'all' && length(selectedPromo) > 0
+        ? `in ${selectedPromo}`
+        : ''
+    }`;
   const perCent = Math.round((usersByUnit[hoveredUnit] / nbUsers) * 100);
   const setence = filterBy === 0 ? 'lvl' : '';
   return `/ ${nbUsers} students ${setence} ${
-    filterBy === 0 ? hoveredUnit : ''
+    filterBy === 0 ? hoveredUnit : ``
   } (${perCent}%)`;
 };
 
@@ -47,6 +65,7 @@ const Graph = ({
   hoveredUnit,
   handleChangeHoveredUnit,
   filterBy,
+  selectedPromo,
 }) => (
   <Container>
     <TopSide>
@@ -86,7 +105,13 @@ const Graph = ({
     <HoverContent>
       <HoverValue>{getHoverValue(hoveredUnit, usersByUnit)}</HoverValue>
       <HoverLabel>
-        {getHoverLabel(hoveredUnit, usersByUnit, nbUsers, filterBy)}
+        {getHoverLabel(
+          hoveredUnit,
+          usersByUnit,
+          nbUsers,
+          filterBy,
+          selectedPromo,
+        )}
       </HoverLabel>
     </HoverContent>
   </Container>

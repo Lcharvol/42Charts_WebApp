@@ -6,6 +6,7 @@ import {
   BACKGROUND_COLOR,
   DARK_FONT_COLOR,
   LIGHT_BACKGROUND_COLOR,
+  LIGHT_MAIN_COLOR,
 } from '../../constants/colors';
 import { MdSettings } from 'react-icons/md';
 
@@ -41,7 +42,10 @@ export const TopSide = styled.div`
   flex: 1;
   width: 100%;
   background-color: rgb(30, 30, 30);
-  background-image: linear-gradient(${BACKGROUND_COLOR}, rgb(35, 35, 35));
+  background-image: linear-gradient(
+    ${BACKGROUND_COLOR} 30%,
+    rgba(14, 80, 44, 0.4) 100%
+  );
   opacity: 0.7;
 `;
 
@@ -51,6 +55,7 @@ export const BottomSide = styled.div`
   flex: 1;
   width: 100%;
   background-image: linear-gradient(rgb(27, 27, 27), transparent);
+  border-top: solid 1px rgba(14, 80, 44, 0.6);
 `;
 
 export const OptionButton = styled(MdSettings)`

@@ -24,7 +24,6 @@ import {
 import PromoFilter from '../../containers/PromoFilter';
 import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
-import Title from '../../components/Title';
 import Spinner from '../../components/Spinner';
 import EmptySearch from '../../components/EmptySearch';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
@@ -70,6 +69,7 @@ const Students = ({
           usersByUnit={usersRatio}
           filterBy={filterBy}
           usersRatioTranches={usersRatioTranches}
+          selectedPromo={selectedPromo}
         />
         <PromoFilter
           promos={promos}

@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import { MdRefresh } from 'react-icons/md';
 
-import {
-  MAIN_COLOR,
-  DARK_MAIN_COLOR,
-  BACKGROUND_COLOR,
-  LIGHT_BACKGROUND_COLOR,
-} from '../../constants/colors';
+import { MAIN_COLOR, BACKGROUND_COLOR } from '../../constants/colors';
 import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
 
 export const Container = styled.div`
@@ -22,6 +17,8 @@ export const Container = styled.div`
     margin-left: 90px;
   }
   box-sizing: border-box;
+  max-height: 100vh;
+  overflow-y: scroll;
 `;
 
 export const Header = styled.div`
@@ -30,7 +27,7 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 1000;
-  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
+  width: calc(100% - ${SIDE_MENU_TOTAL_WIDTH}px - 20px);
   min-width: 550px;
   max-width: 1200px;
   top: 0;
@@ -41,6 +38,7 @@ export const Header = styled.div`
     left: 90px;
   }
   background-color: ${BACKGROUND_COLOR};
+  box-sizing: border-box;
 `;
 
 export const HeaderContent = styled.div`
@@ -79,15 +77,14 @@ export const UsersPrewiewContainer = styled.div`
 `;
 
 export const VisibilitySensorBox = styled.div`
-  position: absolute;
-  bottom: ${({ bottom }) => bottom}px;
-  left: 0;
+  position: relative;
+  bottom: 200px;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 80%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   min-width: 425px;
-  height: 75px;
+  min-height: 75px;
 `;
 
 export const RetryRequestContainer = styled.div`

@@ -18,5 +18,5 @@ export const isMyFriend = (userId, friends) =>
 
 export const getSmicFromLog = logtimeInSeconds => {
   const hours = Math.floor(logtimeInSeconds / 3600);
-  return `${hours * 7.83} € S.M.I.C (net)`;
+  return `${Math.floor(hours * 7.83)} € S.M.I.C (net)`;
 };
