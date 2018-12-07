@@ -36,18 +36,17 @@ export const ButtonContainer = styled.div`
   cursor: pointer;
   border-radius: 3px;
   padding: 3px 10px;
-  line-height: 20px;
-  font-size: 0.25em;
+  font-size: 0.3em;
   box-sizing: border-box;
   &:hover {
     background-image: linear-gradient(
       to bottom,
       ${({ remove }) => (remove ? LIGHT_BACKGROUND_COLOR : MAIN_COLOR)} 100%,
-      ${({ remove }) =>
-        remove ? HEADER_BACKGROUND_COLOR : DARK_MAIN_COLOR} 100%
+      ${({ remove }) => (remove ? HEADER_BACKGROUND_COLOR : DARK_MAIN_COLOR)}
+        100%
     );
-  };
-  color:${({ remove }) => (remove ? RED : DARK_FONT_COLOR)}
+  }
+  color: ${({ remove }) => (remove ? RED : 'rgba(0,0,0,0.6)')};
   transition: all 0.3s ease-in-out;
 `;
 
