@@ -1,3 +1,5 @@
+import { isNil } from 'ramda';
+
 import { getFormatedLogtime } from '../utils';
 
 export const getPromos = state => state.app.promos;
@@ -10,7 +12,9 @@ export const getWeekSummaryTotalLogTime = state =>
   getFormatedLogtime(state.app.weekSummary.totalLogTime);
 
 export const getWeekSummaryMostUsedPost = state =>
-  state.app.weekSummary.mostUsedPost.fullname;
+  !isNil(state.app.weekSummary.mostUsedPost)
+    ? state.app.weekSummary.mostUsedPost.fullname
+    : 'No logs';
 
 export const getWeekSummaryAllAverageLogTime = state =>
   getFormatedLogtime(state.app.weekSummary.allAverageLogTime);
