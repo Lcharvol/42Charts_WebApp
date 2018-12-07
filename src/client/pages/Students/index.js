@@ -70,6 +70,7 @@ const Students = ({
           usersByUnit={usersRatio}
           filterBy={filterBy}
           usersRatioTranches={usersRatioTranches}
+          selectedPromo={selectedPromo}
         />
         <PromoFilter
           promos={promos}

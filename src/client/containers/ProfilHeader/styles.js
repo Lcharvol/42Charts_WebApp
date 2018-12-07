@@ -19,6 +19,7 @@ export const Container = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top:25px;
 `;
 
 export const LeftSide = styled.div`
@@ -40,6 +41,7 @@ export const RightSide = styled.div`
   flex-direction: column;
   padding: 25px;
   padding-left: 0;
+  height: 100%;
   @media (max-width: ${RESPONSIVITY_WIDTH}px) {
     min-width: 100%;
     padding-left: 25px;

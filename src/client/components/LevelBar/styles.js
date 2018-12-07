@@ -9,7 +9,7 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  max-width: 750px;
+  max-width: 800px;
   min-width: 250px;
   min-height: 45px;
   background-color: ${TRANSPARENT_DARK_BACKGROUND};

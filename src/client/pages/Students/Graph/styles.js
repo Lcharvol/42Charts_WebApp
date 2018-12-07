@@ -90,7 +90,6 @@ export const HoverValue = styled.div`
 export const HoverLabel = styled.div`
   position: relative;
   display: flex;
-  width: 280px;
   font-size: 0.4em;
   color: ${DARK_FONT_COLOR};
 `;

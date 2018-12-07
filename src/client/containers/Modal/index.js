@@ -35,6 +35,8 @@ const getConfirmAction = (actionId, enhanceMe) => {
   return actions[actionId];
 };
 
+const isInputValid = input => {};
+
 const Modal = ({
   label,
   handleChangeDisplayModal,

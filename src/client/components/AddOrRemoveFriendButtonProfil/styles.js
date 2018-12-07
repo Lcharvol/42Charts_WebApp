@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 import {
   MAIN_COLOR,
-  LIGHT_MAIN_COLOR,
   DARK_MAIN_COLOR,
   RED,
-  DARK_RED,
   LIGHT_BACKGROUND_COLOR,
   HEADER_BACKGROUND_COLOR,
   DARK_FONT_COLOR,
-  LIGHT_GREY,
 } from '../../constants/colors';
 import { FaTrash, FaPlus } from 'react-icons/fa';
-import { MdPerson } from 'react-icons/md';
+import { RESPONSIVITY_WIDTH } from '../../containers/ProfilHeader/constants';
 
 export const Container = styled.div`
   position: relative;
@@ -19,6 +16,9 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   min-height: 100%;
+  @media (max-width: ${RESPONSIVITY_WIDTH}px) {
+    margin-top: 10px;
+  }
 `;
 
 export const ButtonContainer = styled.div`

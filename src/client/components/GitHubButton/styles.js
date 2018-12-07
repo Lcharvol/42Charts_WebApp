@@ -2,13 +2,8 @@ import styled from 'styled-components';
 import { GoMarkGithub } from 'react-icons/go';
 import { MdEdit } from 'react-icons/md';
 
-import {
-  LIGHT_BACKGROUND_COLOR,
-  BORDER_COLOR,
-  BACKGROUND_COLOR,
-  LIGHT_GREY,
-  MAIN_COLOR,
-} from '../../constants/colors';
+import { MAIN_COLOR } from '../../constants/colors';
+import { RESPONSIVITY_WIDTH } from '../../containers/ProfilHeader/constants';
 
 export const Container = styled.div`
   position: relative;
@@ -16,6 +11,10 @@ export const Container = styled.div`
   height: 34px;
   margin-right: 10px;
   margin-bottom: 10px;
+  @media (max-width: ${RESPONSIVITY_WIDTH}px) {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
 `;
 
 export const Content = styled.div`

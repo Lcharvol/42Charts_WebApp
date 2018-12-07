@@ -1,7 +1,7 @@
 import React from 'react';
 import { object, string, func, bool, number } from 'prop-types';
 import { equals, isNil, find, propEq, map } from 'ramda';
-import { withStateHandlers, mapProps } from 'recompose';
+import { compose, withStateHandlers, onlyUpdateForKeys } from 'recompose';
 
 import {
   Container,
@@ -22,7 +22,6 @@ import {
   BORDER_COLOR,
   MAIN_COLOR,
   BACKGROUND_COLOR,
-  LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
 import { VIEW_STUDENT } from '../../constants/GaLabels';
 import { coalitionsBackground } from '../../constants/coalitions';
@@ -158,13 +157,16 @@ const UserPreview = ({
 
 UserPreview.propTypes = propTypes;
 
-export default withStateHandlers(
-  ({ initialIsHover = false }) => ({
-    isHover: initialIsHover,
-  }),
-  {
-    handleChangeIsHover: () => newValue => ({
-      isHover: newValue,
+export default compose(
+  withStateHandlers(
+    ({ initialIsHover = false }) => ({
+      isHover: initialIsHover,
     }),
-  },
+    {
+      handleChangeIsHover: () => newValue => ({
+        isHover: newValue,
+      }),
+    },
+  ),
+  onlyUpdateForKeys(['isHover']),
 )(UserPreview);
