@@ -1,3 +1,6 @@
+import React from 'react';
+import styled from 'styled-components';
+
 import {
   getAchievementsCount,
   getMyProjectsValidated,
@@ -22,6 +25,8 @@ import {
   getHigherLogPerMonthInfos,
   getMyCoalitionScoreInfo,
   getMyAverageLevelByMonth,
+  getAllStudentsCount,
+  getMyPromoStudentsCount,
 } from '../selectors/me';
 
 import {
@@ -40,7 +45,18 @@ import {
   getUserCoalitionRank,
   getUserCoalitionScore,
   getUserCoalitionScoreInfo,
+  getUserAllStudentsCount,
+  getUserPromoStudentsCount,
 } from '../selectors/user';
+
+const ValueContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+`;
 
 export const MY_STATS_CONTENT = [
   {
@@ -52,13 +68,23 @@ export const MY_STATS_CONTENT = [
   {
     id: 1,
     value: state => getMyPromoRank(state),
-    secondValue: state => getMyPromoRankEvolution(state),
+    secondValue: state => (
+      <ValueContainer>
+        {getMyPromoRankEvolution(state)}
+        {` (${getMyPromoStudentsCount(state)} students)`}
+      </ValueContainer>
+    ),
     label: 'Promo Rank',
   },
   {
     id: 2,
     value: state => getMyAllRank(state),
-    secondValue: state => getMyAllRankEvolution(state),
+    secondValue: state => (
+      <ValueContainer>
+        {getMyAllRankEvolution(state)}
+        {` (${getAllStudentsCount(state)} students)`}
+      </ValueContainer>
+    ),
     label: 'All Rank',
   },
   {
@@ -133,13 +159,23 @@ export const USER_STATS_CONTENT = [
   {
     id: 0,
     value: state => getUserAllRank(state),
-    secondValue: state => getUserAllRankEvolution(state),
+    secondValue: state => (
+      <ValueContainer>
+        {getUserAllRankEvolution(state)}
+        {` (${getUserAllStudentsCount(state)} students)`}
+      </ValueContainer>
+    ),
     label: 'All Rank',
   },
   {
     id: 1,
     value: state => getUserPromoRank(state),
-    secondValue: state => getUserPromoRankEvolution(state),
+    secondValue: state => (
+      <ValueContainer>
+        {getUserPromoRankEvolution(state)}
+        {` (${getUserPromoStudentsCount(state)} students)`}
+      </ValueContainer>
+    ),
     label: 'Promo Rank',
   },
   {

@@ -141,7 +141,7 @@ export const getAverageLogsPerSession = state => {
   const averageLogTimeInSecond = Math.floor(
     state.me.logs.totalLogTime / getMyNumberOfLogs(state),
   );
-  return getFormatedLogtime(averageLogTimeInSecond);
+  return `~ ${getFormatedLogtime(averageLogTimeInSecond)} / session`;
 };
 
 export const getMyAllRankEvolution = state => {
@@ -156,6 +156,7 @@ export const getMyAllRankEvolution = state => {
     justify-content: center;
     align-items: center;
     color: ${color};
+    margin-right: 10px;
   `;
   const Icon = diff >= 0 ? MdArrowDropUp : MdArrowDropDown;
   return (
@@ -178,6 +179,7 @@ export const getMyPromoRankEvolution = state => {
     justify-content: center;
     align-items: center;
     color: ${color};
+    margin-right: 10px;
   `;
   const Icon = diff >= 0 ? MdArrowDropUp : MdArrowDropDown;
   return (
@@ -200,3 +202,7 @@ export const getMyProfilPicture = state => state.me.imageUrl;
 export const getMyProjects = state => state.me.projects;
 
 export const getMyGithubLink = state => state.me.github;
+
+export const getAllStudentsCount = state => state.me.allCount;
+
+export const getMyPromoStudentsCount = state => state.me.promoCount;

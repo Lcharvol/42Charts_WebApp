@@ -45,6 +45,7 @@ export const getUserAllRankEvolution = state => {
     justify-content: center;
     align-items: center;
     color: ${color};
+    margin-right: 10px;
   `;
   const Icon = diff >= 0 ? MdArrowDropUp : MdArrowDropDown;
   return (
@@ -67,6 +68,7 @@ export const getUserPromoRankEvolution = state => {
     justify-content: center;
     align-items: center;
     color: ${color};
+    margin-right: 10px;
   `;
   const Icon = diff >= 0 ? MdArrowDropUp : MdArrowDropDown;
   return (
@@ -114,3 +116,7 @@ export const getUserCoalitionScoreInfo = state => {
 };
 
 export const getUserCoalitionRank = state => state.user.coalition.userRank;
+
+export const getUserAllStudentsCount = state => state.user.allCount;
+
+export const getUserPromoStudentsCount = state => state.user.promoCount;

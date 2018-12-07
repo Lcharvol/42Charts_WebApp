@@ -12,7 +12,8 @@ export const Container = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 75px;
+  min-height: 75px;
+  max-height: 75px;
   margin-top: 4px;
   margin-bottom: 4px;
   padding-left: 5px;
