@@ -34,7 +34,7 @@ export const Header = styled.div`
   left: ${SIDE_MENU_TOTAL_WIDTH}px;
   padding-bottom: 40px;
   @media (max-width: 1000px) {
-    width: calc(100vw - ${90}px);
+    width: calc(100vw - ${110}px);
     left: 90px;
   }
   background-color: ${BACKGROUND_COLOR};

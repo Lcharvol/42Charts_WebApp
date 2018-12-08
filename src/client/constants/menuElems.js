@@ -1,5 +1,11 @@
 import React from 'react';
-import { MdPerson, MdPeople, MdEqualizer, MdApps } from 'react-icons/md';
+import {
+  MdPerson,
+  MdPeople,
+  MdEqualizer,
+  MdApps,
+  MdWork,
+} from 'react-icons/md';
 
 const menuElems = [
   {
@@ -22,6 +28,12 @@ const menuElems = [
   },
   {
     key: 3,
+    to: '/projects',
+    label: 'Projects',
+    logo: <MdWork />,
+  },
+  {
+    key: 4,
     to: '/apps',
     label: '42 Apps',
     logo: <MdApps />,

@@ -5,6 +5,7 @@ import ServerDown from './pages/ServerDown';
 import User from './pages/User';
 import Friends from './pages/Friends';
 import Apps from './pages/Apps';
+import Projects from './pages/Projects';
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     id: 7,
     path: '/apps',
     component: Apps,
+  },
+  {
+    id: 8,
+    path: '/projects',
+    component: Projects,
   },
 ];
 
