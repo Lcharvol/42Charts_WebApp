@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import {
   BORDER_COLOR,
-  MAIN_COLOR,
   TRANSPARENT_DARK_BACKGROUND,
 } from '../../../constants/colors';
 
@@ -25,6 +24,7 @@ export const Container = styled.div`
 export const FullName = styled.div`
   position: relative;
   display: flex;
+  min-height: 22px;
   justify-content: flex-start;
   font-family: sans-serif;
   font-weight: bold;
