@@ -253,3 +253,13 @@ export const reqPutGitHub = githubLink =>
     .catch(err => {
       throw err;
     });
+
+export const reqGetAllProject = () =>
+  axios({
+    method: 'get',
+    url: 'projects',
+  })
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
