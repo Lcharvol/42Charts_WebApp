@@ -17,7 +17,7 @@ export const Container = styled(Link)`
   padding-bottom: 2px;
   background-color: ${({ color }) => color};
   border-radius: 60px;
-  opacity: 0.9;
+  opacity: 0.8;
   cursor: pointer;
   &:hover {
     opacity: 1;
