@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-import { MdRefresh } from 'react-icons/md';
-
-import { MAIN_COLOR, BACKGROUND_COLOR } from '../../constants/colors';
 import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
+import { BACKGROUND_COLOR } from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -19,6 +17,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   max-height: 100vh;
   overflow-y: scroll;
+  min-width: 500px;
 `;
 
 export const Header = styled.div`
@@ -34,7 +33,7 @@ export const Header = styled.div`
   left: ${SIDE_MENU_TOTAL_WIDTH}px;
   padding-bottom: 40px;
   @media (max-width: 1000px) {
-    width: calc(100vw - ${110}px);
+    width: calc(100vw - ${90}px);
     left: 90px;
   }
   background-color: ${BACKGROUND_COLOR};
@@ -56,7 +55,9 @@ export const Content = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 365px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 165px;
   width: 100%;
   padding-left: 50px;
   padding-right: 50px;
@@ -64,7 +65,7 @@ export const Content = styled.div`
   max-width: 1100px;
 `;
 
-export const UsersPrewiewContainer = styled.div`
+export const ProjectsContainer = styled.div`
   position: relative;
   display: flex;
   width: 100%;
@@ -74,41 +75,4 @@ export const UsersPrewiewContainer = styled.div`
     margin-top: 25px;
   }
   box-sizing: border-box;
-`;
-
-export const VisibilitySensorBox = styled.div`
-  position: relative;
-  bottom: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-width: 425px;
-  min-height: 75px;
-`;
-
-export const RetryRequestContainer = styled.div`
-  position: relative;
-  bottom: 0px;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  min-width: 425px;
-  height: 75px;
-`;
-
-export const RetryRequest = styled(MdRefresh)`
-  color: ${MAIN_COLOR};
-  cursor: pointer;
-  margin-top: 75px;
-  &:hover {
-    transform: rotate(180deg);
-  }
-  &:active {
-    transform: rotate(540deg);
-    transition: all 0.2s ease-in-out;
-  }
-  transition: all 0.3s ease-in-out;
 `;

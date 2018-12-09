@@ -32,7 +32,7 @@ export const getMyProjectsValidated = state => {
     project => project.status === 'finished' && project.finalMark >= 50,
     projects,
   );
-  return length(validatedProject);
+  return !isNil(validatedProject) ? length(validatedProject) : 0;
 };
 
 export const getMyProjectsFailed = state => {

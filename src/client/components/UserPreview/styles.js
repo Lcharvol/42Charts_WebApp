@@ -8,16 +8,16 @@ export const Container = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 75px;
-  max-height: 75px;
+  min-height: 73px;
+  max-height: 73px;
   margin-top: 5px;
   margin-bottom: 5px;
   padding-left: 5px;
   padding-top: 2px;
   padding-bottom: 2px;
   background-color: ${({ color }) => color};
-  border-radius: 60px;
-  opacity: 0.9;
+  border-radius: 80px;
+  opacity: 0.8;
   cursor: pointer;
   &:hover {
     opacity: 1;

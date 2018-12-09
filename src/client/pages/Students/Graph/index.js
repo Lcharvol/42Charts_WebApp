@@ -9,7 +9,6 @@ import {
   BottomSide,
   BarContainer,
   Bar,
-  Label,
   HoverContent,
   HoverValue,
   HoverLabel,
@@ -17,7 +16,6 @@ import {
 } from './styles';
 import Separator from '../../../components/Separator';
 import { MAIN_COLOR } from '../../../constants/colors';
-import reducer from '../../../reducers';
 
 const proptypes = {
   usersByUnit: array,
