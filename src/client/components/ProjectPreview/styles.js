@@ -12,13 +12,29 @@ import {
 export const Container = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   color: ${DARK_FONT_COLOR};
-  min-height: 40px;
+  min-height: ${({ isWrapped }) => (isWrapped ? 40 : 150)}px;
   width: 100%;
   font-size: 0.3em;
   border-bottom: solid 1px ${DARK_BORDER_COLOR};
+  transition: min-height 0.3s ease-in-out;
+`;
+
+export const TopSide = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+export const BottomSide = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
 `;
 
 export const ProjectInfos = styled.div`

@@ -57,7 +57,7 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 365px;
+  margin-top: 165px;
   width: 100%;
   padding-left: 50px;
   padding-right: 50px;
