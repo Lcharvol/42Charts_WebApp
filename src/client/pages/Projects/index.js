@@ -25,6 +25,7 @@ const Projects = ({ allProjects, myProjects, validatedProjectsCount }) => (
         <ProgressBar
           value={validatedProjectsCount}
           total={length(allProjects) > 0 ? length(allProjects) : 1}
+          label={' projects validated'}
         />
       </HeaderContent>
     </Header>

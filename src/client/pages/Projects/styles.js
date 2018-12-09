@@ -17,6 +17,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   max-height: 100vh;
   overflow-y: scroll;
+  min-width: 500px;
 `;
 
 export const Header = styled.div`
