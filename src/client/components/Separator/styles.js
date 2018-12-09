@@ -5,7 +5,13 @@ export const Container = styled.div`
   position: relative;
   width: ${({ width }) => width};
   height: 1px;
-  background-color: ${({ color }) => color};
+  background-image: linear-gradient(
+    to right,
+    transparent 0%,
+    ${({ color }) => color} 10%,
+    ${({ color }) => color} 90%,
+    transparent 100%
+  );
   margin-left: auto;
   margin-right: auto;
 `;

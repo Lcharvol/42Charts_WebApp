@@ -15,7 +15,6 @@ export const Container = styled.div`
   background-color: ${TRANSPARENT_DARK_BACKGROUND};
   border-radius: 3px;
   overflow: hidden;
-  margin-bottom: 5px;
 `;
 
 export const Content = styled.div`
