@@ -4,6 +4,7 @@ import {
   MAIN_COLOR,
   FONT_COLOR,
   DARK_MAIN_COLOR,
+  LIGHT_MAIN_COLOR,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -68,8 +69,8 @@ export const SelectedBox = styled.div`
   background-color: ${MAIN_COLOR};
   background-image: linear-gradient(
     to bottom,
-    ${MAIN_COLOR} 0%,
-    ${DARK_MAIN_COLOR} 100%
+    ${LIGHT_MAIN_COLOR} 0%,
+    ${MAIN_COLOR} 50%
   );
   border-radius: 3px;
   z-index: 40;
