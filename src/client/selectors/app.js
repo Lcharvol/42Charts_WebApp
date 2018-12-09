@@ -13,7 +13,7 @@ export const getWeekSummaryTotalLogTime = state =>
 
 export const getWeekSummaryMostUsedPost = state =>
   !isNil(state.app.weekSummary.mostUsedPost)
-    ? state.app.weekSummary.mostUsedPost.fullname
+    ? state.app.weekSummary.mostUsedPost.fullname || 'e0r0p0'
     : 'No logs';
 
 export const getWeekSummaryAllAverageLogTime = state =>

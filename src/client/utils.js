@@ -1,13 +1,14 @@
 import { isNil, length, filter, propEq } from 'ramda';
 
 export const getFormatedLogtime = logtimeInSeconds => {
-  if (isNil(logtimeInSeconds)) return '';
+  if (isNil(logtimeInSeconds)) return '0 h 0 min';
   const hours = Math.floor(logtimeInSeconds / 60 / 60);
   const min = Math.floor((logtimeInSeconds - hours * 60 * 60) / 60);
   return `${hours} h ${min} min`;
 };
 
 export const getFormatedLogtimeInDay = logtimeInSeconds => {
+  if (isNil(logtimeInSeconds)) return '0 D 0 H';
   const days = Math.floor(logtimeInSeconds / 86400);
   const hours = Math.floor((logtimeInSeconds - days * 86400) / 3600);
   return `${days} D ${hours} H`;
