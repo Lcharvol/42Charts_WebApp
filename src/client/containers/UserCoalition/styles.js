@@ -3,7 +3,10 @@ import { isNil } from 'ramda';
 import { FaTrophy } from 'react-icons/fa';
 import { MdTurnedIn } from 'react-icons/md';
 
-import { FONT_COLOR } from '../../constants/colors';
+import {
+  FONT_COLOR,
+  TRANSPARENT_DARK_BACKGROUND,
+} from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -31,6 +34,7 @@ export const Flag = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${TRANSPARENT_DARK_BACKGROUND};
   background: ${({ gradientColor }) => gradientColor};
   width: 85px;
   height: 85px;

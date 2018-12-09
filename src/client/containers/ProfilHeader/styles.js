@@ -5,6 +5,7 @@ import { RESPONSIVITY_WIDTH } from './constants';
 export const Container = styled.div`
   position: relative;
   display: flex;
+  flex-wrap:no-wrap;
   background-color: rgb(25, 25, 25);
   justify-content: flex-start;
   align-items: flex-start;
@@ -38,10 +39,11 @@ export const LeftSide = styled.div`
 export const RightSide = styled.div`
   position: relative;
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   flex-direction: column;
   padding: 25px;
   padding-left: 0;
-  height: 100%;
   @media (max-width: ${RESPONSIVITY_WIDTH}px) {
     min-width: 100%;
     padding-left: 25px;

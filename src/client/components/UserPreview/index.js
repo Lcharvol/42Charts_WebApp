@@ -82,17 +82,17 @@ const UserPreview = ({
       color={
         myLogin.toLowerCase() === user.login.toLowerCase()
           ? MAIN_COLOR
-          : 'rgba(50,50,50,0.1)'
+          : 'rgba(60,60,60,0.1)'
       }
     >
       <LeftSide>
-        <Rank color={getRankColor(user.rank)}>{user.rank}</Rank>
         <UserAvatar
           profilPicture={user.imageUrl}
           width={'60px'}
           height={'60px'}
           round
         />
+        <Rank color={getRankColor(user.rank)}>{user.rank}</Rank>
         <Login>
           {user.login.charAt(0).toUpperCase() + user.login.slice(1)}
         </Login>
@@ -100,7 +100,6 @@ const UserPreview = ({
           <Badge
             color={userCoalition.gradientColor}
             imageUrl={userCoalition.imageUrl}
-            shape={'square'}
           />
           {!isNil(winWidth) &&
             winWidth > 1000 &&

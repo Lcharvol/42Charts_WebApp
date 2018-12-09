@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import {
   LIGHT_BACKGROUND_COLOR,
   DARK_BORDER_COLOR,
   BACKGROUND_COLOR,
   FONT_COLOR,
+  DARK_FONT_COLOR,
 } from '../../constants/colors';
-import ChevronDownIcon from '../../../../public/chev_down.png';
 
 export const Container = styled.div`
   position: relative;
@@ -51,17 +52,13 @@ export const SelectedValue = styled.div`
   opacity: 0.7;
 `;
 
-export const ChevIcon = styled.div`
-    position:relative;
-    display:flex;
-    width:15px;
-    height:15px;
-    margin:5px;
-    background-image:url('${ChevronDownIcon}');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity:0.7;
+export const ChevIcon = styled(MdKeyboardArrowDown)`
+  position: relative;
+  display: flex;
+  font-size: 0.4em;
+  margin: 5px;
+  opacity: 0.7;
+  color: ${DARK_FONT_COLOR};
 `;
 
 export const Value = styled.div`

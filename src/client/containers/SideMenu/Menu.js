@@ -1,5 +1,5 @@
 import React from 'react';
-import { map } from 'ramda';
+import { map, find, propEq } from 'ramda';
 import {
   MenuContainer,
   MenuElemContainer,
@@ -8,6 +8,7 @@ import {
   Logout,
   LogoContainer,
   LogoutLogo,
+  SelectedLinkContainer,
 } from './styles';
 import menuElems from '../../constants/menuElems';
 import {
@@ -31,7 +32,6 @@ const MenuElem = ({
       to={to}
       color={to === selectedLink ? MAIN_COLOR : DARK_FONT_COLOR}
     >
-      <LeftBar selected={to === selectedLink} />
       {label}
     </StyledLink>
   </MenuElemContainer>
@@ -55,6 +55,13 @@ const Menu = ({
         ),
         menuElems,
       )}
+    {winWidth > 1000 && (
+      <SelectedLinkContainer
+        pos={find(propEq('to', selectedLink))(menuElems).key}
+      >
+        <LeftBar />
+      </SelectedLinkContainer>
+    )}
     {winWidth > 1000 && (
       <MenuElemContainer>
         <Logout

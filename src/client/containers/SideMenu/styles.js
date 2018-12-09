@@ -73,6 +73,15 @@ export const MenuElemContainer = styled.div`
   }
 `;
 
+export const SelectedLinkContainer = styled.div`
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 45px;
+  top: ${({ pos }) => pos * 45}px;
+  transition: top 0.3s ease-in-out;
+`;
+
 export const StyledLink = styled(Link)`
   position: relative;
   display: flex;
@@ -89,6 +98,7 @@ export const StyledLink = styled(Link)`
     color: ${MAIN_COLOR};
   }
   user-select: none;
+  margin-left: 25px;
 `;
 
 export const LeftBar = styled.div`
@@ -96,8 +106,7 @@ export const LeftBar = styled.div`
   display: flex;
   height: 100%;
   width: 5px;
-  background-color: ${({ selected }) =>
-    selected ? MAIN_COLOR : 'transparent'};
+  background-color: ${MAIN_COLOR};
   margin-right: 20px;
 `;
 

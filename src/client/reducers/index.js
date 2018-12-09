@@ -5,6 +5,7 @@ import me from './me';
 import time from './time';
 import user from './user';
 import apps from './apps';
+import projects from './projects';
 
 const reducer = combineReducers({
   app,
@@ -12,6 +13,7 @@ const reducer = combineReducers({
   time,
   user,
   apps,
+  projects,
 });
 
 export default reducer;

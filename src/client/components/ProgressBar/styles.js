@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { isNil } from 'ramda';
 import {
+  LIGHT_BACKGROUND_COLOR,
   MAIN_COLOR,
+  DARK_FONT_COLOR,
   TRANSPARENT_DARK_BACKGROUND,
 } from '../../constants/colors';
 
@@ -12,20 +13,19 @@ export const Container = styled.div`
   max-width: 800px;
   min-width: 250px;
   min-height: 45px;
-  background-color: ${TRANSPARENT_DARK_BACKGROUND};
+  background-color: ${LIGHT_BACKGROUND_COLOR};
   border-radius: 3px;
   overflow: hidden;
+  margin-bottom: 5px;
 `;
 
 export const Content = styled.div`
   position: absolute;
   display: flex;
-  height: 100%;
-  background: ${({ color, gradientColor }) =>
-    isNil(gradientColor) ? color : gradientColor};
+  background-color: ${MAIN_COLOR};
   width: ${({ value }) => value}%;
-  z-index: 100;
-  transition: width 0.3s ease-in-out;
+  height: 100%;
+  transition: all 0.3s ease-in-out;
 `;
 
 export const Label = styled.div`
