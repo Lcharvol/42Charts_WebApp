@@ -7,7 +7,6 @@ import {
   DARK_MAIN_COLOR,
   HEADER_BACKGROUND_COLOR,
 } from '../../constants/colors';
-import ChevronDownIcon from '../../../../public/chev_down.png';
 
 export const Container = styled.div`
   position: relative;
