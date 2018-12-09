@@ -8,8 +8,8 @@ export const Container = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 75px;
-  max-height: 75px;
+  min-height: 73px;
+  max-height: 73px;
   margin-top: 5px;
   margin-bottom: 5px;
   padding-left: 5px;

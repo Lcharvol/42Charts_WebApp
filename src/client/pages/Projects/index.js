@@ -2,7 +2,16 @@ import React from 'react';
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { map, isEmpty, find, propEq, isNil, length } from 'ramda';
+import {
+  map,
+  isEmpty,
+  find,
+  propEq,
+  isNil,
+  length,
+  filter,
+  contains,
+} from 'ramda';
 
 import {
   Container,
@@ -17,6 +26,7 @@ import { reqGetAllProject } from '../../requests';
 import { loadProjects } from '../../actions/projects';
 import ProjectPreview from '../../components/ProjectPreview';
 import ProgressBar from '../../components/ProgressBar';
+import { supportedProjectsNames } from './constants';
 
 const Projects = ({ allProjects, myProjects, validatedProjectsCount }) => (
   <Container>
@@ -65,7 +75,14 @@ export default compose(
     componentDidMount() {
       if (isEmpty(this.props.allProjects)) {
         reqGetAllProject()
-          .then(allProjects => this.props.loadProjects(allProjects))
+          .then(allProjects =>
+            this.props.loadProjects(
+              filter(
+                project => contains(project.name, supportedProjectsNames),
+                allProjects,
+              ),
+            ),
+          )
           .catch(err => err);
       }
     },

@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { MdKeyboardArrowRight, MdKeyboardArrowUp } from 'react-icons/md';
+import { FaPlus } from 'react-icons/fa';
+
 import {
   DARK_FONT_COLOR,
   DARK_BORDER_COLOR,
@@ -42,4 +45,19 @@ export const MyMark = styled.div`
   display: flex;
   color: ${({ validated }) => (validated ? MAIN_COLOR : RED)};
   margin-right: 25px;
+`;
+
+export const WrapperButton = styled(FaPlus)`
+  font-size: 1em;
+  color: ${DARK_FONT_COLOR};
+  margin-left: 15px;
+  cursor: pointer;
+  &:hover {
+    color: ${MAIN_COLOR};
+  }
+`;
+
+export const UnWrapperButton = styled(FaPlus)`
+  font-size: 2em;
+  color: ${DARK_FONT_COLOR};
 `;
