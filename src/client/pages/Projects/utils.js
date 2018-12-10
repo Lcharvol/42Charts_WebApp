@@ -1,4 +1,4 @@
-import { find, propEq, filter, isNil } from 'ramda';
+import { find, propEq, filter, isNil, length, match } from 'ramda';
 
 import { SORT_BY_VALUES } from './constants';
 
@@ -6,6 +6,7 @@ export const sortAndFilterProjects = (
   projects,
   sortValue,
   filterStatusValue,
+  searchValue,
   myProjects,
 ) => {
   const sortFunc = find(propEq('id', sortValue))(SORT_BY_VALUES).sortFunc;
@@ -27,5 +28,12 @@ export const sortAndFilterProjects = (
     } else if (filterStatusValue.none === true) return true;
     else return false;
   }, projects);
-  return sortFunc(filteredProjects);
+  const sortedProject = sortFunc(filteredProjects);
+  if (length(searchValue) > 0) {
+    const reg = new RegExp(searchValue, 'i');
+    return filter(
+      project => length(match(reg, project.name)) > 0,
+      sortedProject,
+    );
+  } else return sortedProject;
 };

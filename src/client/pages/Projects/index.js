@@ -29,13 +29,14 @@ import { loadProjects } from '../../actions/projects';
 import ProjectPreview from '../../components/ProjectPreview';
 import ProgressBar from '../../components/ProgressBar';
 import SelectButton from '../../components/SelectButton';
+import SearchBar from '../../components/SearchBar';
+import StatusFilterButtons from './StatusFilterButtons';
+import { sortAndFilterProjects } from './utils.js';
 import {
   supportedProjectsNames,
   SORT_BY_VALUES,
   FILTER_BY_STATUS,
 } from './constants';
-import StatusFilterButtons from './StatusFilterButtons';
-import { sortAndFilterProjects } from './utils.js';
 
 const Projects = ({
   allProjects,
@@ -43,8 +44,10 @@ const Projects = ({
   validatedProjectsCount,
   sortValue,
   statusFilterValue,
+  searchValue,
   handleChangeSortValue,
   handleChangeStatusFilterValue,
+  handleChangeSearchValue,
 }) => (
   <Container>
     <Header>
@@ -67,6 +70,8 @@ const Projects = ({
           value={statusFilterValue}
           handler={handleChangeStatusFilterValue}
         />
+        {console.log('searchValue: ', searchValue)}
+        <SearchBar value={searchValue} handler={handleChangeSearchValue} />
       </OptionContainer>
     </Header>
     <Content>
@@ -80,7 +85,7 @@ const Projects = ({
               myMark={isNil(myProject) ? undefined : myProject.finalMark}
             />
           );
-        }, sortAndFilterProjects(allProjects, sortValue, statusFilterValue, myProjects))}
+        }, sortAndFilterProjects(allProjects, sortValue, statusFilterValue, searchValue, myProjects))}
       </ProjectsContainer>
     </Content>
   </Container>
@@ -121,9 +126,11 @@ export default compose(
     ({
       initialSortValue = 0,
       initialStatusFilterValue = { none: true, validated: true, failed: true },
+      initialSearchValue = '',
     }) => ({
       sortValue: initialSortValue,
       statusFilterValue: initialStatusFilterValue,
+      searchValue: initialSearchValue,
     }),
     {
       handleChangeSortValue: () => newValue => ({
@@ -134,6 +141,9 @@ export default compose(
           ...statusFilterValue,
           [statusName]: !statusFilterValue[statusName],
         },
+      }),
+      handleChangeSearchValue: () => newValue => ({
+        searchValue: newValue,
       }),
     },
   ),

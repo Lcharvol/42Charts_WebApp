@@ -8,7 +8,6 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding-left: 15px;
-  flex: 1;
   min-height: 30px;
   box-sizing: border-box;
 `;
@@ -18,6 +17,7 @@ export const Label = styled.div`
   display: flex;
   color: ${DARK_FONT_COLOR};
   font-size: 0.3em;
+  margin-right: 10px;
 `;
 
 export const StatusElem = styled.div`
@@ -27,9 +27,13 @@ export const StatusElem = styled.div`
   align-items: center;
   height: 30px;
   width: 30px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+  }
+  transition: all 0.2s ease-in-out;
 `;
 
 export const UnCheckedIcon = styled(MdRadioButtonUnchecked)`

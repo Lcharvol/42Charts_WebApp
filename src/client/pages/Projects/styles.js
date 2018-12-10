@@ -9,13 +9,11 @@ export const Container = styled.div`
   width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   margin-left: ${SIDE_MENU_TOTAL_WIDTH}px;
   min-height: 100vh;
-  overflow: hidden;
   @media (max-width: 1000px) {
     width: calc(100vw - 90px);
     margin-left: 90px;
   }
   box-sizing: border-box;
-  max-height: 100vh;
   overflow-y: scroll;
   min-width: 500px;
 `;
