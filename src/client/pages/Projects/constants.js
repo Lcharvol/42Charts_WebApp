@@ -1,3 +1,39 @@
+import { sort } from 'ramda';
+
+import { DARK_FONT_COLOR, MAIN_COLOR, RED } from '../../constants/colors';
+
+export const SORT_BY_VALUES = [
+  {
+    id: 0,
+    label: 'name',
+    sortFunc: projects =>
+      sort((a, b) => a.name.localeCompare(b.name), projects),
+  },
+  {
+    id: 1,
+    label: 'tier',
+    sortFunc: projects => sort((a, b) => a.tier - b.tier, projects),
+  },
+];
+
+export const FILTER_BY_STATUS = [
+  {
+    id: 0,
+    label: 'none',
+    color: DARK_FONT_COLOR,
+  },
+  {
+    id: 1,
+    label: 'validated',
+    color: MAIN_COLOR,
+  },
+  {
+    id: 2,
+    label: 'failed',
+    color: RED,
+  },
+];
+
 export const supportedProjectsNames = [
   'Libft',
   'Get_Next_Line',

@@ -79,11 +79,6 @@ const UserPreview = ({
       onMouseLeave={() => handleChangeIsHover(false)}
       to={`/user/${user.id}`}
       onClick={() => eventGa(VIEW_STUDENT)}
-      color={
-        myLogin.toLowerCase() === user.login.toLowerCase()
-          ? MAIN_COLOR
-          : 'rgba(60,60,60,0.1)'
-      }
     >
       <LeftSide>
         <UserAvatar
@@ -130,25 +125,11 @@ const UserPreview = ({
             enhanceMe={enhanceMe}
           />
         )}
-        <Level
-          color={
-            myLogin.toLowerCase() === user.login.toLowerCase()
-              ? BACKGROUND_COLOR
-              : getLevelColor(user.cursusLevel)
-          }
-        >
+        <Level color={getLevelColor(user.cursusLevel)}>
           {user.cursusLevel.toFixed(2)}
         </Level>
         <CampusLabel>{user.campusName}</CampusLabel>
-        <LogTime
-          color={
-            myLogin.toLowerCase() === user.login.toLowerCase()
-              ? BACKGROUND_COLOR
-              : MAIN_COLOR
-          }
-        >
-          {getLogtTime(user.totalLogTime)}
-        </LogTime>
+        <LogTime>{getLogtTime(user.totalLogTime)}</LogTime>
       </RightSide>
     </Container>
   );

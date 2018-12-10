@@ -26,14 +26,14 @@ const menuElems = [
     label: 'Friends',
     logo: <MdPeople />,
   },
-  // {
-  //   key: 3,
-  //   to: '/projects',
-  //   label: 'Projects',
-  //   logo: <MdWork />,
-  // },
   {
     key: 3,
+    to: '/projects',
+    label: 'Projects',
+    logo: <MdWork />,
+  },
+  {
+    key: 4,
     to: '/apps',
     label: '42 Apps',
     logo: <MdApps />,

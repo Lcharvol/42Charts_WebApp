@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
-import { BACKGROUND_COLOR } from '../../constants/colors';
+import { BACKGROUND_COLOR, DARK_FONT_COLOR } from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -9,13 +9,11 @@ export const Container = styled.div`
   width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   margin-left: ${SIDE_MENU_TOTAL_WIDTH}px;
   min-height: 100vh;
-  overflow: hidden;
   @media (max-width: 1000px) {
     width: calc(100vw - 90px);
     margin-left: 90px;
   }
   box-sizing: border-box;
-  max-height: 100vh;
   overflow-y: scroll;
   min-width: 500px;
 `;
@@ -51,13 +49,33 @@ export const HeaderContent = styled.div`
   box-sizing: border-box;
 `;
 
+export const OptionContainer = styled.div`
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 90px;
+  padding-left: 50px;
+  box-sizing: border-box;
+`;
+
+export const OptionLabel = styled.div`
+  position: relative;
+  display: flex;
+  font-size: 0.3em;
+  color: ${DARK_FONT_COLOR};
+  margin-right: 10px;
+`;
+
 export const Content = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 165px;
+  margin-top: 200px;
   width: 100%;
   padding-left: 50px;
   padding-right: 50px;

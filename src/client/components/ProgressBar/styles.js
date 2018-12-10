@@ -10,9 +10,9 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  max-width: 800px;
+  max-width: 1100px;
   min-width: 250px;
-  min-height: 45px;
+  min-height: 40px;
   background-color: ${LIGHT_BACKGROUND_COLOR};
   border-radius: 3px;
   overflow: hidden;

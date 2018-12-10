@@ -11,9 +11,14 @@ import {
   MyMark,
   WrapperButton,
   BottomSide,
+  BottomSideLabel,
+  BottomSideValue,
+  BottomSideElem,
 } from './styles';
 import StatusIcon from '../StatusIcon';
 import { reqGetProjectDetails } from '../../requests';
+import ProjectValidationGraph from './ProjectValidationGraph';
+import { getSuccessCount, getFailCount } from './utils';
 
 const proptypes = {
   project: object.isRequired,
@@ -48,7 +53,7 @@ const ProjectPreview = ({
             onClick={() => {
               if (isEmpty(projectDetails)) {
                 reqGetProjectDetails(project.id)
-                  .then(res => console.log('res: ', res))
+                  .then(res => handleChangeProjectDetails(res))
                   .catch(err => err);
               }
               handleChangeIsWrapped(!isWrapped);
@@ -59,7 +64,26 @@ const ProjectPreview = ({
       {!isNil(myMark) && <MyMark validated={myMark >= 50}>{myMark}</MyMark>}
       <TierLabel>{`T${project.tier}`}</TierLabel>
     </TopSide>
-    <BottomSide />
+    {!isWrapped && (
+      <BottomSide>
+        <BottomSideElem>
+          <BottomSideLabel>Average project mark</BottomSideLabel>
+          <BottomSideValue>{projectDetails.averageMark}</BottomSideValue>
+        </BottomSideElem>
+        <BottomSideElem>
+          <BottomSideLabel>Average project retries</BottomSideLabel>
+          <BottomSideValue>{projectDetails.averageRetries}</BottomSideValue>
+        </BottomSideElem>
+        <ProjectValidationGraph
+          successRate={Math.floor(
+            (getSuccessCount(projectDetails.validatedByCampus) /
+              (getSuccessCount(projectDetails.validatedByCampus) +
+                getFailCount(projectDetails.failedByCampus))) *
+              100,
+          )}
+        />
+      </BottomSide>
+    )}
   </Container>
 );
 

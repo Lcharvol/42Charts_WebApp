@@ -1,5 +1,5 @@
 import React from 'react';
-import { compose, lifecycle } from 'recompose';
+import { compose, lifecycle, withStateHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -19,6 +19,8 @@ import {
   HeaderContent,
   Content,
   ProjectsContainer,
+  OptionContainer,
+  OptionLabel,
 } from './styles';
 import { getAllProjects } from '../../selectors/projects';
 import { getMyProjects, getMyProjectsValidated } from '../../selectors/me';
@@ -26,9 +28,27 @@ import { reqGetAllProject } from '../../requests';
 import { loadProjects } from '../../actions/projects';
 import ProjectPreview from '../../components/ProjectPreview';
 import ProgressBar from '../../components/ProgressBar';
-import { supportedProjectsNames } from './constants';
+import SelectButton from '../../components/SelectButton';
+import SearchBar from '../../components/SearchBar';
+import StatusFilterButtons from './StatusFilterButtons';
+import { sortAndFilterProjects } from './utils.js';
+import {
+  supportedProjectsNames,
+  SORT_BY_VALUES,
+  FILTER_BY_STATUS,
+} from './constants';
 
-const Projects = ({ allProjects, myProjects, validatedProjectsCount }) => (
+const Projects = ({
+  allProjects,
+  myProjects,
+  validatedProjectsCount,
+  sortValue,
+  statusFilterValue,
+  searchValue,
+  handleChangeSortValue,
+  handleChangeStatusFilterValue,
+  handleChangeSearchValue,
+}) => (
   <Container>
     <Header>
       <HeaderContent>
@@ -38,6 +58,21 @@ const Projects = ({ allProjects, myProjects, validatedProjectsCount }) => (
           label={' projects validated'}
         />
       </HeaderContent>
+      <OptionContainer>
+        <OptionLabel>Sort by:</OptionLabel>
+        <SelectButton
+          values={SORT_BY_VALUES}
+          value={sortValue}
+          handler={handleChangeSortValue}
+        />
+        <StatusFilterButtons
+          values={FILTER_BY_STATUS}
+          value={statusFilterValue}
+          handler={handleChangeStatusFilterValue}
+        />
+        {console.log('searchValue: ', searchValue)}
+        <SearchBar value={searchValue} handler={handleChangeSearchValue} />
+      </OptionContainer>
     </Header>
     <Content>
       <ProjectsContainer>
@@ -50,7 +85,7 @@ const Projects = ({ allProjects, myProjects, validatedProjectsCount }) => (
               myMark={isNil(myProject) ? undefined : myProject.finalMark}
             />
           );
-        }, allProjects)}
+        }, sortAndFilterProjects(allProjects, sortValue, statusFilterValue, searchValue, myProjects))}
       </ProjectsContainer>
     </Content>
   </Container>
@@ -87,4 +122,29 @@ export default compose(
       }
     },
   }),
+  withStateHandlers(
+    ({
+      initialSortValue = 0,
+      initialStatusFilterValue = { none: true, validated: true, failed: true },
+      initialSearchValue = '',
+    }) => ({
+      sortValue: initialSortValue,
+      statusFilterValue: initialStatusFilterValue,
+      searchValue: initialSearchValue,
+    }),
+    {
+      handleChangeSortValue: () => newValue => ({
+        sortValue: newValue,
+      }),
+      handleChangeStatusFilterValue: ({ statusFilterValue }) => statusName => ({
+        statusFilterValue: {
+          ...statusFilterValue,
+          [statusName]: !statusFilterValue[statusName],
+        },
+      }),
+      handleChangeSearchValue: () => newValue => ({
+        searchValue: newValue,
+      }),
+    },
+  ),
 )(Projects);
