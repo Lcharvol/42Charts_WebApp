@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { MdKeyboardArrowRight, MdKeyboardArrowUp } from 'react-icons/md';
 import { FaPlus } from 'react-icons/fa';
 
 import {

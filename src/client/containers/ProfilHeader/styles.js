@@ -39,8 +39,6 @@ export const LeftSide = styled.div`
 export const RightSide = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   flex-direction: column;
   padding: 25px;
   padding-left: 0;
