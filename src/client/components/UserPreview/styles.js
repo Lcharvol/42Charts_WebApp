@@ -31,7 +31,6 @@ export const Container = styled(Link)`
   text-decoration: none;
   transition: all 0.1s ease-in-out;
   min-width: 680px;
-  ${({ isMe }) => isMe && `border: solid 1px ${DARK_BORDER_COLOR}`};
 `;
 
 export const LeftSide = styled.div`

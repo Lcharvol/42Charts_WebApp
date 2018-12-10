@@ -79,7 +79,6 @@ const UserPreview = ({
       onMouseLeave={() => handleChangeIsHover(false)}
       to={`/user/${user.id}`}
       onClick={() => eventGa(VIEW_STUDENT)}
-      isMe={myLogin.toLowerCase() === user.login.toLowerCase()}
     >
       <LeftSide>
         <UserAvatar
