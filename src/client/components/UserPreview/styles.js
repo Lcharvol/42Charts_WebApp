@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { DARK_TEXT_COLOR, FONT_COLOR } from '../../constants/colors';
+import {
+  DARK_TEXT_COLOR,
+  FONT_COLOR,
+  MAIN_COLOR,
+  DARK_BORDER_COLOR,
+  BORDER_COLOR,
+} from '../../constants/colors';
 
 export const Container = styled(Link)`
   position: relative;
@@ -15,7 +21,6 @@ export const Container = styled(Link)`
   padding-left: 5px;
   padding-top: 2px;
   padding-bottom: 2px;
-  background-color: ${({ color }) => color};
   border-radius: 80px;
   opacity: 0.8;
   cursor: pointer;
@@ -26,6 +31,7 @@ export const Container = styled(Link)`
   text-decoration: none;
   transition: all 0.1s ease-in-out;
   min-width: 680px;
+  ${({ isMe }) => isMe && `border: solid 1px ${DARK_BORDER_COLOR}`};
 `;
 
 export const LeftSide = styled.div`
@@ -107,7 +113,7 @@ export const LogTime = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ color }) => color};
+  color: ${MAIN_COLOR};
   font-size: 0.4em;
   min-width: 110px;
   margin-left: 5px;

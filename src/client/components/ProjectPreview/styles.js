@@ -60,6 +60,10 @@ export const MyMark = styled.div`
   display: flex;
   color: ${({ validated }) => (validated ? MAIN_COLOR : RED)};
   margin-right: 25px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  border: solid 1px ${MAIN_COLOR};
+  padding: 3px;
 `;
 
 export const WrapperButton = styled(FaPlus)`
@@ -75,4 +79,28 @@ export const WrapperButton = styled(FaPlus)`
 export const UnWrapperButton = styled(FaPlus)`
   font-size: 2em;
   color: ${DARK_FONT_COLOR};
+`;
+
+export const BottomSideElem = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+`;
+
+export const BottomSideLabel = styled.div`
+  position: relative;
+  display: flex;
+  font-size: 1em;
+  color: ${DARK_FONT_COLOR};
+  margin-right: 15px;
+`;
+
+export const BottomSideValue = styled.div`
+  position: relative;
+  display: flex;
+  color: ${MAIN_COLOR};
+  font-size: 1.3em;
 `;

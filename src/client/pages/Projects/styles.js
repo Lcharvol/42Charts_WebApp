@@ -54,6 +54,7 @@ export const OptionContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   min-height: 90px;
   padding-left: 50px;
