@@ -70,7 +70,6 @@ const Projects = ({
           value={statusFilterValue}
           handler={handleChangeStatusFilterValue}
         />
-        {console.log('searchValue: ', searchValue)}
         <SearchBar value={searchValue} handler={handleChangeSearchValue} />
       </OptionContainer>
     </Header>

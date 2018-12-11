@@ -9,7 +9,7 @@
     "cli": " webpack --env dev --watch --display none",
     "cli-prod": "webpack --env prod --progress --profile --colors",
     "pret": "pretty-quick",
-    "bundle:stats": "NODE_ENV=production webpack -p --config ./webpack.config.prod.js --profile --json > stats.json",
+    "bundle:stats": "NODE_ENV=production webpack -p --config ./webpack.prod.js --profile --json > stats.json",
     "bundle:analyse": "webpack-bundle-analyzer ./stats.json ./build --report --mode=static"
   },
   "contributors": [
@@ -40,6 +40,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-watch": "^2.0.2",
+    "chart.js": "^2.7.3",
     "compression": "^1.7.3",
     "connect-history-api-fallback": "^1.5.0",
     "cors": "^2.8.5",
@@ -48,6 +49,7 @@
     "path": "^0.12.7",
     "ramda": "^0.25.0",
     "react": "^16.5.2",
+    "react-chartjs-2": "^2.7.4",
     "react-cookie": "^3.0.7",
     "react-dom": "^16.5.2",
     "react-ga": "^2.5.4",

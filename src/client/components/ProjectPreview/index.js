@@ -1,24 +1,41 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { isNil, isEmpty } from 'ramda';
 import { object, number } from 'prop-types';
 import { withStateHandlers } from 'recompose';
+import { Doughnut } from 'react-chartjs-2';
+
 import {
   Container,
   TopSide,
   ProjectName,
   TierLabel,
   ProjectInfos,
-  MyMark,
+  MarkContainer,
+  MarkContent,
+  MarkLabel,
   WrapperButton,
+  UnWrapperIcon,
+  WrapperIcon,
   BottomSide,
   BottomSideLabel,
   BottomSideValue,
   BottomSideElem,
+  DoughnutContainer,
+  DoughnutLabel,
+  BottomSideLeft,
+  BottomSideRight,
+  FirstFinishLink,
 } from './styles';
 import StatusIcon from '../StatusIcon';
 import { reqGetProjectDetails } from '../../requests';
-import ProjectValidationGraph from './ProjectValidationGraph';
-import { getSuccessCount, getFailCount } from './utils';
+import {
+  getSuccessCount,
+  getFailCount,
+  getAllGraphData,
+  getCampusSuccesGraphData,
+  graphLegendOptions,
+} from './utils';
+import UserAvatar from '../../components/UserAvatar';
 
 const proptypes = {
   project: object.isRequired,
@@ -58,30 +75,91 @@ const ProjectPreview = ({
               }
               handleChangeIsWrapped(!isWrapped);
             }}
-          />
+          >
+            {isWrapped ? <UnWrapperIcon /> : <WrapperIcon />}
+          </WrapperButton>
         )}
       </ProjectInfos>
-      {!isNil(myMark) && <MyMark validated={myMark >= 50}>{myMark}</MyMark>}
+
+      {!isNil(myMark) && (
+        <Fragment>
+          <MarkLabel>{myMark}</MarkLabel>
+          <MarkContainer>
+            <MarkContent
+              value={Math.round((myMark / 125) * 100)}
+              validated={myMark >= 50}
+            />
+          </MarkContainer>
+        </Fragment>
+      )}
       <TierLabel>{`T${project.tier}`}</TierLabel>
     </TopSide>
     {!isWrapped && (
       <BottomSide>
-        <BottomSideElem>
-          <BottomSideLabel>Average project mark</BottomSideLabel>
-          <BottomSideValue>{projectDetails.averageMark}</BottomSideValue>
-        </BottomSideElem>
-        <BottomSideElem>
-          <BottomSideLabel>Average project retries</BottomSideLabel>
-          <BottomSideValue>{projectDetails.averageRetries}</BottomSideValue>
-        </BottomSideElem>
-        <ProjectValidationGraph
-          successRate={Math.floor(
-            (getSuccessCount(projectDetails.validatedByCampus) /
-              (getSuccessCount(projectDetails.validatedByCampus) +
-                getFailCount(projectDetails.failedByCampus))) *
-              100,
-          )}
-        />
+        <BottomSideLeft>
+          <BottomSideElem>
+            {console.log('projectDetails: ', projectDetails)}
+            <BottomSideValue>
+              {Math.round((projectDetails.averageMark || 1) * 100) / 100}
+            </BottomSideValue>
+            <BottomSideLabel>Average project mark</BottomSideLabel>
+          </BottomSideElem>
+          <BottomSideElem>
+            <BottomSideValue>
+              {Math.round((projectDetails.averageRetries || 1) * 100) / 100}
+            </BottomSideValue>
+            <BottomSideLabel>Average project retries</BottomSideLabel>
+          </BottomSideElem>
+          <BottomSideElem>
+            <UserAvatar
+              round
+              margin={0}
+              profilPicture={
+                isNil(projectDetails.firstFinish)
+                  ? ''
+                  : projectDetails.firstFinish.imageUrl
+              }
+            />
+            <FirstFinishLink
+              to={`user/${
+                isNil(projectDetails.firstFinish)
+                  ? ''
+                  : projectDetails.firstFinish.id
+              }`}
+            >
+              {isNil(projectDetails.firstFinish)
+                ? ''
+                : projectDetails.firstFinish.login}
+            </FirstFinishLink>
+            <BottomSideLabel>First finish</BottomSideLabel>
+          </BottomSideElem>
+        </BottomSideLeft>
+        <BottomSideRight>
+          <DoughnutContainer>
+            <Doughnut
+              data={getAllGraphData(
+                getSuccessCount(projectDetails.validatedByCampus),
+                getFailCount(projectDetails.failedByCampus),
+                0,
+              )}
+              legend={graphLegendOptions}
+              options={{
+                maintainAspectRatio: false,
+              }}
+            />
+            <DoughnutLabel>Validation rate</DoughnutLabel>
+          </DoughnutContainer>
+          <DoughnutContainer>
+            <Doughnut
+              data={getCampusSuccesGraphData(projectDetails.validatedByCampus)}
+              legend={graphLegendOptions}
+              options={{
+                maintainAspectRatio: false,
+              }}
+            />
+            <DoughnutLabel>Validation by Campus</DoughnutLabel>
+          </DoughnutContainer>
+        </BottomSideRight>
       </BottomSide>
     )}
   </Container>

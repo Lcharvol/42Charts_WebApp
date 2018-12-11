@@ -48,3 +48,66 @@ export const SILVER_MEDAL_COLOR =
 
 export const BRONZE_MEDAL_COLOR =
   'radial-gradient(rgb(167, 112, 68), rgb(130, 74, 2))';
+
+export const campusColor = [
+  {
+    id: 0,
+    campusName: 'Paris',
+    color: 'rgba(46,204,113,1)',
+    hoverColor: MAIN_COLOR,
+  },
+  {
+    id: 1,
+    campusName: 'Cluj',
+    color: 'rgba(46,204,113, 0.8)',
+    hoverColor: MAIN_COLOR,
+  },
+  {
+    id: 2,
+    campusName: 'Johannesburg',
+    color: 'rgba(46,204,113, 0.7)',
+    hoverColor: MAIN_COLOR,
+  },
+  {
+    id: 3,
+    campusName: 'Chisinau',
+    color: 'rgba(46,204,113, 0.6)',
+    hoverColor: MAIN_COLOR,
+  },
+  {
+    id: 4,
+    campusName: 'Kyiv',
+    color: 'rgba(46,204,113, 0.5)',
+    hoverColor: MAIN_COLOR,
+  },
+  {
+    id: 5,
+    campusName: 'Lyon',
+    color: 'rgba(46,204,113, 0.4)',
+    hoverColor: MAIN_COLOR,
+  },
+  {
+    id: 6,
+    campusName: 'Bucharest',
+    color: 'rgba(46,204,113, 0.3)',
+    hoverColor: MAIN_COLOR,
+  },
+  {
+    id: 7,
+    campusName: 'Brussels',
+    color: 'rgba(46,204,113, 0.2)',
+    hoverColor: MAIN_COLOR,
+  },
+  {
+    id: 8,
+    campusName: 'Cape-Town',
+    color: 'rgba(46,204,113, 0.1)',
+    hoverColor: MAIN_COLOR,
+  },
+  {
+    id: 9,
+    campusName: 'Fremont',
+    color: 'rgba(46,204,113, 0.75)',
+    hoverColor: MAIN_COLOR,
+  },
+];
