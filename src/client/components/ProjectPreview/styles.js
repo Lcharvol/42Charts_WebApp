@@ -18,12 +18,13 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   color: ${DARK_FONT_COLOR};
-  min-height: ${({ isWrapped }) => (isWrapped ? 40 : 300)}px;
+  height: ${({ isWrapped }) => (isWrapped ? 40 : 430)}px;
   width: 100%;
   min-width: 600px;
   font-size: 0.3em;
+  overflow: hidden;
   border-bottom: solid 1px ${DARK_BORDER_COLOR};
-  transition: min-height 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 `;
 
 export const TopSide = styled.div`
@@ -42,7 +43,6 @@ export const BottomSide = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  min-height: 400px;
   flex: 1;
 `;
 

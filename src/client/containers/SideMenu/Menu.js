@@ -1,5 +1,5 @@
 import React from 'react';
-import { map, find, propEq } from 'ramda';
+import { map, find, propEq, isNil } from 'ramda';
 import {
   MenuContainer,
   MenuElemContainer,
@@ -57,7 +57,11 @@ const Menu = ({
       )}
     {winWidth > 1000 && (
       <SelectedLinkContainer
-        pos={find(propEq('to', selectedLink))(menuElems).key}
+        pos={
+          !isNil(find(propEq('to', selectedLink))(menuElems))
+            ? find(propEq('to', selectedLink))(menuElems).key
+            : 1
+        }
       >
         <LeftBar />
       </SelectedLinkContainer>

@@ -33,6 +33,7 @@ import {
   getFailCount,
   getAllGraphData,
   getCampusSuccesGraphData,
+  getCampusSuccesRateGraphData,
   graphLegendOptions,
 } from './utils';
 import UserAvatar from '../../components/UserAvatar';
@@ -98,7 +99,6 @@ const ProjectPreview = ({
       <BottomSide>
         <BottomSideLeft>
           <BottomSideElem>
-            {console.log('projectDetails: ', projectDetails)}
             <BottomSideValue>
               {Math.round((projectDetails.averageMark || 1) * 100) / 100}
             </BottomSideValue>
@@ -158,6 +158,19 @@ const ProjectPreview = ({
               }}
             />
             <DoughnutLabel>Validation by Campus</DoughnutLabel>
+          </DoughnutContainer>
+          <DoughnutContainer>
+            <Doughnut
+              data={getCampusSuccesRateGraphData(
+                projectDetails.validatedByCampus,
+                projectDetails.failedByCampus,
+              )}
+              legend={graphLegendOptions}
+              options={{
+                maintainAspectRatio: false,
+              }}
+            />
+            <DoughnutLabel>Validation rate by Campus</DoughnutLabel>
           </DoughnutContainer>
         </BottomSideRight>
       </BottomSide>
