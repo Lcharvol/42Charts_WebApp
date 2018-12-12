@@ -53,7 +53,7 @@ const Projects = ({
     <Header>
       <HeaderContent>
         <ProgressBar
-          value={validatedProjectsCount}
+          value={validatedProjectsCount || 0}
           total={length(allProjects) > 0 ? length(allProjects) : 1}
           label={' projects validated'}
         />

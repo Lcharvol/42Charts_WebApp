@@ -1,5 +1,5 @@
 import React from 'react';
-import { map, isNil } from 'ramda';
+import { map, isNil, isEmpty } from 'ramda';
 import { withStateHandlers } from 'recompose';
 
 import { store } from '../../index';
@@ -28,8 +28,9 @@ const EnhancedStart = withStateHandlers(
   },
 )(Stat);
 
-const AllStats = ({ stats }) => {
+const AllStats = ({ stats = [] }) => {
   const state = !isNil(store) ? store.getState() : {};
+  if (isEmpty(state) || isEmpty(stats)) return null;
   return (
     <Container>
       {map(

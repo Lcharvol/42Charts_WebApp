@@ -10,6 +10,7 @@ import {
   RED,
   LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
+import { RESPONSIVITY_WIDTH } from '../../containers/ProfilHeader/constants';
 
 export const Container = styled.div`
   position: relative;
@@ -18,12 +19,13 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   color: ${DARK_FONT_COLOR};
-  min-height: ${({ isWrapped }) => (isWrapped ? 40 : 300)}px;
+  height: ${({ isWrapped }) => (isWrapped ? 40 : 430)}px;
   width: 100%;
   min-width: 600px;
   font-size: 0.3em;
+  overflow: hidden;
   border-bottom: solid 1px ${DARK_BORDER_COLOR};
-  transition: min-height 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 `;
 
 export const TopSide = styled.div`
@@ -42,7 +44,6 @@ export const BottomSide = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  min-height: 400px;
   flex: 1;
 `;
 
@@ -82,6 +83,7 @@ export const TierLabel = styled.div`
   position: relative;
   display: flex;
   color: ${MAIN_COLOR};
+  user-select: none;
 `;
 
 export const MarkContainer = styled.div`
@@ -102,12 +104,14 @@ export const MarkContent = styled.div`
   background-color: ${({ validated }) => (validated ? MAIN_COLOR : RED)};
   width: ${({ value }) => value}%;
   height: 100%;
+  user-select: none;
 `;
 
 export const MarkLabel = styled.div`
   position: relative;
   color: ${MAIN_COLOR};
   margin-right: 15px;
+  user-select: none;
 `;
 
 export const WrapperButton = styled.div`
@@ -153,6 +157,7 @@ export const BottomSideLabel = styled.div`
   display: flex;
   font-size: 1em;
   color: ${DARK_FONT_COLOR};
+  user-select: none;
 `;
 
 export const BottomSideValue = styled.div`
@@ -162,6 +167,7 @@ export const BottomSideValue = styled.div`
   font-size: 2em;
   font-weight: bold;
   flex: 1;
+  user-select: none;
 `;
 
 export const DoughnutContainer = styled.div`
@@ -172,6 +178,11 @@ export const DoughnutContainer = styled.div`
   align-items: center;
   height: 200px;
   margin: 10px;
+  width: 30%;
+  flex: 1;
+  @media (max-width: ${RESPONSIVITY_WIDTH}px) {
+    height: 150px;
+  }
 `;
 
 export const DoughnutLabel = styled.div`
@@ -181,9 +192,9 @@ export const DoughnutLabel = styled.div`
   font-size: 1em;
   margin-top: 10px;
   margin-bottom: 10px;
+  user-select: none;
 `;
 
 export const FirstFinishLink = styled(Link)`
   text-decoration: none;
-  color: ${DARK_FONT_COLOR};
 `;

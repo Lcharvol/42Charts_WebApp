@@ -33,6 +33,7 @@ import {
   getFailCount,
   getAllGraphData,
   getCampusSuccesGraphData,
+  getCampusSuccesRateGraphData,
   graphLegendOptions,
 } from './utils';
 import UserAvatar from '../../components/UserAvatar';
@@ -98,7 +99,6 @@ const ProjectPreview = ({
       <BottomSide>
         <BottomSideLeft>
           <BottomSideElem>
-            {console.log('projectDetails: ', projectDetails)}
             <BottomSideValue>
               {Math.round((projectDetails.averageMark || 1) * 100) / 100}
             </BottomSideValue>
@@ -111,15 +111,6 @@ const ProjectPreview = ({
             <BottomSideLabel>Average project retries</BottomSideLabel>
           </BottomSideElem>
           <BottomSideElem>
-            <UserAvatar
-              round
-              margin={0}
-              profilPicture={
-                isNil(projectDetails.firstFinish)
-                  ? ''
-                  : projectDetails.firstFinish.imageUrl
-              }
-            />
             <FirstFinishLink
               to={`user/${
                 isNil(projectDetails.firstFinish)
@@ -127,9 +118,15 @@ const ProjectPreview = ({
                   : projectDetails.firstFinish.id
               }`}
             >
-              {isNil(projectDetails.firstFinish)
-                ? ''
-                : projectDetails.firstFinish.login}
+              <UserAvatar
+                round
+                margin={0}
+                profilPicture={
+                  isNil(projectDetails.firstFinish)
+                    ? ''
+                    : projectDetails.firstFinish.imageUrl
+                }
+              />
             </FirstFinishLink>
             <BottomSideLabel>First finish</BottomSideLabel>
           </BottomSideElem>
@@ -147,7 +144,7 @@ const ProjectPreview = ({
                 maintainAspectRatio: false,
               }}
             />
-            <DoughnutLabel>Validation rate</DoughnutLabel>
+            <DoughnutLabel>Validation rate (%)</DoughnutLabel>
           </DoughnutContainer>
           <DoughnutContainer>
             <Doughnut
@@ -158,6 +155,19 @@ const ProjectPreview = ({
               }}
             />
             <DoughnutLabel>Validation by Campus</DoughnutLabel>
+          </DoughnutContainer>
+          <DoughnutContainer>
+            <Doughnut
+              data={getCampusSuccesRateGraphData(
+                projectDetails.validatedByCampus,
+                projectDetails.failedByCampus,
+              )}
+              legend={graphLegendOptions}
+              options={{
+                maintainAspectRatio: false,
+              }}
+            />
+            <DoughnutLabel>Validation rate by Campus (%)</DoughnutLabel>
           </DoughnutContainer>
         </BottomSideRight>
       </BottomSide>

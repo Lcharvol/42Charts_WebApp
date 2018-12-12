@@ -40,7 +40,7 @@ export const SideMenuHeaderContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  height: 60px;
+  min-height: 80px;
   margin-bottom: 20px;
   @media (max-width: 1000px) {
     justify-content: center;
@@ -57,6 +57,7 @@ export const MenuContainer = styled.div`
   width: 100%;
   margin-top: 25px;
   margin-bottom: 25px;
+  min-height: 270px;
 `;
 
 export const MenuElemContainer = styled.div`

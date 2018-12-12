@@ -13,6 +13,7 @@ export const Container = styled.div`
   width: 95%;
   margin-bottom: 15px;
   min-width: 560px;
+  max-width: 1200px;
 `;
 
 export const TopSide = styled.div`

@@ -46,6 +46,38 @@ export const getAllGraphData = (validatedCount, failedCount, notGraded) => ({
   ],
 });
 
+export const getCampusSuccesRateGraphData = (
+  validatedByCampus,
+  failedByCampus,
+) => ({
+  labels: map(campus => campus.name, failedByCampus || []),
+  datasets: [
+    {
+      data: map(campus => {
+        const nbFail = campus.nbFailed;
+        const campusSucess = find(propEq('name', campus.name))(
+          validatedByCampus,
+        );
+        const nbSuccess = !isNil(campusSucess) ? campusSucess.nbValidated : 0;
+        return Math.floor((nbSuccess / (nbFail + nbSuccess)) * 100);
+      }, failedByCampus || []),
+      backgroundColor: map(campus => {
+        const campusElem = find(propEq('campusName', campus.name))(
+          campusColor || [],
+        );
+        return isNil(campusElem) ? '' : campusElem.color;
+      }, failedByCampus || []),
+      borderColor: LIGHT_BACKGROUND_COLOR,
+      hoverBackgroundColor: map(campus => {
+        const campusElem = find(propEq('campusName', campus.name))(
+          campusColor || [],
+        );
+        return isNil(campusElem) ? '' : campusElem.hoverColor;
+      }, failedByCampus || []),
+    },
+  ],
+});
+
 export const graphLegendOptions = {
   display: false,
   position: 'bottom',

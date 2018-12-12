@@ -13,7 +13,6 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   min-width: 175px;
-  height: 25px;
   margin-left: ${({ margin }) => margin}px;
 `;
 
@@ -21,7 +20,7 @@ export const Content = styled.input`
   position: relative;
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 30px;
   background-color: ${LIGHT_BACKGROUND_COLOR};
   border-radius: 3px;
   border: solid 1px ${DARK_BORDER_COLOR};
@@ -42,8 +41,8 @@ export const SearchLogo = styled(MdSearch)`
   cursor: pointer;
   margin-right: 10px;
   color: ${DARK_BORDER_COLOR};
-  top: 3px;
-  right: 5px;
+  top: 5px;
+  right: 0;
 `;
 
 export const CrossButton = styled(MdClear)`
@@ -54,8 +53,8 @@ export const CrossButton = styled(MdClear)`
   cursor: pointer;
   margin-right: 10px;
   color: ${MAIN_COLOR};
-  top: 5px;
-  right: 0px;
+  top: 7px;
+  right: 0;
   &:hover {
     transform: rotate(90deg);
   }
