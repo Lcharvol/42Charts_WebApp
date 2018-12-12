@@ -3,6 +3,7 @@ import { MdRefresh } from 'react-icons/md';
 
 import { MAIN_COLOR, BACKGROUND_COLOR } from '../../constants/colors';
 import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
+import POLY_BACKGROUND from '../../../../public/poly_background.jpg';
 
 export const Container = styled.div`
   position: relative;
@@ -11,14 +12,13 @@ export const Container = styled.div`
   width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   margin-left: ${SIDE_MENU_TOTAL_WIDTH}px;
   min-height: 100vh;
-  overflow: hidden;
   @media (max-width: 1000px) {
     width: calc(100vw - 90px);
     margin-left: 90px;
   }
   box-sizing: border-box;
-  max-height: 100vh;
   overflow-y: scroll;
+  min-width: 500px;
 `;
 
 export const Header = styled.div`
@@ -27,18 +27,21 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 1000;
-  width: calc(100% - ${SIDE_MENU_TOTAL_WIDTH}px - 20px);
+  width: calc(100% - ${SIDE_MENU_TOTAL_WIDTH}px);
   min-width: 550px;
-  max-width: 1200px;
   top: 0;
   left: ${SIDE_MENU_TOTAL_WIDTH}px;
-  padding-bottom: 40px;
   @media (max-width: 1000px) {
-    width: calc(100vw - ${110}px);
+    width: calc(100vw - ${90}px);
     left: 90px;
   }
   background-color: ${BACKGROUND_COLOR};
   box-sizing: border-box;
+  background-image:url('${POLY_BACKGROUND}');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow:hidden;
 `;
 
 export const HeaderContent = styled.div`
@@ -56,7 +59,9 @@ export const Content = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 365px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 350px;
   width: 100%;
   padding-left: 50px;
   padding-right: 50px;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { SIDE_MENU_TOTAL_WIDTH } from '../../containers/SideMenu/constants';
 import { BACKGROUND_COLOR, DARK_FONT_COLOR } from '../../constants/colors';
+import POLY_BACKGROUND from '../../../../public/poly_background.jpg';
 
 export const Container = styled.div`
   position: relative;
@@ -24,18 +25,20 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 1000;
-  width: calc(100% - ${SIDE_MENU_TOTAL_WIDTH}px - 20px);
+  width: calc(100% - ${SIDE_MENU_TOTAL_WIDTH}px);
   min-width: 550px;
-  max-width: 1200px;
   top: 0;
   left: ${SIDE_MENU_TOTAL_WIDTH}px;
-  padding-bottom: 40px;
   @media (max-width: 1000px) {
     width: calc(100vw - ${90}px);
     left: 90px;
   }
   background-color: ${BACKGROUND_COLOR};
   box-sizing: border-box;
+  background-image:url('${POLY_BACKGROUND}');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export const HeaderContent = styled.div`

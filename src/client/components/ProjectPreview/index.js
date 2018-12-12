@@ -111,15 +111,6 @@ const ProjectPreview = ({
             <BottomSideLabel>Average project retries</BottomSideLabel>
           </BottomSideElem>
           <BottomSideElem>
-            <UserAvatar
-              round
-              margin={0}
-              profilPicture={
-                isNil(projectDetails.firstFinish)
-                  ? ''
-                  : projectDetails.firstFinish.imageUrl
-              }
-            />
             <FirstFinishLink
               to={`user/${
                 isNil(projectDetails.firstFinish)
@@ -127,9 +118,15 @@ const ProjectPreview = ({
                   : projectDetails.firstFinish.id
               }`}
             >
-              {isNil(projectDetails.firstFinish)
-                ? ''
-                : projectDetails.firstFinish.login}
+              <UserAvatar
+                round
+                margin={0}
+                profilPicture={
+                  isNil(projectDetails.firstFinish)
+                    ? ''
+                    : projectDetails.firstFinish.imageUrl
+                }
+              />
             </FirstFinishLink>
             <BottomSideLabel>First finish</BottomSideLabel>
           </BottomSideElem>
@@ -147,7 +144,7 @@ const ProjectPreview = ({
                 maintainAspectRatio: false,
               }}
             />
-            <DoughnutLabel>Validation rate</DoughnutLabel>
+            <DoughnutLabel>Validation rate (%)</DoughnutLabel>
           </DoughnutContainer>
           <DoughnutContainer>
             <Doughnut
@@ -170,7 +167,7 @@ const ProjectPreview = ({
                 maintainAspectRatio: false,
               }}
             />
-            <DoughnutLabel>Validation rate by Campus</DoughnutLabel>
+            <DoughnutLabel>Validation rate by Campus (%)</DoughnutLabel>
           </DoughnutContainer>
         </BottomSideRight>
       </BottomSide>
