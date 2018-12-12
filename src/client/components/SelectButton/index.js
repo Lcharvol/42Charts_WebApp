@@ -33,7 +33,7 @@ const getSelectedValueLabel = (selectedValueId, values) => {
 const SelectButton = ({
   values = [],
   width = 100,
-  height = 25,
+  height = 30,
   color = '',
   selectedValueId,
   handleChangeSelectedValueId,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect, Switch } from 'react-router';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { compose, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
@@ -49,9 +50,12 @@ const App = ({
             />
           )}
           <SideMenu history={history} routes={routes} />
-          {routes.map(route => (
-            <RouteWithSubRoutes key={route.id} {...route} />
-          ))}
+          <Switch>
+            {routes.map(route => (
+              <RouteWithSubRoutes key={route.id} {...route} />
+            ))}
+            <Redirect to="/" />
+          </Switch>
         </div>
       </Router>
     </AppContainer>

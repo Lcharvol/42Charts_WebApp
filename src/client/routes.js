@@ -17,6 +17,7 @@ const routes = [
   {
     id: 1,
     path: '/login',
+    exact: true,
     component: Login,
   },
   {
@@ -27,6 +28,7 @@ const routes = [
   {
     id: 4,
     path: '/serverdown',
+    exact: true,
     component: ServerDown,
   },
   {
@@ -37,11 +39,13 @@ const routes = [
   {
     id: 6,
     path: '/friends',
+    exact: true,
     component: Friends,
   },
   {
     id: 7,
     path: '/apps',
+    exact: true,
     component: Apps,
   },
   {

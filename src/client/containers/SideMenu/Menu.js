@@ -22,10 +22,11 @@ const MenuElem = ({
   label,
   winWidth,
   selectedLink,
+  route,
   handleChangeSelectedLink,
 }) => (
   <MenuElemContainer
-    selected={to === selectedLink}
+    selected={to === `/${route}`}
     onClick={() => handleChangeSelectedLink(to)}
   >
     <StyledLink
@@ -42,6 +43,7 @@ const Menu = ({
   selectedLink,
   handleChangeSelectedLink,
   cookies,
+  route,
 }) => (
   <MenuContainer>
     {winWidth > 1000 &&
@@ -49,6 +51,7 @@ const Menu = ({
         menuElem => (
           <MenuElem
             {...menuElem}
+            route={route}
             selectedLink={selectedLink}
             handleChangeSelectedLink={handleChangeSelectedLink}
           />
@@ -58,8 +61,10 @@ const Menu = ({
     {winWidth > 1000 && (
       <SelectedLinkContainer
         pos={
-          !isNil(find(propEq('to', selectedLink))(menuElems))
-            ? find(propEq('to', selectedLink))(menuElems).key
+          !isNil(find(propEq('to', `/${route}`))(menuElems))
+            ? route === 'user'
+              ? 1
+              : find(propEq('to', `/${route}`))(menuElems).key
             : 1
         }
       >

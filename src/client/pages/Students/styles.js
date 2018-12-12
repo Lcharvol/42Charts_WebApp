@@ -49,7 +49,7 @@ export const HeaderContent = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px - 25px);
+  min-width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px - 25px);
   padding-right: 50px;
   padding-left: 50px;
   padding-top: 35px;

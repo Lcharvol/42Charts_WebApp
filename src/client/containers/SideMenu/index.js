@@ -46,6 +46,7 @@ const SideMenu = ({
 }) => {
   const { pathname } = window.location;
   const [route] = split('/', pathname.slice(1));
+
   if (contains(route, noAuthneeded) || route === 'serverdown') return null;
   return (
     <Container hidden={hidden}>
@@ -56,6 +57,7 @@ const SideMenu = ({
       {winWidth > 1000 && <Separator width={'85%'} color={DARK_BORDER_COLOR} />}
       <Menu
         routes={routes}
+        route={route}
         winWidth={winWidth}
         selectedLink={selectedLink}
         handleChangeSelectedLink={handleChangeSelectedLink}
