@@ -52,6 +52,7 @@ const Students = ({
   enhanceMe,
   friends,
   winWidth,
+  coalitionFilter,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
@@ -60,6 +61,7 @@ const Students = ({
   handleChangeSearchValue,
   handeChangeIsFetchingPossible,
   handleChangeIsFetchingFailed,
+  handleChangeCoaltionFilter,
 }) => (
   <Container>
     <Header>
@@ -80,6 +82,8 @@ const Students = ({
           usable={!isFetching}
           handleChangeSearchValue={handleChangeSearchValue}
           searchValue={searchValue}
+          coalitionFilter={coalitionFilter}
+          handleChangeCoaltionFilter={handleChangeCoaltionFilter}
         />
       </HeaderContent>
     </Header>
@@ -192,6 +196,7 @@ const enhance = compose(
       initialSearchValue = '',
       initialIsFetchingPossible = true,
       initialIsFetchingFailed = false,
+      initialCoaltionFilter = { 0: true, 1: true, 2: true, 3: true },
     }) => ({
       selectedPromo: initialSelectedPromo,
       users: initialUsers,
@@ -203,6 +208,7 @@ const enhance = compose(
       searchValue: initialSearchValue,
       isFetchingPossible: initialIsFetchingPossible,
       isFetchingFailed: initialIsFetchingFailed,
+      coalitionFilter: initialCoaltionFilter,
     }),
     {
       handleChangeSelectedPromo: () => newPromo => ({
@@ -249,6 +255,9 @@ const enhance = compose(
       }),
       handleChangeIsFetchingFailed: () => newValue => ({
         isFetchingFailed: newValue,
+      }),
+      handleChangeCoaltionFilter: ({ coalitionFilter }) => newValue => ({
+        coalitionFilter: { ...coalitionFilter, ...newValue },
       }),
     },
   ),
@@ -331,6 +340,7 @@ const enhance = compose(
     'isFetchingFailed',
     'friends',
     'winWidth',
+    'coalitionFilter',
   ]),
 );
 export default enhance(Students);
