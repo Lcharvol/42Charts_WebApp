@@ -23,9 +23,11 @@ export const Header = styled.div`
   position: fixed;
   box-sizing: border-box;
   display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
   z-index: 1000;
-  width: calc(100% - ${SIDE_MENU_TOTAL_WIDTH}px);
+  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   min-width: 550px;
   top: 0;
   left: ${SIDE_MENU_TOTAL_WIDTH}px;
@@ -45,7 +47,7 @@ export const HeaderContent = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px - 25px);
   padding-right: 50px;
   padding-left: 50px;
   padding-top: 35px;

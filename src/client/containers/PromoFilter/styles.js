@@ -53,7 +53,7 @@ export const Label = styled.div`
     margin-right:15px;
     width: 50px
     cursor:pointer;
-    opacity: ${({ isSelected }) => (isSelected ? 1 : 0.3)};
+    opacity: ${({ isSelected }) => (isSelected ? 1 : 0.6)};
     ${({ isSelected }) => isSelected && 'color:white'}
     z-index:50;
     user-select:none;
