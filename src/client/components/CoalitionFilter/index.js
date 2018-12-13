@@ -13,7 +13,6 @@ const proptypes = {
 
 const CoalitionFilter = ({ handler, values }) => (
   <Container>
-    {console.log('values: ', values)}
     {map(
       valueElem => (
         <ColationIcon

@@ -26,7 +26,7 @@ import { removeFriend } from '../../actions/me';
 import { reqGetPromo } from '../../requests';
 import { ALL_PROMO_SELECTED } from '../Students/constants';
 import UserPreview from '../../components/UserPreview';
-import Title from '../../components/Title';
+import PagesHeader from '../../containers/PagesHeader';
 import NoFriends from './NoFriends';
 import { getFileredAndSortedFriends, getFriendsByUnit } from './utils';
 
@@ -52,27 +52,25 @@ const Friends = ({
   );
   return (
     <Container>
-      <Header>
-        <HeaderContent>
-          <Graph
-            nbUsers={length(filteredAndSortedFriends)}
-            usersByUnit={getFriendsByUnit(filteredAndSortedFriends)}
-            filterBy={filterBy}
-            usersRatioTranches={[]}
-          />
-          <PromoFilter
-            promos={promos}
-            selectedPromo={selectedPromo}
-            handleChangeSelectedPromo={handleChangeSelectedPromo}
-            filterBy={filterBy}
-            handleChangeFilterBy={handleChangeFilterBy}
-            usable
-            handleChangeSearchValue={() => {}}
-            searchValue={''}
-            displaySearchBar={false}
-          />
-        </HeaderContent>
-      </Header>
+      <PagesHeader>
+        <Graph
+          nbUsers={length(filteredAndSortedFriends)}
+          usersByUnit={getFriendsByUnit(filteredAndSortedFriends)}
+          filterBy={filterBy}
+          usersRatioTranches={[]}
+        />
+        <PromoFilter
+          promos={promos}
+          selectedPromo={selectedPromo}
+          handleChangeSelectedPromo={handleChangeSelectedPromo}
+          filterBy={filterBy}
+          handleChangeFilterBy={handleChangeFilterBy}
+          usable
+          handleChangeSearchValue={() => {}}
+          searchValue={''}
+          displaySearchBar={false}
+        />
+      </PagesHeader>
       <Content>
         {length(filteredAndSortedFriends) === 0 && (
           <NoFriends selectedPromo={selectedPromo} />
