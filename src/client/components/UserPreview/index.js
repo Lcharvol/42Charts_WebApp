@@ -91,40 +91,43 @@ const UserPreview = ({
         <Login>
           {user.login.charAt(0).toUpperCase() + user.login.slice(1)}
         </Login>
-        <Badges>
-          <Badge
-            color={userCoalition.gradientColor}
-            imageUrl={userCoalition.imageUrl}
-          />
-          {!isNil(winWidth) &&
-            winWidth > 1000 &&
-            map(
-              badge =>
-                badge.requirement(user) && (
-                  <Badge
-                    key={badge.id}
-                    color={badge.color}
-                    imageUrl={badge.imageUrl}
-                    logo={badge.logo}
-                    hoverValue={badge.hoverValue}
-                  />
-                ),
-              badges,
-            )}
-        </Badges>
+        {winWidth > 900 && (
+          <Badges>
+            <Badge
+              color={userCoalition.gradientColor}
+              imageUrl={userCoalition.imageUrl}
+            />
+            {!isNil(winWidth) &&
+              winWidth > 1000 &&
+              map(
+                badge =>
+                  badge.requirement(user) && (
+                    <Badge
+                      key={badge.id}
+                      color={badge.color}
+                      imageUrl={badge.imageUrl}
+                      logo={badge.logo}
+                      hoverValue={badge.hoverValue}
+                    />
+                  ),
+                badges,
+              )}
+          </Badges>
+        )}
       </LeftSide>
       <RightSide>
-        {(!isNil(addFriend) || !isNil(removeFriend)) && (
-          <AddOrRemoveFriendButtom
-            user={user}
-            usable={myLogin.toLowerCase() !== user.login.toLowerCase()}
-            userId={user.id}
-            addFriend={isMyFriend ? undefined : addFriend}
-            removeFriend={isMyFriend ? removeFriend : undefined}
-            opacity={isHover ? 1 : 0}
-            enhanceMe={enhanceMe}
-          />
-        )}
+        {(!isNil(addFriend) || !isNil(removeFriend)) &&
+          winWidth > 800 && (
+            <AddOrRemoveFriendButtom
+              user={user}
+              usable={myLogin.toLowerCase() !== user.login.toLowerCase()}
+              userId={user.id}
+              addFriend={isMyFriend ? undefined : addFriend}
+              removeFriend={isMyFriend ? removeFriend : undefined}
+              opacity={isHover ? 1 : 0}
+              enhanceMe={enhanceMe}
+            />
+          )}
         <Level color={getLevelColor(user.cursusLevel)}>
           {user.cursusLevel.toFixed(2)}
         </Level>
@@ -148,5 +151,5 @@ export default compose(
       }),
     },
   ),
-  onlyUpdateForKeys(['isHover']),
+  onlyUpdateForKeys(['isHover', 'winWidth']),
 )(UserPreview);

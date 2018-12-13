@@ -15,8 +15,6 @@ import {
   Container,
   UsersPrewiewContainer,
   VisibilitySensorBox,
-  Header,
-  HeaderContent,
   Content,
   RetryRequestContainer,
   RetryRequest,
@@ -26,6 +24,7 @@ import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
 import Spinner from '../../components/Spinner';
 import EmptySearch from '../../components/EmptySearch';
+import PagesHeader from '../../containers/PagesHeader';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
 import { getPromos, getWinWidth } from '../../selectors/app';
 import { getMyLogin, getMyFriends } from '../../selectors/me';
@@ -64,29 +63,27 @@ const Students = ({
   handleChangeCoaltionFilter,
 }) => (
   <Container>
-    <Header>
-      <HeaderContent>
-        <Graph
-          nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
-          usersByUnit={usersRatio}
-          filterBy={filterBy}
-          usersRatioTranches={usersRatioTranches}
-          selectedPromo={selectedPromo}
-        />
-        <PromoFilter
-          promos={promos}
-          selectedPromo={selectedPromo}
-          handleChangeSelectedPromo={handleChangeSelectedPromo}
-          filterBy={filterBy}
-          handleChangeFilterBy={handleChangeFilterBy}
-          usable={!isFetching}
-          handleChangeSearchValue={handleChangeSearchValue}
-          searchValue={searchValue}
-          coalitionFilter={coalitionFilter}
-          handleChangeCoaltionFilter={handleChangeCoaltionFilter}
-        />
-      </HeaderContent>
-    </Header>
+    <PagesHeader>
+      <Graph
+        nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
+        usersByUnit={usersRatio}
+        filterBy={filterBy}
+        usersRatioTranches={usersRatioTranches}
+        selectedPromo={selectedPromo}
+      />
+      <PromoFilter
+        promos={promos}
+        selectedPromo={selectedPromo}
+        handleChangeSelectedPromo={handleChangeSelectedPromo}
+        filterBy={filterBy}
+        handleChangeFilterBy={handleChangeFilterBy}
+        usable={!isFetching}
+        handleChangeSearchValue={handleChangeSearchValue}
+        searchValue={searchValue}
+        coalitionFilter={coalitionFilter}
+        handleChangeCoaltionFilter={handleChangeCoaltionFilter}
+      />
+    </PagesHeader>
     <Content>
       <UsersPrewiewContainer>
         {map(

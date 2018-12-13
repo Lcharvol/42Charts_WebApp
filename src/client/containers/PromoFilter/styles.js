@@ -25,6 +25,7 @@ export const Content = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100%;
+  padding-bottom: 25px;
 `;
 
 export const LeftSide = styled.div`
@@ -54,7 +55,7 @@ export const Label = styled.div`
     width: 50px
     cursor:pointer;
     opacity: ${({ isSelected }) => (isSelected ? 1 : 0.6)};
-    ${({ isSelected }) => isSelected && 'color:white'}
+    ${({ isSelected }) => isSelected && 'color:rgba(0,0,0,0.4);'}
     z-index:50;
     user-select:none;
     &:hover {
@@ -67,11 +68,6 @@ export const SelectedBox = styled.div`
   height: 30px;
   width: 65px;
   background-color: ${MAIN_COLOR};
-  background-image: linear-gradient(
-    to bottom,
-    ${LIGHT_MAIN_COLOR} 0%,
-    ${MAIN_COLOR} 50%
-  );
   border-radius: 3px;
   z-index: 40;
   opacity: 0.8;

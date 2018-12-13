@@ -10,13 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { array } from 'prop-types';
 
-import {
-  Container,
-  Header,
-  Content,
-  UsersPrewiewContainer,
-  HeaderContent,
-} from './styles';
+import { Container, Content, UsersPrewiewContainer } from './styles';
 import { getMyFriends, getMyLogin } from '../../selectors/me';
 import PromoFilter from '../../containers/PromoFilter';
 import Graph from '../../pages/Students/Graph';
@@ -26,7 +20,7 @@ import { removeFriend } from '../../actions/me';
 import { reqGetPromo } from '../../requests';
 import { ALL_PROMO_SELECTED } from '../Students/constants';
 import UserPreview from '../../components/UserPreview';
-import Title from '../../components/Title';
+import PagesHeader from '../../containers/PagesHeader';
 import NoFriends from './NoFriends';
 import { getFileredAndSortedFriends, getFriendsByUnit } from './utils';
 
@@ -52,27 +46,25 @@ const Friends = ({
   );
   return (
     <Container>
-      <Header>
-        <HeaderContent>
-          <Graph
-            nbUsers={length(filteredAndSortedFriends)}
-            usersByUnit={getFriendsByUnit(filteredAndSortedFriends)}
-            filterBy={filterBy}
-            usersRatioTranches={[]}
-          />
-          <PromoFilter
-            promos={promos}
-            selectedPromo={selectedPromo}
-            handleChangeSelectedPromo={handleChangeSelectedPromo}
-            filterBy={filterBy}
-            handleChangeFilterBy={handleChangeFilterBy}
-            usable
-            handleChangeSearchValue={() => {}}
-            searchValue={''}
-            displaySearchBar={false}
-          />
-        </HeaderContent>
-      </Header>
+      <PagesHeader>
+        <Graph
+          nbUsers={length(filteredAndSortedFriends)}
+          usersByUnit={getFriendsByUnit(filteredAndSortedFriends)}
+          filterBy={filterBy}
+          usersRatioTranches={[]}
+        />
+        <PromoFilter
+          promos={promos}
+          selectedPromo={selectedPromo}
+          handleChangeSelectedPromo={handleChangeSelectedPromo}
+          filterBy={filterBy}
+          handleChangeFilterBy={handleChangeFilterBy}
+          usable
+          handleChangeSearchValue={() => {}}
+          searchValue={''}
+          displaySearchBar={false}
+        />
+      </PagesHeader>
       <Content>
         {length(filteredAndSortedFriends) === 0 && (
           <NoFriends selectedPromo={selectedPromo} />
