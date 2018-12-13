@@ -10,13 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { array } from 'prop-types';
 
-import {
-  Container,
-  Header,
-  Content,
-  UsersPrewiewContainer,
-  HeaderContent,
-} from './styles';
+import { Container, Content, UsersPrewiewContainer } from './styles';
 import { getMyFriends, getMyLogin } from '../../selectors/me';
 import PromoFilter from '../../containers/PromoFilter';
 import Graph from '../../pages/Students/Graph';

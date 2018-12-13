@@ -9,6 +9,7 @@ import {
   BottomSide,
   BarContainer,
   Bar,
+  BarShadow,
   HoverContent,
   HoverValue,
   HoverLabel,
@@ -83,7 +84,9 @@ const Graph = ({
               onMouseEnter={() => handleChangeHoveredUnit(id)}
               onMouseLeave={() => handleChangeHoveredUnit(undefined)}
             >
-              <Bar value={value} valuesLength={length(usersByUnit)} />
+              <Bar value={value} valuesLength={length(usersByUnit)}>
+                <BarShadow value={value} isHover={id === hoveredUnit} />
+              </Bar>
             </BarContainer>
           );
         },

@@ -12,27 +12,25 @@ export const Container = styled.div`
   align-items: flex-start;
   flex-direction: column;
   z-index: 1000;
-  width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
+  width:calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px);
   min-width: 550px;
-  ${({ isWrapped }) => isWrapped && 'top: -230px;'}
   @media (max-width: 1000px) {
-    width: calc(100vw - ${90}px);
-    left: 90px;
+    width: calc(100vw - 90px);
   }
+  ${({ isWrapped }) => isWrapped && 'top: -230px;'}
   background-color: ${BACKGROUND_COLOR};
-  box-sizing: border-box;
   background-image:url('${POLY_BACKGROUND}');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   transition: top 0.3s ease-in-out;
+  box-sizing:border-box;
 `;
 
 export const Content = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: calc(100vw - ${SIDE_MENU_TOTAL_WIDTH}px - 25px);
   padding-right: 50px;
   padding-left: 50px;
   padding-top: 35px;
@@ -42,6 +40,9 @@ export const Content = styled.div`
 export const FakeHeader = styled.div`
   position: relative;
   display: flex;
-  width: 100%;
+  min-width: 100%;
   height: 320px;
+  @media (max-width: 1437px) {
+    height: 370px;
+  }
 `;
