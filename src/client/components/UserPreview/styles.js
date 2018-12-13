@@ -16,6 +16,7 @@ export const Container = styled(Link)`
   align-items: center;
   min-height: 73px;
   max-height: 73px;
+  min-width: 560px;
   margin-top: 5px;
   margin-bottom: 5px;
   padding-left: 5px;
@@ -30,7 +31,6 @@ export const Container = styled(Link)`
   }
   text-decoration: none;
   transition: all 0.1s ease-in-out;
-  min-width: 680px;
 `;
 
 export const LeftSide = styled.div`
@@ -110,7 +110,7 @@ export const CampusLabel = styled.div`
 export const LogTime = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   color: ${MAIN_COLOR};
   font-size: 0.4em;

@@ -9,14 +9,12 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VisibilitySensor from 'react-visibility-sensor';
-import { LOADING_OFFSET, ALL_PROMO_SELECTED, FILTER_VALUES } from './constants';
 
+import { LOADING_OFFSET, ALL_PROMO_SELECTED, FILTER_VALUES } from './constants';
 import {
   Container,
   UsersPrewiewContainer,
   VisibilitySensorBox,
-  Header,
-  HeaderContent,
   Content,
   RetryRequestContainer,
   RetryRequest,
@@ -26,12 +24,13 @@ import Graph from './Graph';
 import UserPreview from '../../components/UserPreview';
 import Spinner from '../../components/Spinner';
 import EmptySearch from '../../components/EmptySearch';
+import PagesHeader from '../../containers/PagesHeader';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
 import { getPromos, getWinWidth } from '../../selectors/app';
 import { getMyLogin, getMyFriends } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
 import { enhanceMe, addFriend, removeFriend } from '../../actions/me';
-import { isMyFriend, parseTimeKeys } from './utils';
+import { isMyFriend, parseTimeKeys, filterByCoaltition } from './utils';
 
 const Students = ({
   start,
@@ -52,6 +51,7 @@ const Students = ({
   enhanceMe,
   friends,
   winWidth,
+  coalitionFilter,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
@@ -60,29 +60,30 @@ const Students = ({
   handleChangeSearchValue,
   handeChangeIsFetchingPossible,
   handleChangeIsFetchingFailed,
+  handleChangeCoaltionFilter,
 }) => (
   <Container>
-    <Header>
-      <HeaderContent>
-        <Graph
-          nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
-          usersByUnit={usersRatio}
-          filterBy={filterBy}
-          usersRatioTranches={usersRatioTranches}
-          selectedPromo={selectedPromo}
-        />
-        <PromoFilter
-          promos={promos}
-          selectedPromo={selectedPromo}
-          handleChangeSelectedPromo={handleChangeSelectedPromo}
-          filterBy={filterBy}
-          handleChangeFilterBy={handleChangeFilterBy}
-          usable={!isFetching}
-          handleChangeSearchValue={handleChangeSearchValue}
-          searchValue={searchValue}
-        />
-      </HeaderContent>
-    </Header>
+    <PagesHeader>
+      <Graph
+        nbUsers={reduce((acc, nb) => acc + nb, 0, usersRatio)}
+        usersByUnit={usersRatio}
+        filterBy={filterBy}
+        usersRatioTranches={usersRatioTranches}
+        selectedPromo={selectedPromo}
+      />
+      <PromoFilter
+        promos={promos}
+        selectedPromo={selectedPromo}
+        handleChangeSelectedPromo={handleChangeSelectedPromo}
+        filterBy={filterBy}
+        handleChangeFilterBy={handleChangeFilterBy}
+        usable={!isFetching}
+        handleChangeSearchValue={handleChangeSearchValue}
+        searchValue={searchValue}
+        coalitionFilter={coalitionFilter}
+        handleChangeCoaltionFilter={handleChangeCoaltionFilter}
+      />
+    </PagesHeader>
     <Content>
       <UsersPrewiewContainer>
         {map(
@@ -98,7 +99,7 @@ const Students = ({
               winWidth={winWidth}
             />
           ),
-          users,
+          filterByCoaltition(users, coalitionFilter),
         )}
         {isFetchingPossible &&
           !isFetchingFailed && (
@@ -192,6 +193,7 @@ const enhance = compose(
       initialSearchValue = '',
       initialIsFetchingPossible = true,
       initialIsFetchingFailed = false,
+      initialCoaltionFilter = { 0: true, 1: true, 2: true, 3: true },
     }) => ({
       selectedPromo: initialSelectedPromo,
       users: initialUsers,
@@ -203,6 +205,7 @@ const enhance = compose(
       searchValue: initialSearchValue,
       isFetchingPossible: initialIsFetchingPossible,
       isFetchingFailed: initialIsFetchingFailed,
+      coalitionFilter: initialCoaltionFilter,
     }),
     {
       handleChangeSelectedPromo: () => newPromo => ({
@@ -249,6 +252,9 @@ const enhance = compose(
       }),
       handleChangeIsFetchingFailed: () => newValue => ({
         isFetchingFailed: newValue,
+      }),
+      handleChangeCoaltionFilter: ({ coalitionFilter }) => newValue => ({
+        coalitionFilter: { ...coalitionFilter, ...newValue },
       }),
     },
   ),
@@ -331,6 +337,7 @@ const enhance = compose(
     'isFetchingFailed',
     'friends',
     'winWidth',
+    'coalitionFilter',
   ]),
 );
 export default enhance(Students);

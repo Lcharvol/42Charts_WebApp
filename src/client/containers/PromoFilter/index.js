@@ -1,6 +1,6 @@
 import React from 'react';
-import { isEmpty, findIndex } from 'ramda';
-import { array, string, func, bool } from 'prop-types';
+import { isEmpty, findIndex, isNil } from 'ramda';
+import { array, string, func, bool, object } from 'prop-types';
 import { onlyUpdateForKeys } from 'recompose';
 
 import {
@@ -15,6 +15,7 @@ import {
 import { FILTER_VALUES } from '../../pages/Students/constants';
 import SelectButton from '../../components/SelectButton';
 import SearchBar from '../../components/SearchBar';
+import CoalitionFilter from '../../components/CoalitionFilter';
 import { eventGa } from '../../googleAnalytics';
 import { SORT } from '../../constants/GaLabels';
 
@@ -25,6 +26,8 @@ const propTypes = {
   usable: bool.isRequired,
   searchValue: string.isRequired,
   displaySearchBar: bool,
+  coalitionFilter: object,
+  handleChangeCoaltionFilter: func,
 };
 
 const PromoFilter = ({
@@ -37,6 +40,8 @@ const PromoFilter = ({
   handleChangeSearchValue,
   searchValue,
   displaySearchBar = true,
+  coalitionFilter,
+  handleChangeCoaltionFilter,
 }) => (
   <Container>
     <Content>
@@ -80,6 +85,12 @@ const PromoFilter = ({
             handler={handleChangeSearchValue}
           />
         )}
+        {!isNil(handleChangeCoaltionFilter) && (
+          <CoalitionFilter
+            values={coalitionFilter}
+            handler={handleChangeCoaltionFilter}
+          />
+        )}
       </RightSide>
     </Content>
   </Container>
@@ -92,4 +103,5 @@ export default onlyUpdateForKeys([
   'selectedPromo',
   'usable',
   'filterBy',
+  'coalitionFilter',
 ])(PromoFilter);

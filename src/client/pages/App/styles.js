@@ -14,4 +14,6 @@ export const AppContainer = styled.div`
     background-color: darkgrey;
     outline: 1px solid slategrey;
   }
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `;
