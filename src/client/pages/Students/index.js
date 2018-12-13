@@ -9,8 +9,8 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VisibilitySensor from 'react-visibility-sensor';
-import { LOADING_OFFSET, ALL_PROMO_SELECTED, FILTER_VALUES } from './constants';
 
+import { LOADING_OFFSET, ALL_PROMO_SELECTED, FILTER_VALUES } from './constants';
 import {
   Container,
   UsersPrewiewContainer,
@@ -31,7 +31,7 @@ import { getPromos, getWinWidth } from '../../selectors/app';
 import { getMyLogin, getMyFriends } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
 import { enhanceMe, addFriend, removeFriend } from '../../actions/me';
-import { isMyFriend, parseTimeKeys } from './utils';
+import { isMyFriend, parseTimeKeys, filterByCoaltition } from './utils';
 
 const Students = ({
   start,
@@ -102,7 +102,7 @@ const Students = ({
               winWidth={winWidth}
             />
           ),
-          users,
+          filterByCoaltition(users, coalitionFilter),
         )}
         {isFetchingPossible &&
           !isFetchingFailed && (

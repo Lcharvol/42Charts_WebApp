@@ -13,6 +13,7 @@ const proptypes = {
 
 const CoalitionFilter = ({ handler, values }) => (
   <Container>
+    {console.log('values: ', values)}
     {map(
       valueElem => (
         <ColationIcon
@@ -20,9 +21,11 @@ const CoalitionFilter = ({ handler, values }) => (
           color={
             find(propEq('name', valueElem.name))(coalitionsBackground).color
           }
-          onClick={() => handler({ [valueElem.id]: !values[valueElem.id] })}
+          onClick={() =>
+            handler({ [valueElem.id - 1]: !values[valueElem.id - 1] })
+          }
         >
-          {values[valueElem.id] && (
+          {values[valueElem.id - 1] && (
             <CoaltionIconInner
               color={
                 find(propEq('name', valueElem.name))(coalitionsBackground).color

@@ -1,14 +1,14 @@
 export const FILTER_BY_COALITION = [
   {
-    id: 0,
+    id: 2,
     name: 'The Alliance',
   },
   {
-    id: 1,
+    id: 4,
     name: 'The Order',
   },
   {
-    id: 2,
+    id: 1,
     name: 'The Federation',
   },
   {
