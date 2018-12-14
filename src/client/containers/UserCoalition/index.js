@@ -1,5 +1,5 @@
 import React from 'react';
-import { equals, find, propEq } from 'ramda';
+import { equals, find, propEq, isNil } from 'ramda';
 
 import {
   Container,
@@ -31,6 +31,7 @@ const UserCoalition = ({
   coalition: { id, name, color, imageUrl, userScore, userRank },
 }) => {
   const coalitionElem = find(propEq('id', id))(coalitionsBackground) || {};
+  if (isNil(id)) return <Container />;
   return (
     <Container>
       <LeftSide>

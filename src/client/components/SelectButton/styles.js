@@ -7,6 +7,7 @@ import {
   BACKGROUND_COLOR,
   FONT_COLOR,
   DARK_FONT_COLOR,
+  TRANSPARENT_DARK_BACKGROUND,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -16,12 +17,12 @@ export const Container = styled.div`
   align-items: center;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  background-color: ${LIGHT_BACKGROUND_COLOR};
+  background-color: ${TRANSPARENT_DARK_BACKGROUND};
   border-radius: 3px;
-  border: solid 1px ${DARK_BORDER_COLOR};
+  border: solid 1px transparent;
   cursor: pointer;
   &:hover {
-    background-color: ${BACKGROUND_COLOR};
+    background-color: ${TRANSPARENT_DARK_BACKGROUND};
     border: solid 1px ${DARK_BORDER_COLOR};
   }
   z-index: 1000;
@@ -33,7 +34,7 @@ export const Content = styled.div`
   flex-direction: column;
   width: 100%;
   min-height: 30px;
-  background-color: ${BACKGROUND_COLOR};
+  background-color: ${TRANSPARENT_DARK_BACKGROUND};
   border: solid 1px ${DARK_BORDER_COLOR};
   top: ${({ height }) => height}px;
   z-index: 1000;
@@ -73,7 +74,7 @@ export const Value = styled.div`
   height: 25px;
   padding-left: 15px;
   &:hover {
-    background-color: ${LIGHT_BACKGROUND_COLOR};
+    background-color: rgba(0, 0, 0, 0.2);
   }
 `;
 
