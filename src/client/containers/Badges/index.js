@@ -32,14 +32,15 @@ const badges = [
 ];
 
 const Badges = ({ pos, handleChangePos, size: { width } }) => {
-  const nbBadgeVisible = Math.floor(
-    (width - 2 * BADGE_CONTAINER_MARGIN) / BADGE_CONTAINER_WIDTH,
-  );
+  const nbBadgeVisible = Math.floor((width - 2 * 60) / BADGE_CONTAINER_WIDTH);
+  console.log('nbBadgeVisible: ', nbBadgeVisible);
   return (
     <Container>
       <ArrowContainer
         pos={'left'}
-        onClick={() => handleChangePos(pos - 1 < 0 ? 0 : pos - 1)}
+        onClick={() =>
+          handleChangePos(pos - nbBadgeVisible < 0 ? 0 : pos - nbBadgeVisible)
+        }
       >
         <LeftArrowIcon />
       </ArrowContainer>
@@ -58,7 +59,9 @@ const Badges = ({ pos, handleChangePos, size: { width } }) => {
         pos={'right'}
         onClick={() =>
           handleChangePos(
-            pos + 1 + nbBadgeVisible > length(badges) + 1 ? pos : pos + 1,
+            pos + 2 * nbBadgeVisible > length(badges)
+              ? length(badges) - nbBadgeVisible
+              : pos + nbBadgeVisible,
           )
         }
       >

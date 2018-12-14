@@ -19,6 +19,7 @@ export const Content = styled.div`
   flex: 1;
   overflow: hidden;
   padding-left: 60px;
+  padding-right: 60px;
   z-index: 99;
   margin-left: ${({ pos }) =>
     pos * -(BADGE_CONTAINER_WIDTH + 2 * BADGE_CONTAINER_MARGIN)}px;
