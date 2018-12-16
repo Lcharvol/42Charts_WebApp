@@ -21,3 +21,6 @@ export const getSmicFromLog = logtimeInSeconds => {
   const hours = Math.floor(logtimeInSeconds / 3600);
   return `${Math.floor(hours * 7.83)} € S.M.I.C (net)`;
 };
+
+export const getRandomNumber = (min, max) =>
+  Math.round(min + Math.random() * (max - min));

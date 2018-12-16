@@ -71,7 +71,7 @@ export const Value = styled.div`
   color: ${FONT_COLOR};
   user-select: none;
   width: calc(100% - 15px);
-  height: 25px;
+  height: 30px;
   padding-left: 15px;
   &:hover {
     background-color: rgba(0, 0, 0, 0.2);

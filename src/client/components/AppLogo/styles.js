@@ -1,14 +1,7 @@
 import styled from 'styled-components';
 
 import logo from '../../../../public/logo.svg';
-import {
-  MAIN_COLOR,
-  BACKGROUND_COLOR,
-  DARK_FONT_COLOR,
-  LIGHT_BACKGROUND_COLOR,
-  LIGHT_MAIN_COLOR,
-} from '../../constants/colors';
-import { MdSettings } from 'react-icons/md';
+import { BACKGROUND_COLOR, MAIN_COLOR } from '../../constants/colors';
 
 export const Container = styled.div`
   position: relative;
@@ -41,12 +34,27 @@ export const TopSide = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
-  background-color: rgb(30, 30, 30);
+  background-color: rgba(14, 80, 44, ${({ opacity }) => opacity});
   background-image: linear-gradient(
-    ${BACKGROUND_COLOR} 30%,
-    rgba(14, 80, 44, 0.4) 100%
+    ${BACKGROUND_COLOR} 20%,
+    rgba(0, 0, 0, 0) 100%
   );
+  transition: background-color 0.6s ease-in-out;
   opacity: 0.7;
+`;
+
+export const FakeTopSide = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background-image: linear-gradient(
+    transparent ${({ size }) => size}%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  transition: background-color 1s;
+  transition-delay: all ${({ delay }) => delay}s;
+  opacity: 0.9;
 `;
 
 export const BottomSide = styled.div`
@@ -55,20 +63,6 @@ export const BottomSide = styled.div`
   flex: 1;
   width: 100%;
   background-image: linear-gradient(rgb(27, 27, 27), transparent);
-  border-top: solid 1px rgba(14, 80, 44, 0.6);
-`;
-
-export const OptionButton = styled(MdSettings)`
-  position: absolute;
-  display: flex;
-  top: 10px;
-  left: 10px;
-  font-size: 0.35em;
-  color: ${MAIN_COLOR};
-  &:hover {
-    opacity: 0.6;
-  }
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-  z-index: 1000;
+  border-top: solid 1px rgba(14, 80, 44, ${({ opacity }) => opacity});
+  transition: border-top 0.6s ease-in-out;
 `;
