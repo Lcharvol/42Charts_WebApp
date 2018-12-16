@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
-import { MAIN_COLOR } from '../../constants/colors';
+import { MAIN_COLOR, DARK_FONT_COLOR } from '../../constants/colors';
 import { BADGE_CONTAINER_WIDTH, BADGE_CONTAINER_MARGIN } from './constans';
 
 export const Container = styled.div`
@@ -50,12 +50,26 @@ export const RightArrowIcon = styled(MdChevronRight)`
 export const BadgeContainer = styled.div`
   position: relative;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 100%;
   margin-left: 10px;
   margin-right: 10px;
   min-width: 200px;
   max-width: 200px;
-  background-color: rgba(150, 150, 150, 0.1);
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0.5)};
   transition: opacity 0.3s ease-in-out;
+`;
+
+export const BadgesLabel = styled.div`
+  color: ${DARK_FONT_COLOR};
+  font-size: 0.4em;
+`;
+
+export const BadgesValue = styled.div`
+  position: relative;
+  display: flex;
+  color: ${MAIN_COLOR};
+  font-size: 0.5em;
 `;
