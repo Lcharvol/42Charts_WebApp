@@ -10,6 +10,9 @@ import BRONZE3 from '../../../../public/bronze3.png';
 import PLATINIUM1 from '../../../../public/plat1.png';
 import PLATINIUM2 from '../../../../public/plat2.png';
 import PLATINIUM3 from '../../../../public/plat3.png';
+import DIAMOND1 from '../../../../public/diamond1.png';
+import DIAMOND2 from '../../../../public/diamond2.png';
+import DIAMOND3 from '../../../../public/diamond3.png';
 
 export const getBadgeIconFromLevel = level => {
   if (level < 1) return BRONZE1;
