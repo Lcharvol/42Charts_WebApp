@@ -25,6 +25,7 @@ export const Container = styled(Link)`
   border-radius: 80px;
   opacity: 0.8;
   cursor: pointer;
+  border: solid 1px ${({ color }) => color};
   &:hover {
     opacity: 1;
     background-color: rgba(50, 50, 50, 0.2);
