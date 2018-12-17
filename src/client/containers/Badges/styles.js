@@ -51,7 +51,7 @@ export const BadgeContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   min-height: 100%;
   margin-left: 10px;
@@ -60,6 +60,9 @@ export const BadgeContainer = styled.div`
   max-width: 200px;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0.5)};
   transition: opacity 0.3s ease-in-out;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  padding-top: 50px;
 `;
 
 export const BadgesLabel = styled.div`
@@ -72,4 +75,15 @@ export const BadgesValue = styled.div`
   display: flex;
   color: ${MAIN_COLOR};
   font-size: 0.5em;
+`;
+
+export const BadgeIcon = styled.div`
+  position:relative;
+  display:flex;
+  width:100%;
+  height:150px;
+  background-image:url('${({ icon }) => icon}');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
 `;

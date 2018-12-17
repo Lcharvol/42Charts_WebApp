@@ -1,11 +1,6 @@
 import React from 'react';
-import { map, length, isNil, isEmpty } from 'ramda';
-import {
-  compose,
-  withStateHandlers,
-  lifecycle,
-  fromRenderProps,
-} from 'recompose';
+import { map, length, isNil, isEmpty, find, propEq } from 'ramda';
+import { compose, withStateHandlers } from 'recompose';
 import { withSize } from 'react-sizeme';
 
 import {
@@ -17,21 +12,33 @@ import {
   BadgeContainer,
   BadgesLabel,
   BadgesValue,
+  BadgeIcon,
 } from './styles';
 import { BADGE_CONTAINER_WIDTH, BADGE_CONTAINER_MARGIN } from './constans';
 import { getMy42CursusLevel, getMyTotalLogTime } from '../../selectors/me';
 import { store } from '../../index';
+import { getBadgeIconFromLevel, getBadgeIconFromLogTime } from './utils';
 
 const badges = [
   {
     id: 0,
     label: 'Level',
     selector: state => getMy42CursusLevel(state),
+    getBadgeIcon: state => {
+      const cursus = find(propEq('name', '42'))(state.me.cursus);
+      return isNil(cursus) ? '' : getBadgeIconFromLevel(cursus.level);
+    },
   },
   {
     id: 1,
     label: 'Logtime',
     selector: state => getMyTotalLogTime(state),
+    getBadgeIcon: state => {
+      const myLogs = state.me.logs;
+      return isEmpty(myLogs)
+        ? ''
+        : getBadgeIconFromLogTime(myLogs.totalLogTime);
+    },
   },
 ];
 
@@ -56,6 +63,7 @@ const Badges = ({ pos, handleChangePos, size: { width } }) => {
                 isVisible={badge.id >= pos && badge.id < pos + nbBadgeVisible}
                 key={badge.id}
               >
+                <BadgeIcon icon={badge.getBadgeIcon(state)} />
                 <BadgesValue>{badge.selector(state)}</BadgesValue>
                 <BadgesLabel>{badge.label}</BadgesLabel>
               </BadgeContainer>
