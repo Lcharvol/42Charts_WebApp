@@ -15,11 +15,24 @@ import {
   BadgeIcon,
 } from './styles';
 import { BADGE_CONTAINER_WIDTH, BADGE_CONTAINER_MARGIN } from './constans';
-import { getMy42CursusLevel, getMyTotalLogTime } from '../../selectors/me';
+import {
+  getMy42CursusLevel,
+  getMyTotalLogTime,
+  getMyCoalitionScore,
+} from '../../selectors/me';
+import {
+  getUser42CursusLevel,
+  getUserTotalLogTime,
+  getUserCoalitionScore,
+} from '../../selectors/user';
 import { store } from '../../index';
-import { getBadgeIconFromLevel, getBadgeIconFromLogTime } from './utils';
+import {
+  getBadgeIconFromLevel,
+  getBadgeIconFromLogTime,
+  getBadgeIconFromCoalitionScore,
+} from './utils';
 
-const badges = [
+const myBadges = [
   {
     id: 0,
     label: 'Level',
@@ -40,10 +53,57 @@ const badges = [
         : getBadgeIconFromLogTime(myLogs.totalLogTime);
     },
   },
+  {
+    id: 2,
+    label: 'Coalition score',
+    selector: state => getMyCoalitionScore(state),
+    getBadgeIcon: state => {
+      const myCoalition = state.me.coalition;
+      return isEmpty(myCoalition)
+        ? ''
+        : getBadgeIconFromCoalitionScore(myCoalition.userScore);
+    },
+  },
 ];
 
-const Badges = ({ pos, handleChangePos, size: { width } }) => {
-  const nbBadgeVisible = Math.floor((width - 2 * 60) / BADGE_CONTAINER_WIDTH);
+const userBadges = [
+  {
+    id: 0,
+    label: 'Level',
+    selector: state => getUser42CursusLevel(state),
+    getBadgeIcon: state => {
+      const cursus = find(propEq('name', '42'))(state.user.cursus);
+      return isNil(cursus) ? '' : getBadgeIconFromLevel(cursus.level);
+    },
+  },
+  {
+    id: 1,
+    label: 'Logtime',
+    selector: state => getUserTotalLogTime(state),
+    getBadgeIcon: state => {
+      const logs = state.user.logs;
+      return isEmpty(logs) ? '' : getBadgeIconFromLogTime(logs.totalLogTime);
+    },
+  },
+  {
+    id: 2,
+    label: 'Coalition score',
+    selector: state => getUserCoalitionScore(state),
+    getBadgeIcon: state => {
+      const coalition = state.user.coalition;
+      return isEmpty(coalition)
+        ? ''
+        : getBadgeIconFromCoalitionScore(coalition.userScore);
+    },
+  },
+];
+
+const Badges = ({ isMe, pos, handleChangePos, size: { width } }) => {
+  const canBeVisible = Math.floor((width - 2 * 60) / BADGE_CONTAINER_WIDTH);
+  const nbBadgeVisible =
+    canBeVisible > length(isMe ? myBadges : userBadges)
+      ? length(isMe ? myBadges : userBadges)
+      : canBeVisible;
   const state = !isNil(store) ? store.getState() : {};
   return (
     <Container>
@@ -68,7 +128,7 @@ const Badges = ({ pos, handleChangePos, size: { width } }) => {
                 <BadgesLabel>{badge.label}</BadgesLabel>
               </BadgeContainer>
             ),
-            badges,
+            isMe ? myBadges : userBadges,
           )}
         </Content>
       )}
@@ -76,8 +136,8 @@ const Badges = ({ pos, handleChangePos, size: { width } }) => {
         pos={'right'}
         onClick={() =>
           handleChangePos(
-            pos + 2 * nbBadgeVisible > length(badges)
-              ? length(badges) - nbBadgeVisible
+            pos + 2 * nbBadgeVisible > length(isMe ? myBadges : userBadges)
+              ? length(isMe ? myBadges : userBadges) - nbBadgeVisible
               : pos + nbBadgeVisible,
           )
         }

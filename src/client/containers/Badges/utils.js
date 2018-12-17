@@ -1,3 +1,5 @@
+import { isNil } from 'ramda';
+
 import GOLD1 from '../../../../public/gold1.png';
 import GOLD2 from '../../../../public/gold2.png';
 import GOLD3 from '../../../../public/gold3.png';
@@ -27,11 +29,14 @@ export const getBadgeIconFromLevel = level => {
   else if (level < 18) return PLATINIUM1;
   else if (level < 19) return PLATINIUM2;
   else if (level < 20) return PLATINIUM3;
-  return GOLD3;
+  else if (level < 21) return DIAMOND1;
+  else if (level < 22) return DIAMOND2;
+  return DIAMOND3;
 };
 
 export const getBadgeIconFromLogTime = logTimeInSec => {
-  if (logTimeInSec < 864000) return BRONZE1;
+  if (isNil(logTimeInSec)) return '';
+  else if (logTimeInSec < 864000) return BRONZE1;
   // 10 days
   else if (logTimeInSec < 1728000) return BRONZE2;
   // 20 days
@@ -47,6 +52,34 @@ export const getBadgeIconFromLogTime = logTimeInSec => {
   // 100days
   else if (logTimeInSec < 11232000) return GOLD2;
   // 130 days
-  else if (logTimeInSec < 15120000) return GOLD3; // 175 days
-  return GOLD3;
+  else if (logTimeInSec < 15120000) return GOLD3;
+  // 175 days
+  else if (logTimeInSec < 17280000) return PLATINIUM1;
+  // 200 days
+  else if (logTimeInSec < 19872000) return PLATINIUM2;
+  // 230 days
+  else if (logTimeInSec < 23760000) return PLATINIUM3;
+  // 275 days
+  else if (logTimeInSec < 25920000) return DIAMOND1;
+  // 300 days
+  else if (logTimeInSec < 34560000) return DIAMOND2; // 400 days
+  return DIAMOND3;
+};
+
+export const getBadgeIconFromCoalitionScore = coalitonScore => {
+  if (coalitonScore < 10) return BRONZE1;
+  else if (coalitonScore < 20) return BRONZE2;
+  else if (coalitonScore < 50) return BRONZE3;
+  else if (coalitonScore < 100) return SILVER1;
+  else if (coalitonScore < 150) return SILVER2;
+  else if (coalitonScore < 200) return SILVER3;
+  else if (coalitonScore < 250) return GOLD1;
+  else if (coalitonScore < 300) return GOLD2;
+  else if (coalitonScore < 350) return GOLD3;
+  else if (coalitonScore < 400) return PLATINIUM1;
+  else if (coalitonScore < 450) return PLATINIUM2;
+  else if (coalitonScore < 500) return PLATINIUM3;
+  else if (coalitonScore < 550) return DIAMOND1;
+  else if (coalitonScore < 600) return DIAMOND2;
+  return DIAMOND3;
 };

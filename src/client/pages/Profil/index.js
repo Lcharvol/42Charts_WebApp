@@ -68,7 +68,7 @@ const Profil = ({
         label={'My Achievements'}
         width={'calc(50% - 27px)'}
         height={'400px'}
-        content={<Badges />}
+        content={<Badges isMe />}
         icon={<FaTrophy />}
       />
       <Box
