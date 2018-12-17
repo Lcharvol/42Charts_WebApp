@@ -10,6 +10,11 @@ import {
 
 import { MAIN_COLOR, RED } from '../constants/colors';
 
+export const getMy42CursusLevel = state => {
+  const cursus = find(propEq('name', '42'))(state.me.cursus);
+  return isNil(cursus) ? 0 : cursus.level;
+};
+
 export const getMe = state => state.me;
 
 export const getMyLogin = state => state.me.login;

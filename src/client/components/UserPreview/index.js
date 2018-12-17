@@ -79,6 +79,7 @@ const UserPreview = ({
       onMouseLeave={() => handleChangeIsHover(false)}
       to={`/user/${user.id}`}
       onClick={() => eventGa(VIEW_STUDENT)}
+      color={myLogin === user.login ? 'rgba(46,204,113, 0.4)' : 'transparent'}
     >
       <LeftSide>
         <UserAvatar

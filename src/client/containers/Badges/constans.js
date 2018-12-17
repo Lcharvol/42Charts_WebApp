@@ -1,0 +1,3 @@
+export const BADGE_CONTAINER_WIDTH = 200;
+
+export const BADGE_CONTAINER_MARGIN = 10;

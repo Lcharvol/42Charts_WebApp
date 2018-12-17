@@ -22,11 +22,11 @@ export default compose(
       }),
       handleChangeScrollTopPos: ({ isWrapped }) => () => {
         const topPos = window.pageYOffset;
-        if (topPos > 225 && !isWrapped)
+        if (topPos > 230 && !isWrapped)
           return {
             isWrapped: true,
           };
-        else if (topPos <= 225 && isWrapped)
+        else if (topPos <= 230 && isWrapped)
           return {
             isWrapped: false,
           };

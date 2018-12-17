@@ -7,6 +7,7 @@ import {
   DARK_FONT_COLOR,
   BORDER_COLOR,
   MAIN_COLOR,
+  TRANSPARENT_DARK_BACKGROUND,
 } from '../../constants/colors';
 
 export const Container = styled.div`
@@ -21,16 +22,17 @@ export const Content = styled.input`
   display: flex;
   width: 100%;
   height: 30px;
-  background-color: ${LIGHT_BACKGROUND_COLOR};
+  background-color: ${TRANSPARENT_DARK_BACKGROUND};
   border-radius: 3px;
-  border: solid 1px ${DARK_BORDER_COLOR};
+  border: solid 1px transparent;
   color: ${DARK_FONT_COLOR};
   padding-left: 10px;
   padding-right: 10px;
   &:focus {
     outline: none;
-    border: solid 1px ${BORDER_COLOR};
+    border: solid 1px ${MAIN_COLOR};
   }
+  color: ${MAIN_COLOR};
 `;
 
 export const SearchLogo = styled(MdSearch)`
@@ -40,7 +42,7 @@ export const SearchLogo = styled(MdSearch)`
   height: 25px;
   cursor: pointer;
   margin-right: 10px;
-  color: ${DARK_BORDER_COLOR};
+  color: ${MAIN_COLOR};
   top: 5px;
   right: 0;
 `;

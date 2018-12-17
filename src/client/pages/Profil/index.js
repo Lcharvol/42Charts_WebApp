@@ -5,6 +5,7 @@ import { object, number, func } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { isEmpty, filter, propEq } from 'ramda';
 import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
+import { FaTrophy } from 'react-icons/fa';
 
 import { Container, Content } from './styles';
 import { getMe, getMarks, getMyLogs, getMyCoalition } from '../../selectors/me';
@@ -15,6 +16,7 @@ import { reqGetMyLogs } from '../../requests';
 import Marks from '../../containers/Marks';
 import Box from '../../containers/Box';
 import Logs from '../../containers/Logs';
+import Badges from '../../containers/Badges';
 import SelectButton from '../../components/SelectButton';
 import {
   FILTER_MARK_BUTTON_VALUES,
@@ -63,25 +65,11 @@ const Profil = ({
     />
     <Content>
       <Box
-        label={'My Log'}
+        label={'My Achievements'}
         width={'calc(50% - 27px)'}
         height={'400px'}
-        content={
-          <Logs
-            logs={myLogs}
-            currentTime={currentTime}
-            logsFilter={logsFilter}
-            handleChangeLogsFilter={handleChangeLogsFilter}
-          />
-        }
-        headerRight={
-          <SelectButton
-            values={LOGS_FILTER_VALUES}
-            handler={handleChangeLogsFilter}
-            value={logsFilter}
-          />
-        }
-        icon={<MdTimeline />}
+        content={<Badges isMe />}
+        icon={<FaTrophy />}
       />
       <Box
         label={'Marks'}
@@ -102,6 +90,27 @@ const Profil = ({
           />
         }
         icon={<MdCollectionsBookmark />}
+      />
+      <Box
+        label={'My Log'}
+        width={'calc(100% - 27px)'}
+        height={'400px'}
+        content={
+          <Logs
+            logs={myLogs}
+            currentTime={currentTime}
+            logsFilter={logsFilter}
+            handleChangeLogsFilter={handleChangeLogsFilter}
+          />
+        }
+        headerRight={
+          <SelectButton
+            values={LOGS_FILTER_VALUES}
+            handler={handleChangeLogsFilter}
+            value={logsFilter}
+          />
+        }
+        icon={<MdTimeline />}
       />
       <Box
         label={'My Stats'}

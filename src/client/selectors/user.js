@@ -4,9 +4,14 @@ import { length, reduce, find, propEq, isNil, isEmpty } from 'ramda';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 
 import { MAIN_COLOR, RED } from '../constants/colors';
-import { getSmicFromLog } from '../utils';
+import { getSmicFromLog, getFormatedLogtimeInDay } from '../utils';
 
 export const getUser = state => state.user;
+
+export const getUser42CursusLevel = state => {
+  const cursus = find(propEq('name', '42'))(state.user.cursus);
+  return isNil(cursus) ? 0 : cursus.level;
+};
 
 export const getUserLogs = state => state.user.logs;
 
@@ -90,6 +95,9 @@ export const getUserLogTime = state => {
   const hours = Math.floor((logTimInSecond - days * 86400) / 3600);
   return `${days} D ${hours} H`;
 };
+
+export const getUserTotalLogTime = state =>
+  getFormatedLogtimeInDay(state.user.logs.totalLogTime);
 
 export const getUserTotalLogTimeEquivalent = state =>
   getSmicFromLog(state.user.logs.totalLogTime);

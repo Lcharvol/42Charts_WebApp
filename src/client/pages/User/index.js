@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { split, length, isEmpty, filter, propEq, takeLast } from 'ramda';
 import { MdCollectionsBookmark, MdTimeline, MdTune } from 'react-icons/md';
+import { FaTrophy } from 'react-icons/fa';
 
 import { Container, Content } from './styles';
 import { reqGetUserById, reqGetUserLogsById } from '../../requests';
@@ -25,6 +26,7 @@ import {
 import { USER_STATS_CONTENT } from '../../constants/stats';
 import { getWinWidth } from '../../selectors/app';
 import { getMyFriends } from '../../selectors/me';
+import Badges from '../../containers/Badges';
 import { isMyFriend } from '../../utils';
 
 const User = ({
@@ -61,6 +63,13 @@ const User = ({
         enhanceMe={enhanceMe}
       />
       <Content>
+        <Box
+          label={'My Achievements'}
+          width={'calc(50% - 27px)'}
+          height={'400px'}
+          content={<Badges isMe={false} />}
+          icon={<FaTrophy />}
+        />
         <Box
           label={'Marks'}
           width={'calc(50% - 27px)'}
