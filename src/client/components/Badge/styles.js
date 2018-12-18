@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { isNil } from 'ramda';
 import {
   BACKGROUND_COLOR,
   DARK_BORDER_COLOR,
@@ -11,11 +12,16 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   background: ${({ color }) => color};
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
   border-radius: ${({ shape }) => (shape === 'round' ? '100%' : '3px')};
   margin-left: 7px;
   margin-right: 7px;
+  ${({ icon }) =>
+    !isNil(icon) &&
+    `background-image:url('${icon}');`} background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 `;
 
 export const Icon = styled.div`

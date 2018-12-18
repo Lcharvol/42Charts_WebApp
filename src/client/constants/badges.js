@@ -27,28 +27,11 @@ export const badges = [
   {
     id: 0,
     label: 'Logtime',
-    color: BRONZE_MEDAL_COLOR,
-    logo: <MdAccessTime />,
-    requirement: user =>
-      user.totalLogTime > 8640000 && user.totalLogTime < 17280000,
-    hoverValue: 'More than 100 days of logs',
-  },
-  {
-    id: 1,
-    label: 'Logtime',
-    color: SILVER_MEDAL_COLOR,
-    logo: <MdAccessTime />,
-    hoverValue: 'More than 200 days of logs',
-    requirement: user =>
-      user.totalLogTime > 17280000 && user.totalLogTime < 25920000,
-  },
-  {
-    id: 2,
-    label: 'Logtime',
-    color: GOLD_MEDAL_COLOR,
-    logo: <MdAccessTime />,
-    hoverValue: 'More than 300 days of logs',
-    requirement: user => user.totalLogTime > 25920000,
+    getIcon: user => getBadgeIconFromLogTime(user.totalLogTime || 0).icon,
+    getHoverValue: user =>
+      `More than ${
+        getBadgeIconFromLogTime(user.totalLogTime || 0).hoverValue
+      } days of logs`,
   },
 ];
 
@@ -111,9 +94,9 @@ export const userBadges = [
     selector: state => getUserCoalitionScore(state),
     getBadgeIcon: state => {
       const coalition = state.user.coalition;
-      return isEmpty(coalition)
-        ? ''
-        : getBadgeIconFromCoalitionScore(coalition.userScore);
+      return getBadgeIconFromCoalitionScore(
+        isEmpty(coalition) ? undefined : coalition.userScore,
+      );
     },
   },
 ];

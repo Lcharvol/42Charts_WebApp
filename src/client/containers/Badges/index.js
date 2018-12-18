@@ -45,7 +45,7 @@ const Badges = ({ isMe, pos, handleChangePos, size: { width } }) => {
                   isVisible={badge.id >= pos && badge.id < pos + nbBadgeVisible}
                   key={badge.id}
                 >
-                  <BadgeIcon icon={badge.getBadgeIcon(state)} />
+                  <BadgeIcon icon={badge.getBadgeIcon(state).icon} />
                   <BadgesValue>{badge.selector(state)}</BadgesValue>
                   <BadgesLabel>{badge.label}</BadgesLabel>
                 </BadgeContainer>
@@ -73,7 +73,7 @@ const Badges = ({ isMe, pos, handleChangePos, size: { width } }) => {
 
 export default compose(
   withStateHandlers(
-    ({ initialPos = 0, initialBoxWidth = 0 }) => ({
+    ({ initialPos = 0 }) => ({
       pos: initialPos,
     }),
     {
