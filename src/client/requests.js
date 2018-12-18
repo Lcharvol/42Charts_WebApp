@@ -88,10 +88,13 @@ export const getUsersByPromo = (
   offset = 0,
   orderBy = 'level',
   search = '',
+  campus = '',
 ) =>
   axios({
     method: 'get',
-    url: `users?promo=${promo}&limit=${limit}&offset=${offset}&orderBy=${orderBy}&search=${search}`,
+    url: `users?promo=${promo}&limit=${limit}&offset=${offset}&orderBy=${orderBy}&search=${search}&campus=${
+      campus === 'all' ? '' : campus
+    }`,
   })
     .then(res => res.data)
     .catch(err => {

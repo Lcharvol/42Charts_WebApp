@@ -12,7 +12,10 @@ import {
   LeftSide,
   RightSide,
 } from './styles';
-import { FILTER_VALUES } from '../../pages/Students/constants';
+import {
+  FILTER_VALUES,
+  CAMPUS_FILTER_VALUES,
+} from '../../pages/Students/constants';
 import SelectButton from '../../components/SelectButton';
 import SearchBar from '../../components/SearchBar';
 import CoalitionFilter from '../../components/CoalitionFilter';
@@ -39,9 +42,11 @@ const PromoFilter = ({
   usable,
   handleChangeSearchValue,
   searchValue,
+  campusFilter,
   displaySearchBar = true,
   coalitionFilter,
   handleChangeCoaltionFilter,
+  handleChangeCampusFilter,
 }) => (
   <Container>
     <Content>
@@ -79,6 +84,12 @@ const PromoFilter = ({
           value={filterBy}
           handler={handleChangeFilterBy}
         />
+        <SortLabel>Campus </SortLabel>
+        <SelectButton
+          values={CAMPUS_FILTER_VALUES}
+          value={campusFilter}
+          handler={handleChangeCampusFilter}
+        />
         {displaySearchBar && (
           <SearchBar
             searchValue={searchValue}
@@ -104,4 +115,5 @@ export default onlyUpdateForKeys([
   'usable',
   'filterBy',
   'coalitionFilter',
+  'campusFilter',
 ])(PromoFilter);
