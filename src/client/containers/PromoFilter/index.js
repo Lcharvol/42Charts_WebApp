@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { isEmpty, findIndex, isNil } from 'ramda';
 import { array, string, func, bool, object } from 'prop-types';
 import { onlyUpdateForKeys } from 'recompose';
@@ -31,6 +31,7 @@ const propTypes = {
   displaySearchBar: bool,
   coalitionFilter: object,
   handleChangeCoaltionFilter: func,
+  displayCampusFilter: bool,
 };
 
 const PromoFilter = ({
@@ -47,6 +48,7 @@ const PromoFilter = ({
   coalitionFilter,
   handleChangeCoaltionFilter,
   handleChangeCampusFilter,
+  displayCampusFilter,
 }) => (
   <Container>
     <Content>
@@ -84,12 +86,16 @@ const PromoFilter = ({
           value={filterBy}
           handler={handleChangeFilterBy}
         />
-        <SortLabel>Campus </SortLabel>
-        <SelectButton
-          values={CAMPUS_FILTER_VALUES}
-          value={campusFilter}
-          handler={handleChangeCampusFilter}
-        />
+        {displayCampusFilter && (
+          <Fragment>
+            <SortLabel>Campus </SortLabel>
+            <SelectButton
+              values={CAMPUS_FILTER_VALUES}
+              value={campusFilter}
+              handler={handleChangeCampusFilter}
+            />
+          </Fragment>
+        )}
         {displaySearchBar && (
           <SearchBar
             searchValue={searchValue}

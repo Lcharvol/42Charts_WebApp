@@ -92,7 +92,7 @@ const User = ({
         />
         <Box
           label={'Logs'}
-          width={'calc(50% - 27px)'}
+          width={'100%'}
           height={'400px'}
           content={
             <Logs

@@ -91,6 +91,7 @@ const Students = ({
         coalitionFilter={coalitionFilter}
         handleChangeCoaltionFilter={handleChangeCoaltionFilter}
         handleChangeCampusFilter={handleChangeCampusFilter}
+        displayCampusFilter
       />
     </PagesHeader>
     <Content>

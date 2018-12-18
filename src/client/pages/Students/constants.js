@@ -51,7 +51,7 @@ export const CAMPUS_FILTER_VALUES = [
     label: 'Cluj',
   },
   {
-    id: 8,
+    id: 9,
     label: 'Chisinau',
   },
 ];
