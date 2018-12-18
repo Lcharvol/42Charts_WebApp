@@ -6,6 +6,8 @@ import { BADGE_CONTAINER_WIDTH, BADGE_CONTAINER_MARGIN } from './constans';
 export const Container = styled.div`
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 100%;
   max-width: 100%;
   min-height: 100%;
@@ -16,13 +18,18 @@ export const Content = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  flex: 1;
-  overflow: hidden;
   padding-left: 60px;
   padding-right: 60px;
   z-index: 99;
+  max-width: ${({ nbBadgeVisible }) => nbBadgeVisible * 220}px;
+`;
+
+export const MovingContent = styled.div`
+  position: relative;
+  display: flex;
   margin-left: ${({ pos }) =>
     pos * -(BADGE_CONTAINER_WIDTH + 2 * BADGE_CONTAINER_MARGIN)}px;
+  height: 100%;
   transition: margin-left 0.3s ease-in-out;
 `;
 
@@ -53,16 +60,19 @@ export const BadgeContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  min-height: 100%;
+  min-height: 300px;
   margin-left: 10px;
   margin-right: 10px;
   min-width: 200px;
   max-width: 200px;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0.5)};
-  transition: opacity 0.3s ease-in-out;
+  ${({ isVisible }) =>
+    !isVisible &&
+    'transform: scale(0.8);'} transition: opacity 0.3s ease-in-out, transform 0.1s linear;
+  transition-delay: 0.1s;
+  transition-property: transform;
   box-sizing: border-box;
-  padding-bottom: 50px;
-  padding-top: 50px;
+  height: 100%;
 `;
 
 export const BadgesLabel = styled.div`
@@ -80,7 +90,7 @@ export const BadgesValue = styled.div`
 export const BadgeIcon = styled.div`
   position:relative;
   display:flex;
-  width:100%;
+  width:200px;
   height:150px;
   background-image:url('${({ icon }) => icon}');
   background-position: center;

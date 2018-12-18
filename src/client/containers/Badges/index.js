@@ -9,6 +9,7 @@ import {
   LeftArrowIcon,
   RightArrowIcon,
   Content,
+  MovingContent,
   BadgeContainer,
   BadgesLabel,
   BadgesValue,
@@ -116,20 +117,22 @@ const Badges = ({ isMe, pos, handleChangePos, size: { width } }) => {
         <LeftArrowIcon />
       </ArrowContainer>
       {!isEmpty(state) && (
-        <Content pos={pos}>
-          {map(
-            badge => (
-              <BadgeContainer
-                isVisible={badge.id >= pos && badge.id < pos + nbBadgeVisible}
-                key={badge.id}
-              >
-                <BadgeIcon icon={badge.getBadgeIcon(state)} />
-                <BadgesValue>{badge.selector(state)}</BadgesValue>
-                <BadgesLabel>{badge.label}</BadgesLabel>
-              </BadgeContainer>
-            ),
-            isMe ? myBadges : userBadges,
-          )}
+        <Content nbBadgeVisible={nbBadgeVisible}>
+          <MovingContent pos={pos}>
+            {map(
+              badge => (
+                <BadgeContainer
+                  isVisible={badge.id >= pos && badge.id < pos + nbBadgeVisible}
+                  key={badge.id}
+                >
+                  <BadgeIcon icon={badge.getBadgeIcon(state)} />
+                  <BadgesValue>{badge.selector(state)}</BadgesValue>
+                  <BadgesLabel>{badge.label}</BadgesLabel>
+                </BadgeContainer>
+              ),
+              isMe ? myBadges : userBadges,
+            )}
+          </MovingContent>
         </Content>
       )}
       <ArrowContainer
