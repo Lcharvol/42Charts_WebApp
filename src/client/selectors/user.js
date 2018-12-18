@@ -116,7 +116,8 @@ export const getUserPreferedHostTime = state => {
   return `${days} Days ${hours} Hours`;
 };
 
-export const getUserCoalitionScore = state => state.user.coalition.userScore;
+export const getUserCoalitionScore = state =>
+  state.user.coalition.userScore || 0;
 
 export const getUserCoalitionScoreInfo = state => {
   const {

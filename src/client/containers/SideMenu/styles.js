@@ -77,9 +77,9 @@ export const MenuElemContainer = styled.div`
 export const SelectedLinkContainer = styled.div`
   position: absolute;
   display: flex;
-  width: 100%;
   height: 45px;
   top: ${({ pos }) => pos * 45}px;
+  left: 0;
   transition: top 0.3s ease-in-out;
 `;
 

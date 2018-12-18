@@ -19,18 +19,22 @@ const Badge = ({
   color,
   imageUrl,
   shape = 'round',
-  size = 25,
+  width = 25,
+  height = 25,
   logo,
+  icon,
   isHover,
   handleChangeIsHover,
   hoverValue,
 }) => (
   <Container
     color={color}
-    size={size}
+    width={width}
+    height={height}
     shape={shape}
     onMouseEnter={() => handleChangeIsHover(true)}
     onMouseLeave={() => handleChangeIsHover(false)}
+    icon={icon}
   >
     {isHover &&
       !isNil(hoverValue) &&

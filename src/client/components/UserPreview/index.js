@@ -20,8 +20,6 @@ import {
   SECOND_RANK_COLOR,
   THIRD_RANK_COLOR,
   BORDER_COLOR,
-  MAIN_COLOR,
-  BACKGROUND_COLOR,
 } from '../../constants/colors';
 import { VIEW_STUDENT } from '../../constants/GaLabels';
 import { coalitionsBackground } from '../../constants/coalitions';
@@ -101,16 +99,14 @@ const UserPreview = ({
             {!isNil(winWidth) &&
               winWidth > 1000 &&
               map(
-                badge =>
-                  badge.requirement(user) && (
-                    <Badge
-                      key={badge.id}
-                      color={badge.color}
-                      imageUrl={badge.imageUrl}
-                      logo={badge.logo}
-                      hoverValue={badge.hoverValue}
-                    />
-                  ),
+                badge => (
+                  <Badge
+                    key={badge.id}
+                    hoverValue={badge.getHoverValue(user)}
+                    icon={badge.getIcon(user)}
+                    width={30}
+                  />
+                ),
                 badges,
               )}
           </Badges>
