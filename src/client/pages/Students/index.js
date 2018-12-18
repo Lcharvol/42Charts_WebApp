@@ -10,7 +10,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VisibilitySensor from 'react-visibility-sensor';
 
-import { LOADING_OFFSET, ALL_PROMO_SELECTED, FILTER_VALUES } from './constants';
+import {
+  LOADING_OFFSET,
+  ALL_PROMO_SELECTED,
+  FILTER_VALUES,
+  CAMPUS_FILTER_VALUES,
+} from './constants';
 import {
   Container,
   UsersPrewiewContainer,
@@ -52,6 +57,7 @@ const Students = ({
   friends,
   winWidth,
   coalitionFilter,
+  campusFilter,
   handleChangeUsersRatio,
   handleChangeSelectedPromo,
   handleChangeStart,
@@ -61,6 +67,7 @@ const Students = ({
   handeChangeIsFetchingPossible,
   handleChangeIsFetchingFailed,
   handleChangeCoaltionFilter,
+  handleChangeCampusFilter,
 }) => (
   <Container>
     <PagesHeader>
@@ -76,12 +83,14 @@ const Students = ({
         selectedPromo={selectedPromo}
         handleChangeSelectedPromo={handleChangeSelectedPromo}
         filterBy={filterBy}
+        campusFilter={campusFilter}
         handleChangeFilterBy={handleChangeFilterBy}
         usable={!isFetching}
         handleChangeSearchValue={handleChangeSearchValue}
         searchValue={searchValue}
         coalitionFilter={coalitionFilter}
         handleChangeCoaltionFilter={handleChangeCoaltionFilter}
+        handleChangeCampusFilter={handleChangeCampusFilter}
       />
     </PagesHeader>
     <Content>
@@ -114,6 +123,8 @@ const Students = ({
                     start,
                     find(propEq('id', filterBy))(FILTER_VALUES).label,
                     searchValue,
+                    find(propEq('id', campusFilter))(CAMPUS_FILTER_VALUES)
+                      .label,
                   )
                     .then(res => {
                       if (length(res) < LOADING_OFFSET)
@@ -139,6 +150,7 @@ const Students = ({
                   start,
                   find(propEq('id', filterBy))(FILTER_VALUES).label,
                   searchValue,
+                  find(propEq('id', campusFilter))(CAMPUS_FILTER_VALUES).label,
                 )
                   .then(res => {
                     handleChangeIsFetchingFailed(false);
@@ -194,6 +206,7 @@ const enhance = compose(
       initialIsFetchingPossible = true,
       initialIsFetchingFailed = false,
       initialCoaltionFilter = { 0: true, 1: true, 2: true, 3: true },
+      initialCampusFilter = 0,
     }) => ({
       selectedPromo: initialSelectedPromo,
       users: initialUsers,
@@ -206,8 +219,16 @@ const enhance = compose(
       isFetchingPossible: initialIsFetchingPossible,
       isFetchingFailed: initialIsFetchingFailed,
       coalitionFilter: initialCoaltionFilter,
+      campusFilter: initialCampusFilter,
     }),
     {
+      handleChangeCampusFilter: () => newFilter => ({
+        campusFilter: newFilter,
+        start: 0,
+        users: [],
+        isFetchingPossible: true,
+        isFetchingFailed: false,
+      }),
       handleChangeSelectedPromo: () => newPromo => ({
         selectedPromo: newPromo,
         start: 0,
@@ -283,6 +304,7 @@ const enhance = compose(
       if (
         (prevProps.selectedPromo !== this.props.selectedPromo ||
           prevProps.filterBy !== this.props.filterBy ||
+          prevProps.campusFilter !== this.props.campusFilter ||
           prevProps.searchValue !== this.props.searchValue) &&
         isEmpty(this.props.users) &&
         this._isMount
@@ -296,6 +318,8 @@ const enhance = compose(
           this.props.start,
           find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
           this.props.searchValue,
+          find(propEq('id', this.props.campusFilter))(CAMPUS_FILTER_VALUES)
+            .label,
         )
           .then(res => {
             if (length(res) < 25 && this._isMount)
@@ -333,6 +357,7 @@ const enhance = compose(
     'users',
     'selectedPromo',
     'filterBy',
+    'campusFilter',
     'isFetching',
     'isFetchingFailed',
     'friends',
