@@ -91,10 +91,10 @@ export const BadgesValue = styled.div`
 export const BadgeIcon = styled.div`
   position:relative;
   display:flex;
-  width:200px;
+  width:130px;
   height:150px;
   background-image:url('${({ icon }) => icon}');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 60%;
+  background-size: 100%;
 `;
