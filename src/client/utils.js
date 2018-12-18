@@ -60,8 +60,7 @@ export const getBadgeIconFromLevel = level => {
 };
 
 export const getBadgeIconFromLogTime = logTimeInSec => {
-  if (isNil(logTimeInSec)) return '';
-  else if (logTimeInSec < 864000)
+  if (isNil(logTimeInSec) || logTimeInSec < 864000)
     return {
       icon: BRONZE1,
       hoverValue: 1,
@@ -151,7 +150,6 @@ export const getBadgeIconFromLogTime = logTimeInSec => {
 };
 
 export const getBadgeIconFromCoalitionScore = coalitonScore => {
-  0;
   if (coalitonScore < 10 || isNil(coalitonScore)) return { icon: BRONZE1 };
   else if (coalitonScore < 20) return { icon: BRONZE2 };
   else if (coalitonScore < 50) return { icon: BRONZE3 };

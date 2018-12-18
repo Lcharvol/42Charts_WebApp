@@ -51,9 +51,9 @@ export const myBadges = [
     selector: state => getMyTotalLogTime(state),
     getBadgeIcon: state => {
       const myLogs = state.me.logs;
-      return isEmpty(myLogs)
-        ? ''
-        : getBadgeIconFromLogTime(myLogs.totalLogTime);
+      return getBadgeIconFromLogTime(
+        isEmpty(myLogs) ? undefined : myLogs.totalLogTime,
+      );
     },
   },
   {
@@ -85,7 +85,9 @@ export const userBadges = [
     selector: state => getUserTotalLogTime(state),
     getBadgeIcon: state => {
       const logs = state.user.logs;
-      return isEmpty(logs) ? '' : getBadgeIconFromLogTime(logs.totalLogTime);
+      return getBadgeIconFromLogTime(
+        isEmpty(logs) ? undefined : logs.totalLogTime,
+      );
     },
   },
   {
