@@ -2,6 +2,6 @@ import React from 'react';
 
 import { Container } from './styles';
 
-const VersionLabel = () => <Container>Alpha-0.7</Container>;
+const VersionLabel = () => <Container>Beta-1.0</Container>;
 
 export default VersionLabel;
