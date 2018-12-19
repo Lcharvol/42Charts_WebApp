@@ -68,7 +68,7 @@ export const reqMe = () =>
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -98,7 +98,7 @@ export const getUsersByPromo = (
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -109,7 +109,7 @@ export const reqGetPromo = () =>
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -120,7 +120,7 @@ export const reqGetMyLogs = () =>
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -131,7 +131,7 @@ export const reqGetInfos = () =>
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -142,7 +142,7 @@ export const reqGetUsersRatio = (promo = '2013', sortBy = 'level') =>
   })
     .then(res => ({ values: values(res.data), keys: keys(res.data) }))
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -153,7 +153,7 @@ export const reqGetUserById = id =>
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -164,7 +164,7 @@ export const reqGetUserLogsById = id =>
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -175,7 +175,7 @@ export const reqGetMyFriends = () =>
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -189,7 +189,7 @@ export const reqAddNewFriends = userId =>
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -200,7 +200,7 @@ export const reqDeleteFriends = userId =>
   })
     .then(res => res.data)
     .catch(err => {
-      checkToken(err);
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -211,6 +211,7 @@ export const reqGetApps = () =>
   })
     .then(res => res.data)
     .catch(err => {
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -221,6 +222,7 @@ export const reqLikeApp = appId =>
   })
     .then(res => res)
     .catch(err => {
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -231,6 +233,7 @@ export const reqRemoveLikeApp = appId =>
   })
     .then(res => res)
     .catch(err => {
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -241,6 +244,7 @@ export const reqGetWeekSummary = () =>
   })
     .then(res => res.data)
     .catch(err => {
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -254,6 +258,7 @@ export const reqPutGitHub = githubLink =>
   })
     .then(res => res.data)
     .catch(err => {
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -264,6 +269,7 @@ export const reqGetAllProject = () =>
   })
     .then(res => res.data)
     .catch(err => {
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
 
@@ -274,5 +280,6 @@ export const reqGetProjectDetails = projectId =>
   })
     .then(res => res.data)
     .catch(err => {
+      if (err.response.status === 403) checkToken(err);
       throw err;
     });
