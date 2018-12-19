@@ -17,6 +17,7 @@ export const Container = styled.div`
     margin-left: 90px;
   }
   box-sizing: border-box;
+  overflow-y: hidden;
 `;
 
 export const Content = styled.div`

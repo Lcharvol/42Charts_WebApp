@@ -17,7 +17,7 @@ export const Container = styled.div`
   }
   box-sizing: border-box;
   min-width: 500px;
-  overflow-y: scroll;
+  overflow-y: hidden;
 `;
 
 export const Content = styled.div`
