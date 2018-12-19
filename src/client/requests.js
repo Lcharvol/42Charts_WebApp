@@ -68,7 +68,8 @@ export const reqMe = () =>
   })
     .then(res => res.data)
     .catch(err => {
-      if (err.response.status === 403) checkToken(err);
+      if (err.response.status === 403 || err.response.status === 401)
+        checkToken(err);
       throw err;
     });
 
