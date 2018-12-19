@@ -6,7 +6,7 @@ import {
   LIGHT_BACKGROUND_COLOR,
 } from '../../constants/colors';
 
-import LogoUI from '../../../../public/logo.svg';
+const LogoUI = 'https://s3.eu-west-3.amazonaws.com/42charts/logo.svg';
 
 export const Container = styled.div`
   position: relative;

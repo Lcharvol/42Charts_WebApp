@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-import logo from '../../../../public/logo.svg';
 import { BACKGROUND_COLOR, MAIN_COLOR } from '../../constants/colors';
+
+const logo = 'https://s3.eu-west-3.amazonaws.com/42charts/logo.svg';
 
 export const Container = styled.div`
   position: relative;

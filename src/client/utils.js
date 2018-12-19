@@ -1,20 +1,21 @@
 import { isNil, length, filter, propEq } from 'ramda';
-
-import GOLD1 from '../../public/gold1.png';
-import GOLD2 from '../../public/gold2.png';
-import GOLD3 from '../../public/gold3.png';
-import SILVER1 from '../../public/silver1.png';
-import SILVER2 from '../../public/silver2.png';
-import SILVER3 from '../../public/silver3.png';
-import BRONZE1 from '../../public/bronze1.png';
-import BRONZE2 from '../../public/bronze2.png';
-import BRONZE3 from '../../public/bronze3.png';
-import PLATINIUM1 from '../../public/plat1.png';
-import PLATINIUM2 from '../../public/plat2.png';
-import PLATINIUM3 from '../../public/plat3.png';
-import DIAMOND1 from '../../public/diamond1.png';
-import DIAMOND2 from '../../public/diamond2.png';
-import DIAMOND3 from '../../public/diamond3.png';
+import {
+  GOLD1,
+  GOLD2,
+  GOLD3,
+  SILVER1,
+  SILVER2,
+  SILVER3,
+  BRONZE1,
+  BRONZE2,
+  BRONZE3,
+  PLATINIUM1,
+  PLATINIUM2,
+  PLATINIUM3,
+  DIAMOND1,
+  DIAMOND2,
+  DIAMOND3,
+} from './constants/badges';
 
 export const getFormatedLogtime = logtimeInSeconds => {
   if (isNil(logtimeInSeconds)) return '0 h 0 min';
