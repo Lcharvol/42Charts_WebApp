@@ -23,6 +23,34 @@ import {
   getBadgeIconFromCoalitionScore,
 } from '../utils';
 
+export const GOLD1 = 'https://s3.eu-west-3.amazonaws.com/42charts/gold1.png';
+export const GOLD2 = 'https://s3.eu-west-3.amazonaws.com/42charts/gold2.png';
+export const GOLD3 = 'https://s3.eu-west-3.amazonaws.com/42charts/gold3.png';
+export const SILVER1 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/silver1.png';
+export const SILVER2 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/silver2.png';
+export const SILVER3 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/silver3.png';
+export const BRONZE1 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/bronze1.png';
+export const BRONZE2 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/bronze2.png';
+export const BRONZE3 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/bronze3.png';
+export const PLATINIUM1 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/plat1.png';
+export const PLATINIUM2 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/plat2.png';
+export const PLATINIUM3 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/plat3.png';
+export const DIAMOND1 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/diamond1.png';
+export const DIAMOND2 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/diamond2.png';
+export const DIAMOND3 =
+  'https://s3.eu-west-3.amazonaws.com/42charts/diamond3.png';
+
 export const badges = [
   {
     id: 0,
