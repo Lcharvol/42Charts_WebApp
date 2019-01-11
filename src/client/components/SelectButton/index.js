@@ -47,7 +47,11 @@ const SelectButton = ({
     height={height}
     onClick={() => handleChangeWrapped()}
   >
-    <SelectedValue>{values[value] ? values[value].label : ''}</SelectedValue>
+    <SelectedValue>
+      {find(propEq('id', selectedValueId), values)
+        ? find(propEq('id', selectedValueId), values).label
+        : ''}
+    </SelectedValue>
     <ChevIcon />
     {!wrapped && (
       <Content height={height}>

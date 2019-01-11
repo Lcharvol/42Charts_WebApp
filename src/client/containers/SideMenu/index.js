@@ -1,5 +1,5 @@
 import React from 'react';
-import { contains, split, isEmpty } from 'ramda';
+import { contains, split, isEmpty, length } from 'ramda';
 import { compose, lifecycle, withStateHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,7 +15,7 @@ import WeekSummary from '../../containers/WeekSummary';
 import { DARK_BORDER_COLOR } from '../../constants/colors';
 import { enhanceMe } from '../../actions/me';
 import { enhanceTime } from '../../actions/time';
-import { loadInfos, loadWeekSummary } from '../../actions/app';
+import { loadInfos, loadWeekSummary, loadCampus } from '../../actions/app';
 import {
   getMyLogin,
   getMyProfilPicture,
@@ -23,12 +23,13 @@ import {
   getMyFriends,
   getMyDisplayname,
 } from '../../selectors/me';
-import { getWinWidth, getWeekSummary } from '../../selectors/app';
+import { getWinWidth, getWeekSummary, getCampus } from '../../selectors/app';
 import {
   reqMe,
   reqPing,
   reqGetMyFriends,
   reqGetWeekSummary,
+  reqGetCampus,
 } from '../../requests';
 import { noAuthneeded } from '../../auth';
 import { visitePageGa } from '../../googleAnalytics';
@@ -69,7 +70,13 @@ const SideMenu = ({
   );
 };
 
-const actions = { enhanceMe, enhanceTime, loadInfos, loadWeekSummary };
+const actions = {
+  enhanceMe,
+  enhanceTime,
+  loadInfos,
+  loadWeekSummary,
+  loadCampus,
+};
 
 const mapStateToProps = state => ({
   login: getMyLogin(state),
@@ -79,6 +86,7 @@ const mapStateToProps = state => ({
   friends: getMyFriends(state),
   winWidth: getWinWidth(state),
   weekSummary: getWeekSummary(state),
+  campus: getCampus(state),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -128,6 +136,13 @@ const enhance = compose(
             reqGetWeekSummary()
               .then(res => {
                 this.props.loadWeekSummary(res);
+              })
+              .catch();
+          }
+          if (length(this.props.campus) <= 1) {
+            reqGetCampus()
+              .then(res => {
+                this.props.loadCampus(res);
               })
               .catch();
           }

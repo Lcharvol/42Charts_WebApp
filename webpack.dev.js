@@ -25,6 +25,7 @@ const webpackConfig = {
       logSnippet: false,
       reloadOnRestart: true,
       notify: false,
+      scrollProportionally: true,
       middleware: [historyApiFallback()],
       snippetOptions: {
         blacklist: '*',

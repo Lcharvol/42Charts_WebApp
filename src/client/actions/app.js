@@ -8,6 +8,8 @@ export const STORE_TOKEN = 'STORE_TOKEN';
 
 export const DISPLAY_MODAL = 'DISPLAY_MODAL';
 
+export const LOAD_CAMPUS = 'LOAD_CAMPUS';
+
 export const loadPromos = promos => dispatch =>
   dispatch({ type: LOAD_PROMOS, promos });
 
@@ -42,4 +44,10 @@ export const handleChangeDisplayModal = (
     label,
     actionId,
     placeholder,
+  });
+
+export const loadCampus = campus => dispatch =>
+  dispatch({
+    type: LOAD_CAMPUS,
+    campus,
   });

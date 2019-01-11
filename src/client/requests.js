@@ -1,7 +1,5 @@
 import * as Axios from 'axios';
 import { values, isNil, length, keys } from 'ramda';
-import { store } from './index';
-import { getChartsToken, getChartsRefreshToken } from './selectors/app';
 
 const chartsToken = localStorage.getItem('chartsToken');
 
@@ -83,6 +81,16 @@ export const getLogin = () =>
       throw err;
     });
 
+export const reqGetCampus = () =>
+  axios({
+    method: 'get',
+    url: 'campus',
+  })
+    .then(ret => ret.data)
+    .catch(err => {
+      throw err;
+    });
+
 export const getUsersByPromo = (
   promo,
   limit = 50,
@@ -136,10 +144,16 @@ export const reqGetInfos = () =>
       throw err;
     });
 
-export const reqGetUsersRatio = (promo = '2013', sortBy = 'level') =>
+export const reqGetUsersRatio = (
+  promo = '2013',
+  sortBy = 'level',
+  campus = null,
+) =>
   axios({
     method: 'get',
-    url: `usersratio?promo=${promo !== 'all' ? promo : ''}&sortBy=${sortBy}`,
+    url: `usersratio?promo=${
+      promo !== 'all' ? promo : ''
+    }&sortBy=${sortBy}&campus=${campus}`,
   })
     .then(res => ({ values: values(res.data), keys: keys(res.data) }))
     .catch(err => {

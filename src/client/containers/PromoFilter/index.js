@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { isEmpty, findIndex, isNil } from 'ramda';
+import { isEmpty, findIndex, isNil, map } from 'ramda';
 import { array, string, func, bool, object } from 'prop-types';
 import { onlyUpdateForKeys } from 'recompose';
 
@@ -36,6 +36,7 @@ const propTypes = {
 
 const PromoFilter = ({
   promos,
+  campus,
   selectedPromo,
   filterBy,
   handleChangeSelectedPromo,
@@ -90,7 +91,7 @@ const PromoFilter = ({
           <Fragment>
             <SortLabel>Campus </SortLabel>
             <SelectButton
-              values={CAMPUS_FILTER_VALUES}
+              values={map(v => ({ id: v.id, label: v.name }), campus)}
               value={campusFilter}
               handler={handleChangeCampusFilter}
             />

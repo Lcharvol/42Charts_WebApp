@@ -10,12 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import VisibilitySensor from 'react-visibility-sensor';
 
-import {
-  LOADING_OFFSET,
-  ALL_PROMO_SELECTED,
-  FILTER_VALUES,
-  CAMPUS_FILTER_VALUES,
-} from './constants';
+import { LOADING_OFFSET, ALL_PROMO_SELECTED, FILTER_VALUES } from './constants';
 import {
   Container,
   UsersPrewiewContainer,
@@ -31,7 +26,7 @@ import Spinner from '../../components/Spinner';
 import EmptySearch from '../../components/EmptySearch';
 import PagesHeader from '../../containers/PagesHeader';
 import { getUsersByPromo, reqGetUsersRatio, reqGetPromo } from '../../requests';
-import { getPromos, getWinWidth } from '../../selectors/app';
+import { getPromos, getCampus, getWinWidth } from '../../selectors/app';
 import { getMyLogin, getMyFriends } from '../../selectors/me';
 import { loadPromos } from '../../actions/app';
 import { enhanceMe, addFriend, removeFriend } from '../../actions/me';
@@ -40,6 +35,7 @@ import { isMyFriend, parseTimeKeys, filterByCoaltition } from './utils';
 const Students = ({
   start,
   promos,
+  campus,
   selectedPromo,
   enhanceUsers,
   users,
@@ -80,6 +76,7 @@ const Students = ({
       />
       <PromoFilter
         promos={promos}
+        campus={campus}
         selectedPromo={selectedPromo}
         handleChangeSelectedPromo={handleChangeSelectedPromo}
         filterBy={filterBy}
@@ -124,8 +121,7 @@ const Students = ({
                     start,
                     find(propEq('id', filterBy))(FILTER_VALUES).label,
                     searchValue,
-                    find(propEq('id', campusFilter))(CAMPUS_FILTER_VALUES)
-                      .label,
+                    find(propEq('id', campusFilter))(campus).name,
                   )
                     .then(res => {
                       if (length(res) < LOADING_OFFSET)
@@ -151,7 +147,7 @@ const Students = ({
                   start,
                   find(propEq('id', filterBy))(FILTER_VALUES).label,
                   searchValue,
-                  find(propEq('id', campusFilter))(CAMPUS_FILTER_VALUES).label,
+                  find(propEq('id', campusFilter))(campus).name,
                 )
                   .then(res => {
                     handleChangeIsFetchingFailed(false);
@@ -180,6 +176,7 @@ const Students = ({
 
 const mapStateToProps = state => ({
   promos: getPromos(state),
+  campus: getCampus(state),
   myLogin: getMyLogin(state),
   friends: getMyFriends(state),
   winWidth: getWinWidth(state),
@@ -282,6 +279,7 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
+      console.log('campus ', this.props.campus);
       this._isMount = true;
       if (isEmpty(this.props.promos)) {
         reqGetPromo()
@@ -292,6 +290,7 @@ const enhance = compose(
         reqGetUsersRatio(
           this.props.selectedPromo,
           find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
+          find(propEq('id', this.props.campusFilter))(this.props.campus).id,
         )
           .then(res => {
             this.props.handleChangeUsersRatio(res.values);
@@ -319,8 +318,7 @@ const enhance = compose(
           this.props.start,
           find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
           this.props.searchValue,
-          find(propEq('id', this.props.campusFilter))(CAMPUS_FILTER_VALUES)
-            .label,
+          find(propEq('id', this.props.campusFilter))(this.props.campus).name,
         )
           .then(res => {
             if (length(res) < 25 && this._isMount)
@@ -330,6 +328,7 @@ const enhance = compose(
             reqGetUsersRatio(
               this.props.selectedPromo,
               find(propEq('id', this.props.filterBy))(FILTER_VALUES).label,
+              find(propEq('id', this.props.campusFilter))(this.props.campus).id,
             )
               .then(res => {
                 if (this._isMount) {
@@ -364,6 +363,7 @@ const enhance = compose(
     'friends',
     'winWidth',
     'coalitionFilter',
+    'campus',
   ]),
 );
 export default enhance(Students);

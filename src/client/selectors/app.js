@@ -39,3 +39,5 @@ export const getModalLabel = state => state.app.modal.label;
 export const getModalActionId = state => state.app.modal.actionId;
 
 export const getModalPlaceholder = state => state.app.modal.placeholder;
+
+export const getCampus = state => state.app.campus;
