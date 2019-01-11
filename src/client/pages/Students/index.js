@@ -279,7 +279,6 @@ const enhance = compose(
   ),
   lifecycle({
     componentDidMount() {
-      console.log('campus ', this.props.campus);
       this._isMount = true;
       if (isEmpty(this.props.promos)) {
         reqGetPromo()
