@@ -153,7 +153,7 @@ export const reqGetUsersRatio = (
     method: 'get',
     url: `usersratio?promo=${
       promo !== 'all' ? promo : ''
-    }&sortBy=${sortBy}&campus=${campus}`,
+    }&sortBy=${sortBy}&campus=${campus || 'all'}`,
   })
     .then(res => ({ values: values(res.data), keys: keys(res.data) }))
     .catch(err => {
